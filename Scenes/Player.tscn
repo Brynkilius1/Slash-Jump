@@ -1,11 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=11 format=3 uid="uid://dkvddstk3im3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
+[ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="2_6eyki"]
 [ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="2_dbeoe"]
-[ext_resource type="Texture2D" uid="uid://m71rbhya3x35" path="res://Images/Tilesets/Grass_Tileset_Cropped.png" id="2_gp2e7"]
+[ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="4_y5e0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqp1k"]
-size = Vector2(16, 16)
+size = Vector2(6, 11.9242)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjyui"]
+atlas = ExtResource("4_y5e0j")
+region = Rect2(0, 0, 26, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqpyb"]
+atlas = ExtResource("4_y5e0j")
+region = Rect2(26, 0, 26, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hu3c5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjyui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqpyb")
+}],
+"loop": false,
+"name": &"Swing",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkl74"]
 size = Vector2(26, 7)
@@ -15,17 +38,18 @@ size = Vector2(18, 18)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-scale = Vector2(0.66, 0.66)
 collision_layer = 2
 script = ExtResource("1_exm0d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.96212)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vqp1k")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_gp2e7")
-hframes = 3
-vframes = 3
+position = Vector2(-7, -8)
+texture = ExtResource("2_6eyki")
+centered = false
 
 [node name="SwordPivot" type="Node2D" parent="."]
 
@@ -33,9 +57,19 @@ vframes = 3
 position = Vector2(0, -24)
 
 [node name="SwirdTempSprite" type="Sprite2D" parent="SwordPivot/ExtendedSword"]
+visible = false
 position = Vector2(0, -0.5)
 scale = Vector2(0.203125, 0.0546875)
 texture = ExtResource("2_dbeoe")
+
+[node name="SwingAnim" type="AnimatedSprite2D" parent="SwordPivot/ExtendedSword"]
+visible = false
+position = Vector2(-12.1212, 22.4848)
+rotation = -1.5708
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_hu3c5")
+animation = &"Swing"
+centered = false
 
 [node name="SwordCollision" type="Area2D" parent="SwordPivot/ExtendedSword"]
 collision_layer = 2

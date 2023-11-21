@@ -7,7 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 #export variables
 @export var swing_power = Vector2(0, 142) #Vector2(0, 205)
 @export var extra_grounded_power := 20  #20
-@export var swing_cooldown := 0.15
+@export var swing_cooldown := 0.2
 @export var swing_coyote_time := 0.15
 
 @export_category("Walljump bias")
@@ -53,7 +53,8 @@ var fullscreen_on = false
 func _unhandled_input(event):
 	
 	if event is InputEventJoypadMotion:
-		sword_pivot.rotation = GetControllerAngle()
+		if swing_cooldown_active == false:
+			sword_pivot.rotation = GetControllerAngle()
 
 
 func _physics_process(delta):
@@ -87,6 +88,8 @@ func GetSlashInput():
 	if Input.is_action_just_pressed("ControllerButton"):
 		just_pressed = true
 		$CoyoteTimer.start(swing_coyote_time)
+		$SwordPivot/ExtendedSword/SwingAnim.play("Swing")
+		$SwordPivot/ExtendedSword/SwingAnim.visible = true
 	
 	if swing_cooldown_active == false:
 		if just_pressed == true:
@@ -184,6 +187,7 @@ func CheckToggleFullscreen():
 
 func _on_coyote_timer_timeout():
 	just_pressed = false
+	$SwordPivot/ExtendedSword/SwingAnim.visible = false
 
 
 func _on_swing_cooldown_timer_timeout():

@@ -1433,7 +1433,6 @@ follow_viewport_enabled = true
 follow_viewport_scale = 0.2
 
 [node name="ForestBackground" type="Sprite2D" parent="World/-1"]
-visible = false
 position = Vector2(0, -246)
 texture = ExtResource("3_eeh12")
 
