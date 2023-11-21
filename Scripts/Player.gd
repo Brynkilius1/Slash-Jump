@@ -1,12 +1,25 @@
 extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 
 
 #export variables
-@export var swing_power = Vector2(0, 205)
-@export var extra_grounded_power := 20
+@export var swing_power = Vector2(0, 142) #Vector2(0, 205)
+@export var extra_grounded_power := 20  #20
+@export var swing_cooldown := 0.15
+@export var swing_coyote_time := 0.15
+
+@export_category("Walljump bias")
+
+@export_range (0, 3.14) var wall_bias_upper_limit : float = 2.6
+@export var upper_boost : int = 30  #40
+@export_range (0, 3.14) var wall_bias_middle_limit : float = 1.9
+@export var lower_boost : int = 40   #50
+@export_range (0, 3.14) var wall_bias_lower_limit : float = 1.5
+
+
+
 
 
 #node references
@@ -20,16 +33,21 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var wall_climb_prevention_raycast_2 = $WallClimbPreventionRaycast2
 @onready var walljump_raycasts = $SwordPivot/ExtendedSword/WalljumpRaycasts
 
+@onready var swing_cooldown_timer = $SwingCooldownTimer
+
 
 
 
 #code variables
+var swing_cooldown_active = false
 var just_pressed = false
 var saved_x_speed : float
 
 
 #to be removed later variables
 var fullscreen_on = false
+@onready var swird_temp_sprite = $SwordPivot/ExtendedSword/SwirdTempSprite
+
 
 
 func _unhandled_input(event):
@@ -47,7 +65,7 @@ func _physics_process(delta):
 	Friction()
 	Gravity(delta)
 	
-	
+	#print(just_pressed)
 	move_and_slide()
 	
 	
@@ -68,11 +86,16 @@ func GetControllerAngle():
 func GetSlashInput():
 	if Input.is_action_just_pressed("ControllerButton"):
 		just_pressed = true
-		$CoyoteTimer.start()
+		$CoyoteTimer.start(swing_coyote_time)
 	
-	if just_pressed == true:
-		if sword_collision.get_overlapping_bodies() != []:
-			Bounce(sword_pivot.rotation, IsWallJumping())
+	if swing_cooldown_active == false:
+		if just_pressed == true:
+			
+			if sword_collision.get_overlapping_bodies() != []:
+				Bounce(sword_pivot.rotation, IsWallJumping())
+				swing_cooldown_active = true
+				swird_temp_sprite.modulate = Color(1.0, 0.0, 0.0)
+				swing_cooldown_timer.start(swing_cooldown)
 
 func PreventWallClimb():
 	if wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true and is_on_floor() == false:
@@ -115,13 +138,13 @@ func Bounce(angle, is_wall_jumping):
 	just_pressed = false
 
 func AddWallJumpBias(bounce_power, angle):
-	if abs(angle) > 2.6:
+	if abs(angle) > wall_bias_upper_limit:
 		return bounce_power
-	elif abs(angle) > 2.0:
-		bounce_power.y -= 40
+	elif abs(angle) > wall_bias_middle_limit:
+		bounce_power.y -= upper_boost
 		return bounce_power
-	elif abs(angle) > 1.5:
-		bounce_power.y -= 60
+	elif abs(angle) > wall_bias_lower_limit:
+		bounce_power.y -= lower_boost
 		return bounce_power
 	else:
 		return bounce_power
@@ -161,3 +184,8 @@ func CheckToggleFullscreen():
 
 func _on_coyote_timer_timeout():
 	just_pressed = false
+
+
+func _on_swing_cooldown_timer_timeout():
+	swing_cooldown_active = false
+	swird_temp_sprite.modulate = Color(1.0, 1.0, 1.0)

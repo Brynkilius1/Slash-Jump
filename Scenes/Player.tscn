@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=7 format=3 uid="uid://dkvddstk3im3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
+[ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="2_dbeoe"]
 [ext_resource type="Texture2D" uid="uid://m71rbhya3x35" path="res://Images/Tilesets/Grass_Tileset_Cropped.png" id="2_gp2e7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqp1k"]
@@ -14,6 +15,7 @@ size = Vector2(18, 18)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
+scale = Vector2(0.66, 0.66)
 collision_layer = 2
 script = ExtResource("1_exm0d")
 
@@ -30,6 +32,11 @@ vframes = 3
 [node name="ExtendedSword" type="Node2D" parent="SwordPivot"]
 position = Vector2(0, -24)
 
+[node name="SwirdTempSprite" type="Sprite2D" parent="SwordPivot/ExtendedSword"]
+position = Vector2(0, -0.5)
+scale = Vector2(0.203125, 0.0546875)
+texture = ExtResource("2_dbeoe")
+
 [node name="SwordCollision" type="Area2D" parent="SwordPivot/ExtendedSword"]
 collision_layer = 2
 collision_mask = 9
@@ -39,6 +46,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_nkl74")
 
 [node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/ExtendedSword"]
+visible = false
 position = Vector2(0, 24)
 
 [node name="RayCast2D" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
@@ -69,10 +77,14 @@ target_position = Vector2(6, -28)
 enabled = false
 target_position = Vector2(13, -28)
 
-[node name="Sprite2D" type="Sprite2D" parent="SwordPivot/ExtendedSword"]
-
 [node name="CoyoteTimer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 0.15
+one_shot = true
+
+[node name="SwingCooldownTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
 one_shot = true
 
 [node name="EnemyDetector" type="Area2D" parent="."]
@@ -94,4 +106,5 @@ target_position = Vector2(-14, 0)
 hit_from_inside = true
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="SwingCooldownTimer" to="." method="_on_swing_cooldown_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
