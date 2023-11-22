@@ -1,19 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=11 format=3 uid="uid://doa0svqp6pfri"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
-[ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="2_6eyki"]
-[ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="2_dbeoe"]
-[ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="4_y5e0j"]
+[ext_resource type="Script" path="res://Scripts/PlayerDuplicate.gd" id="1_rg36b"]
+[ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="2_thufy"]
+[ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="3_n7hfe"]
+[ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="4_o7dob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqp1k"]
 size = Vector2(6, 11.9242)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xjyui"]
-atlas = ExtResource("4_y5e0j")
+atlas = ExtResource("4_o7dob")
 region = Rect2(0, 0, 26, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqpyb"]
-atlas = ExtResource("4_y5e0j")
+atlas = ExtResource("4_o7dob")
 region = Rect2(26, 0, 26, 25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hu3c5"]
@@ -31,7 +31,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkl74"]
-size = Vector2(18, 7)
+size = Vector2(26, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klsuo"]
 size = Vector2(18, 18)
@@ -39,7 +39,7 @@ size = Vector2(18, 18)
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
-script = ExtResource("1_exm0d")
+script = ExtResource("1_rg36b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.96212)
@@ -47,7 +47,7 @@ shape = SubResource("RectangleShape2D_vqp1k")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-7, -8)
-texture = ExtResource("2_6eyki")
+texture = ExtResource("2_thufy")
 centered = false
 
 [node name="SwordPivot" type="Node2D" parent="."]
@@ -59,12 +59,11 @@ position = Vector2(0, -14)
 visible = false
 position = Vector2(0, -0.5)
 scale = Vector2(0.203125, 0.0546875)
-texture = ExtResource("2_dbeoe")
+texture = ExtResource("3_n7hfe")
 
 [node name="SwingAnim" type="AnimatedSprite2D" parent="SwordPivot/ExtendedSword"]
-position = Vector2(-10, 16)
+position = Vector2(-12.1212, 22.4848)
 rotation = -1.5708
-scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_hu3c5")
 animation = &"Swing"
 centered = false
@@ -74,7 +73,7 @@ collision_layer = 2
 collision_mask = 9
 
 [node name="SwordCollisionShape" type="CollisionShape2D" parent="SwordPivot/ExtendedSword/SwordCollision"]
-position = Vector2(0, -1)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_nkl74")
 
 [node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/ExtendedSword"]

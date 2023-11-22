@@ -1,22 +1,21 @@
 extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
+var gravity = 490
 
 
 #export variables
-@export var swing_power = Vector2(0, 170) #Vector2(0, 205)
+@export var swing_power = Vector2(0, 205)
 @export var extra_grounded_power := 20  #20
 @export var swing_cooldown := 0.2
 @export var swing_coyote_time := 0.15
-@export var max_fall_speed := 250
 
 @export_category("Walljump bias")
 
 @export_range (0, 3.14) var wall_bias_upper_limit : float = 2.6
-@export var upper_boost : int = 30  #40
+@export var upper_boost : int = 40
 @export_range (0, 3.14) var wall_bias_middle_limit : float = 1.9
-@export var lower_boost : int = 40   #50
+@export var lower_boost : int = 50
 @export_range (0, 3.14) var wall_bias_lower_limit : float = 1.5
 
 
@@ -105,7 +104,7 @@ func PreventWallClimb():
 	if wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true and is_on_floor() == false:
 		sword_collision_shape.shape.size.x = 6
 	else:
-		sword_collision_shape.shape.size.x = 18
+		sword_collision_shape.shape.size.x = 26
 
 func IsWallJumping():
 	var floor_hits := 0
@@ -172,10 +171,6 @@ func Friction():
 func Gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
-	if velocity.y > max_fall_speed:
-		velocity.y = max_fall_speed #cap fall speed
-	print(velocity.y)
 
 func CheckToggleFullscreen():
 	if Input.is_action_just_pressed("fullscreen"):
