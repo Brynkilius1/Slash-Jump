@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=10 format=3 uid="uid://dkvddstk3im3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
 [ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="2_6eyki"]
@@ -30,9 +30,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkl74"]
-size = Vector2(18, 7)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klsuo"]
 size = Vector2(18, 18)
 
@@ -62,9 +59,9 @@ scale = Vector2(0.203125, 0.0546875)
 texture = ExtResource("2_dbeoe")
 
 [node name="SwingAnim" type="AnimatedSprite2D" parent="SwordPivot/ExtendedSword"]
-position = Vector2(-10, 16)
+position = Vector2(-11, 18)
 rotation = -1.5708
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_hu3c5")
 animation = &"Swing"
 centered = false
@@ -73,9 +70,8 @@ centered = false
 collision_layer = 2
 collision_mask = 9
 
-[node name="SwordCollisionShape" type="CollisionShape2D" parent="SwordPivot/ExtendedSword/SwordCollision"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_nkl74")
+[node name="SwordColisionShape" type="CollisionPolygon2D" parent="SwordPivot/ExtendedSword/SwordCollision"]
+polygon = PackedVector2Array(-3, 17, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 3, 17)
 
 [node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/ExtendedSword"]
 visible = false
@@ -128,12 +124,12 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_klsuo")
 
 [node name="WallClimbPreventionRaycast1" type="RayCast2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 9)
 target_position = Vector2(13, 0)
 hit_from_inside = true
 
 [node name="WallClimbPreventionRaycast2" type="RayCast2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 9)
 target_position = Vector2(-14, 0)
 hit_from_inside = true
 

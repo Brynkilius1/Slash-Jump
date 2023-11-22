@@ -27,7 +27,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 @onready var sword_pivot = $SwordPivot
 @onready var extended_sword = $SwordPivot/ExtendedSword
 @onready var sword_collision = $SwordPivot/ExtendedSword/SwordCollision
-@onready var sword_collision_shape = $SwordPivot/ExtendedSword/SwordCollision/SwordCollisionShape
+@onready var sword_colision_shape = $SwordPivot/ExtendedSword/SwordCollision/SwordColisionShape
+
 
 
 @onready var wall_climb_prevention_raycast_1 = $WallClimbPreventionRaycast1
@@ -103,9 +104,9 @@ func GetSlashInput():
 
 func PreventWallClimb():
 	if wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true and is_on_floor() == false:
-		sword_collision_shape.shape.size.x = 6
+		sword_colision_shape.scale.x = 0.25
 	else:
-		sword_collision_shape.shape.size.x = 18
+		sword_colision_shape.scale.x = 1
 
 func IsWallJumping():
 	var floor_hits := 0
