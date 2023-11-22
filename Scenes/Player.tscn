@@ -71,7 +71,8 @@ collision_layer = 2
 collision_mask = 9
 
 [node name="SwordColisionShape" type="CollisionPolygon2D" parent="SwordPivot/ExtendedSword/SwordCollision"]
-polygon = PackedVector2Array(-3, 16, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 3, 16)
+polygon = PackedVector2Array(-3, 16, -11, 9, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 12, 9, 3, 16)
+disabled = true
 
 [node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/ExtendedSword"]
 visible = false
@@ -115,6 +116,9 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
+[node name="SwingMissTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="EnemyDetector" type="Area2D" parent="."]
 visible = false
 collision_layer = 2
@@ -133,6 +137,9 @@ position = Vector2(0, 9)
 target_position = Vector2(-14, 0)
 hit_from_inside = true
 
+[connection signal="animation_finished" from="SwordPivot/ExtendedSword/SwingAnim" to="." method="_on_swing_anim_animation_finished"]
+[connection signal="body_entered" from="SwordPivot/ExtendedSword/SwordCollision" to="." method="_on_sword_collision_body_entered"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="SwingCooldownTimer" to="." method="_on_swing_cooldown_timer_timeout"]
+[connection signal="timeout" from="SwingMissTimer" to="." method="_on_swing_miss_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]

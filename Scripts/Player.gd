@@ -7,8 +7,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 #export variables
 @export var swing_power = Vector2(0, 170) #Vector2(0, 205)
 @export var extra_grounded_power := 20  #20
-@export var swing_cooldown := 0.2
+@export var swing_shortended_cooldown := 0.05
+@export var swing_cooldown := 0.4
 @export var swing_coyote_time := 0.15
+@export var swing_anim_length := 0.2
 @export var max_fall_speed := 250
 
 @export_category("Walljump bias")
@@ -28,6 +30,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 @onready var extended_sword = $SwordPivot/ExtendedSword
 @onready var sword_collision = $SwordPivot/ExtendedSword/SwordCollision
 @onready var sword_colision_shape = $SwordPivot/ExtendedSword/SwordCollision/SwordColisionShape
+@onready var swing_anim = $SwordPivot/ExtendedSword/SwingAnim
+
 
 
 
@@ -36,12 +40,15 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 @onready var walljump_raycasts = $SwordPivot/ExtendedSword/WalljumpRaycasts
 
 @onready var swing_cooldown_timer = $SwingCooldownTimer
+@onready var swing_miss_timer = $SwingMissTimer
+
 
 
 
 
 #code variables
 var swing_cooldown_active = false
+var can_rotate_sword = true
 var just_pressed = false
 var saved_x_speed : float
 
@@ -55,7 +62,7 @@ var fullscreen_on = false
 func _unhandled_input(event):
 	
 	if event is InputEventJoypadMotion:
-		if swing_cooldown_active == false:
+		if can_rotate_sword == true:
 			sword_pivot.rotation = GetControllerAngle()
 
 
@@ -91,17 +98,40 @@ func GetSlashInput():
 	if Input.is_action_just_pressed("ControllerButton"):
 		just_pressed = true
 		$CoyoteTimer.start(swing_coyote_time)
-		$SwordPivot/ExtendedSword/SwingAnim.play("Swing")
-		$SwordPivot/ExtendedSword/SwingAnim.visible = true
+		
 	
 	if swing_cooldown_active == false:
 		if just_pressed == true:
-			
-			if sword_collision.get_overlapping_bodies() != []:
-				Bounce(sword_pivot.rotation, IsWallJumping())
-				swing_cooldown_active = true
-				swird_temp_sprite.modulate = Color(1.0, 0.0, 0.0)
-				swing_cooldown_timer.start(swing_cooldown)
+			Swing()
+
+
+func Swing():
+	swing_anim.play("Swing")
+	swing_anim.visible = true
+	sword_colision_shape.disabled = false
+	
+	swing_cooldown_active = true
+	swing_cooldown_timer.stop()
+	swing_cooldown_timer.start(swing_cooldown)
+	
+	just_pressed = false
+	can_rotate_sword = false
+	swing_miss_timer.start(swing_anim_length)
+
+
+func _on_sword_collision_body_entered(body):
+	Bounce(sword_pivot.rotation, IsWallJumping())
+	sword_colision_shape.call_deferred("set_disabled", true)
+	swing_cooldown_timer.stop()
+	swing_cooldown_timer.start(swing_shortended_cooldown)
+	swing_miss_timer.stop()
+
+
+func _on_swing_miss_timer_timeout():
+	sword_colision_shape.disabled = true
+	swing_anim.visible = false
+	
+
 
 func PreventWallClimb():
 	if (wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true) and is_on_floor() == false:
@@ -193,9 +223,19 @@ func CheckToggleFullscreen():
 
 func _on_coyote_timer_timeout():
 	just_pressed = false
-	$SwordPivot/ExtendedSword/SwingAnim.visible = false
 
 
 func _on_swing_cooldown_timer_timeout():
 	swing_cooldown_active = false
-	swird_temp_sprite.modulate = Color(1.0, 1.0, 1.0)
+	sword_colision_shape.disabled = true
+
+
+
+
+
+func _on_swing_anim_animation_finished():
+	swing_anim.visible = false
+	can_rotate_sword = true
+
+
+
