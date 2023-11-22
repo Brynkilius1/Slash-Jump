@@ -71,7 +71,7 @@ collision_layer = 2
 collision_mask = 9
 
 [node name="SwordColisionShape" type="CollisionPolygon2D" parent="SwordPivot/ExtendedSword/SwordCollision"]
-polygon = PackedVector2Array(-3, 17, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 3, 17)
+polygon = PackedVector2Array(-3, 16, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 3, 16)
 
 [node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/ExtendedSword"]
 visible = false
