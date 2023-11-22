@@ -102,9 +102,6 @@ func GetSlashInput():
 				swing_cooldown_active = true
 				swird_temp_sprite.modulate = Color(1.0, 0.0, 0.0)
 				swing_cooldown_timer.start(swing_cooldown)
-	
-	if Input.is_action_just_released("ControllerButton"):
-		velocity.y /= 2.5
 
 func PreventWallClimb():
 	if (wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true) and is_on_floor() == false:
