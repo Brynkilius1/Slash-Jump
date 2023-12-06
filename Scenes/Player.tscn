@@ -1,12 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=15 format=3 uid="uid://dkvddstk3im3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
 [ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="2_6eyki"]
 [ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="2_dbeoe"]
+[ext_resource type="Texture2D" uid="uid://du08jliuxscop" path="res://Images/Player/DirectionIndicator.png" id="3_5tba3"]
 [ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="4_y5e0j"]
+[ext_resource type="AudioStream" uid="uid://bliakwl8p66a0" path="res://Sounds/SoundEffects/Player/Sword/clean-fast-swooshaiff-14784.mp3" id="5_7vu0m"]
+[ext_resource type="AudioStream" uid="uid://c1q4jhtig6rcv" path="res://Sounds/SoundEffects/Player/Sword/sword-hit-7160.mp3" id="6_lgycf"]
+[ext_resource type="AudioStream" uid="uid://cp0mot2m602f" path="res://Sounds/SoundEffects/Player/Sword/woosh-2-6471.mp3" id="7_msmtn"]
+[ext_resource type="Script" path="res://Scenes/Player/PlayerCamera.gd" id="9_hd8uj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqp1k"]
-size = Vector2(6, 11.9242)
+size = Vector2(6, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xjyui"]
 atlas = ExtResource("4_y5e0j")
@@ -39,12 +44,24 @@ collision_layer = 2
 script = ExtResource("1_exm0d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.96212)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_vqp1k")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-7, -8)
 texture = ExtResource("2_6eyki")
+centered = false
+
+[node name="IndicatorPivot" type="Node2D" parent="."]
+
+[node name="Indicator" type="Node2D" parent="IndicatorPivot"]
+position = Vector2(0, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="IndicatorPivot/Indicator"]
+modulate = Color(0.921569, 0.921569, 0.921569, 0.560784)
+position = Vector2(-6, 1)
+rotation = -1.5708
+texture = ExtResource("3_5tba3")
 centered = false
 
 [node name="SwordPivot" type="Node2D" parent="."]
@@ -59,6 +76,7 @@ scale = Vector2(0.203125, 0.0546875)
 texture = ExtResource("2_dbeoe")
 
 [node name="SwingAnim" type="AnimatedSprite2D" parent="SwordPivot/ExtendedSword"]
+visible = false
 position = Vector2(-11, 18)
 rotation = -1.5708
 scale = Vector2(0.9, 0.9)
@@ -71,7 +89,7 @@ collision_layer = 2
 collision_mask = 9
 
 [node name="SwordColisionShape" type="CollisionPolygon2D" parent="SwordPivot/ExtendedSword/SwordCollision"]
-polygon = PackedVector2Array(-3, 16, -11, 9, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 12, 9, 3, 16)
+polygon = PackedVector2Array(-3, 15, -11, 9, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 12, 9, 3, 15)
 disabled = true
 
 [node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/ExtendedSword"]
@@ -79,32 +97,58 @@ visible = false
 position = Vector2(0, 24)
 
 [node name="RayCast2D" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
+position = Vector2(0, -2)
 enabled = false
 target_position = Vector2(0, -28)
 
 [node name="RayCast2D6" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(-6, -28)
+target_position = Vector2(-7, -27)
 
 [node name="RayCast2D9" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(-13, -28)
+target_position = Vector2(-11, -21)
 
 [node name="RayCast2D10" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(-13, -21)
+target_position = Vector2(-11, -15)
 
 [node name="RayCast2D11" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(13, -21)
+target_position = Vector2(12, -15)
 
 [node name="RayCast2D3" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(6, -28)
+target_position = Vector2(8, -27)
+
+[node name="RayCast2D4" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(3, -30)
+
+[node name="RayCast2D5" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(-3, -30)
 
 [node name="RayCast2D7" type="RayCast2D" parent="SwordPivot/ExtendedSword/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(13, -28)
+target_position = Vector2(12, -21)
+
+[node name="Knife" type="Node2D" parent="SwordPivot/ExtendedSword"]
+
+[node name="KnifeSwingAnim" type="AnimatedSprite2D" parent="SwordPivot/ExtendedSword/Knife"]
+visible = false
+position = Vector2(-5, 7)
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_hu3c5")
+animation = &"Swing"
+centered = false
+
+[node name="KnifeCollision" type="Area2D" parent="SwordPivot/ExtendedSword/Knife"]
+
+[node name="KnifeCollisionShape" type="CollisionPolygon2D" parent="SwordPivot/ExtendedSword/Knife/KnifeCollision"]
+polygon = PackedVector2Array(-4, 3, -4, 0, -3, -3, 0, -4, 3, -3, 4, 0, 4, 3, 3, 14, 0, 14, -3, 14)
+disabled = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 process_callback = 0
@@ -137,8 +181,40 @@ position = Vector2(0, 9)
 target_position = Vector2(-14, 0)
 hit_from_inside = true
 
+[node name="CornerBoostRaycast1" type="RayCast2D" parent="."]
+position = Vector2(0, -3)
+target_position = Vector2(13, 0)
+hit_from_inside = true
+
+[node name="CornerBoostRaycast2" type="RayCast2D" parent="."]
+position = Vector2(0, -3)
+target_position = Vector2(-14, 0)
+hit_from_inside = true
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="SwordSwing" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_7vu0m")
+volume_db = -80.0
+pitch_scale = 0.6
+
+[node name="SwordHit" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_lgycf")
+volume_db = -80.0
+pitch_scale = 0.39
+
+[node name="SwordMiss" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_msmtn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
+position = Vector2(0, -21)
+script = ExtResource("9_hd8uj")
+
 [connection signal="animation_finished" from="SwordPivot/ExtendedSword/SwingAnim" to="." method="_on_swing_anim_animation_finished"]
 [connection signal="body_entered" from="SwordPivot/ExtendedSword/SwordCollision" to="." method="_on_sword_collision_body_entered"]
+[connection signal="animation_finished" from="SwordPivot/ExtendedSword/Knife/KnifeSwingAnim" to="." method="_on_swing_anim_animation_finished"]
+[connection signal="body_entered" from="SwordPivot/ExtendedSword/Knife/KnifeCollision" to="." method="_on_knife_collision_body_entered"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="SwingCooldownTimer" to="." method="_on_swing_cooldown_timer_timeout"]
 [connection signal="timeout" from="SwingMissTimer" to="." method="_on_swing_miss_timer_timeout"]

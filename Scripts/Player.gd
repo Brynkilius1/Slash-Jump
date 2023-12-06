@@ -5,10 +5,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 
 
 #export variables
-@export var swing_power = Vector2(0, 170) #Vector2(0, 205)
-@export var extra_grounded_power := 20  #20
+@export var swing_power = Vector2(0, 176) #Vector2(0, 205)
+@export var small_swing_power = Vector2(0, 100)
+@export var extra_grounded_power := 16  #20
 @export var swing_shortended_cooldown := 0.05
-@export var swing_cooldown := 0.4
+@export var swing_cooldown := 0.10
+@export var swing_miss_cooldown := 0.19
 @export var swing_coyote_time := 0.15
 @export var swing_anim_length := 0.2
 @export var max_fall_speed := 250
@@ -32,17 +34,27 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 @onready var sword_colision_shape = $SwordPivot/ExtendedSword/SwordCollision/SwordColisionShape
 @onready var swing_anim = $SwordPivot/ExtendedSword/SwingAnim
 
+@onready var knife_swing_anim = $SwordPivot/ExtendedSword/Knife/KnifeSwingAnim
+@onready var knife_collision = $SwordPivot/ExtendedSword/Knife/KnifeCollision
+@onready var knife_collision_shape = $SwordPivot/ExtendedSword/Knife/KnifeCollision/KnifeCollisionShape
 
+
+@onready var indicator_pivot = $IndicatorPivot
 
 
 @onready var wall_climb_prevention_raycast_1 = $WallClimbPreventionRaycast1
 @onready var wall_climb_prevention_raycast_2 = $WallClimbPreventionRaycast2
+@onready var corner_boost_raycast_1 = $CornerBoostRaycast1
+@onready var corner_boost_raycast_2 = $CornerBoostRaycast2
 @onready var walljump_raycasts = $SwordPivot/ExtendedSword/WalljumpRaycasts
 
 @onready var swing_cooldown_timer = $SwingCooldownTimer
 @onready var swing_miss_timer = $SwingMissTimer
 
 
+
+#instances
+var sword_colision_particles = preload("res://Scenes/Player/Particles/sword_colision_particles.tscn")
 
 
 
@@ -51,6 +63,7 @@ var swing_cooldown_active = false
 var can_rotate_sword = true
 var just_pressed = false
 var saved_x_speed : float
+var hit_swing = false
 
 
 #to be removed later variables
@@ -59,9 +72,14 @@ var fullscreen_on = false
 
 
 
+
+func _ready():
+	GlobalObjects.player = self
+
+
 func _unhandled_input(event):
-	
 	if event is InputEventJoypadMotion:
+		indicator_pivot.rotation = GetControllerAngle()
 		if can_rotate_sword == true:
 			sword_pivot.rotation = GetControllerAngle()
 
@@ -95,41 +113,88 @@ func GetControllerAngle():
 	return return_angle
 
 func GetSlashInput():
-	if Input.is_action_just_pressed("ControllerButton"):
+	if Input.is_action_just_pressed("BigSwing"):
 		just_pressed = true
 		$CoyoteTimer.start(swing_coyote_time)
 		
 	
 	if swing_cooldown_active == false:
+		if Input.is_action_just_pressed('SmallSwing'):
+			pass
+			swing_anim.stop()
+			knife_swing_anim.stop()
+			knife_swing_anim.visible = true
+			knife_collision_shape.disabled = false
+			
+			just_pressed = false
+			can_rotate_sword = false
+			
+			StartSwingCooldown()
+			
+		
+		
 		if just_pressed == true:
 			Swing()
+		
+		
+		
 
 
 func Swing():
+	swing_anim.stop()
 	swing_anim.play("Swing")
 	swing_anim.visible = true
 	sword_colision_shape.disabled = false
 	
-	swing_cooldown_active = true
-	swing_cooldown_timer.stop()
-	swing_cooldown_timer.start(swing_cooldown)
-	
 	just_pressed = false
 	can_rotate_sword = false
-	swing_miss_timer.start(swing_anim_length)
+	
+	$Sounds/SwordSwing.play()
+	
+	StartSwingCooldown()
 
+
+func StartSwingCooldown():
+	swing_cooldown_active = true
+	hit_swing = false
+	swing_cooldown_timer.start(swing_cooldown)
+	
 
 func _on_sword_collision_body_entered(body):
-	Bounce(sword_pivot.rotation, IsWallJumping())
+	Bounce(swing_power, sword_pivot.rotation, IsWallJumping())
+	$Sounds/SwordHit.play()
 	sword_colision_shape.call_deferred("set_disabled", true)
-	swing_cooldown_timer.stop()
-	swing_cooldown_timer.start(swing_shortended_cooldown)
 	swing_miss_timer.stop()
+	hit_swing = true
 
+func _on_knife_collision_body_entered(body):
+	Bounce(small_swing_power, sword_pivot.rotation, IsWallJumping())
+	$Sounds/SwordHit.play()
+	knife_collision_shape.call_deferred("set_disabled", true)
+	swing_miss_timer.stop()
+	hit_swing = true
+
+
+
+func _on_swing_cooldown_timer_timeout():
+	sword_colision_shape.disabled = true
+	knife_collision_shape.disabled = true
+	swing_anim.visible = false
+	knife_swing_anim.visible = false
+	can_rotate_sword = true
+	
+	if hit_swing == true:
+		swing_cooldown_active = false
+	else:
+		swing_miss_timer.start(swing_miss_cooldown)
 
 func _on_swing_miss_timer_timeout():
-	sword_colision_shape.disabled = true
-	swing_anim.visible = false
+	$Sounds/SwordMiss.play()
+	swing_cooldown_active = false
+	hit_swing = false
+	
+
+
 	
 
 
@@ -151,27 +216,24 @@ func IsWallJumping():
 				floor_hits += 1
 			
 	if is_on_floor() == true:
-		print("Is wall jumping: ", false)
 		return false
 	elif wall_hits > floor_hits:
-		print("Is wall jumping: ", true)
 		return true
 	else:
-		print("Is wall jumping: ", false)
 		return false
 
 
-func Bounce(angle, is_wall_jumping):
-	var bounce_power = swing_power 
+func Bounce(power, angle, is_wall_jumping):
+	var bounce_power = power 
 	bounce_power.y += int(is_on_floor()) * extra_grounded_power #add slighty mode power if player is grounded
 	bounce_power = bounce_power.rotated(angle)
-	print(angle)
 	if is_wall_jumping == true:
 		bounce_power = AddWallJumpBias(bounce_power, angle)
 	
 	saved_x_speed = bounce_power.x
 	velocity = bounce_power
 	just_pressed = false
+	EmitSwordImpactParticles(angle)
 
 func AddWallJumpBias(bounce_power, angle):
 	if abs(angle) > wall_bias_upper_limit:
@@ -185,14 +247,28 @@ func AddWallJumpBias(bounce_power, angle):
 	else:
 		return bounce_power
 
-
+func EmitSwordImpactParticles(angle):
+	var emit_location = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(angle)
+	
+	var s = sword_colision_particles.instantiate()
+	s.rotation = angle
+	s.global_position = emit_location
+	get_tree().root.get_child(0).add_child(s)
 
 
 func CheckSavedXSpeed():
-	if velocity.x == 0 and wall_climb_prevention_raycast_1.is_colliding() == false and wall_climb_prevention_raycast_2.is_colliding() == false:
-		velocity.x = saved_x_speed
-		saved_x_speed = 0.0
-	saved_x_speed = lerp(saved_x_speed, 0.0, 0.1)
+	if velocity.x == 0:
+		if sign(saved_x_speed) == 1:
+			if wall_climb_prevention_raycast_1.is_colliding() == false and corner_boost_raycast_1.is_colliding() == false:
+				velocity.x = saved_x_speed
+				saved_x_speed = 0.0
+		elif sign(saved_x_speed) == -1:
+			if wall_climb_prevention_raycast_2.is_colliding() == false and corner_boost_raycast_2.is_colliding() == false:
+				velocity.x = saved_x_speed
+				saved_x_speed = 0.0
+	
+	
+	saved_x_speed = lerp(saved_x_speed, 0.0, 0.1) #return saved_x_spped to 0 over time
 
 
 
@@ -225,9 +301,7 @@ func _on_coyote_timer_timeout():
 	just_pressed = false
 
 
-func _on_swing_cooldown_timer_timeout():
-	swing_cooldown_active = false
-	sword_colision_shape.disabled = true
+
 
 
 
@@ -235,7 +309,8 @@ func _on_swing_cooldown_timer_timeout():
 
 func _on_swing_anim_animation_finished():
 	swing_anim.visible = false
-	can_rotate_sword = true
+
+
 
 
 
