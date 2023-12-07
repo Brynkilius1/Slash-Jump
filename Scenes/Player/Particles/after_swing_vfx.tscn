@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2ew4g3h7ynt8"]
+
+[ext_resource type="Texture2D" uid="uid://dscu41imbvdgj" path="res://Images/Player/SwingVFXAfter.png" id="1_bb4ww"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_w5nh4"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="3_yt83c"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o26q1"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jlkqx"]
+particle_flag_disable_z = true
+angle_min = 90.0
+angle_max = 90.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="SwingAfterVFX" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_o26q1")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_jlkqx")
+texture = ExtResource("1_bb4ww")
+lifetime = 0.5
+one_shot = true
+interpolate = false
+script = ExtResource("2_w5nh4")
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("3_yt83c")
+autostart_target = NodePath("..")
