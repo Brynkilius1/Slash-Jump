@@ -1,16 +1,63 @@
-[gd_scene load_steps=7 format=3 uid="uid://co66nl8fuulr3"]
+[gd_scene load_steps=8 format=3 uid="uid://co66nl8fuulr3"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="1_otf04"]
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="1_s8uky"]
 [ext_resource type="PackedScene" uid="uid://b31gw8h80vyka" path="res://Scenes/LevelObjects/spikes.tscn" id="2_j3gs2"]
+[ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="2_kbo6r"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="2_nb44o"]
 [ext_resource type="Script" path="res://Scenes/LevelObjects/Screen.gd" id="3_thpon"]
+[ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="5_qwfim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57u0q"]
 size = Vector2(320, 270)
 
 [node name="test_level_6" type="Node2D"]
-script = ExtResource("1_otf04")
+
+[node name="WorldNessecities" parent="." instance=ExtResource("2_kbo6r")]
+
+[node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("2_nb44o")]
+
+[node name="RespawnPoint" parent="WorldNessecities/ScreenHolder/Screen/RespawnPoints" index="0"]
+position = Vector2(-120, 61)
+
+[node name="RespawnPoint2" parent="WorldNessecities/ScreenHolder/Screen/RespawnPoints" index="1"]
+position = Vector2(78, 62)
+
+[node name="Screen2" parent="WorldNessecities/ScreenHolder" index="1" instance=ExtResource("2_nb44o")]
+position = Vector2(199, 180)
+
+[node name="RespawnPoint" parent="WorldNessecities/ScreenHolder/Screen2/RespawnPoints" index="0"]
+position = Vector2(-97, -33)
+
+[node name="RespawnPoint2" parent="WorldNessecities/ScreenHolder/Screen2/RespawnPoints" index="1"]
+position = Vector2(147, -33)
+
+[node name="Screen7" type="Area2D" parent="WorldNessecities/ScreenHolder" index="2"]
+position = Vector2(519, 46)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_thpon")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldNessecities/ScreenHolder/Screen7"]
+shape = SubResource("RectangleShape2D_57u0q")
+
+[node name="RespawnPoints" type="Node2D" parent="WorldNessecities/ScreenHolder/Screen7"]
+
+[node name="RespawnPoint" type="Node2D" parent="WorldNessecities/ScreenHolder/Screen7/RespawnPoints"]
+position = Vector2(-147, 100)
+
+[node name="RespawnPoint2" type="Node2D" parent="WorldNessecities/ScreenHolder/Screen7/RespawnPoints"]
+position = Vector2(113, -102)
+
+[node name="Screen4" parent="WorldNessecities/ScreenHolder" index="3" instance=ExtResource("2_nb44o")]
+position = Vector2(519, -179)
+
+[node name="Screen5" parent="WorldNessecities/ScreenHolder" index="4" instance=ExtResource("2_nb44o")]
+position = Vector2(199, -179)
+
+[node name="Screen6" parent="WorldNessecities/ScreenHolder" index="5" instance=ExtResource("2_nb44o")]
+position = Vector2(-11, -359)
+
+[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("5_qwfim")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_s8uky")
@@ -20,53 +67,9 @@ layer_0/tile_data = PackedInt32Array(-2490374, 327680, 4, -2424838, 327680, 4, -
 [node name="Spikes" parent="." instance=ExtResource("2_j3gs2")]
 layer_0/tile_data = PackedInt32Array(458801, 65536, 1, 393266, 65536, 1, 458802, 65536, 1, 393267, 65536, 1, 458803, 65536, 1, -1441805, 65536, 1, -1441804, 65536, 1, -1441803, 65536, 1, -1441802, 65536, 1, -1441801, 65536, 1, -1441800, 65536, 1, -1441799, 65536, 1, -1441798, 65536, 1, -1441797, 65536, 1, 524283, 65536, 1, -1441796, 65536, 1, 524284, 65536, 1, -1441795, 65536, 1, 524285, 65536, 1, -1441794, 65536, 1, 458750, 65536, 1, -1441793, 65536, 1, 393215, 65536, 1, 458751, 65536, 1, -1507328, 65536, 1, 327680, 65536, 1, 393216, 65536, 1, 327681, 65536, 1, 393217, 65536, 1, 393218, 65536, 1, 458755, 65536, 1, 458756, 65536, 1, 1376260, 65536, 1, 1441796, 65536, 1, -786427, 65536, 1, 458757, 65536, 1, 1376261, 65536, 1, 1441797, 65536, 1, -786426, 65536, 1, -720890, 65536, 1, 1376262, 65536, 1, 1441798, 65536, 1, -786425, 65536, 1, -720889, 65536, 1, 1376263, 65536, 1, 1441799, 65536, 1, -786424, 65536, 1, -720888, 65536, 1, 1376264, 65536, 1, 1441800, 65536, 1, -786423, 65536, 1, -720887, 65536, 1, 1441801, 65536, 1, -786422, 65536, 1, -720886, 65536, 1, -655350, 65536, 1, 1441802, 65536, 1, -720885, 65536, 1, -655349, 65536, 1, 458763, 65536, 1, 1441803, 65536, 1, -720884, 65536, 1, -655348, 65536, 1, 1441804, 65536, 1, -720883, 65536, 1, -655347, 65536, 1, 1441805, 65536, 1, -720882, 65536, 1, -655346, 65536, 1, -720881, 65536, 1, -655345, 65536, 1, -589809, 65536, 1, -655344, 65536, 1, -589808, 65536, 1, -655343, 65536, 1, -589807, 65536, 1, -524271, 65536, 1, -655342, 65536, 1, -589806, 65536, 1, -524270, 65536, 1, -524269, 65536, 1, -524268, 65536, 1, 1441812, 65536, 1, -524267, 65536, 1, 1441813, 65536, 1, -524266, 65536, 1, 1441814, 65536, 1, -524265, 65536, 1, 1441815, 65536, 1, -524264, 65536, 1, 1441816, 65536, 1, -524263, 65536, 1, 1441817, 65536, 1, 1376282, 65536, 1, 1441818, 65536, 1, 1376283, 65536, 1, 1441819, 65536, 1, -524255, 65536, 1, -524254, 65536, 1, -524253, 65536, 1, -524252, 65536, 1, -524251, 65536, 1, -524250, 65536, 1, -524249, 65536, 1, 786471, 65536, 1, -524248, 65536, 1, 720936, 65536, 1, 786472, 65536, 1, -524247, 65536, 1, 720937, 65536, 1, 786473, 65536, 1, -524246, 65536, 1, 655402, 65536, 1, 720938, 65536, 1, 786474, 65536, 1, 589867, 65536, 1, 655403, 65536, 1, 720939, 65536, 1, 524332, 65536, 1, 589868, 65536, 1, 655404, 65536, 1, 524333, 65536, 1, 589869, 65536, 1, 524334, 65536, 1, 589870, 65536, 1, 458799, 65536, 1, 524335, 65536, 1, 458800, 65536, 1, 524336, 65536, 1, 524337, 65536, 1, 327730, 65536, 1, 196659, 65536, 1, 262195, 65536, 1, 327731, 65536, 1, 65588, 65536, 1, 131124, 65536, 1, 196660, 65536, 1, 262196, 65536, 1, -65483, 65536, 1, 53, 65536, 1, 65589, 65536, 1, 131125, 65536, 1)
 
-[node name="Screens" type="Node2D" parent="."]
+[connection signal="body_entered" from="WorldNessecities/ScreenHolder/Screen7" to="WorldNessecities/ScreenHolder/Screen7" method="_on_body_entered"]
+[connection signal="body_exited" from="WorldNessecities/ScreenHolder/Screen7" to="WorldNessecities/ScreenHolder/Screen7" method="_on_body_exited"]
 
-[node name="Screen" parent="Screens" instance=ExtResource("2_nb44o")]
-
-[node name="RespawnPoint" parent="Screens/Screen/RespawnPoints" index="0"]
-position = Vector2(-120, 61)
-
-[node name="RespawnPoint2" parent="Screens/Screen/RespawnPoints" index="1"]
-position = Vector2(78, 62)
-
-[node name="Screen2" parent="Screens" instance=ExtResource("2_nb44o")]
-position = Vector2(199, 180)
-
-[node name="RespawnPoint" parent="Screens/Screen2/RespawnPoints" index="0"]
-position = Vector2(-97, -33)
-
-[node name="RespawnPoint2" parent="Screens/Screen2/RespawnPoints" index="1"]
-position = Vector2(147, -33)
-
-[node name="Screen7" type="Area2D" parent="Screens"]
-position = Vector2(519, 46)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("3_thpon")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Screens/Screen7"]
-shape = SubResource("RectangleShape2D_57u0q")
-
-[node name="RespawnPoints" type="Node2D" parent="Screens/Screen7"]
-
-[node name="RespawnPoint" type="Node2D" parent="Screens/Screen7/RespawnPoints"]
-position = Vector2(-147, 100)
-
-[node name="RespawnPoint2" type="Node2D" parent="Screens/Screen7/RespawnPoints"]
-position = Vector2(113, -102)
-
-[node name="Screen4" parent="Screens" instance=ExtResource("2_nb44o")]
-position = Vector2(519, -179)
-
-[node name="Screen5" parent="Screens" instance=ExtResource("2_nb44o")]
-position = Vector2(199, -179)
-
-[node name="Screen6" parent="Screens" instance=ExtResource("2_nb44o")]
-position = Vector2(-11, -359)
-
-[connection signal="body_entered" from="Screens/Screen7" to="Screens/Screen7" method="_on_body_entered"]
-[connection signal="body_exited" from="Screens/Screen7" to="Screens/Screen7" method="_on_body_exited"]
-
-[editable path="Screens/Screen"]
-[editable path="Screens/Screen2"]
+[editable path="WorldNessecities"]
+[editable path="WorldNessecities/ScreenHolder/Screen"]
+[editable path="WorldNessecities/ScreenHolder/Screen2"]
