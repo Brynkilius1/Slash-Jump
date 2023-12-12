@@ -37,7 +37,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_thpon")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldNessecities/ScreenHolder/Screen7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldNessecities/ScreenHolder/Screen7"]
 shape = SubResource("RectangleShape2D_57u0q")
 
 [node name="RespawnPoints" type="Node2D" parent="WorldNessecities/ScreenHolder/Screen7"]
@@ -58,6 +58,7 @@ position = Vector2(199, -179)
 position = Vector2(-11, -359)
 
 [node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("5_qwfim")]
+visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_s8uky")
