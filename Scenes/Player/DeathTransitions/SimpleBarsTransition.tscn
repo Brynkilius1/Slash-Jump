@@ -1,0 +1,295 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmgub35621wab"]
+
+[ext_resource type="Script" path="res://Scripts/ScreenTransitionScript.gd" id="1_f6u8p"]
+[ext_resource type="Texture2D" uid="uid://dqttvu1md2yy" path="res://Images/Transitions/BlackTransitionBar.png" id="1_qeube"]
+
+[sub_resource type="Animation" id="Animation_uxutg"]
+resource_name = "CoverScreen"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BlackTransitionBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 12), Vector2(128, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.3),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 36), Vector2(128, 36)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.35),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 60), Vector2(128, 60)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.15, 0.4),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 84), Vector2(128, 84)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.45),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 108), Vector2(128, 108)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 132), Vector2(128, 132)]
+}
+
+[sub_resource type="Animation" id="Animation_7h8rl"]
+resource_name = "LeaveScreen"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BlackTransitionBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 12), Vector2(-128, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.3),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 36), Vector2(-128, 36)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.35),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 60), Vector2(-128, 60)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.15, 0.4),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 84), Vector2(-128, 84)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.45),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 108), Vector2(-128, 108)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 132), Vector2(-128, 132)]
+}
+
+[sub_resource type="Animation" id="Animation_mk8x7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BlackTransitionBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(384, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(384, 36)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(384, 60)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(384, 84)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(384, 108)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(384, 132)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jjwfg"]
+_data = {
+"CoverScreen": SubResource("Animation_uxutg"),
+"LeaveScreen": SubResource("Animation_7h8rl"),
+"RESET": SubResource("Animation_mk8x7")
+}
+
+[node name="BarTransition" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_f6u8p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jjwfg")
+}
+autoplay = "LeaveScreen"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -64.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+mouse_filter = 2
+
+[node name="BlackTransitionBar" type="Sprite2D" parent="Control"]
+position = Vector2(384, 12)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar2" type="Sprite2D" parent="Control"]
+position = Vector2(384, 36)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar3" type="Sprite2D" parent="Control"]
+position = Vector2(384, 60)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar4" type="Sprite2D" parent="Control"]
+position = Vector2(384, 84)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar5" type="Sprite2D" parent="Control"]
+position = Vector2(384, 108)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar6" type="Sprite2D" parent="Control"]
+position = Vector2(384, 132)
+texture = ExtResource("1_qeube")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,19 +1,204 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=49 format=3 uid="uid://dkvddstk3im3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
-[ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="2_6eyki"]
+[ext_resource type="Texture2D" uid="uid://0fol4ct05yva" path="res://Images/Player/KnightTempAnimations.png" id="2_b130x"]
 [ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="2_dbeoe"]
 [ext_resource type="Texture2D" uid="uid://du08jliuxscop" path="res://Images/Player/DirectionIndicator.png" id="3_5tba3"]
 [ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="5_4i1gg"]
 [ext_resource type="AudioStream" uid="uid://bliakwl8p66a0" path="res://Sounds/SoundEffects/Player/Sword/clean-fast-swooshaiff-14784.mp3" id="5_7vu0m"]
 [ext_resource type="AudioStream" uid="uid://c1q4jhtig6rcv" path="res://Sounds/SoundEffects/Player/Sword/sword-hit-7160.mp3" id="6_lgycf"]
 [ext_resource type="Texture2D" uid="uid://ch1m5bw18n1e4" path="res://Images/Player/Sword.png" id="6_x8ewe"]
+[ext_resource type="PackedScene" uid="uid://chaqeowjgno4g" path="res://Scenes/Player/Particles/after_swing_particles.tscn" id="7_kcqth"]
 [ext_resource type="AudioStream" uid="uid://cp0mot2m602f" path="res://Sounds/SoundEffects/Player/Sword/woosh-2-6471.mp3" id="7_msmtn"]
+[ext_resource type="Texture2D" uid="uid://dln5sjibsek3" path="res://Images/Particles/SwordHitParticles/DirtParticles.png" id="8_nbore"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera.gd" id="9_hd8uj"]
 [ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="11_oyk73"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/HazardDetector.gd" id="14_ke5sk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqp1k"]
 size = Vector2(6, 12)
+
+[sub_resource type="Animation" id="Animation_us55k"]
+resource_name = "IdleDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_uqie7"]
+resource_name = "IdleForward"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_qkynn"]
+resource_name = "IdleUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_wux6e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rlogc"]
+resource_name = "SwingDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_m1a8h"]
+resource_name = "SwingForward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_7w2ul"]
+resource_name = "SwingUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vdiq"]
+_data = {
+"IdleDown": SubResource("Animation_us55k"),
+"IdleForward": SubResource("Animation_uqie7"),
+"IdleUp": SubResource("Animation_qkynn"),
+"RESET": SubResource("Animation_wux6e"),
+"SwingDown": SubResource("Animation_rlogc"),
+"SwingForward": SubResource("Animation_m1a8h"),
+"SwingUp": SubResource("Animation_7w2ul")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qbmo"]
+animation = &"IdleForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr2ka"]
+animation = &"IdleForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_olh0s"]
+animation = &"IdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ulx6u"]
+animation = &"IdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_uhjrp"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_7qbmo")
+blend_point_0/pos = Vector2(1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_mr2ka")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_olh0s")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ulx6u")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_br1h8"]
+animation = &"SwingForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_02765"]
+animation = &"SwingForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c1mpv"]
+animation = &"SwingDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h6itf"]
+animation = &"SwingUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5lxf2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_br1h8")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_02765")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_c1mpv")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_h6itf")
+blend_point_3/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u400t"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ws4ur"]
+advance_condition = &"IsSwinging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4e2jn"]
+advance_condition = &"IsIdle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_aq5kc"]
+states/End/position = Vector2(1308, 109)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_uhjrp")
+states/Idle/position = Vector2(544, 67)
+states/Start/position = Vector2(136, 67)
+states/Swing/node = SubResource("AnimationNodeBlendSpace2D_5lxf2")
+states/Swing/position = Vector2(761, 67)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_u400t"), "Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_ws4ur"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_4e2jn")]
+graph_offset = Vector2(-190, -38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ry6xv"]
 atlas = ExtResource("5_4i1gg")
@@ -34,15 +219,50 @@ animations = [{
 }],
 "loop": false,
 "name": &"Swing",
-"speed": 10.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klsuo"]
 size = Vector2(18, 18)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_suv0y"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_hfahp"]
+offsets = PackedFloat32Array(0, 0.762295, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4fh8s"]
+gradient = SubResource("Gradient_hfahp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2nmug"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector3(0.85, -1, 0)
+spread = 30.0
+flatness = 0.225
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 98, 0)
+damping_min = 1.0
+damping_max = 2.0
+color_ramp = SubResource("GradientTexture1D_4fh8s")
+anim_offset_max = 1.0
+collision_mode = 2
+
 [sub_resource type="Curve" id="Curve_c2750"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.504951, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah040"]
+size = Vector2(6, 11)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_phhvs"]
+polygon = PackedVector2Array(-3, 8, -3, -5, 3, -5, 3, 8)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -54,9 +274,24 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_vqp1k")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(-7, -8)
-texture = ExtResource("2_6eyki")
-centered = false
+texture = ExtResource("2_b130x")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8vdiq")
+}
+
+[node name="PlayerAnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8vdiq")
+}
+tree_root = SubResource("AnimationNodeStateMachine_aq5kc")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/IsIdle = false
+parameters/conditions/IsSwinging = false
+parameters/Idle/blend_position = Vector2(-0.00105822, 0.0121458)
+parameters/Swing/blend_position = Vector2(0, 0)
 
 [node name="IndicatorPivot" type="Node2D" parent="."]
 
@@ -99,6 +334,9 @@ collision_mask = 9
 polygon = PackedVector2Array(-3, 15, -11, 9, -11, 3, -7, -3, -3, -6, 3, -6, 8, -3, 12, 3, 12, 9, 3, 15)
 disabled = true
 
+[node name="LingeringVFXEmitter" type="Node2D" parent="SwordPivot/Extended/Sword"]
+position = Vector2(0, -6)
+
 [node name="Knife" type="Node2D" parent="SwordPivot/Extended"]
 
 [node name="KnifeSwingAnim" type="AnimatedSprite2D" parent="SwordPivot/Extended/Knife"]
@@ -134,12 +372,14 @@ enabled = false
 target_position = Vector2(-11, -12)
 
 [node name="RayCast2D10" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+position = Vector2(-3, 0)
 enabled = false
-target_position = Vector2(-11, -6)
+target_position = Vector2(-8, -6)
 
 [node name="RayCast2D11" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+position = Vector2(3, 0)
 enabled = false
-target_position = Vector2(12, -6)
+target_position = Vector2(9, -6)
 
 [node name="RayCast2D3" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
@@ -170,6 +410,10 @@ scale = Vector2(-1, -1)
 texture = ExtResource("6_x8ewe")
 offset = Vector2(-9, 0)
 
+[node name="SwordLingeringParticles" parent="SwordPivot/Rotator/SwordVisualPivot" instance=ExtResource("7_kcqth")]
+position = Vector2(7.96956, -0.697194)
+rotation = 1.5708
+
 [node name="CoyoteTimer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.15
@@ -192,6 +436,7 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_klsuo")
 
 [node name="Raycasts" type="Node2D" parent="."]
+visible = false
 
 [node name="WallClimbPrevention" type="Node2D" parent="Raycasts"]
 
@@ -227,18 +472,30 @@ position = Vector2(0, 4)
 target_position = Vector2(-5, 0)
 
 [node name="CornerBoostRaycast3" type="RayCast2D" parent="Raycasts/CornerBoost"]
-position = Vector2(0, -5)
+position = Vector2(0, -2)
 target_position = Vector2(5, 0)
 
 [node name="CornerBoostRaycast4" type="RayCast2D" parent="Raycasts/CornerBoost"]
-position = Vector2(0, -5)
+position = Vector2(0, -2)
 target_position = Vector2(-5, 0)
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="DirtSkiddingParticles" type="GPUParticles2D" parent="Particles"]
+material = SubResource("CanvasItemMaterial_suv0y")
+position = Vector2(0, 9)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_2nmug")
+texture = ExtResource("8_nbore")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.58
 
 [node name="Sounds" type="Node2D" parent="."]
 
 [node name="SwordSwing" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_7vu0m")
-volume_db = -80.0
+volume_db = -20.0
 pitch_scale = 0.6
 
 [node name="SwordHit" type="AudioStreamPlayer" parent="Sounds"]
@@ -266,6 +523,22 @@ fall_off = SubResource("Curve_c2750")
 
 [node name="Node2D" type="Node2D" parent="."]
 
+[node name="HazardDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("14_ke5sk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HazardDetector"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_ah040")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+modulate = Color(1, 1, 1, 0.478431)
+light_mask = 2
+visibility_layer = 2
+occluder = SubResource("OccluderPolygon2D_phhvs")
+occluder_light_mask = 2
+
 [connection signal="animation_finished" from="SwordPivot/Extended/Sword/SwingAnim" to="." method="_on_swing_anim_animation_finished"]
 [connection signal="body_entered" from="SwordPivot/Extended/Sword/SwordCollision" to="." method="SwordDetectsHit"]
 [connection signal="animation_finished" from="SwordPivot/Extended/Knife/KnifeSwingAnim" to="." method="_on_swing_anim_animation_finished"]
@@ -274,3 +547,4 @@ fall_off = SubResource("Curve_c2750")
 [connection signal="timeout" from="SwingLingerTimer" to="." method="_on_swing_cooldown_timer_timeout"]
 [connection signal="timeout" from="SwingMissTimer" to="." method="_on_swing_miss_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
+[connection signal="body_entered" from="HazardDetector" to="HazardDetector" method="_on_body_entered"]

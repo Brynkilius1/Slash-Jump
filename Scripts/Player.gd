@@ -23,27 +23,38 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 @export var lower_boost : int = 40   #50
 @export_range (0, 3.14) var wall_bias_lower_limit : float = 1.5
 
-
-
+@export_category("Animations")
+@export var sword_resting_rotation = 95
+@export var sword_miss_max_rotation = 150
+@export var sword_miss_time = 0.1
+@export var sword_miss_recover_time = 0.1
 
 
 #node references
+#Sword
 @onready var sword_pivot = $SwordPivot
 @onready var extended_sword = $SwordPivot/Extended
 @onready var sword_collision = $SwordPivot/Extended/Sword/SwordCollision
 @onready var sword_colision_shape = $SwordPivot/Extended/Sword/SwordCollision/SwordColisionShape
 @onready var sword_swing_anim = $SwordPivot/Extended/Sword/SwingAnim
 
+#SwordVisual
+@onready var sword_visual = $SwordPivot/Rotator/SwordVisualPivot/SwordVisual
+@onready var sword_visual_pivot = $SwordPivot/Rotator/SwordVisualPivot
+
+
+
+
+#Knife
 @onready var knife_swing_anim = $SwordPivot/Extended/Knife/KnifeSwingAnim
 @onready var knife_collision = $SwordPivot/Extended/Knife/KnifeCollision
 @onready var knife_collision_shape = $SwordPivot/Extended/Knife/KnifeCollision/KnifeCollisionShape
 
-@onready var sword_visual = $SwordPivot/Rotator/SwordVisualPivot/SwordVisual
-@onready var sword_visual_pivot = $SwordPivot/Rotator/SwordVisualPivot
-
+#DirectionIndicator
 @onready var indicator_pivot = $IndicatorPivot
 
 
+#Raycasts
 @onready var wall_climb_prevention_raycast_1 = $Raycasts/WallClimbPrevention/WallClimbPreventionRaycast1
 @onready var wall_climb_prevention_raycast_2 = $Raycasts/WallClimbPrevention/WallClimbPreventionRaycast2
 @onready var wall_climb_prevention_raycast_3 = $Raycasts/WallClimbPrevention/WallClimbPreventionRaycast3
@@ -55,26 +66,47 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 @onready var corner_boost_raycast_4 = $Raycasts/CornerBoost/CornerBoostRaycast4
 
 
-
+#Timers
 @onready var swing_linger_timer = $SwingLingerTimer
 @onready var swing_miss_timer = $SwingMissTimer
 @onready var coyote_timer = $CoyoteTimer
 
+#Particles
+@onready var sword_lingering_particles = $SwordPivot/Rotator/SwordVisualPivot/SwordLingeringParticles
+@onready var dirt_skidding_particles = $Particles/DirtSkiddingParticles
 
+#Animations
+@onready var player_anim_tree = $PlayerAnimationTree
+@onready var player_sprite = $PlayerSprite
+
+
+
+
+#Misc
 @onready var camera_shaker = $Camera2D/Shaker
+@onready var death_viewport = $DeathViewport
+
 
 
 
 #instances
 var sword_colision_particles = preload("res://Scenes/Player/Particles/sword_colision_particles.tscn")
+const DIRT_PARTICLES = preload("res://Scenes/Player/Particles/dirt_particles.tscn")
 const AFTER_SWING_VFX = preload("res://Scenes/Player/Particles/after_swing_vfx.tscn")
+const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
+
+
+#signals
 
 
 
 #code variables
 var can_rotate_sword = true
+var was_on_ground_last_frame = false
 var saved_x_speed : float
-var sword_resting_rotation = 95
+var saved_coyote_direction : float
+
+var playing_with_controller = true
 
 
 #to be removed later variables
@@ -90,17 +122,41 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventJoypadMotion:
-		indicator_pivot.rotation = GetControllerAngle()
+		if playing_with_controller == false:
+			playing_with_controller = true
+		indicator_pivot.rotation = GetInputAngle()
 		if can_rotate_sword == true:
-			sword_pivot.rotation = GetControllerAngle()
+			sword_pivot.rotation = GetInputAngle()
+			
+			#if GetControllerAngle() == 0:
+				#pass
+				#add code that puts away your sword afer a seconds or two
+	
+	elif event is InputEventMouseMotion:
+		if playing_with_controller == true:
+			playing_with_controller = false
+		
+		indicator_pivot.rotation = GetInputAngle()
+		if can_rotate_sword == true:
+			sword_pivot.rotation = GetInputAngle()
 
 
+
+
+#called each frame
+func _process(delta):
+	UpdateAnimationParameteres()
+
+
+#8 times each frame (or how many times a physics frame is per fame)
 func _physics_process(delta):
+	
 	
 	PreventWallClimb()
 	GetSlashInput()
 	CheckSavedXSpeed()
 	CheckCornerBoost()
+	
 	
 	
 	Friction()
@@ -116,28 +172,36 @@ func _physics_process(delta):
 
 
 
-func GetControllerAngle():
-	var input_vector : Vector2 = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ControllerRight") - Input.get_action_strength("ControllerLeft")
-	input_vector.y = Input.get_action_strength("ControllerDown") - Input.get_action_strength("ControllerUp")
-	
-	var return_angle = Vector2.UP.angle_to(input_vector)
-	return return_angle
+func GetInputAngle():
+	if playing_with_controller == true:
+		var input_vector : Vector2 = Vector2.ZERO
+		input_vector.x = Input.get_action_strength("ControllerRight") - Input.get_action_strength("ControllerLeft")
+		input_vector.y = Input.get_action_strength("ControllerDown") - Input.get_action_strength("ControllerUp")
+		
+		var return_angle = Vector2.UP.angle_to(input_vector)
+
+		return return_angle
+	else:
+		var dir = get_global_mouse_position() - position
+		var return_angle = Vector2.UP.angle_to(dir)
+		return return_angle
+
 
 func GetSlashInput():
 	if Input.is_action_just_pressed("BigSwing"):
 		coyote_timer.start(swing_coyote_time)
-		
+		saved_coyote_direction = GetInputAngle()
 	
 	if SwingCooldownActive() == false:
 		if Input.is_action_just_pressed('SmallSwing'):
 			SwingKnife()
 
 		elif coyote_timer.time_left > 0:
+			sword_pivot.rotation = saved_coyote_direction
 			Swing()
 		
-		
-		
+	
+	
 
 
 func Swing():
@@ -152,28 +216,35 @@ func SwingSoundEffects():
 	$Sounds/SwordSwing.play()
 func SwingVisuals():
 	SwingAnimation()
+	PlayerSwingAnimation()
 	SwingVFX()
 func SwingAnimation():
 	#rotating the sword the player is holding
 	var swing_anim_tween = create_tween()
 	swing_anim_tween.tween_property(sword_visual_pivot, "rotation_degrees", sign(-sword_visual_pivot.rotation_degrees) * sword_resting_rotation, swing_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
-	await get_tree().create_timer(swing_anim_length/5).timeout
-	sword_visual.scale.x = -sword_visual.scale.x
+	await get_tree().create_timer(swing_anim_length/3).timeout
+	sword_visual.scale.x = sign(-sword_visual_pivot.rotation_degrees)
+
+func PlayerSwingAnimation():
+	player_anim_tree["parameters/conditions/IsIdle"] = false
+	player_anim_tree["parameters/conditions/IsSwinging"] = true
+
 func SwingVFX():
 	#show the woosh in the air
 	sword_swing_anim.visible = true
+	sword_swing_anim.flip_v = sign(-sword_visual_pivot.rotation_degrees) - 1
 	sword_swing_anim.stop()
 	knife_swing_anim.stop()
 	sword_swing_anim.play("Swing")
 func SwingParticles():
-	#lingering swing vfx particle
-	var after_swing_vfx = AFTER_SWING_VFX.instantiate()
-	after_swing_vfx.rotation = sword_pivot.rotation
-	after_swing_vfx.process_material.angle_min = -sword_pivot.rotation_degrees + 90
-	after_swing_vfx.process_material.angle_max = -sword_pivot.rotation_degrees + 90
-	after_swing_vfx.position = extended_sword.global_position
-	get_tree().current_scene.add_child(after_swing_vfx)
+	EmitSwingLingerParticles()
+func EmitSwingLingerParticles():
+	sword_lingering_particles.emitting = true
+	
+	await get_tree().create_timer(swing_anim_length/3).timeout
+	sword_lingering_particles.emitting = false
+	sword_lingering_particles.scale.x = sign(sword_visual_pivot.rotation_degrees)
 func SwingTechnical():
 	sword_colision_shape.disabled = false
 	can_rotate_sword = false
@@ -189,16 +260,33 @@ func StartSwingLingerTimer():
 
 func SwingLingerTimeout():
 	LingerTimeoutVisuals()
+	LingerTimeoutParticles()
 	LingerTimeoutTechnical()
 	
 	CheckIfSwingHit()
 	swing_linger_timer.stop()
 
 func LingerTimeoutVisuals():
-	sword_swing_anim.visible = false
+	LingerMissAnim()
 	knife_swing_anim.visible = false
+func LingerMissAnim():
+	var miss_anim_tween = create_tween()
+	miss_anim_tween.tween_property(sword_visual_pivot, "rotation_degrees", sign(sword_visual_pivot.rotation_degrees) * sword_miss_max_rotation, sword_miss_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	
+	await miss_anim_tween.finished
+	var miss_return_anim_tween = create_tween()
+	miss_return_anim_tween.tween_property(sword_visual_pivot, "rotation_degrees", sign(sword_visual_pivot.rotation_degrees) * sword_resting_rotation, sword_miss_recover_time).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+func LingerTimeoutParticles():
+	#lingering swing vfx particle
+	var after_swing_vfx = AFTER_SWING_VFX.instantiate()
+	
+	after_swing_vfx.rotation = sword_pivot.rotation
+	after_swing_vfx.process_material.angle_min = -sword_pivot.rotation_degrees + 90
+	after_swing_vfx.process_material.angle_max = -sword_pivot.rotation_degrees + 90
+	after_swing_vfx.global_position = $SwordPivot/Extended/Sword/LingeringVFXEmitter.global_position
+	
+	get_tree().current_scene.add_child(after_swing_vfx)
 func LingerTimeoutTechnical():
-	can_rotate_sword = true
 	sword_colision_shape.call_deferred("set_disabled", true)
 	knife_collision_shape.call_deferred("set_disabled", true)
 func CheckIfSwingHit():
@@ -212,30 +300,48 @@ func CheckIfSwingHit():
 
 #called when the sword collides with something
 func SwordDetectsHit(body):
+	#Hit
+	SwordHitVelocity(swing_power, sword_pivot.rotation, IsWallJumping())
+	
 	#Juice
 	SwordHitSounds()
 	SwordHitParticles()
-	ShakeCamera(0.4, 1, 3) #(0.7, 0, 6)
-	SwordHitFramePause(0.05)
+	ShakeCamera(0.4, 0, 1) #(0.7, 0, 6)
+	#SwordHitFramePause(0.05)
 	
+	#Technical
 	SwordHitTechnical()
-	
-	SwordHitVelocity(swing_power, sword_pivot.rotation, IsWallJumping())
-	
-	SwingLingerTimeout()
+	DeactivateSwordHitbox()
 
 func SwordHitSounds():
 	#maybe add more sounds later
 	$Sounds/SwordHit.play()
 func SwordHitParticles():
-	EmitSwordDustParticles(sword_pivot.rotation)
-func EmitSwordDustParticles(angle):
-	var emit_location = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(angle)
+	var sword_tip = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
+	var nearest_ground = GetClosestGround()
+	#EmitParticles(sword_colision_particles, nearest_ground, sword_pivot.rotation)
+	EmitParticles(DUSTCLOUDS, nearest_ground + Vector2(0, -2), 0)
 	
-	var s = sword_colision_particles.instantiate()
-	s.rotation = angle
-	s.global_position = emit_location
-	get_tree().root.get_child(0).add_child(s)
+	EmitSwordDirtParticles(5, sword_pivot.rotation, false)
+	EmitSwordDirtParticles(2, sword_pivot.rotation, true)
+func EmitSwordDirtParticles(amount, angle, flipped : bool):
+	
+	var emit_location = GetClosestGround()
+	
+	var p = DIRT_PARTICLES.instantiate()
+	
+	var emit_direction = sign(saved_x_speed)
+	if flipped == true:
+		emit_direction *= -1
+	
+	if emit_direction == 1:
+		p.scale.x = -1
+	
+	p.amount = amount
+	p.global_position = emit_location
+	get_tree().root.get_child(0).add_child(p)
+
+
 func SwordHitFramePause(pause_time):
 	get_tree().paused = true
 	
@@ -253,6 +359,11 @@ func SwordHitVelocity(power, angle, is_wall_jumping):
 	saved_x_speed = bounce_power.x
 	velocity = bounce_power
 	coyote_timer.stop()
+func DeactivateSwordHitbox():
+	LingerTimeoutTechnical()
+	CheckIfSwingHit()
+	LingerTimeoutParticles()
+	swing_linger_timer.stop()
 
 func AddWallJumpBias(bounce_power, angle):
 	if abs(angle) > wall_bias_upper_limit:
@@ -284,7 +395,30 @@ func IsWallJumping():
 	else:
 		return false
 
-
+func GetClosestGround():
+	var main_raycast = walljump_raycasts.get_child(0)
+	var emit_pos : Vector2 = main_raycast.global_position + main_raycast.target_position.rotated(sword_pivot.rotation)
+	
+	if main_raycast.is_colliding() == true:
+		emit_pos = main_raycast.get_collision_point()
+	elif walljump_raycasts.get_child(1).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(1).get_collision_point()
+	elif walljump_raycasts.get_child(2).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(2).get_collision_point()
+	elif walljump_raycasts.get_child(3).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(3).get_collision_point()
+	elif walljump_raycasts.get_child(4).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(4).get_collision_point()
+	elif walljump_raycasts.get_child(5).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(5).get_collision_point()
+	elif walljump_raycasts.get_child(6).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(6).get_collision_point()
+	elif walljump_raycasts.get_child(7).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(7).get_collision_point()
+	elif walljump_raycasts.get_child(8).is_colliding() == true:
+		emit_pos = walljump_raycasts.get_child(8).get_collision_point()
+	
+	return emit_pos
 
 
 func SwingKnife():
@@ -317,7 +451,7 @@ func KnifeDetectsHit(body):
 	KnifeHitSounds()
 	KnifeHitParticles()
 	KnifeHitTechnical()
-	ShakeCamera(0.3, 1, 2)
+	ShakeCamera(0.3, 0, 0.5)
 	
 	
 	SwordHitVelocity(small_swing_power, sword_pivot.rotation, IsWallJumping())
@@ -325,7 +459,8 @@ func KnifeDetectsHit(body):
 func KnifeHitSounds():
 	$Sounds/SwordHit.play()
 func KnifeHitParticles():
-	EmitSwordDustParticles(sword_pivot.rotation)
+	var sword_tip = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
+	EmitParticles(sword_colision_particles, sword_tip, sword_pivot.rotation)
 func KnifeHitTechnical():
 	knife_collision_shape.call_deferred("set_disabled", true)
 	swing_miss_timer.stop()
@@ -334,7 +469,19 @@ func KnifeHitTechnical():
 
 
 
-
+func UpdateAnimationParameteres():
+	var sword_rotation_vector = Vector2.UP.rotated(sword_pivot.rotation)
+	
+	player_anim_tree["parameters/Idle/blend_position"] = sword_rotation_vector
+	player_anim_tree["parameters/Swing/blend_position"] = sword_rotation_vector
+	
+	if abs(rad_to_deg(sword_pivot.rotation)) > 15 and abs(rad_to_deg(sword_pivot.rotation)) < 165:
+		player_sprite.flip_h = sign(rad_to_deg(sword_pivot.rotation)) - 1
+	
+		
+	
+	#player_anim_tree["parameters/conditions/IsSwinging"]
+	#player_anim_tree["parameters/conditions/NotSwinging"]
 
 func PreventWallClimb():
 	if (wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true) and is_on_floor() == false:
@@ -357,7 +504,6 @@ func CheckSavedXSpeed():
 	saved_x_speed = lerp(saved_x_speed, 0.0, 0.1) #return saved_x_spped to 0 over time
 
 func CheckCornerBoost():
-	#print(saved_x_speed)
 	if sign(saved_x_speed) == 1:
 		if corner_boost_raycast_1.is_colliding() == true and corner_boost_raycast_3.is_colliding() == false:
 			if velocity.y > 0:
@@ -371,7 +517,32 @@ func CheckCornerBoost():
 
 func Friction():
 	if is_on_floor():
-		velocity.x  = lerp(velocity.x, 0.0, 0.2)
+		velocity.x  = lerp(velocity.x, 0.0, 0.23)
+		
+	#if JustLanded() == true:
+	#	dirt_skidding_particles.emitting = true
+
+func JustLanded():
+	var return_var
+	if is_on_floor():
+		if was_on_ground_last_frame == false:
+			
+			return_var = true
+		else:
+			return_var = false
+		was_on_ground_last_frame = true
+	else:
+		was_on_ground_last_frame = false
+		return_var =  false
+	return return_var
+
+
+func FrictionParticles():
+	if abs(velocity.x) > 0.1 and is_on_floor() == true:
+		dirt_skidding_particles.emitting = true
+	else:
+		dirt_skidding_particles.emitting = false
+
 
 func Gravity(delta):
 	if not is_on_floor():
@@ -394,6 +565,8 @@ func CheckToggleFullscreen():
 
 
 
+
+
 func _on_swing_miss_timer_timeout():
 	$Sounds/SwordMiss.play()
 
@@ -402,6 +575,10 @@ func _on_coyote_timer_timeout():
 
 func _on_swing_anim_animation_finished():
 	sword_swing_anim.visible = false
+	can_rotate_sword = true
+	
+	player_anim_tree["parameters/conditions/IsIdle"] = true
+	player_anim_tree["parameters/conditions/IsSwinging"] = false
 
 
 
@@ -420,3 +597,10 @@ func ShakeCamera(time, min, max):
 	camera_shaker.min_value = min
 	camera_shaker.max_value = max
 	camera_shaker.start(time)
+
+func EmitParticles(particles, emit_pos, angle):
+	var s = particles.instantiate()
+	s.rotation = angle
+	s.global_position = emit_pos
+	
+	get_tree().root.get_child(0).add_child(s)

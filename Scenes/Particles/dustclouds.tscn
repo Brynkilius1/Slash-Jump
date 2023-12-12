@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bu3a0d1g06tuq"]
+
+[ext_resource type="Texture2D" uid="uid://7xpf8kmircwn" path="res://Images/Particles/cloudParticlesSmall.png" id="1_b1loj"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_3sxer"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="3_iepmo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dpcw6"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_u221l"]
+offsets = PackedFloat32Array(0, 0.0737705, 0.385246, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_05h5w"]
+gradient = SubResource("Gradient_u221l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rv3ex"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 7.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 22.0
+linear_accel_max = 25.0
+damping_min = 20.0
+damping_max = 25.0
+color_ramp = SubResource("GradientTexture1D_05h5w")
+anim_offset_max = 1.0
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(10, 0, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+modulate = Color(0.458824, 0.458824, 0.458824, 1)
+material = SubResource("CanvasItemMaterial_dpcw6")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_rv3ex")
+texture = ExtResource("1_b1loj")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.98
+visibility_rect = Rect2(-50, -15, 100, 30)
+script = ExtResource("2_3sxer")
+dissapear_time = 3.0
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("3_iepmo")
+autostart_target = NodePath("..")

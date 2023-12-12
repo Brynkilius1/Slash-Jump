@@ -13,5 +13,13 @@ script = ExtResource("1_s4hp7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0d1mm")
 
+[node name="RespawnPoints" type="Node2D" parent="."]
+
+[node name="RespawnPoint" type="Node2D" parent="RespawnPoints"]
+position = Vector2(-150, 0)
+
+[node name="RespawnPoint2" type="Node2D" parent="RespawnPoints"]
+position = Vector2(149, 0)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

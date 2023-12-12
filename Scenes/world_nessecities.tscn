@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccs5fbi82tluw"]
+
+[ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="1_kvc0g"]
+[ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="2_r8s0e"]
+[ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="3_egdn0"]
+[ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="4_lewfa"]
+
+[node name="WorldNessecities" type="Node2D"]
+
+[node name="CameraManager" type="Node2D" parent="."]
+script = ExtResource("1_kvc0g")
+
+[node name="PlayerSpawner" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_r8s0e")
+
+[node name="ScreenHolder" type="Node2D" parent="."]
+script = ExtResource("3_egdn0")
+
+[node name="TransitionManager" type="Node2D" parent="."]
+script = ExtResource("4_lewfa")
+
+[node name="DeathTransistionCanvasLayer" type="CanvasLayer" parent="TransitionManager"]
+
+[connection signal="change_screen" from="ScreenHolder" to="CameraManager" method="ChangeScreen"]
+[connection signal="set_next_screen" from="ScreenHolder" to="CameraManager" method="UpdateNextScreen"]
