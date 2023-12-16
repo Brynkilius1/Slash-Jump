@@ -147,7 +147,7 @@ metadata/_better_terrain = {
 [node name="WorldNessecities" parent="." instance=ExtResource("1_sdib6")]
 
 [node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
-position = Vector2(2056, 47)
+position = Vector2(-87, 51)
 
 [node name="ScreenHolder" parent="WorldNessecities" index="3"]
 z_index = 1
