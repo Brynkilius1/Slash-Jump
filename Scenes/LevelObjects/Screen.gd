@@ -10,4 +10,3 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	change_screen_local.emit(self)
-

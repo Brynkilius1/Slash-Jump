@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c4obrldetvnh6"]
+[gd_scene load_steps=41 format=3 uid="uid://c4obrldetvnh6"]
 
 [ext_resource type="Texture2D" uid="uid://pbikc3vi8jix" path="res://Images/VisualTest/nighttimebackround.png" id="1_sp88r"]
 [ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="1_xi1vr"]
@@ -10,9 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://c6fa8t4yu0b40" path="res://Images/Player/SwordHitFlash.png" id="6_cnf4r"]
 [ext_resource type="Script" path="res://Scripts/SmokeMover.gd" id="6_kmd7n"]
 [ext_resource type="Texture2D" uid="uid://dn23hj12xdp3m" path="res://Images/VisualTest/FlyWithLight.png" id="7_hprw2"]
+[ext_resource type="Texture2D" uid="uid://cmg536rv7usov" path="res://Images/VisualTest/RainLandingAnim.png" id="7_oicrl"]
 [ext_resource type="Texture2D" uid="uid://c12buqkamyyli" path="res://Images/VisualTest/RainParticles.png" id="10_wogg6"]
 [ext_resource type="Shader" path="res://Shaders/ReflectiveWater.gdshader" id="11_6mgt0"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="12_g36ub"]
+[ext_resource type="Shader" uid="uid://pl1mn3bnleeh" path="res://Shaders/testVisuals.tres" id="15_4u5yo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x4mvw"]
 particles_animation = true
@@ -27,11 +29,25 @@ emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 direction = Vector3(-0.7, 1, 0)
 spread = 5.0
-initial_velocity_min = 400.0
-initial_velocity_max = 500.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
 gravity = Vector3(0, 500, 0)
 collision_mode = 2
 collision_use_scale = true
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nraj0"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_elit4"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4445"]
 texture = ExtResource("2_ibry1")
@@ -934,12 +950,12 @@ polygon = PackedVector2Array(-204, 49, -111, 49, -111, 62, 109, 62, 109, 50, 120
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_isyfu"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hdyol"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0wrns"]
 noise = SubResource("FastNoiseLite_isyfu")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3wtr7"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3bwkj"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m6iqc"]
 noise = SubResource("FastNoiseLite_3wtr7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ro4ij"]
@@ -956,8 +972,11 @@ shader_parameter/shine_itensity = 0.0
 shader_parameter/shine_width = 0.0
 shader_parameter/shine_color = Color(0, 0, 0, 1)
 shader_parameter/water_color = Color(0.0156863, 0.027451, 0.0784314, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_hdyol")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_3bwkj")
+shader_parameter/ripple_wave_count = 20.0
+shader_parameter/ripple_speed = 3.0
+shader_parameter/ripple_height = 0.003
+shader_parameter/noise = SubResource("NoiseTexture2D_0wrns")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_m6iqc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aa8vx"]
 particle_flag_disable_z = true
@@ -966,11 +985,25 @@ emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 direction = Vector3(-0.7, 1, 0)
 spread = 5.0
-initial_velocity_min = 250.0
-initial_velocity_max = 350.0
-gravity = Vector3(0, 350, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 200, 0)
 collision_mode = 2
 collision_use_scale = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_so7ib"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-0.7, 1, 0)
+spread = 5.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 500, 0)
+collision_use_scale = true
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c54kq"]
 particle_flag_disable_z = true
@@ -984,6 +1017,20 @@ initial_velocity_max = 800.0
 gravity = Vector3(0, 1000, 0)
 collision_mode = 2
 collision_use_scale = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ov4af"]
+noise_type = 2
+fractal_type = 0
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_imcrb"]
+seamless = true
+noise = SubResource("FastNoiseLite_ov4af")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88m76"]
+shader = ExtResource("15_4u5yo")
+shader_parameter/ColorParameter = Color(0.169537, 0.375915, 0.674706, 1)
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_imcrb")
 
 [node name="Node2D" type="Node2D"]
 
@@ -1024,10 +1071,24 @@ speed = 4
 modulate = Color(0.85098, 0.85098, 0.85098, 1)
 material = SubResource("CanvasItemMaterial_x4mvw")
 position = Vector2(2, -108)
-amount = 15
+amount = 20
+sub_emitter = NodePath("RainLanding")
 process_material = SubResource("ParticleProcessMaterial_2xaak")
 texture = ExtResource("10_wogg6")
-lifetime = 0.5
+lifetime = 0.6
+fixed_fps = 60
+collision_base_size = 2.5
+trail_sections = 3
+trail_section_subdivisions = 2
+
+[node name="RainLanding" type="GPUParticles2D" parent="Rain"]
+material = SubResource("CanvasItemMaterial_nraj0")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_elit4")
+texture = ExtResource("7_oicrl")
+lifetime = 0.2
+one_shot = true
 
 [node name="Rain2" type="GPUParticles2D" parent="."]
 modulate = Color(0.85098, 0.85098, 0.85098, 1)
@@ -1148,7 +1209,6 @@ occluder = SubResource("OccluderPolygon2D_new21")
 occluder_light_mask = 2
 
 [node name="FlyLightOccluder" type="LightOccluder2D" parent="."]
-visible = false
 position = Vector2(1, 0)
 occluder = SubResource("OccluderPolygon2D_new21")
 
@@ -1209,17 +1269,51 @@ follow_viewport_scale = 0.5
 color = Color(0.435294, 0.435294, 0.435294, 1)
 
 [node name="Rain3" type="GPUParticles2D" parent="MiddleBackround"]
-modulate = Color(0.521569, 0.521569, 0.521569, 1)
+modulate = Color(0.509804, 0.509804, 0.509804, 1)
 material = SubResource("CanvasItemMaterial_x4mvw")
-position = Vector2(101.429, -154.286)
-amount = 50
+position = Vector2(102, -210)
+amount = 70
 process_material = SubResource("ParticleProcessMaterial_aa8vx")
 texture = ExtResource("10_wogg6")
-lifetime = 0.7
+lifetime = 1.5
+visibility_rect = Rect2(-100, -100, 300, 300)
+
+[node name="MiddleForground" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.2
+
+[node name="Rain" type="GPUParticles2D" parent="MiddleForground"]
+modulate = Color(0.85098, 0.85098, 0.85098, 1)
+material = SubResource("CanvasItemMaterial_x4mvw")
+position = Vector2(2, -108)
+amount = 12
+sub_emitter = NodePath("RainLanding")
+process_material = SubResource("ParticleProcessMaterial_so7ib")
+texture = ExtResource("10_wogg6")
+lifetime = 0.58
+fixed_fps = 60
+collision_base_size = 2.5
+visibility_rect = Rect2(-100, -100, 200, 300)
+trail_sections = 3
+trail_section_subdivisions = 2
+
+[node name="RainLanding" type="GPUParticles2D" parent="MiddleForground/Rain"]
+material = SubResource("CanvasItemMaterial_nraj0")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_elit4")
+texture = ExtResource("7_oicrl")
+lifetime = 0.15
+one_shot = true
+fixed_fps = 60
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="MiddleForground"]
+color = Color(0.407843, 0.407843, 0.407843, 1)
 
 [node name="Foreground" type="CanvasLayer" parent="."]
+layer = 2
 follow_viewport_enabled = true
-follow_viewport_scale = 2.0
+follow_viewport_scale = 1.5
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="Foreground"]
 color = Color(0.576471, 0.576471, 0.576471, 1)
@@ -1230,7 +1324,6 @@ light_mask = 2
 visibility_layer = 2
 material = SubResource("CanvasItemMaterial_x4mvw")
 position = Vector2(2, -108)
-amount = 10
 process_material = SubResource("ParticleProcessMaterial_c54kq")
 texture = ExtResource("10_wogg6")
 lifetime = 0.5
@@ -1241,9 +1334,15 @@ light_mask = 2
 visibility_layer = 2
 material = SubResource("CanvasItemMaterial_x4mvw")
 position = Vector2(-129, -102.5)
-amount = 10
 process_material = SubResource("ParticleProcessMaterial_c54kq")
 texture = ExtResource("10_wogg6")
 lifetime = 0.5
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_88m76")
+offset_right = 246.0
+offset_bottom = 175.0
 
 [editable path="WorldNessecities"]

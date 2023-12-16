@@ -1,0 +1,32 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://3ihevks1nb6y"]
+
+[ext_resource type="Texture2D" uid="uid://q2nlnyt5uf3k" path="res://Images/VisualTest/Grass_Autotile_Recolored.png" id="1_ogup2"]
+[ext_resource type="Texture2D" uid="uid://0ibiemyvb24s" path="res://Images/Tilesets/OneWayTemp.png" id="2_p6jmq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pn4on"]
+texture = ExtResource("1_ogup2")
+texture_region_size = Vector2i(12, 12)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -6, 6, -6, 6, -3, -6, -3)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpey7"]
+texture = ExtResource("2_p6jmq")
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+
+[resource]
+tile_size = Vector2i(12, 12)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_pn4on")
+sources/1 = SubResource("TileSetAtlasSource_bpey7")

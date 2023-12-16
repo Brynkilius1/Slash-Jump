@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://0fjttedflhgg"]
+
+[ext_resource type="Script" path="res://Scripts/crumbling_platform.gd" id="1_4l8db"]
+[ext_resource type="Texture2D" uid="uid://0yfbwd6sxvob" path="res://Images/Tilesets/CrumblingTemp.png" id="1_f3rl6"]
+[ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="3_1fq4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acydd"]
+size = Vector2(12, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi6ys"]
+size = Vector2(12, 1)
+
+[node name="CrumblingPlatform" type="Node2D"]
+script = ExtResource("1_4l8db")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 6)
+texture = ExtResource("1_f3rl6")
+region_enabled = true
+region_rect = Rect2(0, 0, 36, 12)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_acydd")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_yi6ys")
+
+[node name="CrumbleTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LeavingPlatformTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Shaker" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("3_1fq4x")
+target_node = NodePath("../Sprite2D")
+target_property = &"offset"
+max_value = 1.0
+constant = true
+duration = 2.0
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="timeout" from="CrumbleTimer" to="." method="_on_crumble_t_imer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="LeavingPlatformTimer" to="." method="LeavingPlatformTimerCheck"]

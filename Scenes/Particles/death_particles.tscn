@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0yh4ilbkxacr"]
+
+[ext_resource type="Texture2D" uid="uid://7xpf8kmircwn" path="res://Images/Particles/cloudParticlesSmall.png" id="1_eedrb"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_tfuka"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="2_v20jx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3f3ky"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ercel"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 79.21
+gravity = Vector3(0, 0, 0)
+damping_min = 7.92
+damping_max = 11.881
+anim_offset_max = 1.0
+
+[node name="DeathParticles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_3f3ky")
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_ercel")
+texture = ExtResource("1_eedrb")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.99
+script = ExtResource("2_tfuka")
+dissapear_time = 0.7
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("2_v20jx")
+autostart_target = NodePath("..")

@@ -21,6 +21,13 @@ uniform vec4 shine_color : source_color;
 
 uniform vec4 water_color : source_color;
 
+uniform float ripple_wave_count : hint_range(1.0, 20.0, 1.0) = 20.0;
+uniform float ripple_speed : hint_range(0.0, 10.0, 0.1) = 3.0;
+uniform float ripple_height : hint_range(0.0, 0.1, 0.001) = 0.003;
+
+
+	
+
 
 
 

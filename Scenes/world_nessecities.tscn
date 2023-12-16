@@ -14,6 +14,9 @@ script = ExtResource("1_kvc0g")
 unique_name_in_owner = true
 script = ExtResource("2_r8s0e")
 
+[node name="PlayerSpawnPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+
 [node name="ScreenHolder" type="Node2D" parent="."]
 script = ExtResource("3_egdn0")
 

@@ -84,14 +84,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #490
 
 #Misc
 @onready var camera_shaker = $Camera2D/Shaker
-@onready var death_viewport = $DeathViewport
 
 
 
 
 #instances
 var sword_colision_particles = preload("res://Scenes/Player/Particles/sword_colision_particles.tscn")
-const DIRT_PARTICLES = preload("res://Scenes/Player/Particles/dirt_particles.tscn")
 const AFTER_SWING_VFX = preload("res://Scenes/Player/Particles/after_swing_vfx.tscn")
 const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
 
@@ -101,6 +99,8 @@ const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
 
 
 #code variables
+var has_control = true
+
 var can_rotate_sword = true
 var was_on_ground_last_frame = false
 var saved_x_speed : float
@@ -188,17 +188,18 @@ func GetInputAngle():
 
 
 func GetSlashInput():
-	if Input.is_action_just_pressed("BigSwing"):
-		coyote_timer.start(swing_coyote_time)
-		saved_coyote_direction = GetInputAngle()
-	
-	if SwingCooldownActive() == false:
-		if Input.is_action_just_pressed('SmallSwing'):
-			SwingKnife()
+	if has_control == true:
+		if Input.is_action_just_pressed("BigSwing"):
+			coyote_timer.start(swing_coyote_time)
+			saved_coyote_direction = GetInputAngle()
+		
+		if SwingCooldownActive() == false:
+			if Input.is_action_just_pressed('SmallSwing'):
+				SwingKnife()
 
-		elif coyote_timer.time_left > 0:
-			sword_pivot.rotation = saved_coyote_direction
-			Swing()
+			elif coyote_timer.time_left > 0:
+				sword_pivot.rotation = saved_coyote_direction
+				Swing()
 		
 	
 	
@@ -322,24 +323,7 @@ func SwordHitParticles():
 	#EmitParticles(sword_colision_particles, nearest_ground, sword_pivot.rotation)
 	EmitParticles(DUSTCLOUDS, nearest_ground + Vector2(0, -2), 0)
 	
-	EmitSwordDirtParticles(5, sword_pivot.rotation, false)
-	EmitSwordDirtParticles(2, sword_pivot.rotation, true)
-func EmitSwordDirtParticles(amount, angle, flipped : bool):
-	
-	var emit_location = GetClosestGround()
-	
-	var p = DIRT_PARTICLES.instantiate()
-	
-	var emit_direction = sign(saved_x_speed)
-	if flipped == true:
-		emit_direction *= -1
-	
-	if emit_direction == 1:
-		p.scale.x = -1
-	
-	p.amount = amount
-	p.global_position = emit_location
-	get_tree().root.get_child(0).add_child(p)
+	#ground particles are spawned in their respective scripts
 
 
 func SwordHitFramePause(pause_time):
@@ -396,30 +380,60 @@ func IsWallJumping():
 		return false
 
 func GetClosestGround():
+	#optimise later
 	var main_raycast = walljump_raycasts.get_child(0)
 	var emit_pos : Vector2 = main_raycast.global_position + main_raycast.target_position.rotated(sword_pivot.rotation)
+	var object_hit
 	
 	if main_raycast.is_colliding() == true:
 		emit_pos = main_raycast.get_collision_point()
+		object_hit = main_raycast.get_collider()
+		
 	elif walljump_raycasts.get_child(1).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(1).get_collision_point()
+		object_hit = walljump_raycasts.get_child(1).get_collider()
+		
 	elif walljump_raycasts.get_child(2).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(2).get_collision_point()
+		object_hit = walljump_raycasts.get_child(2).get_collider()
+		
 	elif walljump_raycasts.get_child(3).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(3).get_collision_point()
+		object_hit = walljump_raycasts.get_child(3).get_collider()
+		
 	elif walljump_raycasts.get_child(4).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(4).get_collision_point()
+		object_hit = walljump_raycasts.get_child(4).get_collider()
+		
 	elif walljump_raycasts.get_child(5).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(5).get_collision_point()
+		object_hit = walljump_raycasts.get_child(5).get_collider()
+		
 	elif walljump_raycasts.get_child(6).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(6).get_collision_point()
+		object_hit = walljump_raycasts.get_child(6).get_collider()
+		
 	elif walljump_raycasts.get_child(7).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(7).get_collision_point()
+		object_hit = walljump_raycasts.get_child(7).get_collider()
+		
 	elif walljump_raycasts.get_child(8).is_colliding() == true:
 		emit_pos = walljump_raycasts.get_child(8).get_collision_point()
+		object_hit = walljump_raycasts.get_child(8).get_collider()
+	
+	
+	CallHitOnObject(object_hit, emit_pos)
 	
 	return emit_pos
 
+func CallHitOnObject(object_hit, emit_pos):
+	if object_hit:
+		if object_hit.has_method("SwordHitDetected") == true:
+			print("has method")
+			object_hit.SwordHitDetected(emit_pos, sword_pivot.rotation, saved_x_speed)
+		elif object_hit.get_parent().has_method("SwordHitDetected") == true:
+			print("parent has method")
+			object_hit.get_parent().SwordHitDetected(emit_pos, sword_pivot.rotation, saved_x_speed)
 
 func SwingKnife():
 	KnifeSwingSounds()

@@ -58,7 +58,6 @@ position = Vector2(199, -179)
 position = Vector2(-11, -359)
 
 [node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("5_qwfim")]
-visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_s8uky")
