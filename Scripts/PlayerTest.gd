@@ -248,11 +248,15 @@ func EmitSwingLingerParticles():
 	sword_lingering_particles.emitting = false
 	sword_lingering_particles.scale.x = sign(sword_visual_pivot.rotation_degrees)
 func SwingTechnical():
-	sword_colision_shape.disabled = false
-	can_rotate_sword = false
-	coyote_timer.stop()
+	#Changed:
+	if sword_collision.get_overlapping_bodies() != []:
+		SwordDetectsHit("bodyballs")
 	
-	StartSwingLingerTimer()
+	#sword_colision_shape.disabled = false
+	#can_rotate_sword = false
+	#coyote_timer.stop()
+	
+	#StartSwingLingerTimer()
 
 func StartSwingLingerTimer():
 	swing_linger_timer.start(swing_cooldown)
@@ -289,7 +293,7 @@ func LingerTimeoutParticles():
 	
 	get_tree().current_scene.add_child(after_swing_vfx)
 func LingerTimeoutTechnical():
-	sword_colision_shape.call_deferred("set_disabled", true)
+	#sword_colision_shape.call_deferred("set_disabled", true)
 	knife_collision_shape.call_deferred("set_disabled", true)
 func CheckIfSwingHit():
 	if swing_linger_timer.time_left > 0:
@@ -333,7 +337,8 @@ func SwordHitFramePause(pause_time):
 	await get_tree().create_timer(pause_time).timeout
 	get_tree().paused = false
 func SwordHitTechnical():
-	sword_colision_shape.call_deferred("set_disabled", true)
+	pass
+	#sword_colision_shape.call_deferred("set_disabled", true)
 func SwordHitVelocity(power, angle, is_wall_jumping):
 	var bounce_power = power 
 	bounce_power.y += int(is_on_floor()) * extra_grounded_power #add slighty mode power if player is grounded

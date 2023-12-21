@@ -14,6 +14,9 @@ size = Vector2(445, 180)
 
 [node name="WorldNessecities" parent="." instance=ExtResource("1_4wbsf")]
 
+[node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
+position = Vector2(-27, 40)
+
 [node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("3_vfxqs")]
 
 [node name="RespawnPoint" parent="WorldNessecities/ScreenHolder/Screen/RespawnPoints" index="0"]

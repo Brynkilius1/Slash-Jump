@@ -29,6 +29,9 @@ layer_0/tile_data = PackedInt32Array(458734, 131073, 1, 458735, 131073, 1, 45873
 [node name="player" parent="." instance=ExtResource("2_88axy")]
 position = Vector2(-419, 155)
 
+[node name="Camera2D" parent="player" index="13"]
+enabled = false
+
 [node name="Camera2D2" type="Camera2D" parent="player"]
 limit_left = -550
 limit_right = 550
@@ -42,3 +45,5 @@ bullet_direction = Vector2(1, 0)
 [node name="EnemyShooter2" parent="." instance=ExtResource("3_wpogc")]
 position = Vector2(477, -1364)
 bullet_direction = Vector2(-1, 0)
+
+[editable path="player"]

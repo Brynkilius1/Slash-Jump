@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c4obrldetvnh6"]
+[gd_scene load_steps=43 format=3 uid="uid://c4obrldetvnh6"]
 
 [ext_resource type="Texture2D" uid="uid://pbikc3vi8jix" path="res://Images/VisualTest/nighttimebackround.png" id="1_sp88r"]
 [ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="1_xi1vr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://coj0e1u0nytav" path="res://Images/VisualTest/treeSideways.png" id="5_ck5et"]
 [ext_resource type="Texture2D" uid="uid://c6fa8t4yu0b40" path="res://Images/Player/SwordHitFlash.png" id="6_cnf4r"]
 [ext_resource type="Script" path="res://Scripts/SmokeMover.gd" id="6_kmd7n"]
+[ext_resource type="Texture2D" uid="uid://bfyftpjjhxpvu" path="res://Images/VisualTest/RainLandingGroundAnim.png" id="7_gvmve"]
 [ext_resource type="Texture2D" uid="uid://dn23hj12xdp3m" path="res://Images/VisualTest/FlyWithLight.png" id="7_hprw2"]
 [ext_resource type="Texture2D" uid="uid://cmg536rv7usov" path="res://Images/VisualTest/RainLandingAnim.png" id="7_oicrl"]
 [ext_resource type="Texture2D" uid="uid://c12buqkamyyli" path="res://Images/VisualTest/RainParticles.png" id="10_wogg6"]
@@ -37,7 +38,7 @@ collision_use_scale = true
 sub_emitter_mode = 3
 sub_emitter_amount_at_collision = 1
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nraj0"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpi2y"]
 particles_animation = true
 particles_anim_h_frames = 3
 particles_anim_v_frames = 1
@@ -998,12 +999,18 @@ emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 direction = Vector3(-0.7, 1, 0)
 spread = 5.0
-initial_velocity_min = 200.0
+initial_velocity_min = 230.0
 initial_velocity_max = 300.0
 gravity = Vector3(0, 500, 0)
 collision_use_scale = true
 sub_emitter_mode = 2
 sub_emitter_amount_at_end = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nraj0"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c54kq"]
 particle_flag_disable_z = true
@@ -1036,7 +1043,7 @@ shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_imcrb")
 
 [node name="WorldNessecities" parent="." instance=ExtResource("1_xi1vr")]
 
-[node name="ScreenHolder" parent="WorldNessecities" index="2"]
+[node name="ScreenHolder" parent="WorldNessecities" index="3"]
 z_index = 1
 
 [node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("12_g36ub")]
@@ -1082,11 +1089,11 @@ trail_sections = 3
 trail_section_subdivisions = 2
 
 [node name="RainLanding" type="GPUParticles2D" parent="Rain"]
-material = SubResource("CanvasItemMaterial_nraj0")
+material = SubResource("CanvasItemMaterial_rpi2y")
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_elit4")
-texture = ExtResource("7_oicrl")
+texture = ExtResource("7_gvmve")
 lifetime = 0.2
 one_shot = true
 
@@ -1283,14 +1290,14 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.2
 
 [node name="Rain" type="GPUParticles2D" parent="MiddleForground"]
-modulate = Color(0.85098, 0.85098, 0.85098, 1)
+modulate = Color(0.466667, 0.466667, 0.466667, 1)
 material = SubResource("CanvasItemMaterial_x4mvw")
 position = Vector2(2, -108)
 amount = 12
 sub_emitter = NodePath("RainLanding")
 process_material = SubResource("ParticleProcessMaterial_so7ib")
 texture = ExtResource("10_wogg6")
-lifetime = 0.58
+lifetime = 0.59
 fixed_fps = 60
 collision_base_size = 2.5
 visibility_rect = Rect2(-100, -100, 200, 300)
@@ -1303,7 +1310,7 @@ emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_elit4")
 texture = ExtResource("7_oicrl")
-lifetime = 0.15
+lifetime = 0.2
 one_shot = true
 fixed_fps = 60
 

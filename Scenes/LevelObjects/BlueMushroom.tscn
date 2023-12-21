@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdrqrksf8job5"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/BOMushroom.gd" id="1_x6h73"]
+[ext_resource type="Texture2D" uid="uid://cgtadflckx8jm" path="res://Images/Mechanics/BOMushrooms.png" id="2_fn1mr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5wvj"]
+size = Vector2(14, 10)
+
+[node name="BlueMushroom" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_x6h73")
+mushroom_is_blue = true
+
+[node name="MushroomCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v5wvj")
+
+[node name="MushroomSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_fn1mr")
+hframes = 4
+frame = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

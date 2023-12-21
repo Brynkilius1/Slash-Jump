@@ -98,7 +98,7 @@ sub_emitter_amount_at_collision = 1
 
 [node name="WorldNessecities" parent="." instance=ExtResource("1_7x06k")]
 
-[node name="ScreenHolder" parent="WorldNessecities" index="2"]
+[node name="ScreenHolder" parent="WorldNessecities" index="3"]
 z_index = 1
 
 [node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("3_ll08f")]

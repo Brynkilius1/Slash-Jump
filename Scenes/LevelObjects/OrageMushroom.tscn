@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhs78b2f4gd7g"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/BOMushroom.gd" id="1_haykh"]
+[ext_resource type="Texture2D" uid="uid://cgtadflckx8jm" path="res://Images/Mechanics/BOMushrooms.png" id="2_gbmpa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5wvj"]
+size = Vector2(14, 10)
+
+[node name="OrangeMushroom" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_haykh")
+
+[node name="MushroomCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v5wvj")
+
+[node name="MushroomSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_gbmpa")
+hframes = 4
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

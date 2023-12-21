@@ -404,3 +404,13 @@ scale = Vector2(1, 4)
 position = Vector2(0, -720)
 
 [node name="Player" parent="." instance=ExtResource("1_7teh8")]
+
+[node name="Camera2D" parent="Player" index="13"]
+enabled = false
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+limit_left = -160
+limit_right = 160
+editor_draw_limits = true
+
+[editable path="Player"]
