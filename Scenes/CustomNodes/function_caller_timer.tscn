@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://tyud1ede0c3u"]
+
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/FunctionCallerTimer.gd" id="1_6k8e3"]
+
+[node name="FunctionCallerTimer" type="Timer"]
+autostart = true
+script = ExtResource("1_6k8e3")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

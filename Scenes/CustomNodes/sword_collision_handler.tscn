@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx6qc8yr7n1xv"]
+
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="1_a304n"]
+[ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="2_4b2vt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8glp"]
+
+[node name="SwordCollisionHandler" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_a304n")
+hit_particles = ExtResource("2_4b2vt")
+
+[node name="SwordCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p8glp")

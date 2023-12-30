@@ -6,12 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="4_4w583"]
 [ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="5_ettxt"]
 [ext_resource type="Texture2D" uid="uid://ch1m5bw18n1e4" path="res://Images/Player/Sword.png" id="6_sjs61"]
-[ext_resource type="PackedScene" uid="uid://chaqeowjgno4g" path="res://Scenes/Player/Particles/after_swing_particles.tscn" id="7_4pfm5"]
+[ext_resource type="PackedScene" uid="uid://chaqeowjgno4g" path="res://Scenes/Particles/after_swing_particles.tscn" id="7_4pfm5"]
 [ext_resource type="Texture2D" uid="uid://dln5sjibsek3" path="res://Images/Particles/SwordHitParticles/DirtParticles.png" id="8_5bucn"]
 [ext_resource type="AudioStream" uid="uid://bliakwl8p66a0" path="res://Sounds/SoundEffects/Player/Sword/clean-fast-swooshaiff-14784.mp3" id="9_ddlwr"]
 [ext_resource type="AudioStream" uid="uid://c1q4jhtig6rcv" path="res://Sounds/SoundEffects/Player/Sword/sword-hit-7160.mp3" id="10_3ga0f"]
 [ext_resource type="AudioStream" uid="uid://cp0mot2m602f" path="res://Sounds/SoundEffects/Player/Sword/woosh-2-6471.mp3" id="11_cnqx6"]
-[ext_resource type="Script" path="res://Scenes/Player/PlayerCamera.gd" id="12_vdr7r"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerCamera.gd" id="12_vdr7r"]
 [ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="13_h4qoy"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/HazardDetector.gd" id="14_hiy5i"]
 
@@ -295,10 +295,9 @@ parameters/Idle/blend_position = Vector2(-0.00105822, 0.0121458)
 parameters/Swing/blend_position = Vector2(0, 0)
 
 [node name="IndicatorPivot" type="Node2D" parent="."]
-visible = false
 
 [node name="Indicator" type="Node2D" parent="IndicatorPivot"]
-position = Vector2(0, -16)
+position = Vector2(0, -24)
 
 [node name="Sprite2D" type="Sprite2D" parent="IndicatorPivot/Indicator"]
 modulate = Color(0.921569, 0.921569, 0.921569, 0.560784)
@@ -315,25 +314,24 @@ position = Vector2(0, -14)
 [node name="Sword" type="Node2D" parent="SwordPivot/Extended"]
 
 [node name="SwirdTempSprite" type="Sprite2D" parent="SwordPivot/Extended/Sword"]
+visible = false
 position = Vector2(0, -6)
 scale = Vector2(0.203125, 0.0546875)
 texture = ExtResource("4_4w583")
 
 [node name="SwingAnim" type="AnimatedSprite2D" parent="SwordPivot/Extended/Sword"]
-position = Vector2(-11, 18)
+position = Vector2(-12, 14)
 rotation = -1.5708
-scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_hu3c5")
 animation = &"Swing"
 centered = false
-offset = Vector2(0, 500)
 
 [node name="SwordCollision" type="Area2D" parent="SwordPivot/Extended/Sword"]
 collision_layer = 2
 collision_mask = 9
 
 [node name="SwordColisionShape" type="CollisionPolygon2D" parent="SwordPivot/Extended/Sword/SwordCollision"]
-polygon = PackedVector2Array(-3, 15, -11, 9, -11, -8, -3, -8, 3, -8, 12, -8, 12, 9, 3, 15)
+polygon = PackedVector2Array(-3, 15, -12, 9, -12, -3, -8, -9, -3, -12, 4, -12, 9, -9, 13, -3, 13, 9, 3, 15)
 
 [node name="LingeringVFXEmitter" type="Node2D" parent="SwordPivot/Extended/Sword"]
 position = Vector2(0, -6)
@@ -357,46 +355,45 @@ polygon = PackedVector2Array(-4, 3, -4, 0, -3, -3, 0, -4, 3, -3, 4, 0, 4, 3, 3, 
 disabled = true
 
 [node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/Extended"]
-visible = false
 position = Vector2(0, 15)
 
 [node name="RayCast2D" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(0, -21)
+target_position = Vector2(0, -27)
 
 [node name="RayCast2D6" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(-7, -18)
+target_position = Vector2(-8, -24)
 
 [node name="RayCast2D9" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(-11, -12)
+target_position = Vector2(-12, -18)
 
 [node name="RayCast2D10" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 position = Vector2(-3, 0)
 enabled = false
-target_position = Vector2(-8, -6)
+target_position = Vector2(-9, -6)
 
 [node name="RayCast2D11" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 position = Vector2(3, 0)
 enabled = false
-target_position = Vector2(9, -6)
+target_position = Vector2(10, -6)
 
 [node name="RayCast2D3" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(8, -18)
+target_position = Vector2(9, -24)
 
 [node name="RayCast2D4" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(3, -21)
+target_position = Vector2(4, -27)
 
 [node name="RayCast2D5" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(-3, -21)
+target_position = Vector2(-3, -27)
 
 [node name="RayCast2D7" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
-target_position = Vector2(12, -12)
+target_position = Vector2(13, -18)
 
 [node name="Rotator" type="Node2D" parent="SwordPivot"]
 rotation = -1.5708
@@ -540,6 +537,7 @@ occluder = SubResource("OccluderPolygon2D_phhvs")
 occluder_light_mask = 2
 
 [connection signal="animation_finished" from="SwordPivot/Extended/Sword/SwingAnim" to="." method="_on_swing_anim_animation_finished"]
+[connection signal="body_entered" from="SwordPivot/Extended/Sword/SwordCollision" to="." method="SwordDetectsHit"]
 [connection signal="animation_finished" from="SwordPivot/Extended/Knife/KnifeSwingAnim" to="." method="_on_swing_anim_animation_finished"]
 [connection signal="body_entered" from="SwordPivot/Extended/Knife/KnifeCollision" to="." method="KnifeDetectsHit"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

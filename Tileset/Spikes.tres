@@ -1,15 +1,6 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c3g22q8vipa28"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c3g22q8vipa28"]
 
-[ext_resource type="Texture2D" uid="uid://c6fa8t4yu0b40" path="res://Images/Player/SwordHitFlash.png" id="1_26psi"]
 [ext_resource type="Texture2D" uid="uid://dro8s4ra4nit2" path="res://Images/Tilesets/SpikesTemp.png" id="2_p4oa3"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epfd0"]
-texture = ExtResource("1_26psi")
-texture_region_size = Vector2i(12, 12)
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4g01"]
 texture = ExtResource("2_p4oa3")
@@ -25,7 +16,6 @@ texture_region_size = Vector2i(12, 12)
 
 [resource]
 tile_size = Vector2i(12, 12)
-physics_layer_0/collision_layer = 16
+physics_layer_0/collision_layer = 48
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_epfd0")
 sources/1 = SubResource("TileSetAtlasSource_l4g01")

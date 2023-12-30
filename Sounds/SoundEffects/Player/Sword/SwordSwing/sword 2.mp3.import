@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqki00ppcmyc6"
+path="res://.godot/imported/sword 2.mp3-b2575ab728182b126ea9be95bc401b97.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 2.mp3"
+dest_files=["res://.godot/imported/sword 2.mp3-b2575ab728182b126ea9be95bc401b97.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

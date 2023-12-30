@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://jumgmkw5n5jc"]
+
+[ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qcmvg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0.0352941, 0.0627451, 1)
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 53.0
+offset_right = 200.0
+offset_bottom = 84.0
+text = "StartGame"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 102.0
+offset_right = 198.0
+offset_bottom = 133.0
+text = "QuitGame"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

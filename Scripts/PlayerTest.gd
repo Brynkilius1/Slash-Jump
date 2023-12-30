@@ -11,8 +11,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @export var swing_shortended_cooldown := 0.05
 @export var swing_cooldown := 0.10
 @export var swing_miss_cooldown := 0.19
-@export var swing_coyote_time := 0.1
-@export var swing_anim_length := 0.15
+@export var swing_coyote_time := 0.35
+@export var swing_anim_length := 0.10
 @export var max_fall_speed := 250
 
 @export_category("Walljump bias")
@@ -106,6 +106,7 @@ var can_rotate_sword = true
 var was_on_ground_last_frame = false
 var saved_x_speed : float
 var saved_coyote_direction : float
+var swing_dir = 1
 
 var playing_with_controller = true
 
@@ -200,6 +201,7 @@ func GetSlashInput():
 
 			elif coyote_timer.time_left > 0:
 				sword_pivot.rotation = saved_coyote_direction
+				coyote_timer.stop()
 				Swing()
 		
 	
@@ -222,11 +224,22 @@ func SwingVisuals():
 	SwingVFX()
 func SwingAnimation():
 	#rotating the sword the player is holding
-	var swing_anim_tween = create_tween()
-	swing_anim_tween.tween_property(sword_visual_pivot, "rotation_degrees", sign(-sword_visual_pivot.rotation_degrees) * sword_resting_rotation, swing_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	
+	swing_dir = sign(sword_visual_pivot.rotation_degrees)
+	print(swing_dir)
+	
+	sword_visual.rotation_degrees = 0
+	sword_visual_pivot.rotation_degrees = 0
+	
+	
+	var swing_visual_pivot_tween = create_tween()
+	swing_visual_pivot_tween.tween_property(sword_visual_pivot, "rotation_degrees", -swing_dir * sword_resting_rotation, swing_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	
+	var swing_visual_tween = create_tween()
+	swing_visual_tween.tween_property(sword_visual, "rotation_degrees", -swing_dir * 90, swing_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
 	await get_tree().create_timer(swing_anim_length/3).timeout
-	sword_visual.scale.x = sign(-sword_visual_pivot.rotation_degrees)
+	sword_visual.flip_v = swing_dir + 1
 
 func PlayerSwingAnimation():
 	player_anim_tree["parameters/conditions/IsIdle"] = false
@@ -235,7 +248,7 @@ func PlayerSwingAnimation():
 func SwingVFX():
 	#show the woosh in the air
 	sword_swing_anim.visible = true
-	sword_swing_anim.flip_v = sign(-sword_visual_pivot.rotation_degrees) - 1
+	sword_swing_anim.flip_v = swing_dir + 1
 	sword_swing_anim.stop()
 	knife_swing_anim.stop()
 	sword_swing_anim.play("Swing")
@@ -244,7 +257,7 @@ func SwingParticles():
 func EmitSwingLingerParticles():
 	sword_lingering_particles.emitting = true
 	
-	await get_tree().create_timer(swing_anim_length/3).timeout
+	#await get_tree().create_timer(swing_anim_length/3).timeout
 	sword_lingering_particles.emitting = false
 	sword_lingering_particles.scale.x = sign(sword_visual_pivot.rotation_degrees)
 func SwingTechnical():
@@ -252,11 +265,11 @@ func SwingTechnical():
 	if sword_collision.get_overlapping_bodies() != []:
 		SwordDetectsHit("bodyballs")
 	
-	#sword_colision_shape.disabled = false
-	#can_rotate_sword = false
+	sword_colision_shape.disabled = false
+	can_rotate_sword = false
 	#coyote_timer.stop()
 	
-	#StartSwingLingerTimer()
+	StartSwingLingerTimer()
 
 func StartSwingLingerTimer():
 	swing_linger_timer.start(swing_cooldown)
@@ -293,7 +306,7 @@ func LingerTimeoutParticles():
 	
 	get_tree().current_scene.add_child(after_swing_vfx)
 func LingerTimeoutTechnical():
-	#sword_colision_shape.call_deferred("set_disabled", true)
+	sword_colision_shape.call_deferred("set_disabled", true)
 	knife_collision_shape.call_deferred("set_disabled", true)
 func CheckIfSwingHit():
 	if swing_linger_timer.time_left > 0:
@@ -312,7 +325,7 @@ func SwordDetectsHit(body):
 	#Juice
 	SwordHitSounds()
 	SwordHitParticles()
-	ShakeCamera(0.4, 0, 1) #(0.7, 0, 6)
+	#ShakeCamera(0.4, 0, 1) #(0.7, 0, 6)
 	#SwordHitFramePause(0.05)
 	
 	#Technical
@@ -337,8 +350,7 @@ func SwordHitFramePause(pause_time):
 	await get_tree().create_timer(pause_time).timeout
 	get_tree().paused = false
 func SwordHitTechnical():
-	pass
-	#sword_colision_shape.call_deferred("set_disabled", true)
+	sword_colision_shape.call_deferred("set_disabled", true)
 func SwordHitVelocity(power, angle, is_wall_jumping):
 	var bounce_power = power 
 	bounce_power.y += int(is_on_floor()) * extra_grounded_power #add slighty mode power if player is grounded
@@ -505,7 +517,7 @@ func UpdateAnimationParameteres():
 
 func PreventWallClimb():
 	if (wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true or wall_climb_prevention_raycast_3.is_colliding() == true or wall_climb_prevention_raycast_4.is_colliding() == true) and is_on_floor() == false:
-		sword_colision_shape.scale.x = 0.25
+		sword_colision_shape.scale.x = 0.4
 	else:
 		sword_colision_shape.scale.x = 1
 

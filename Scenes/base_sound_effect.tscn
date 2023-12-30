@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dty7tjhsbbmwx"]
+
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="1_73c1q"]
+
+[node name="SoundEffect" type="AudioStreamPlayer"]
+autoplay = true
+bus = &"SoundEffects"
+script = ExtResource("1_73c1q")
+dissapear_time = 1.0

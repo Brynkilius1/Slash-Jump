@@ -1,10 +1,13 @@
 extends Area2D
 
 const DEATH_PARTICLES = preload("res://Scenes/Particles/death_particles.tscn")
+@onready var death_sound = $"../Sounds/Death"
 signal player_died
+
 
 func _on_body_entered(body):
 	DeathVisuals()
+	DeathSound()
 	DeathTechnical()
 	player_died.emit()
 
@@ -13,8 +16,13 @@ func DeathVisuals():
 	get_parent().visible = false
 	EmitParticles(DEATH_PARTICLES, global_position)
 
+func DeathSound():
+	death_sound.play()
+
 func DeathTechnical():
 	get_parent().has_control = false
+	get_parent().velocity = Vector2.ZERO
+	
 
 func EmitParticles(particles, emit_pos):
 	var s = particles.instantiate()

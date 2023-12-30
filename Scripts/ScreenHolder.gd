@@ -1,5 +1,6 @@
 extends Node2D
 
+#sent to camera manager
 signal set_next_screen(screen)
 signal change_screen
 
@@ -8,6 +9,8 @@ func _ready():
 	for i in get_children():
 		i.set_next_screen_local.connect(SetNextScreen)
 		i.change_screen_local.connect(ChangeScreen)
+	
+
 		
 
 func SetNextScreen(screen):

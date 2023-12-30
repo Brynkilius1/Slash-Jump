@@ -5,6 +5,9 @@ var screen_cover_anim : String = "CoverScreen"
 
 signal cover_finished
 
+func _ready():
+	visible = true
+
 func PlayScreenCoverAnim():
 	animation_player.play(screen_cover_anim)
 

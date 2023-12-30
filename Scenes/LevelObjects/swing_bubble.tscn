@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds533p8ork6c6"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/SwingBubble.gd" id="1_y3ukb"]
+[ext_resource type="Texture2D" uid="uid://bapk7sr2ggh1p" path="res://Images/Mechanics/Bubble.png" id="2_lr7hp"]
+[ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="2_q8sdg"]
+[ext_resource type="PackedScene" uid="uid://dy6588a5ev3v4" path="res://Scenes/CustomNodes/respawner.tscn" id="3_glwp3"]
+[ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="5_rup4c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owvu6"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_touop"]
+radius = 13.0
+
+[node name="SwingBubble" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_y3ukb")
+hit_particles = ExtResource("2_q8sdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_owvu6")
+
+[node name="Bubble" type="Sprite2D" parent="."]
+texture = ExtResource("2_lr7hp")
+
+[node name="HitDetector" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetector"]
+shape = SubResource("CircleShape2D_touop")
+
+[node name="Respawner" parent="." node_paths=PackedStringArray("respawning_object") instance=ExtResource("3_glwp3")]
+respawn_time = 2.5
+respawning_object = NodePath("..")
+respawn_function = "DisableSelf"
+
+[node name="SoundEffects" type="Node2D" parent="."]
+
+[node name="Hit" type="Node2D" parent="SoundEffects"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects/Hit"]
+stream = ExtResource("5_rup4c")
+volume_db = 15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

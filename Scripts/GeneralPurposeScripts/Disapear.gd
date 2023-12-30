@@ -1,4 +1,4 @@
-extends GPUParticles2D
+extends Node
 
 @export var dissapear_time := 1.5
 

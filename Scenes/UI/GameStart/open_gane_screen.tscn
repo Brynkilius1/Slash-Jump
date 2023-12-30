@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjpx0oy45inwo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/OpenGaneScreen.gd" id="1_137ec"]
+[ext_resource type="AudioStream" uid="uid://kfd8hdcmo1qf" path="res://Sounds/SoundEffects/GameOpeningRambles/FirstTimeOpen.mp3" id="2_bbmaw"]
+[ext_resource type="AudioStream" uid="uid://cbhqo3ae67x3g" path="res://Sounds/SoundEffects/GameOpeningRambles/SedondTimeOpen.mp3" id="3_84eck"]
+[ext_resource type="AudioStream" uid="uid://73a0nhdmqklm" path="res://Sounds/SoundEffects/GameOpeningRambles/ManyTimesOpen.mp3" id="4_oi8el"]
+[ext_resource type="AudioStream" uid="uid://cgj0kb3mwrigl" path="res://Sounds/SoundEffects/GameOpeningRambles/CoupleTimesOpenedGame.mp3" id="4_qwp1c"]
+[ext_resource type="AudioStream" uid="uid://cqlk4hhu6v16i" path="res://Sounds/SoundEffects/GameOpeningRambles/OpenFewTimes.mp3" id="5_647n0"]
+[ext_resource type="AudioStream" uid="uid://bfn6gj35mkopw" path="res://Sounds/SoundEffects/GameOpeningRambles/TwoTimesTheCharm.mp3" id="6_7uwmk"]
+[ext_resource type="AudioStream" uid="uid://jsytyxbwu2o" path="res://Sounds/SoundEffects/GameOpeningRambles/ManyManyTimes.mp3" id="8_seram"]
+[ext_resource type="AudioStream" uid="uid://0qe4ml637cfv" path="res://Sounds/SoundEffects/GameOpeningRambles/OpenALot.mp3" id="9_pi25i"]
+[ext_resource type="AudioStream" uid="uid://bfn3150eq4m3n" path="res://Sounds/SoundEffects/GameOpeningRambles/SoManyTimes.mp3" id="10_ge3gk"]
+
+[node name="OpenGaneScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_137ec")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0.0352941, 0.0627451, 1)
+
+[node name="Sounds" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FirstOpen" type="Control" parent="Sounds"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MeThianking" type="AudioStreamPlayer" parent="Sounds/FirstOpen"]
+stream = ExtResource("2_bbmaw")
+
+[node name="FewTimesOpen" type="Control" parent="Sounds"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds/FewTimesOpen"]
+stream = ExtResource("3_84eck")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Sounds/FewTimesOpen"]
+stream = ExtResource("4_qwp1c")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Sounds/FewTimesOpen"]
+stream = ExtResource("3_84eck")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Sounds/FewTimesOpen"]
+stream = ExtResource("5_647n0")
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="Sounds/FewTimesOpen"]
+stream = ExtResource("3_84eck")
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="Sounds/FewTimesOpen"]
+stream = ExtResource("6_7uwmk")
+
+[node name="ManyTimesOpen" type="Control" parent="Sounds"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds/ManyTimesOpen"]
+stream = ExtResource("4_oi8el")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Sounds/ManyTimesOpen"]
+stream = ExtResource("8_seram")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Sounds/ManyTimesOpen"]
+stream = ExtResource("4_oi8el")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Sounds/ManyTimesOpen"]
+stream = ExtResource("9_pi25i")
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="Sounds/ManyTimesOpen"]
+stream = ExtResource("10_ge3gk")
+
+[connection signal="finished" from="Sounds/FirstOpen/MeThianking" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/FewTimesOpen/AudioStreamPlayer" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/FewTimesOpen/AudioStreamPlayer2" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/FewTimesOpen/AudioStreamPlayer3" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/FewTimesOpen/AudioStreamPlayer4" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/FewTimesOpen/AudioStreamPlayer5" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/FewTimesOpen/AudioStreamPlayer6" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/ManyTimesOpen/AudioStreamPlayer" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/ManyTimesOpen/AudioStreamPlayer2" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/ManyTimesOpen/AudioStreamPlayer3" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/ManyTimesOpen/AudioStreamPlayer4" to="." method="RambleFinished"]
+[connection signal="finished" from="Sounds/ManyTimesOpen/AudioStreamPlayer5" to="." method="RambleFinished"]

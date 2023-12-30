@@ -31,6 +31,9 @@ func _ready():
 	limit_array = [top_limit, bottom_limit, left_limit, right_limit]
 
 
+	
+
+
 
 func UpdateNextScreen(screen):
 	next_screen = screen
@@ -45,14 +48,15 @@ func UpdateQueuedPoints():
 
 
 func ChangeScreen(screen_exited):
-	if next_screen != screen_exited:
-		current_screen = next_screen
-		
-		
-		
-		ChooseRespawnPoint()
-		MoveScreen()
-		
+	if GlobalObjects.player.has_control == true: #makes sure the camera doesnt chaneg screens when player is dead
+		if next_screen != screen_exited:
+			current_screen = next_screen
+			
+			
+			
+			ChooseRespawnPoint()
+			MoveScreen()
+			
 
 
 func ChooseRespawnPoint():

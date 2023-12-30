@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b31gw8h80vyka" path="res://Scenes/LevelObjects/spikes.tscn" id="2_j3gs2"]
 [ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="2_kbo6r"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="2_nb44o"]
-[ext_resource type="Script" path="res://Scenes/LevelObjects/Screen.gd" id="3_thpon"]
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="3_thpon"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="5_qwfim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57u0q"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dveic13cofv33"
+path="res://.godot/imported/breakable wall hit 1.mp3-24a7c017008fd4640b1fdf8184b7ed2d.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 1.mp3"
+dest_files=["res://.godot/imported/breakable wall hit 1.mp3-24a7c017008fd4640b1fdf8184b7ed2d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

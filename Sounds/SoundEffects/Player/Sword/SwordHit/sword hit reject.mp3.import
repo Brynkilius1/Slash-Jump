@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4eh63f6gjrwa"
+path="res://.godot/imported/sword hit reject.mp3-a0d111b1d32e4ea3ef0b2ee2ad362722.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword hit reject.mp3"
+dest_files=["res://.godot/imported/sword hit reject.mp3-a0d111b1d32e4ea3ef0b2ee2ad362722.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

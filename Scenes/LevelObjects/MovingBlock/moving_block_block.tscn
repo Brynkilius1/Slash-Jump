@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://pd7pim47vjt7"]
+
+[ext_resource type="Texture2D" uid="uid://dqttvu1md2yy" path="res://Images/Transitions/BlackTransitionBar.png" id="1_cgig3"]
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/moving_block_block.gd" id="1_x3hxe"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="2_tcx4p"]
+[ext_resource type="AudioStream" uid="uid://dveic13cofv33" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 1.mp3" id="4_asb11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rm5ub"]
+size = Vector2(28, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvfb2"]
+size = Vector2(28, 20)
+
+[node name="Block" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_x3hxe")
+
+[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("2_tcx4p")]
+hit_sounds = NodePath("../SoundEffects/Hit")
+
+[node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]
+shape = SubResource("RectangleShape2D_rm5ub")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.8147e-06, 5.96046e-08)
+scale = Vector2(0.109375, 0.833333)
+texture = ExtResource("1_cgig3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dvfb2")
+
+[node name="SoundEffects" type="Node2D" parent="."]
+
+[node name="Hit" type="Node2D" parent="SoundEffects"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects/Hit"]
+stream = ExtResource("4_asb11")
+
+[editable path="SwordCollisionHandler"]

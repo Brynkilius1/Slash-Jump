@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2en4mexubcdu"]
+
+[ext_resource type="Script" path="res://Global/DebugMaster.gd" id="1_pi04l"]
+[ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="2_jvvj3"]
+[ext_resource type="Texture2D" uid="uid://c6fa8t4yu0b40" path="res://Images/Player/SwordHitFlash.png" id="3_hgu3d"]
+
+[node name="DebugMaster" type="Node2D"]
+script = ExtResource("1_pi04l")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 180.0
+
+[node name="SwingRaycastPosHit" type="CheckButton" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jvvj3")
+text = "Show Raycast Hit Pos"
+
+[node name="SwingRaycastObjectHit" type="CheckButton" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jvvj3")
+text = "Show Raycast Object Hit"
+
+[node name="PrintSwingRaycastObjectHit" type="CheckButton" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jvvj3")
+text = "Print Raycast Object Hit"
+
+[node name="ScreenshakeDisabled" type="CheckButton" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jvvj3")
+text = "Screenshake disabled"
+
+[node name="Fullscreen" type="CheckButton" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jvvj3")
+text = "Fullscreen"
+
+[node name="Indicators" type="Node2D" parent="."]
+top_level = true
+z_index = 5
+
+[node name="SwingRaycastPosHitIndicator" type="Sprite2D" parent="Indicators"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_hgu3d")
+
+[node name="SwingRaycastObjectHitIndicator" type="Sprite2D" parent="Indicators"]
+visible = false
+modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_hgu3d")
+
+[connection signal="toggled" from="UI/Control/VBoxContainer/SwingRaycastPosHit" to="." method="_on_swing_raycast_pos_hit_toggled"]
+[connection signal="toggled" from="UI/Control/VBoxContainer/SwingRaycastObjectHit" to="." method="_on_swing_raycast_object_hit_toggled"]
+[connection signal="toggled" from="UI/Control/VBoxContainer/PrintSwingRaycastObjectHit" to="." method="_on_print_swing_raycast_object_hit_toggled"]
+[connection signal="toggled" from="UI/Control/VBoxContainer/ScreenshakeDisabled" to="." method="_on_screenshake_disabled_toggled"]
+[connection signal="toggled" from="UI/Control/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]

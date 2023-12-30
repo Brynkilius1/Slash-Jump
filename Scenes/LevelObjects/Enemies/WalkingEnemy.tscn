@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2yno4awx6rjj"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/EnemyScripts/WalkingEnemy.gd" id="1_4aq26"]
+[ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="2_cvo6u"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="3_wk582"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpm3g"]
+size = Vector2(16, 20)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 29
+script = ExtResource("1_4aq26")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jpm3g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cvo6u")
+
+[node name="SwordCollisionHandler" parent="." instance=ExtResource("3_wk582")]
+hit_sounds = NodePath("")
+
+[node name="WallRaycast" type="RayCast2D" parent="."]
+position = Vector2(0, 10)
+target_position = Vector2(9, 0)
+collision_mask = 21
+
+[node name="WallRaycast2" type="RayCast2D" parent="."]
+position = Vector2(0, 10)
+target_position = Vector2(-9, 0)
+collision_mask = 21
+
+[node name="EdgeRaycast" type="RayCast2D" parent="."]
+position = Vector2(-8, 10)
+target_position = Vector2(0, 2)
+collision_mask = 21
+
+[node name="EdgeRaycast2" type="RayCast2D" parent="."]
+position = Vector2(8, 10)
+target_position = Vector2(0, 2)
+collision_mask = 21
+
+[node name="SoundEffects" type="Node2D" parent="."]

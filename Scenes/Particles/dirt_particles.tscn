@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://4l05n1oygo5e"]
+
+[ext_resource type="Texture2D" uid="uid://dln5sjibsek3" path="res://Images/Particles/SwordHitParticles/DirtParticles.png" id="1_15nff"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_wq4i2"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="3_jme3i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_suv0y"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_hfahp"]
+offsets = PackedFloat32Array(0, 0.762295, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4fh8s"]
+gradient = SubResource("Gradient_hfahp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3rexw"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector3(0.85, -1, 0)
+spread = 30.0
+flatness = 0.225
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 98, 0)
+damping_min = 1.0
+damping_max = 2.0
+color_ramp = SubResource("GradientTexture1D_4fh8s")
+anim_offset_max = 1.0
+collision_mode = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_suv0y")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_3rexw")
+texture = ExtResource("1_15nff")
+lifetime = 1.5
+explosiveness = 0.95
+script = ExtResource("2_wq4i2")
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("3_jme3i")
+autostart_target = NodePath("..")

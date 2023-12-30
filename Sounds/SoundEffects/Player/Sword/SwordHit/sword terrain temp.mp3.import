@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bb7byvoywcveg"
+path="res://.godot/imported/sword terrain temp.mp3-95489cc58a0bf972cdaaaf4aa265c96d.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword terrain temp.mp3"
+dest_files=["res://.godot/imported/sword terrain temp.mp3-95489cc58a0bf972cdaaaf4aa265c96d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

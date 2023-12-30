@@ -1,0 +1,30 @@
+extends StaticBody2D
+
+@export var bullet_speed : float = 100
+@export var shots_per_second : float = 2.0
+
+const TURRET_BULLET = preload("res://Scenes/SpawnableItems/turret_bullet.tscn")
+
+@onready var bullet_spawn_point = $BulletSpawnPoint
+@onready var function_caller_timer = $FunctionCallerTimer
+
+func _ready():
+	function_caller_timer.wait_time = shots_per_second
+
+
+
+func HitWithSword(_angle):
+	#implament logic for indirect hits
+	print("hit turrent")
+
+
+func Shoot():
+	SpawnBullet()
+
+
+func SpawnBullet():
+	var  b = TURRET_BULLET.instantiate()
+	b.speed = bullet_speed
+	b.bullet_angle = rotation
+	b.global_position = bullet_spawn_point.global_position
+	get_tree().root.get_child(0).add_child(b)

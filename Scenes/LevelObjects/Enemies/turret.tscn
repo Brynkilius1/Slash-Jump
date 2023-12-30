@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://h3tjt6l8u0v3"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/EnemyScripts/Turret.gd" id="1_m1e7k"]
+[ext_resource type="Texture2D" uid="uid://cpjij3tqhk4rr" path="res://Images/Mechanics/Turret.png" id="2_qpqmd"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="3_ruu4p"]
+[ext_resource type="PackedScene" uid="uid://tyud1ede0c3u" path="res://Scenes/CustomNodes/function_caller_timer.tscn" id="4_6fej8"]
+[ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="5_vy4a8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76b3e"]
+size = Vector2(8, 14)
+
+[node name="Turret" type="StaticBody2D"]
+z_index = -1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_m1e7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_76b3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 1.90735e-06)
+texture = ExtResource("2_qpqmd")
+
+[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("3_ruu4p")]
+hit_sounds = NodePath("../Sounds/Hit")
+
+[node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]
+position = Vector2(-2, 1)
+disabled = true
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(6, -3)
+
+[node name="FunctionCallerTimer" parent="." node_paths=PackedStringArray("node_to_call_function_on") instance=ExtResource("4_6fej8")]
+node_to_call_function_on = NodePath("..")
+function_name = "Shoot"
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Hit" type="Node2D" parent="Sounds"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds/Hit"]
+stream = ExtResource("5_vy4a8")
+volume_db = 13.0
+
+[editable path="SwordCollisionHandler"]

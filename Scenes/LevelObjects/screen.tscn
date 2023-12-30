@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://14wncry5ht53"]
 
-[ext_resource type="Script" path="res://Scenes/LevelObjects/Screen.gd" id="1_s4hp7"]
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="1_s4hp7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d1mm"]
 size = Vector2(320, 180)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://boila1hptjpk"
+path="res://.godot/imported/sword 5.mp3-70d58612ff83a2899e715e32ce29669a.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 5.mp3"
+dest_files=["res://.godot/imported/sword 5.mp3-70d58612ff83a2899e715e32ce29669a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
