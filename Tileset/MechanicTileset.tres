@@ -1,0 +1,10 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://w4f1o27hp8ym"]
+
+[ext_resource type="PackedScene" uid="uid://ds533p8ork6c6" path="res://Scenes/LevelObjects/swing_bubble.tscn" id="1_uwqln"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3nqbm"]
+scenes/1/scene = ExtResource("1_uwqln")
+
+[resource]
+tile_size = Vector2i(12, 12)
+sources/2 = SubResource("TileSetScenesCollectionSource_3nqbm")

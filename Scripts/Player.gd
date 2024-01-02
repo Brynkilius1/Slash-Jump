@@ -18,9 +18,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @export_category("Walljump bias")
 
 @export_range (0, 3.14) var wall_bias_upper_limit : float = 2.6
-@export var upper_boost : int = 10  #40
+@export var upper_boost : int = 15  #40
 @export_range (0, 3.14) var wall_bias_middle_limit : float = 1.9
-@export var lower_boost : int = 15   #50
+@export var lower_boost : int = 20   #50
 @export_range (0, 3.14) var wall_bias_lower_limit : float = 1.5
 
 @export_category("Animations")
@@ -113,6 +113,7 @@ var saved_coyote_direction : float
 var swing_dir = 1
 var sword_has_hit_this_swing = false
 var checking_sword_hitbox = false
+var extra_swing_power : int = 0
 
 var playing_with_controller = true
 
@@ -163,6 +164,7 @@ func _process(delta):
 func _physics_process(delta):
 	
 	
+	
 	PreventWallClimb()
 	GetSlashInput()
 	CheckCornerBoost()
@@ -170,10 +172,11 @@ func _physics_process(delta):
 	CheckSwordColision()
 	
 	
-	
 	Friction()
 	if graity_enabled == true:
 		Gravity(delta)
+	
+	
 	
 	
 	move_and_slide()
@@ -394,7 +397,8 @@ func CallIndirectHitOnObject(object_hit):
 		elif object_hit.get_parent().has_method("IndirectSwordHit") == true:
 			object_hit.get_parent().IndirectSwordHit(sword_pivot.rotation_degrees)
 func SwordHitVelocity(power, angle, is_wall_jumping):
-	var bounce_power = power 
+	var bounce_power = power + Vector2(0, extra_swing_power)
+	extra_swing_power = 0
 	bounce_power.y += int(is_on_floor()) * extra_grounded_power #add slighty mode power if player is grounded
 	bounce_power = bounce_power.rotated(angle)
 	if is_wall_jumping == true:
@@ -662,11 +666,6 @@ func SwingCooldownActive():
 		return_bool = true
 	return return_bool
 
-
-
-func TurnOffGravity(turn_off : bool):
-	graity_enabled = not turn_off
-
 func ShakeCamera(time, min, max):
 	if screenshake_disabled == false:
 		camera_shaker.min_value = min
@@ -679,3 +678,11 @@ func EmitParticles(particles, emit_pos, angle):
 	s.global_position = emit_pos
 	
 	get_tree().root.get_child(0).add_child(s)
+
+
+#Externally callable functions
+func TurnOffGravity(turn_off : bool):
+	graity_enabled = not turn_off
+
+func IncreaseNextJumpPower(strength):
+	extra_swing_power = strength

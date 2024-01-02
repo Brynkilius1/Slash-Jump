@@ -12,24 +12,12 @@ current_node = NodePath("BlockPositions/MovingBlockPosition1")
 
 [node name="BlockPositions" type="Node2D" parent="."]
 
-[node name="MovingBlockPosition1" parent="BlockPositions" node_paths=PackedStringArray("connection_1", "connection_2") instance=ExtResource("2_bcm86")]
+[node name="MovingBlockPosition1" parent="BlockPositions" node_paths=PackedStringArray("connection_1") instance=ExtResource("2_bcm86")]
 connection_1 = NodePath("../MovingBlockPosition2")
-connection_2 = NodePath("../MovingBlockPosition4")
 
-[node name="MovingBlockPosition2" parent="BlockPositions" node_paths=PackedStringArray("connection_1", "connection_2") instance=ExtResource("2_bcm86")]
-position = Vector2(25, 0)
+[node name="MovingBlockPosition2" parent="BlockPositions" node_paths=PackedStringArray("connection_1") instance=ExtResource("2_bcm86")]
+position = Vector2(0, -47)
 connection_1 = NodePath("../MovingBlockPosition1")
-connection_2 = NodePath("../MovingBlockPosition3")
-
-[node name="MovingBlockPosition3" parent="BlockPositions" node_paths=PackedStringArray("connection_1", "connection_2") instance=ExtResource("2_bcm86")]
-position = Vector2(25, -21)
-connection_1 = NodePath("../MovingBlockPosition2")
-connection_2 = NodePath("../MovingBlockPosition4")
-
-[node name="MovingBlockPosition4" parent="BlockPositions" node_paths=PackedStringArray("connection_1", "connection_2") instance=ExtResource("2_bcm86")]
-position = Vector2(0, -21)
-connection_1 = NodePath("../MovingBlockPosition1")
-connection_2 = NodePath("../MovingBlockPosition3")
 
 [node name="Sounds" type="Node2D" parent="."]
 

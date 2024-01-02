@@ -4,9 +4,8 @@ const STONE_HIT_PATRICLES = preload("res://Scenes/Particles/StoneHitPatricles.ts
 
 @export var platform_width : int = 1
 
-var crumble_time : float = 2.0
-var platform_respawn_time : float = 4.0
-var leaving_plaform_grace_period : float = 0.6
+var crumble_time : float = 1.0
+var platform_respawn_time : float = 3.0
 
 
 @onready var sword_collision_handler = $SwordCollisionHandler

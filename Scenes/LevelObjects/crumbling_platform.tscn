@@ -47,6 +47,7 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_ly2is")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -55,6 +56,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_yi6ys")
 
 [node name="PlayerLeavingDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 

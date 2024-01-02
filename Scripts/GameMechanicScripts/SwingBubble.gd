@@ -17,6 +17,7 @@ extends Area2D
 func _on_body_entered(body):
 	if body == GlobalObjects.player:
 		CapturePlayer(body)
+		GlobalObjects.player.IncreaseNextJumpPower(10)
 		
 func CapturePlayer(body):
 	body.global_position = global_position

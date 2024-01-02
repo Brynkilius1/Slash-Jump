@@ -21,4 +21,13 @@ func HitWithSword(_angle):
 
 
 func _on_body_entered(body):
+	CallIndirectHitOnObject(body)
 	queue_free()
+
+func CallIndirectHitOnObject(object_hit):
+	print("bullet hit: ", object_hit)
+	if object_hit:
+		if object_hit.has_method("IndirectSwordHit") == true:
+			object_hit.IndirectSwordHit(bullet_angle)
+		elif object_hit.get_parent().has_method("IndirectSwordHit") == true:
+			object_hit.get_parent().IndirectSwordHit(bullet_angle)
