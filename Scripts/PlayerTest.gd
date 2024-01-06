@@ -90,8 +90,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 
 
 #instances
-var sword_colision_particles = preload("res://Scenes/Player/Particles/sword_colision_particles.tscn")
-const AFTER_SWING_VFX = preload("res://Scenes/Player/Particles/after_swing_vfx.tscn")
+var sword_colision_particles = preload("res://Scenes/Particles/sword_colision_particles.tscn")
+const AFTER_SWING_VFX = preload("res://Scenes/Particles/after_swing_vfx.tscn")
 const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
 
 
@@ -153,6 +153,8 @@ func _process(delta):
 #8 times each frame (or how many times a physics frame is per fame)
 func _physics_process(delta):
 	
+	Friction()
+	Gravity(delta)
 	
 	PreventWallClimb()
 	GetSlashInput()
@@ -161,8 +163,7 @@ func _physics_process(delta):
 	
 	
 	
-	Friction()
-	Gravity(delta)
+	
 	
 	
 	move_and_slide()

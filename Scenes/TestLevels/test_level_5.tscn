@@ -98,7 +98,9 @@ sub_emitter_amount_at_collision = 1
 
 [node name="WorldNessecities" parent="." instance=ExtResource("1_7x06k")]
 
-[node name="ScreenHolder" parent="WorldNessecities" index="3"]
+[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("3_akv1p")]
+
+[node name="ScreenHolder" parent="WorldNessecities" index="4"]
 z_index = 1
 
 [node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("3_ll08f")]
@@ -219,8 +221,6 @@ amount = 1
 process_material = SubResource("ParticleProcessMaterial_e3xkj")
 texture = ExtResource("5_o5k5w")
 lifetime = 0.2
-
-[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("3_akv1p")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_g2sld")

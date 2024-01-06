@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cphaypxlmo2uq"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/TNTExplosion.gd" id="1_2lhrn"]
+[ext_resource type="Texture2D" uid="uid://b5ge3hqp5exy5" path="res://Images/Mechanics/TNTExplosion.png" id="2_kty1m"]
+[ext_resource type="Script" path="res://Scripts/BaseObjectScripts/DeleteTimer.gd" id="3_kyx47"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vxxcv"]
+radius = 35.0
+
+[node name="TNTExplosion" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2lhrn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_kty1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vxxcv")
+
+[node name="DeleteTimer" type="Timer" parent="." node_paths=PackedStringArray("delete_target")]
+one_shot = true
+script = ExtResource("3_kyx47")
+delete_time = 0.7
+delete_target = NodePath("..")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DeleteTimer" to="DeleteTimer" method="_on_timeout"]

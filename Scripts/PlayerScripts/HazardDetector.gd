@@ -2,7 +2,7 @@ extends Area2D
 
 const DEATH_PARTICLES = preload("res://Scenes/Particles/death_particles.tscn")
 @onready var death_sound = $"../Sounds/Death"
-signal player_died
+signal player_died #connected to player spawner
 
 
 func _on_body_entered(body):

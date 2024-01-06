@@ -6,10 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="4_5hjoq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q22ah"]
-radius = 3.0
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_plaxo"]
-radius = 7.0
+radius = 8.0
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 16
@@ -20,7 +20,6 @@ script = ExtResource("1_3hph4")
 shape = SubResource("CircleShape2D_q22ah")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.78814e-07, -1.49012e-07)
 texture = ExtResource("2_df8pm")
 
 [node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("2_i05s1")]

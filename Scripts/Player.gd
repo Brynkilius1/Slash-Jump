@@ -5,22 +5,24 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 
 
 #export variables
-@export var swing_power = Vector2(0, 174) #(0, 174) #Vector2(0, 205)
+@export var swing_power = Vector2(0, 174) #(0, 174)
 @export var small_swing_power = Vector2(0, 100)
 @export var extra_grounded_power := 16  #20
+@export var friction := 0.3
+@export var cut_x_speed := 0.15
 @export var swing_cooldown := 0.10
 @export var swing_miss_cooldown := 0.19
 @export var swing_coyote_time := 0.2
 @export var swing_anim_length := 0.15
 @export var max_fall_speed := 250
-@export var controller_dead_zone := 0.2
+@export var controller_dead_zone := 0.25
 
 @export_category("Walljump bias")
 
 @export_range (0, 3.14) var wall_bias_upper_limit : float = 2.6
-@export var upper_boost : int = 15  #40
+@export var upper_boost : int = 20  #40
 @export_range (0, 3.14) var wall_bias_middle_limit : float = 1.9
-@export var lower_boost : int = 20   #50
+@export var lower_boost : int = 25   #50
 @export_range (0, 3.14) var wall_bias_lower_limit : float = 1.5
 
 @export_category("Animations")
@@ -64,6 +66,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @onready var ledge_forgiveness_raycast_2 = $Raycasts/LedgeForgiveness/LedgeForgivenessRaycast2
 @onready var ledge_forgiveness_raycast_3 = $Raycasts/LedgeForgiveness/LedgeForgivenessRaycast3
 @onready var ledge_forgiveness_raycast_4 = $Raycasts/LedgeForgiveness/LedgeForgivenessRaycast4
+@onready var ledge_stop_raycast_1 = $Raycasts/LedgeStop/LedgeStopRaycast1
+@onready var ledge_stop_raycast_2 = $Raycasts/LedgeStop/LedgeStopRaycast2
 
 
 
@@ -99,7 +103,7 @@ const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
 
 
 #signals
-
+signal player_died
 
 
 #code variables
@@ -110,6 +114,7 @@ var graity_enabled = true
 var was_on_ground_last_frame = false
 var saved_x_speed : float
 var saved_coyote_direction : float
+var saved_controller_angle : float
 var swing_dir = 1
 var sword_has_hit_this_swing = false
 var checking_sword_hitbox = false
@@ -122,7 +127,7 @@ var screenshake_disabled = false
 
 
 #to be removed later variables
-var fullscreen_on = false
+
 
 
 
@@ -163,23 +168,27 @@ func _process(delta):
 #8 times each frame (or how many times a physics frame is per fame)
 func _physics_process(delta):
 	
+	Friction()
+	if graity_enabled == true:
+		Gravity(delta)
 	
 	
 	PreventWallClimb()
 	GetSlashInput()
 	CheckCornerBoost()
 	CheckLedgeForgiveness()
+	CheckLedgeStop()
 	CheckSwordColision()
 	
 	
-	Friction()
-	if graity_enabled == true:
-		Gravity(delta)
+	
 	
 	
 	
 	
 	move_and_slide()
+	
+	CheckIfReload()
 
 
 
@@ -196,6 +205,10 @@ func GetInputAngle():
 		
 		var return_angle = Vector2.ZERO.angle_to_point(input_vector)
 		
+		if return_angle == 0.0:
+			return_angle = saved_controller_angle
+		else:
+			saved_controller_angle = return_angle
 		
 		return return_angle
 		
@@ -406,6 +419,8 @@ func SwordHitVelocity(power, angle, is_wall_jumping):
 	
 	saved_x_speed = bounce_power.x
 	velocity = bounce_power
+	
+	velocity.x = lerp(velocity.x, 0.0, cut_x_speed)
 	coyote_timer.stop()
 func DeactivateSwordHitbox():
 	LingerTimeoutTechnical()
@@ -596,9 +611,14 @@ func CheckLedgeForgiveness():
 				global_position.y -= 5
 				global_position.x -= 1
 
+func CheckLedgeStop():
+	if abs(velocity.x) < 95:
+		if ledge_stop_raycast_1.is_colliding() != ledge_stop_raycast_2.is_colliding(): #XOR for if theyre colliding 
+			velocity.x  = 0
+
 func Friction():
 	if is_on_floor():
-		velocity.x  = lerp(velocity.x, 0.0, 0.23)
+		velocity.x  = lerp(velocity.x, 0.0, friction)
 		
 	#if JustLanded() == true:
 	#	dirt_skidding_particles.emitting = true
@@ -635,7 +655,9 @@ func Gravity(delta):
 
 
 
-
+func CheckIfReload():
+	if Input.is_action_just_pressed("Reload"):
+		player_died.emit()
 
 
 

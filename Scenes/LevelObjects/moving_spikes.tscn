@@ -1,13 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhoymk1i3u4eq"]
+[gd_scene load_steps=11 format=3 uid="uid://dhoymk1i3u4eq"]
 
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/MovingSpikes.gd" id="1_v13qi"]
 [ext_resource type="PackedScene" uid="uid://cqaft1ueqbrun" path="res://Scenes/Particles/MetalObjectSparks.tscn" id="2_ln5cm"]
 [ext_resource type="Texture2D" uid="uid://dro8s4ra4nit2" path="res://Images/Tilesets/SpikesTemp.png" id="2_w7ejj"]
 [ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="4_5ysqn"]
 [ext_resource type="AudioStream" uid="uid://bb7byvoywcveg" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword terrain temp.mp3" id="4_s76hv"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yubq"]
-size = Vector2(16, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6ejj"]
 size = Vector2(16, 20)
@@ -71,9 +68,9 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_v13qi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_3yubq")
+polygon = PackedVector2Array(-8, 10, 8, 10, 5, -9, -6, -9)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.08616e-07, -24)

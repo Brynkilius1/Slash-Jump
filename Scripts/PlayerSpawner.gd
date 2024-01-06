@@ -5,13 +5,14 @@ const PLAYER = preload("res://Scenes/Player.tscn")
 
 var local_player
 
-signal player_died
+signal player_died #connected to transition manager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	FirstRespawnCheck()
 	SpawnPlayer()
 	local_player.get_node("HazardDetector").player_died.connect(PlayerDied)
+	local_player.player_died.connect(PlayerDied)
 	
 	
 

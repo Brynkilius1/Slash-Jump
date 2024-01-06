@@ -25,7 +25,6 @@ func _on_body_entered(body):
 	queue_free()
 
 func CallIndirectHitOnObject(object_hit):
-	print("bullet hit: ", object_hit)
 	if object_hit:
 		if object_hit.has_method("IndirectSwordHit") == true:
 			object_hit.IndirectSwordHit(bullet_angle)

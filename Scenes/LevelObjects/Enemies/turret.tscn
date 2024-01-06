@@ -1,12 +1,64 @@
-[gd_scene load_steps=6 format=3 uid="uid://h3tjt6l8u0v3"]
+[gd_scene load_steps=9 format=3 uid="uid://h3tjt6l8u0v3"]
 
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/EnemyScripts/Turret.gd" id="1_m1e7k"]
-[ext_resource type="Texture2D" uid="uid://cpjij3tqhk4rr" path="res://Images/Mechanics/Turret.png" id="2_qpqmd"]
+[ext_resource type="Texture2D" uid="uid://dctqdx0ifouur" path="res://Images/Mechanics/Turret_shoot_sheet.png" id="2_wotfh"]
 [ext_resource type="PackedScene" uid="uid://tyud1ede0c3u" path="res://Scenes/CustomNodes/function_caller_timer.tscn" id="4_6fej8"]
 [ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="5_vy4a8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76b3e"]
 size = Vector2(8, 14)
+
+[sub_resource type="Animation" id="Animation_gkuwt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8th4t"]
+resource_name = "Shoot"
+length = 1.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.7, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne0pg"]
+_data = {
+"RESET": SubResource("Animation_gkuwt"),
+"Shoot": SubResource("Animation_8th4t")
+}
 
 [node name="Turret" type="StaticBody2D"]
 z_index = -1
@@ -19,15 +71,17 @@ position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_76b3e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, 1.90735e-06)
-texture = ExtResource("2_qpqmd")
+position = Vector2(-11, -8)
+texture = ExtResource("2_wotfh")
+centered = false
+hframes = 4
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]
-position = Vector2(10, -3)
+position = Vector2(7, -2)
 
 [node name="FunctionCallerTimer" parent="." node_paths=PackedStringArray("node_to_call_function_on") instance=ExtResource("4_6fej8")]
 node_to_call_function_on = NodePath("..")
-function_name = "Shoot"
+function_name = "PlayShootAnim"
 
 [node name="Sounds" type="Node2D" parent="."]
 
@@ -36,3 +90,8 @@ function_name = "Shoot"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds/Hit"]
 stream = ExtResource("5_vy4a8")
 volume_db = 13.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ne0pg")
+}

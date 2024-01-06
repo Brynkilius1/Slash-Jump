@@ -7,6 +7,8 @@ const TURRET_BULLET = preload("res://Scenes/SpawnableItems/turret_bullet.tscn")
 
 @onready var bullet_spawn_point = $BulletSpawnPoint
 @onready var function_caller_timer = $FunctionCallerTimer
+@onready var animation_player = $AnimationPlayer
+
 
 func _ready():
 	function_caller_timer.wait_time = shots_per_second
@@ -16,6 +18,10 @@ func _ready():
 func HitWithSword(_angle):
 	#implament logic for indirect hits
 	print("hit turrent")
+
+
+func PlayShootAnim():
+	animation_player.play("Shoot")
 
 
 func Shoot():

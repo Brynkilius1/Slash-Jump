@@ -53,9 +53,6 @@ texture = ExtResource("1_avo23")
 
 [node name="WorldNessecities" parent="." instance=ExtResource("1_xpfj5")]
 
-[node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
-position = Vector2(1199, -186)
-
 [node name="BarTransition2" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("2_gydfa")]
 visible = false
 
@@ -65,10 +62,10 @@ z_index = 1
 [node name="Screen3" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("2_dhsh7")]
 
 [node name="RespawnPoint" parent="WorldNessecities/ScreenHolder/Screen3/RespawnPoints" index="0"]
-position = Vector2(-147, 5)
+position = Vector2(-80, -25)
 
 [node name="RespawnPoint2" parent="WorldNessecities/ScreenHolder/Screen3/RespawnPoints" index="1"]
-position = Vector2(150, 47)
+position = Vector2(96, 38)
 
 [node name="Sawblade" parent="WorldNessecities/ScreenHolder/Screen3" instance=ExtResource("3_pvexy")]
 position = Vector2(129, 34)

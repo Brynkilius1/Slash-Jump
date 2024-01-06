@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c76dfq7b3uymw"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/accelerator.gd" id="1_0fje1"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="1_3w8ao"]
+[ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="2_jiahn"]
+[ext_resource type="Texture2D" uid="uid://cckar6gapvb65" path="res://Images/Mechanics/Accelerator.png" id="3_stlb3"]
+[ext_resource type="AudioStream" uid="uid://c4lqm7gwt0qa7" path="res://Sounds/SoundEffects/Objects/Mechanics/Accelerator/AcceleratorHit.mp3" id="5_7ghbr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_033hx"]
+radius = 13.0
+
+[node name="Accelerator" type="Node2D"]
+z_index = -1
+script = ExtResource("1_0fje1")
+
+[node name="SwordCollisionHandler" type="StaticBody2D" parent="." node_paths=PackedStringArray("hit_sounds")]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_3w8ao")
+hit_particles = ExtResource("2_jiahn")
+hit_sounds = NodePath("../SoundEffects/Hit")
+
+[node name="SwordCollisionShape" type="CollisionShape2D" parent="SwordCollisionHandler"]
+shape = SubResource("CircleShape2D_033hx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_stlb3")
+
+[node name="SoundEffects" type="Node2D" parent="."]
+
+[node name="Hit" type="Node2D" parent="SoundEffects"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects/Hit"]
+stream = ExtResource("5_7ghbr")
+volume_db = -8.0
+bus = &"SoundEffects"
