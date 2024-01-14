@@ -74,8 +74,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 
 #Timers
 @onready var swing_linger_timer = $SwingLingerTimer
+@onready var knife_swing_linger_timer = $KnifeSwingLingerTimer
 @onready var swing_miss_timer = $SwingMissTimer
 @onready var coyote_timer = $CoyoteTimer
+@onready var knife_coyote_timer = $KnifeCoyoteTimer
+
 
 #Particles
 @onready var sword_lingering_particles = $SwordPivot/Rotator/SwordVisualPivot/SwordLingeringParticles
@@ -117,7 +120,9 @@ var saved_coyote_direction : float
 var saved_controller_angle : float
 var swing_dir = 1
 var sword_has_hit_this_swing = false
+var knife_has_hit_this_swing = false
 var checking_sword_hitbox = false
+var checking_knife_hitbox = false
 var extra_swing_power : int = 0
 
 var playing_with_controller = true
@@ -135,6 +140,7 @@ var screenshake_disabled = false
 func _ready():
 	GlobalObjects.player = self
 	swing_linger_timer.connect("timeout", SwingLingerTimeout)
+	knife_swing_linger_timer.connect("timeout", KnifeSwingLingerTimeout)
 
 
 func _unhandled_input(event):
@@ -228,21 +234,30 @@ func GetSlashInput():
 		if Input.is_action_just_pressed("BigSwing"):
 			coyote_timer.start(swing_coyote_time)
 			saved_coyote_direction = GetInputAngle()
+		elif Input.is_action_just_pressed("SmallSwing"):
+			knife_coyote_timer.start(swing_coyote_time)
+			saved_coyote_direction = GetInputAngle()
+		
 		
 		if SwingCooldownActive() == false:
-			if Input.is_action_just_pressed('SmallSwing'):
-				SwingKnife()
-
-			elif coyote_timer.time_left > 0:
+			if coyote_timer.time_left > 0:
 				sword_pivot.rotation = saved_coyote_direction
 				coyote_timer.stop()
+				knife_coyote_timer.stop()
 				Swing()
-		
+			elif knife_coyote_timer.time_left > 0:
+				sword_pivot.rotation = saved_coyote_direction
+				coyote_timer.stop()
+				knife_coyote_timer.stop()
+				SwingKnife()
 	
 func CheckSwordColision():
 	if checking_sword_hitbox == true:
 		if sword_collision.get_overlapping_bodies() != []:
 			SwordDetectsHit("bodyballs")
+	if checking_knife_hitbox == true:
+		if knife_collision.get_overlapping_bodies() != []:
+			KnifeDetectsHit("temp")
 
 func Swing():
 	SwingSoundEffects()
@@ -319,7 +334,7 @@ func StartSwingLingerTimer():
 
 func SwingLingerTimeout():
 	LingerTimeoutVisuals()
-	LingerTimeoutParticles()
+	#LingerTimeoutParticles()
 	LingerTimeoutTechnical()
 	
 	CheckIfSwingHit()
@@ -347,8 +362,6 @@ func LingerTimeoutParticles():
 	get_tree().current_scene.add_child(after_swing_vfx)
 func LingerTimeoutTechnical():
 	checking_sword_hitbox = false
-	#sword_colision_shape.call_deferred("set_disabled", true)
-	knife_collision_shape.call_deferred("set_disabled", true)
 func CheckIfSwingHit():
 	if swing_linger_timer.time_left > 0:
 		swing_miss_timer.stop()
@@ -425,7 +438,7 @@ func SwordHitVelocity(power, angle, is_wall_jumping):
 func DeactivateSwordHitbox():
 	LingerTimeoutTechnical()
 	CheckIfSwingHit()
-	LingerTimeoutParticles()
+	#LingerTimeoutParticles()
 	swing_linger_timer.stop()
 
 func AddWallJumpBias(bounce_power, angle):
@@ -520,9 +533,7 @@ func SwingKnife():
 	KnifeSwingVisuals()
 	KnifeSwingParticles()
 	KnifeSwingTechnical()
-	
-	
-	StartSwingLingerTimer()
+
 
 func KnifeSwingSounds():
 	#add sounds
@@ -536,16 +547,65 @@ func KnifeSwingParticles():
 	#add particles
 	pass
 func KnifeSwingTechnical():
-	knife_collision_shape.disabled = false
+	
+	checking_knife_hitbox = true
+	
+	#sword_colision_shape.disabled = false
+	knife_has_hit_this_swing = false
 	can_rotate_sword = false
-	coyote_timer.stop()
+	
+	StartKnifeSwingLingerTimer()
+
+func StartKnifeSwingLingerTimer():
+	knife_swing_linger_timer.start(swing_cooldown)
+
+
+
+
+func KnifeSwingLingerTimeout():
+	KnifeLingerTimeoutVisuals()
+	#KnifeLingerTimeoutParticles()
+	KnifeLingerTimeoutTechnical()
+	
+	CheckIfKnifeSwingHit()
+	knife_swing_linger_timer.stop()
+
+
+func KnifeLingerTimeoutVisuals():
+	KnifeLingerMissAnim()
+	knife_swing_anim.visible = false
+func KnifeLingerMissAnim():
+	var miss_anim_tween = create_tween()
+	miss_anim_tween.tween_property(sword_visual_pivot, "rotation_degrees", sign(sword_visual_pivot.rotation_degrees) * sword_miss_max_rotation, sword_miss_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	
+	await miss_anim_tween.finished
+	var miss_return_anim_tween = create_tween()
+	miss_return_anim_tween.tween_property(sword_visual_pivot, "rotation_degrees", sign(sword_visual_pivot.rotation_degrees) * sword_resting_rotation, sword_miss_recover_time).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+func KnifeLingerTimeoutParticles():
+	#lingering swing vfx particle
+	var after_swing_vfx = AFTER_SWING_VFX.instantiate()
+	
+	after_swing_vfx.rotation = sword_pivot.rotation
+	after_swing_vfx.process_material.angle_min = -sword_pivot.rotation_degrees + 90
+	after_swing_vfx.process_material.angle_max = -sword_pivot.rotation_degrees + 90
+	after_swing_vfx.global_position = $SwordPivot/Extended/Sword/LingeringVFXEmitter.global_position
+	
+	get_tree().current_scene.add_child(after_swing_vfx)
+func KnifeLingerTimeoutTechnical():
+	checking_knife_hitbox = false
+func CheckIfKnifeSwingHit():
+	if knife_swing_linger_timer.time_left > 0:
+		swing_miss_timer.stop()
+	else:
+		swing_miss_timer.start(swing_miss_cooldown)
+
 
 
 func KnifeDetectsHit(body):
 	KnifeHitSounds()
 	KnifeHitParticles()
 	KnifeHitTechnical()
-	ShakeCamera(0.3, 0, 0.5)
+	#ShakeCamera(0.3, 0, 0.5)
 	
 	
 	SwordHitVelocity(small_swing_power, sword_pivot.rotation, IsWallJumping())
@@ -556,8 +616,8 @@ func KnifeHitParticles():
 	var sword_tip = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
 	EmitParticles(SWORD_COLISION_PARTICLES, sword_tip, sword_pivot.rotation)
 func KnifeHitTechnical():
-	knife_collision_shape.call_deferred("set_disabled", true)
-	swing_miss_timer.stop()
+	checking_knife_hitbox = false
+	knife_has_hit_this_swing = true
 
 
 

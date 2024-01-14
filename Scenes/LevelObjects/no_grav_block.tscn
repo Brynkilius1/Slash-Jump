@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds0qp5p67r0e8"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/NoGravBlock.gd" id="1_gl72a"]
+[ext_resource type="Texture2D" uid="uid://lii1a56n6tjg" path="res://Images/Tilesets/UnblouncableTiles.png" id="2_ah6o2"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="3_iskjp"]
+[ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="4_o1bcu"]
+[ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="5_hsxxo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qxov"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kdkp"]
+size = Vector2(14, 14)
+
+[node name="NoGravBlock" type="Area2D"]
+position = Vector2(5.72205e-06, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_gl72a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5qxov")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_ah6o2")
+hframes = 3
+vframes = 3
+frame = 4
+
+[node name="SwordCollisionHandler" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_iskjp")
+hit_particles = ExtResource("4_o1bcu")
+
+[node name="SwordCollisionHitbox1" type="CollisionShape2D" parent="SwordCollisionHandler"]
+position = Vector2(-5.72205e-06, 0)
+shape = SubResource("RectangleShape2D_7kdkp")
+
+[node name="Sounds" type="Node2D" parent="SwordCollisionHandler"]
+
+[node name="Hit" type="Node2D" parent="SwordCollisionHandler/Sounds"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SwordCollisionHandler/Sounds/Hit"]
+stream = ExtResource("5_hsxxo")
+volume_db = 13.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
