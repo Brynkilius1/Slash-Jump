@@ -14,6 +14,8 @@ size = Vector2(320, 270)
 
 [node name="WorldNessecities" parent="." instance=ExtResource("2_kbo6r")]
 
+[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("5_qwfim")]
+
 [node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("2_nb44o")]
 
 [node name="RespawnPoint" parent="WorldNessecities/ScreenHolder/Screen/RespawnPoints" index="0"]
@@ -56,8 +58,6 @@ position = Vector2(199, -179)
 
 [node name="Screen6" parent="WorldNessecities/ScreenHolder" index="5" instance=ExtResource("2_nb44o")]
 position = Vector2(-11, -359)
-
-[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("5_qwfim")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_s8uky")

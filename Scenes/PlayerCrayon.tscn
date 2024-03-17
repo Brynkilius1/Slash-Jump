@@ -1,0 +1,692 @@
+[gd_scene load_steps=58 format=3 uid="uid://dvfxphbd68tva"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_4ml3f"]
+[ext_resource type="Texture2D" uid="uid://b3nga0u7d0iw" path="res://Images/Crayon/Player/SjumpPlayerCrayon (1).png" id="2_lliph"]
+[ext_resource type="Texture2D" uid="uid://du08jliuxscop" path="res://Images/Player/DirectionIndicator.png" id="3_p1qkw"]
+[ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="4_nl06a"]
+[ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="5_bx8in"]
+[ext_resource type="Texture2D" uid="uid://q4xsqon2kgxj" path="res://Images/Crayon/Player/SjumpSwordCrayon.png" id="6_iw24o"]
+[ext_resource type="PackedScene" uid="uid://chaqeowjgno4g" path="res://Scenes/Particles/after_swing_particles.tscn" id="7_j6nt5"]
+[ext_resource type="Texture2D" uid="uid://dln5sjibsek3" path="res://Images/Particles/SwordHitParticles/DirtParticles.png" id="8_ibmp2"]
+[ext_resource type="AudioStream" uid="uid://dsrqb1oi1dvv6" path="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 1.mp3" id="9_64o70"]
+[ext_resource type="AudioStream" uid="uid://dqki00ppcmyc6" path="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 2.mp3" id="10_1ut1o"]
+[ext_resource type="AudioStream" uid="uid://d6vj08pdagga" path="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 3.mp3" id="11_2j5xy"]
+[ext_resource type="AudioStream" uid="uid://bthd8awbp0atv" path="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 4.mp3" id="12_phudw"]
+[ext_resource type="AudioStream" uid="uid://boila1hptjpk" path="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 5.mp3" id="13_cu4i0"]
+[ext_resource type="AudioStream" uid="uid://bliakwl8p66a0" path="res://Sounds/SoundEffects/Player/Sword/clean-fast-swooshaiff-14784.mp3" id="14_72kct"]
+[ext_resource type="AudioStream" uid="uid://c1q4jhtig6rcv" path="res://Sounds/SoundEffects/Player/Sword/sword-hit-7160.mp3" id="15_ugymv"]
+[ext_resource type="AudioStream" uid="uid://cp0mot2m602f" path="res://Sounds/SoundEffects/Player/Sword/woosh-2-6471.mp3" id="16_f5ein"]
+[ext_resource type="AudioStream" uid="uid://c4jlycusdpe44" path="res://Sounds/SoundEffects/Player/PlayerDeath.mp3" id="17_xd5mc"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerCamera.gd" id="18_y8ujr"]
+[ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="19_ca6ue"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/HazardDetector.gd" id="20_80rsx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqp1k"]
+size = Vector2(6, 12)
+
+[sub_resource type="Animation" id="Animation_us55k"]
+resource_name = "IdleDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_uqie7"]
+resource_name = "IdleForward"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_qkynn"]
+resource_name = "IdleUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_wux6e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rlogc"]
+resource_name = "SwingDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_m1a8h"]
+resource_name = "SwingForward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_7w2ul"]
+resource_name = "SwingUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vdiq"]
+_data = {
+"IdleDown": SubResource("Animation_us55k"),
+"IdleForward": SubResource("Animation_uqie7"),
+"IdleUp": SubResource("Animation_qkynn"),
+"RESET": SubResource("Animation_wux6e"),
+"SwingDown": SubResource("Animation_rlogc"),
+"SwingForward": SubResource("Animation_m1a8h"),
+"SwingUp": SubResource("Animation_7w2ul")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qbmo"]
+animation = &"IdleForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr2ka"]
+animation = &"IdleForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_olh0s"]
+animation = &"IdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ulx6u"]
+animation = &"IdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_uhjrp"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_7qbmo")
+blend_point_0/pos = Vector2(1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_mr2ka")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_olh0s")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ulx6u")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_br1h8"]
+animation = &"SwingForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_02765"]
+animation = &"SwingForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c1mpv"]
+animation = &"SwingDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h6itf"]
+animation = &"SwingUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5lxf2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_br1h8")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_02765")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_c1mpv")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_h6itf")
+blend_point_3/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u400t"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ws4ur"]
+advance_condition = &"IsSwinging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4e2jn"]
+advance_condition = &"IsIdle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_aq5kc"]
+states/End/position = Vector2(1308, 109)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_uhjrp")
+states/Idle/position = Vector2(544, 67)
+states/Start/position = Vector2(136, 67)
+states/Swing/node = SubResource("AnimationNodeBlendSpace2D_5lxf2")
+states/Swing/position = Vector2(761, 67)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_u400t"), "Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_ws4ur"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_4e2jn")]
+graph_offset = Vector2(-190, -38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry6xv"]
+atlas = ExtResource("5_bx8in")
+region = Rect2(0, 0, 26, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogb5a"]
+atlas = ExtResource("5_bx8in")
+region = Rect2(26, 0, 26, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tph5n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry6xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogb5a")
+}],
+"loop": false,
+"name": &"Swing",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpph1"]
+atlas = ExtResource("5_bx8in")
+region = Rect2(0, 0, 26, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h74ky"]
+atlas = ExtResource("5_bx8in")
+region = Rect2(26, 0, 26, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hu3c5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpph1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h74ky")
+}],
+"loop": false,
+"name": &"Swing",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klsuo"]
+size = Vector2(18, 18)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_suv0y"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_hfahp"]
+offsets = PackedFloat32Array(0, 0.762295, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4fh8s"]
+gradient = SubResource("Gradient_hfahp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2nmug"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector3(0.85, -1, 0)
+spread = 30.0
+flatness = 0.225
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 98, 0)
+damping_min = 1.0
+damping_max = 2.0
+color_ramp = SubResource("GradientTexture1D_4fh8s")
+anim_offset_max = 1.0
+collision_mode = 2
+
+[sub_resource type="Curve" id="Curve_c2750"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.504951, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah040"]
+size = Vector2(6, 11)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_phhvs"]
+polygon = PackedVector2Array(-3, 8, -3, -5, 3, -5, 3, 8)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_4ml3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_vqp1k")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_lliph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8vdiq")
+}
+
+[node name="PlayerAnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8vdiq")
+}
+tree_root = SubResource("AnimationNodeStateMachine_aq5kc")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/IsIdle = false
+parameters/conditions/IsSwinging = false
+parameters/Idle/blend_position = Vector2(-0.00105822, 0.0121458)
+parameters/Swing/blend_position = Vector2(0, 0)
+
+[node name="IndicatorPivot" type="Node2D" parent="."]
+
+[node name="Indicator" type="Node2D" parent="IndicatorPivot"]
+position = Vector2(0, -20)
+
+[node name="Sprite2D" type="Sprite2D" parent="IndicatorPivot/Indicator"]
+modulate = Color(0.921569, 0.921569, 0.921569, 0.560784)
+z_index = 100
+position = Vector2(-6, 1)
+rotation = -1.5708
+texture = ExtResource("3_p1qkw")
+centered = false
+
+[node name="SwordPivot" type="Node2D" parent="."]
+
+[node name="Extended" type="Node2D" parent="SwordPivot"]
+position = Vector2(0, -14)
+
+[node name="Sword" type="Node2D" parent="SwordPivot/Extended"]
+
+[node name="SwirdTempSprite" type="Sprite2D" parent="SwordPivot/Extended/Sword"]
+visible = false
+position = Vector2(0, -5)
+scale = Vector2(0.203125, 0.0546875)
+texture = ExtResource("4_nl06a")
+
+[node name="SwingAnim" type="AnimatedSprite2D" parent="SwordPivot/Extended/Sword"]
+visible = false
+z_index = 1
+position = Vector2(-12, 16)
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_tph5n")
+animation = &"Swing"
+centered = false
+
+[node name="SwordCollision" type="Area2D" parent="SwordPivot/Extended/Sword"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="SwordColisionShape" type="CollisionPolygon2D" parent="SwordPivot/Extended/Sword/SwordCollision"]
+visible = false
+polygon = PackedVector2Array(-3, 15, -12, 9, -12, -1, -8, -7, -3, -10, 4, -10, 9, -7, 13, -1, 13, 9, 3, 15)
+
+[node name="LingeringVFXEmitter" type="Node2D" parent="SwordPivot/Extended/Sword"]
+position = Vector2(0, -6)
+
+[node name="Knife" type="Node2D" parent="SwordPivot/Extended"]
+
+[node name="KnifeSwingAnim" type="AnimatedSprite2D" parent="SwordPivot/Extended/Knife"]
+visible = false
+z_index = 1
+position = Vector2(-9, 10)
+rotation = -1.5708
+scale = Vector2(0.5, 0.7)
+sprite_frames = SubResource("SpriteFrames_hu3c5")
+animation = &"Swing"
+centered = false
+
+[node name="KnifeCollision" type="Area2D" parent="SwordPivot/Extended/Knife"]
+visible = false
+collision_layer = 0
+collision_mask = 61
+
+[node name="KnifeCollisionShape" type="CollisionPolygon2D" parent="SwordPivot/Extended/Knife/KnifeCollision"]
+polygon = PackedVector2Array(-9, 9, -9, 1, -6, -2, 0, -3, 6, -2, 9, 1, 9, 9, 3, 14, 0, 14, -3, 14)
+
+[node name="WalljumpRaycasts" type="Node2D" parent="SwordPivot/Extended"]
+visible = false
+position = Vector2(0, 15)
+
+[node name="RayCast2D" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(0, -25)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D6" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(-8, -22)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D9" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(-12, -16)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D10" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+position = Vector2(-3, 0)
+enabled = false
+target_position = Vector2(-9, -6)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D11" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+position = Vector2(3, 0)
+enabled = false
+target_position = Vector2(10, -6)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(9, -22)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D4" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(4, -25)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D5" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(-3, -25)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D7" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(13, -16)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="Rotator" type="Node2D" parent="SwordPivot"]
+rotation = -1.5708
+
+[node name="SwordVisualPivot" type="Node2D" parent="SwordPivot/Rotator"]
+rotation = 1.65806
+
+[node name="SwordVisual" type="Sprite2D" parent="SwordPivot/Rotator/SwordVisualPivot"]
+position = Vector2(6, 0)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_iw24o")
+offset = Vector2(38, 0)
+
+[node name="SwordLingeringParticles" parent="SwordPivot/Rotator/SwordVisualPivot" instance=ExtResource("7_j6nt5")]
+position = Vector2(7.96956, -0.697194)
+rotation = 1.5708
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.15
+one_shot = true
+
+[node name="KnifeCoyoteTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.15
+one_shot = true
+
+[node name="SwingLingerTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="KnifeSwingLingerTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="SwingMissTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("RectangleShape2D_klsuo")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="WallClimbPrevention" type="Node2D" parent="Raycasts"]
+visible = false
+
+[node name="WallClimbPreventionRaycast1" type="RayCast2D" parent="Raycasts/WallClimbPrevention"]
+position = Vector2(0, 9)
+target_position = Vector2(13, 0)
+hit_from_inside = true
+
+[node name="WallClimbPreventionRaycast2" type="RayCast2D" parent="Raycasts/WallClimbPrevention"]
+position = Vector2(0, 9)
+target_position = Vector2(-14, 0)
+hit_from_inside = true
+
+[node name="WallClimbPreventionRaycast3" type="RayCast2D" parent="Raycasts/WallClimbPrevention"]
+position = Vector2(0, -3)
+target_position = Vector2(13, 0)
+hit_from_inside = true
+
+[node name="WallClimbPreventionRaycast4" type="RayCast2D" parent="Raycasts/WallClimbPrevention"]
+position = Vector2(0, -3)
+target_position = Vector2(-14, 0)
+hit_from_inside = true
+
+[node name="LedgeForgiveness" type="Node2D" parent="Raycasts"]
+visible = false
+position = Vector2(0, 5)
+
+[node name="LedgeForgivenessRaycast1" type="RayCast2D" parent="Raycasts/LedgeForgiveness"]
+position = Vector2(0, 4)
+target_position = Vector2(5, 0)
+
+[node name="LedgeForgivenessRaycast2" type="RayCast2D" parent="Raycasts/LedgeForgiveness"]
+position = Vector2(0, 4)
+target_position = Vector2(-5, 0)
+
+[node name="LedgeForgivenessRaycast3" type="RayCast2D" parent="Raycasts/LedgeForgiveness"]
+target_position = Vector2(5, 0)
+
+[node name="LedgeForgivenessRaycast4" type="RayCast2D" parent="Raycasts/LedgeForgiveness"]
+target_position = Vector2(-5, 0)
+
+[node name="LedgeStop" type="Node2D" parent="Raycasts"]
+visible = false
+position = Vector2(0, 9)
+
+[node name="LedgeStopRaycast1" type="RayCast2D" parent="Raycasts/LedgeStop"]
+position = Vector2(-1, 0)
+target_position = Vector2(0, 1)
+
+[node name="LedgeStopRaycast2" type="RayCast2D" parent="Raycasts/LedgeStop"]
+position = Vector2(1, 0)
+target_position = Vector2(0, 1)
+
+[node name="CornerBoostStopperRaycasts" type="Node2D" parent="Raycasts"]
+
+[node name="CornerBoostStopperRaycast1" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 4)
+target_position = Vector2(-8, 0)
+collision_mask = 16
+
+[node name="CornerBoostStopperRaycast2" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 9)
+target_position = Vector2(-8, 0)
+collision_mask = 16
+
+[node name="CornerBoostStopperRaycast3" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 4)
+target_position = Vector2(8, 0)
+collision_mask = 16
+
+[node name="CornerBoostStopperRaycast4" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 9)
+target_position = Vector2(8, 0)
+collision_mask = 16
+
+[node name="CornerBoostStopperRaycast5" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 5)
+target_position = Vector2(-8, 0)
+collision_mask = 16
+
+[node name="CornerBoostStopperRaycast6" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 5)
+target_position = Vector2(8, 0)
+collision_mask = 16
+
+[node name="CornerBoostStopperRaycast7" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 8)
+target_position = Vector2(-8, 0)
+collision_mask = 16
+
+[node name="CornerBoostStopperRaycast8" type="RayCast2D" parent="Raycasts/CornerBoostStopperRaycasts"]
+position = Vector2(0, 8)
+target_position = Vector2(8, 0)
+collision_mask = 16
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="DirtSkiddingParticles" type="GPUParticles2D" parent="Particles"]
+material = SubResource("CanvasItemMaterial_suv0y")
+position = Vector2(0, 9)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_2nmug")
+texture = ExtResource("8_ibmp2")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.58
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="SwingSounds" type="Node2D" parent="Sounds"]
+
+[node name="SwordSwing1" type="AudioStreamPlayer" parent="Sounds/SwingSounds"]
+stream = ExtResource("9_64o70")
+bus = &"SoundEffects"
+
+[node name="SwordSwing2" type="AudioStreamPlayer" parent="Sounds/SwingSounds"]
+stream = ExtResource("10_1ut1o")
+bus = &"SoundEffects"
+
+[node name="SwordSwing3" type="AudioStreamPlayer" parent="Sounds/SwingSounds"]
+stream = ExtResource("11_2j5xy")
+bus = &"SoundEffects"
+
+[node name="SwordSwing4" type="AudioStreamPlayer" parent="Sounds/SwingSounds"]
+stream = ExtResource("12_phudw")
+bus = &"SoundEffects"
+
+[node name="SwordSwing5" type="AudioStreamPlayer" parent="Sounds/SwingSounds"]
+stream = ExtResource("13_cu4i0")
+bus = &"SoundEffects"
+
+[node name="SwordSwing" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("14_72kct")
+volume_db = -20.0
+pitch_scale = 0.6
+
+[node name="SwordHit" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("15_ugymv")
+volume_db = -80.0
+pitch_scale = 0.39
+
+[node name="SwordMiss" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("16_f5ein")
+bus = &"SoundEffects"
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("17_xd5mc")
+volume_db = -10.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
+position = Vector2(0, -21)
+script = ExtResource("18_y8ujr")
+
+[node name="Shaker" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("target_node")]
+position = Vector2(0, 21)
+script = ExtResource("19_ca6ue")
+target_node = NodePath("..")
+target_property = &"offset"
+min_value = 10.0
+max_value = 20.0
+duration = 0.4
+fall_off = SubResource("Curve_c2750")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="HazardDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 28
+script = ExtResource("20_80rsx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HazardDetector"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_ah040")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+modulate = Color(1, 1, 1, 0.478431)
+light_mask = 2
+visibility_layer = 2
+occluder = SubResource("OccluderPolygon2D_phhvs")
+occluder_light_mask = 2
+
+[connection signal="animation_finished" from="SwordPivot/Extended/Sword/SwingAnim" to="." method="_on_swing_anim_animation_finished"]
+[connection signal="animation_finished" from="SwordPivot/Extended/Knife/KnifeSwingAnim" to="." method="_on_swing_anim_animation_finished"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="KnifeCoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="SwingLingerTimer" to="." method="_on_swing_cooldown_timer_timeout"]
+[connection signal="timeout" from="KnifeSwingLingerTimer" to="." method="_on_swing_cooldown_timer_timeout"]
+[connection signal="timeout" from="SwingMissTimer" to="." method="_on_swing_miss_timer_timeout"]
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
+[connection signal="area_entered" from="HazardDetector" to="HazardDetector" method="_on_body_entered"]
+[connection signal="body_entered" from="HazardDetector" to="HazardDetector" method="_on_body_entered"]

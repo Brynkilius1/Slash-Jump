@@ -1,8 +1,246 @@
-[gd_scene load_steps=2 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=50 format=3 uid="uid://jumgmkw5n5jc"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
+[ext_resource type="Texture2D" uid="uid://ccqghblkl4u1e" path="res://Images/UI/MainMenu/MainMenuBackround.png" id="2_3tavq"]
+[ext_resource type="Texture2D" uid="uid://bmj4yofmf4gqu" path="res://Images/UI/MainMenu/SlashJumpLogo.png" id="7_8chwq"]
+[ext_resource type="Texture2D" uid="uid://c12buqkamyyli" path="res://Images/VisualTest/RainParticles.png" id="7_j12lg"]
+[ext_resource type="Texture2D" uid="uid://bfyftpjjhxpvu" path="res://Images/VisualTest/RainLandingGroundAnim.png" id="8_epjdf"]
+[ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="9_oovw4"]
+[ext_resource type="Texture2D" uid="uid://dljkyxwamk3jo" path="res://Images/Crayon/Misc/SlashJumpConcept1Rotated.png" id="10_g6gpd"]
+[ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="11_fycji"]
+[ext_resource type="PackedScene" uid="uid://krc5l4r450cl" path="res://Global/saver_and_loader.tscn" id="17_ccu1f"]
+[ext_resource type="Texture2D" uid="uid://cmg536rv7usov" path="res://Images/VisualTest/RainLandingAnim.png" id="19_f6qtp"]
+[ext_resource type="Shader" uid="uid://pl1mn3bnleeh" path="res://Shaders/testVisuals.tres" id="20_nnmj5"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="20_no80h"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Cache.gd" id="21_46i84"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/MainSettings.gd" id="21_c6bcl"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="22_g0apr"]
+[ext_resource type="PackedScene" uid="uid://dno85da3ev1uv" path="res://Scenes/UI/Settings/rebind_controls_screen.tscn" id="22_wd7gh"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/VideoSettings.gd" id="23_ugu4u"]
+[ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="24_dhm8o"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/AudioSettings.gd" id="25_x8lys"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/ContolSettings.gd" id="26_08atv"]
+[ext_resource type="AudioStream" uid="uid://uwduvhomgxf5" path="res://Sounds/Music/gentle-ocean-waves-mix-2018-19693.mp3" id="27_7wgr4"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x4mvw"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xaak"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-0.7, 1, 0)
+spread = 5.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 500, 0)
+collision_mode = 2
+collision_use_scale = true
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpi2y"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_elit4"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aa8vx"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(400, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-0.7, 1, 0)
+spread = 5.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 200, 0)
+collision_mode = 2
+collision_use_scale = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_so7ib"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-0.7, 1, 0)
+spread = 5.0
+initial_velocity_min = 230.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 500, 0)
+collision_use_scale = true
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nraj0"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c54kq"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-0.7, 1, 0)
+spread = 5.0
+initial_velocity_min = 700.0
+initial_velocity_max = 800.0
+gravity = Vector3(0, 1000, 0)
+collision_mode = 2
+collision_use_scale = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ov4af"]
+noise_type = 2
+fractal_type = 0
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_imcrb"]
+seamless = true
+noise = SubResource("FastNoiseLite_ov4af")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88m76"]
+shader = ExtResource("20_nnmj5")
+shader_parameter/ColorParameter = Color(0.169537, 0.375915, 0.674706, 1)
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_imcrb")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2i1nt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71xlg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wjcwm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s04aq"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o22x4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1day"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmcge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa1ch"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_qn5nm"]
+button_index = 1
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_jlm4w"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_4v8m7"]
+events = [SubResource("InputEventJoypadButton_qn5nm"), SubResource("InputEventKey_jlm4w")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hipj1"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ufu1c"]
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_bfwu7"]
+events = [SubResource("InputEventKey_hipj1"), SubResource("InputEventJoypadButton_ufu1c")]
+
+[sub_resource type="Animation" id="Animation_33egm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Menu:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_t55uw"]
+resource_name = "ZoomOnLevel"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.435275, 1.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4, -86)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Menu:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.594603, 1.5),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tt32j"]
+_data = {
+"RESET": SubResource("Animation_33egm"),
+"ZoomOnLevel": SubResource("Animation_t55uw")
+}
+
+[node name="RootNode" type="Node2D"]
+
+[node name="MainMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,30 +249,837 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qcmvg")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BAckround" type="CanvasLayer" parent="MainMenu"]
+
+[node name="Sprite2D" type="Sprite2D" parent="MainMenu/BAckround"]
+position = Vector2(160, 90)
+texture = ExtResource("2_3tavq")
+
+[node name="Rain" type="Node2D" parent="MainMenu/BAckround"]
+position = Vector2(153, 80)
+
+[node name="Rain" type="GPUParticles2D" parent="MainMenu/BAckround/Rain"]
+modulate = Color(0.85098, 0.85098, 0.85098, 1)
+material = SubResource("CanvasItemMaterial_x4mvw")
+position = Vector2(2, -108)
+amount = 20
+sub_emitter = NodePath("RainLanding")
+process_material = SubResource("ParticleProcessMaterial_2xaak")
+texture = ExtResource("7_j12lg")
+lifetime = 0.6
+fixed_fps = 60
+collision_base_size = 2.5
+trail_sections = 3
+trail_section_subdivisions = 2
+
+[node name="RainLanding" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/Rain"]
+material = SubResource("CanvasItemMaterial_rpi2y")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_elit4")
+texture = ExtResource("8_epjdf")
+lifetime = 0.2
+one_shot = true
+
+[node name="Backround" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
+layer = -3
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+follow_viewport_enabled = true
+follow_viewport_scale = 0.25
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="MainMenu/BAckround/Rain/Backround"]
+color = Color(0.517647, 0.517647, 0.517647, 1)
+
+[node name="MiddleBackround" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
+layer = -1
+follow_viewport_enabled = true
+follow_viewport_scale = 0.5
+
+[node name="CanvasModulate3" type="CanvasModulate" parent="MainMenu/BAckround/Rain/MiddleBackround"]
+color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[node name="Rain3" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/MiddleBackround"]
+modulate = Color(0.509804, 0.509804, 0.509804, 1)
+material = SubResource("CanvasItemMaterial_x4mvw")
+position = Vector2(102, -210)
+amount = 70
+process_material = SubResource("ParticleProcessMaterial_aa8vx")
+texture = ExtResource("7_j12lg")
+lifetime = 1.5
+visibility_rect = Rect2(-100, -100, 300, 300)
+
+[node name="MiddleForground" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.2
+
+[node name="Rain" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/MiddleForground"]
+modulate = Color(0.466667, 0.466667, 0.466667, 1)
+material = SubResource("CanvasItemMaterial_x4mvw")
+position = Vector2(2, -108)
+amount = 12
+sub_emitter = NodePath("RainLanding")
+process_material = SubResource("ParticleProcessMaterial_so7ib")
+texture = ExtResource("7_j12lg")
+lifetime = 0.59
+fixed_fps = 60
+collision_base_size = 2.5
+visibility_rect = Rect2(-100, -100, 200, 300)
+trail_sections = 3
+trail_section_subdivisions = 2
+
+[node name="RainLanding" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/MiddleForground/Rain"]
+material = SubResource("CanvasItemMaterial_nraj0")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_elit4")
+texture = ExtResource("19_f6qtp")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="MainMenu/BAckround/Rain/MiddleForground"]
+color = Color(0.407843, 0.407843, 0.407843, 1)
+
+[node name="Foreground" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
+layer = 3
+follow_viewport_enabled = true
+follow_viewport_scale = 1.5
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="MainMenu/BAckround/Rain/Foreground"]
+color = Color(0.576471, 0.576471, 0.576471, 1)
+
+[node name="Rain2" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/Foreground"]
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_x4mvw")
+position = Vector2(2, -108)
+process_material = SubResource("ParticleProcessMaterial_c54kq")
+texture = ExtResource("7_j12lg")
+lifetime = 0.5
+
+[node name="Rain3" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/Foreground"]
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_x4mvw")
+position = Vector2(-129, -102.5)
+process_material = SubResource("ParticleProcessMaterial_c54kq")
+texture = ExtResource("7_j12lg")
+lifetime = 0.5
+
+[node name="ColorRect3" type="ColorRect" parent="MainMenu/BAckround/Rain"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_88m76")
+offset_right = 246.0
+offset_bottom = 175.0
+
+[node name="Menu" type="CanvasLayer" parent="MainMenu"]
+layer = 2
+
+[node name="Menu" type="Control" parent="MainMenu/Menu"]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 90)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MainMenuButtons" type="Control" parent="MainMenu/Menu/Menu"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0352941, 0.0352941, 0.0627451, 1)
 
-[node name="StartButton" type="Button" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/Menu/Menu/MainMenuButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("7_8chwq")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 110
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_colors/font_hover_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_focus_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2i1nt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_71xlg")
+text = "Start"
+flat = true
+
+[node name="SelectionSwords" type="Control" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton/SelectionSwords"]
 layout_mode = 0
-offset_left = 109.0
-offset_top = 53.0
-offset_right = 200.0
+offset_left = -5.0
+offset_top = 11.0
+offset_right = 35.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton/SelectionSwords"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 12.0
+offset_right = 119.0
+offset_bottom = 52.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+flip_h = true
+
+[node name="SettingsButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_colors/font_hover_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_focus_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wjcwm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s04aq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o22x4")
+text = "Settings"
+flat = true
+
+[node name="SelectionSwords" type="Control" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton/SelectionSwords"]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 10.0
+offset_right = 19.0
+offset_bottom = 50.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton/SelectionSwords"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 11.0
+offset_right = 136.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+flip_h = true
+
+[node name="QuitButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_colors/font_hover_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_focus_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y1day")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cmcge")
+text = "Quit"
+flat = true
+
+[node name="SelectionSwords" type="Control" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton/SelectionSwords"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 10.0
+offset_right = 41.0
+offset_bottom = 50.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton/SelectionSwords"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 11.0
+offset_right = 113.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+flip_h = true
+
+[node name="MyName" type="Label" parent="MainMenu/Menu/Menu/MainMenuButtons"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xa1ch")
+text = "By: Brynjar Á."
+
+[node name="LevelSelect" type="Control" parent="MainMenu/Menu/Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/Menu/Menu/LevelSelect"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 12.0
+offset_right = 273.0
+offset_bottom = 172.0
+color = Color(0.862745, 0.862745, 0.862745, 1)
+
+[node name="Level1" type="Control" parent="MainMenu/Menu/Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 12.0
+offset_right = -47.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/Menu/Menu/LevelSelect/Level1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level1Text" type="Control" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+text = "Chapter 1:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 16
+text = "The beginning"
+horizontal_alignment = 1
+
+[node name="StartLevel1Button" type="Button" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Control2" type="Control" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_g6gpd")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="NextLevelButton" type="Button" parent="MainMenu/Menu/Menu/LevelSelect/Level1"]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 69.0
+offset_right = 278.0
+offset_bottom = 100.0
+text = "Next"
+
+[node name="Level2" type="Control" parent="MainMenu/Menu/Menu/LevelSelect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 12.0
+offset_right = -47.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/Menu/Menu/LevelSelect/Level2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level1Text" type="Control" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+text = "Chapter 2:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 16
+text = "The end"
+horizontal_alignment = 1
+
+[node name="StartLevel2Button" type="Button" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Control2" type="Control" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_fycji")
+expand_mode = 4
+
+[node name="PrevLevelButton" type="Button" parent="MainMenu/Menu/Menu/LevelSelect/Level2"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 69.0
+offset_right = 5.0
+offset_bottom = 100.0
+text = "Prev."
+
+[node name="LevelSelectBackButton" type="Button" parent="MainMenu/Menu/Menu/LevelSelect"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 141.0
+offset_right = 89.0
+offset_bottom = 172.0
+shortcut = SubResource("Shortcut_4v8m7")
+shortcut_in_tooltip = false
+text = "Back"
+
+[node name="Settings" type="Control" parent="MainMenu/Menu/Menu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("21_c6bcl")
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/Menu/Menu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -86.0
+offset_right = 123.0
 offset_bottom = 84.0
-text = "StartGame"
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.203922, 0.215686, 0.239216, 0.180392)
 
-[node name="QuitButton" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/Settings"]
 layout_mode = 0
-offset_left = 107.0
-offset_top = 102.0
-offset_right = 198.0
-offset_bottom = 133.0
-text = "QuitGame"
+offset_left = 40.0
+offset_top = 4.0
+offset_right = 283.0
+offset_bottom = 174.0
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="SettingsCategories" type="HBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VideoCategoryButton" type="Button" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/SettingsCategories"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+text = "Video"
+
+[node name="AudioCategoryButton" type="Button" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/SettingsCategories"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+text = "Audio"
+
+[node name="ControlCategoryButton" type="Button" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/SettingsCategories"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
+[node name="VideoSettings" type="Control" parent="MainMenu/Menu/Menu/Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("23_ugu4u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../FPSContainer/FpsSlider")
+focus_neighbor_bottom = NodePath("../VSyncCheckBox")
+theme_override_fonts/font = ExtResource("22_g0apr")
+text = "FullScreen"
+
+[node name="VSyncCheckBox" type="CheckBox" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../FullScreenCheckBox")
+focus_neighbor_bottom = NodePath("../ScreenshakeCheckBox")
+theme_override_fonts/font = ExtResource("22_g0apr")
+text = "VSync"
+
+[node name="ScreenshakeCheckBox" type="CheckBox" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../VSyncCheckBox")
+focus_neighbor_bottom = NodePath("../FPSContainer/FpsSlider")
+theme_override_fonts/font = ExtResource("22_g0apr")
+button_pressed = true
+text = "Screenshake"
+
+[node name="FPSContainer" type="HBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FPSLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("24_dhm8o")
+text = "FPS: 300"
+
+[node name="FpsSlider" type="HSlider" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../ScreenshakeCheckBox")
+focus_neighbor_bottom = NodePath("../../FullScreenCheckBox")
+min_value = 30.0
+max_value = 300.0
+value = 60.0
+
+[node name="AudioSettings" type="Control" parent="MainMenu/Menu/Menu/Settings/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("25_x8lys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="MasterVolumeSlider" type="HBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MasterVolumeLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("24_dhm8o")
+text = "Volume: 60%"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../AmbienceSlider/AmbienceVolumeSlider")
+focus_neighbor_bottom = NodePath("../../SoundEffectSlider/SoundEffectVolumeSlider")
+value = 60.0
+
+[node name="SoundEffectSlider" type="HBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SoundEffectVolumeLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("24_dhm8o")
+text = "Volume: 60%"
+
+[node name="SoundEffectVolumeSlider" type="HSlider" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../MasterVolumeSlider/MasterVolumeSlider")
+focus_neighbor_bottom = NodePath("../../MusicSlider/musicVolumeSlider")
+value = 60.0
+
+[node name="MusicSlider" type="HBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicVolumeLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/MusicSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("24_dhm8o")
+text = "Volume: 60%"
+
+[node name="musicVolumeSlider" type="HSlider" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/MusicSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../SoundEffectSlider/SoundEffectVolumeSlider")
+focus_neighbor_bottom = NodePath("../../AmbienceSlider/AmbienceVolumeSlider")
+value = 60.0
+
+[node name="AmbienceSlider" type="HBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AmbienceVolumeLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("24_dhm8o")
+text = "Volume: 60%"
+
+[node name="AmbienceVolumeSlider" type="HSlider" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../MusicSlider/musicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../MasterVolumeSlider/MasterVolumeSlider")
+value = 60.0
+
+[node name="ContolSettings" type="Control" parent="MainMenu/Menu/Menu/Settings/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("26_08atv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="ChangeKeybindsButton" type="Button" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider")
+focus_neighbor_bottom = NodePath("../InvertStickInputCheckBox")
+theme_override_fonts/font = ExtResource("24_dhm8o")
+theme_override_font_sizes/font_size = 16
+text = "Change Keybinds"
+
+[node name="ControllerSettingsLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_g0apr")
+text = "Controller Settings:"
+
+[node name="InvertStickInputCheckBox" type="CheckBox" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ChangeKeybindsButton")
+focus_neighbor_bottom = NodePath("../ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider")
+theme_override_fonts/font = ExtResource("22_g0apr")
+text = "Invert Stick Input"
+
+[node name="ControllerDeadzoneSlider" type="HBoxContainer" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ControllerDeadzoneVolumeLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("24_dhm8o")
+text = "Controller Deadzone: 0.3"
+
+[node name="ControllerDeadzoneVolumeSlider" type="HSlider" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../InvertStickInputCheckBox")
+focus_neighbor_bottom = NodePath("../../ChangeKeybindsButton")
+max_value = 0.9
+step = 0.05
+value = 0.3
+
+[node name="MouseSettingsLabel" type="Label" parent="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_g0apr")
+text = "Mouse Settings:"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MainMenu/Menu/Menu/Settings"]
+stream = ExtResource("27_7wgr4")
+volume_db = 20.0
+autoplay = true
+bus = &"SoundEffects"
+
+[node name="SettingsBackButton" type="Button" parent="MainMenu/Menu/Menu/Settings"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 143.0
+offset_right = 300.0
+offset_bottom = 174.0
+shortcut = SubResource("Shortcut_4v8m7")
+shortcut_in_tooltip = false
+text = "Back"
+
+[node name="RebindControls" parent="MainMenu/Menu/Menu" instance=ExtResource("22_wd7gh")]
+visible = false
+layout_mode = 1
+
+[node name="RebindControlsBackButton" type="Button" parent="MainMenu/Menu/Menu/RebindControls"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 143.0
+offset_right = 300.0
+offset_bottom = 174.0
+shortcut = SubResource("Shortcut_bfwu7")
+text = "Back"
+
+[node name="SaverAndLoader" parent="MainMenu/Menu/Menu" instance=ExtResource("17_ccu1f")]
+unique_name_in_owner = true
+
+[node name="LevelZoomAnimationPlayer" type="AnimationPlayer" parent="MainMenu/Menu"]
+libraries = {
+"": SubResource("AnimationLibrary_tt32j")
+}
+
+[node name="Screen" parent="MainMenu/Menu" instance=ExtResource("20_no80h")]
+visible = false
+position = Vector2(160, 90)
+
+[node name="Cache" type="Node2D" parent="MainMenu"]
+script = ExtResource("21_46i84")
+
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_focus_entered"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_settings_button_focus_entered"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_focus_entered"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer/StartLevel1Button" to="MainMenu" method="_on_start_level_1_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/NextLevelButton" to="MainMenu" method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer/StartLevel2Button" to="MainMenu" method="_on_start_level_2_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level2/PrevLevelButton" to="MainMenu" method="_on_prev_level_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/LevelSelectBackButton" to="MainMenu" method="_on_level_select_back_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/SettingsCategories/VideoCategoryButton" to="MainMenu/Menu/Menu/Settings" method="_on_video_category_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/SettingsCategories/AudioCategoryButton" to="MainMenu/Menu/Menu/Settings" method="_on_audio_category_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/SettingsCategories/ControlCategoryButton" to="MainMenu/Menu/Menu/Settings" method="_on_control_category_button_pressed"]
+[connection signal="toggled" from="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/FullScreenCheckBox" to="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings" method="_on_full_screen_check_box_toggled"]
+[connection signal="toggled" from="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/VSyncCheckBox" to="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings" method="_on_v_sync_check_box_toggled"]
+[connection signal="toggled" from="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/ScreenshakeCheckBox" to="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings" method="_on_screenshake_check_box_toggled"]
+[connection signal="drag_ended" from="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings" method="_on_fps_slider_drag_ended"]
+[connection signal="value_changed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="MainMenu/Menu/Menu/Settings/VBoxContainer/VideoSettings" method="_on_fps_slider_value_changed"]
+[connection signal="value_changed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider/MasterVolumeSlider" to="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider/SoundEffectVolumeSlider" to="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings" method="_on_sound_effect_volume_slider_value_changed"]
+[connection signal="value_changed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/MusicSlider/musicVolumeSlider" to="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider" to="MainMenu/Menu/Menu/Settings/VBoxContainer/AudioSettings" method="_on_ambience_volume_slider_value_changed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer/ChangeKeybindsButton" to="MainMenu" method="_on_change_keybinds_button_pressed"]
+[connection signal="toggled" from="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer/InvertStickInputCheckBox" to="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings" method="_on_invert_stick_input_check_box_toggled"]
+[connection signal="value_changed" from="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider" to="MainMenu/Menu/Menu/Settings/VBoxContainer/ContolSettings" method="_on_controller_deadzone_volume_slider_value_changed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/Settings/SettingsBackButton" to="MainMenu" method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/RebindControls/RebindControlsBackButton" to="MainMenu" method="_on_rebind_controls_back_button_pressed"]
+[connection signal="animation_finished" from="MainMenu/Menu/LevelZoomAnimationPlayer" to="MainMenu" method="_on_level_zoom_animation_player_animation_finished"]

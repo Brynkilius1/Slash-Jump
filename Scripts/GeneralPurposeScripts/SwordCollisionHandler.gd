@@ -8,10 +8,17 @@ extends Node2D
 
 @export var hit_sounds : Node2D
 
+func _ready():
+	randomize()
+	if OptionsManager.screenshake == false:
+		shake_camera_when_hit = false
+
 
 #Callable Fucntions
 
 func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
+	#BetterTerrain.get_cell(self, 0, hit_pos)
+	
 	SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
 	PlayHitSound()
 	if shake_camera_when_hit == true:
@@ -24,8 +31,7 @@ func IndirectSwordHit(_angle):
 
 
 
-func _ready():
-	randomize()
+
 
 func SwordHitPaticles(hit_pos : Vector2, sword_angle, player_x_speed):
 	EmitSwordHitParticles(higher_particle_count, player_x_speed, hit_pos, false)

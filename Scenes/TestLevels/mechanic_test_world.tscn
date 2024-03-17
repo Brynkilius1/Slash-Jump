@@ -15,10 +15,10 @@
 [node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
 position = Vector2(0, 15)
 
+[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("3_0858r")]
+
 [node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("2_m5hqo")]
 position = Vector2(-2, -1)
-
-[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("3_0858r")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("3_jni4t")

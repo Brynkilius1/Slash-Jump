@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds533p8ork6c6"]
+[gd_scene load_steps=9 format=3 uid="uid://ds533p8ork6c6"]
 
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/SwingBubble.gd" id="1_y3ukb"]
 [ext_resource type="Texture2D" uid="uid://bapk7sr2ggh1p" path="res://Images/Mechanics/Bubble.png" id="2_lr7hp"]
 [ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="2_q8sdg"]
 [ext_resource type="PackedScene" uid="uid://dy6588a5ev3v4" path="res://Scenes/CustomNodes/respawner.tscn" id="3_glwp3"]
+[ext_resource type="PackedScene" uid="uid://tyud1ede0c3u" path="res://Scenes/CustomNodes/function_caller_timer.tscn" id="5_2qjsq"]
 [ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="5_rup4c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_owvu6"]
@@ -35,6 +36,13 @@ shape = SubResource("CircleShape2D_touop")
 respawn_time = 2.5
 respawning_object = NodePath("..")
 respawn_function = "DisableSelf"
+
+[node name="StayInBubbleTimer" parent="." node_paths=PackedStringArray("node_to_call_function_on") instance=ExtResource("5_2qjsq")]
+one_shot = true
+autostart = false
+node_to_call_function_on = NodePath("..")
+function_name = "IndirectSwordHit"
+send_empty_string_in_call = true
 
 [node name="SoundEffects" type="Node2D" parent="."]
 

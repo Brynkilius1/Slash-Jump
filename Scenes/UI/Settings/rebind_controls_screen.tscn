@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dno85da3ev1uv"]
+
+[node name="RebindControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 298.0
+offset_bottom = 163.0
+color = Color(0.203922, 0.215686, 0.239216, 0.180392)
+
+[node name="ChangeSwordSwingButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 43.0
+offset_right = 147.0
+offset_bottom = 97.0
+text = "Change Sword
+Swing"
+
+[node name="Label" type="Label" parent="ChangeSwordSwingButton"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 60.0
+offset_right = 77.0
+offset_bottom = 83.0
+text = "A"
+
+[node name="ChangeKnifeSwingButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 43.0
+offset_right = 289.0
+offset_bottom = 97.0
+text = "Change Knife
+Swing"
+
+[node name="Label" type="Label" parent="ChangeKnifeSwingButton"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 60.0
+offset_right = 88.0
+offset_bottom = 83.0
+text = "B"

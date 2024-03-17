@@ -17,6 +17,8 @@ size = Vector2(445, 180)
 [node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
 position = Vector2(-27, 40)
 
+[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("3_i3167")]
+
 [node name="Screen" parent="WorldNessecities/ScreenHolder" index="0" instance=ExtResource("3_vfxqs")]
 
 [node name="RespawnPoint" parent="WorldNessecities/ScreenHolder/Screen/RespawnPoints" index="0"]
@@ -110,8 +112,6 @@ position = Vector2(-150, 35)
 
 [node name="RespawnPoint2" parent="WorldNessecities/ScreenHolder/Screen2/RespawnPoints" index="1"]
 position = Vector2(18, 43)
-
-[node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("3_i3167")]
 
 [node name="12x12Grass" type="TileMap" parent="."]
 tile_set = ExtResource("1_fsc6l")

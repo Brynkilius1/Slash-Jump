@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvlwvs3kbk1id"]
+
+[ext_resource type="Script" path="res://Scripts/UI/PauseMenu.gd" id="1_atrbb"]
+[ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="2_he722"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hipj1"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ufu1c"]
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_016jp"]
+events = [SubResource("InputEventKey_hipj1"), SubResource("InputEventJoypadButton_ufu1c")]
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseCanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="PauseMenu" type="Control" parent="PauseCanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_atrbb")
+
+[node name="PauseMenuButtons" type="VBoxContainer" parent="PauseCanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Return" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+layout_mode = 2
+text = "Return"
+
+[node name="Settings" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+layout_mode = 2
+text = "Settings"
+
+[node name="BackToMenu" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+layout_mode = 2
+text = "Back to Menu"
+
+[node name="QuitGame" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="Settings" parent="PauseCanvasLayer/PauseMenu" instance=ExtResource("2_he722")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsBackButton" type="Button" parent="PauseCanvasLayer/PauseMenu/Settings"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 143.0
+offset_right = 300.0
+offset_bottom = 174.0
+shortcut = SubResource("Shortcut_016jp")
+text = "Back"
+
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu" method="_on_return_pressed"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/Settings" to="PauseCanvasLayer/PauseMenu" method="_on_settings_pressed"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/BackToMenu" to="PauseCanvasLayer/PauseMenu" method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/QuitGame" to="PauseCanvasLayer/PauseMenu" method="_on_quit_game_pressed"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/Settings/SettingsBackButton" to="PauseCanvasLayer/PauseMenu" method="_on_settings_back_button_pressed"]

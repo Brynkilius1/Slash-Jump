@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c4obrldetvnh6"]
+[gd_scene load_steps=55 format=3 uid="uid://c4obrldetvnh6"]
 
 [ext_resource type="Texture2D" uid="uid://pbikc3vi8jix" path="res://Images/VisualTest/nighttimebackround.png" id="1_sp88r"]
 [ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="1_xi1vr"]
@@ -1952,6 +1952,9 @@ shader = ExtResource("15_4u5yo")
 shader_parameter/ColorParameter = Color(0.169537, 0.375915, 0.674706, 1)
 shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_imcrb")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hq5du"]
+polygon = PackedVector2Array(-265, -59, -290, -59, -290, -72, -362, -72, -362, -84, -386, -84, -386, -96, -410, -96, -410, -108, -494, -109, -496, 35, -444, 36, -444, 10, -336, 12, -330, 0, -322, -13, -288, -13, -288, -25, -264, -24)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="WorldNessecities" parent="." instance=ExtResource("1_xi1vr")]
@@ -2278,5 +2281,8 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_88m76")
 offset_right = 246.0
 offset_bottom = 175.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_hq5du")
 
 [editable path="WorldNessecities"]

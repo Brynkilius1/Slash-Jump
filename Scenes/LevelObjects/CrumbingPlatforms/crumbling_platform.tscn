@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://0fjttedflhgg"]
+
+[ext_resource type="Script" path="res://Scripts/crumbling_platform.gd" id="1_n5bx7"]
+[ext_resource type="Texture2D" uid="uid://0yfbwd6sxvob" path="res://Images/Tilesets/CrumblingTemp.png" id="2_17ey8"]
+[ext_resource type="PackedScene" uid="uid://dy6588a5ev3v4" path="res://Scenes/CustomNodes/respawner.tscn" id="3_yp16m"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="4_rjv10"]
+[ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="5_kdj56"]
+[ext_resource type="AudioStream" uid="uid://c6p82a3jyday4" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 2.mp3" id="6_mwbfo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acydd"]
+size = Vector2(12, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly2is"]
+size = Vector2(12, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi6ys"]
+size = Vector2(12, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpjqf"]
+size = Vector2(12, 22)
+
+[node name="CrumbingPlatform" type="StaticBody2D"]
+collision_mask = 2
+script = ExtResource("1_n5bx7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 6)
+texture = ExtResource("2_17ey8")
+region_enabled = true
+region_rect = Rect2(0, 0, 36, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_acydd")
+
+[node name="Respawner" parent="." node_paths=PackedStringArray("respawning_object") instance=ExtResource("3_yp16m")]
+respawn_time = 2.0
+respawning_object = NodePath("..")
+respawn_function = "DisableSelf"
+
+[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("4_rjv10")]
+hit_sounds = NodePath("../Sounds/Hit")
+
+[node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ly2is")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="PlayerDetectorShape" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_yi6ys")
+
+[node name="PlayerLeavingDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="PlayerLeavingDetectorShape" type="CollisionShape2D" parent="PlayerLeavingDetector"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_vpjqf")
+
+[node name="Shaker" type="Node2D" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("5_kdj56")
+target_node = NodePath("../Sprite2D")
+target_property = &"offset"
+max_value = 1.0
+constant = true
+duration = 2.0
+
+[node name="DisapearTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Hit" type="Node2D" parent="Sounds"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds/Hit"]
+stream = ExtResource("6_mwbfo")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerLeavingDetector" to="." method="_on_player_leaving_detector_body_exited"]
+[connection signal="timeout" from="DisapearTimer" to="." method="_on_disapear_timer_timeout"]
+
+[editable path="SwordCollisionHandler"]

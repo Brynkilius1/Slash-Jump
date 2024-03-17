@@ -4,7 +4,7 @@ const STONE_HIT_PATRICLES = preload("res://Scenes/Particles/StoneHitPatricles.ts
 
 @export var platform_width : int = 1
 
-var crumble_time : float = 1.0
+var crumble_time : float = 0.8
 var platform_respawn_time : float = 3.0
 
 

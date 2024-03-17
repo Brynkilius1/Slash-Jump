@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbtvsxq5ysnx1"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/MovingSpikes.gd" id="1_2qq6a"]
+[ext_resource type="Texture2D" uid="uid://dro8s4ra4nit2" path="res://Images/Tilesets/SpikesTemp.png" id="2_lqjb4"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="3_j523e"]
+[ext_resource type="PackedScene" uid="uid://cqaft1ueqbrun" path="res://Scenes/Particles/MetalObjectSparks.tscn" id="4_oq4ig"]
+[ext_resource type="AudioStream" uid="uid://bb7byvoywcveg" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword terrain temp.mp3" id="5_f2o7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6ejj"]
+size = Vector2(16, 20)
+
+[sub_resource type="Animation" id="Animation_vt37r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0fmvh"]
+resource_name = "SpikesIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.450625, 0.307786),
+"update": 0,
+"values": [Vector2(1, 3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8o8g1"]
+resource_name = "SpikesOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.450625, 0.307786),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_te7wd"]
+_data = {
+"RESET": SubResource("Animation_vt37r"),
+"SpikesIn": SubResource("Animation_0fmvh"),
+"SpikesOut": SubResource("Animation_8o8g1")
+}
+
+[node name="MovingSpikes" type="StaticBody2D"]
+position = Vector2(0, 4)
+rotation = 3.14159
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_2qq6a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 10, 8, 10, 5, -9, -6, -9)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(1.33333, 4)
+texture = ExtResource("2_lqjb4")
+hframes = 2
+frame = 1
+
+[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("3_j523e")]
+hit_particles = ExtResource("4_oq4ig")
+shake_camera_when_hit = true
+hit_sounds = NodePath("../Sounds/Hit")
+
+[node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]
+shape = SubResource("RectangleShape2D_s6ejj")
+
+[node name="SpikeMovingAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_te7wd")
+}
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Hit" type="Node2D" parent="Sounds"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds/Hit"]
+stream = ExtResource("5_f2o7i")
+volume_db = 13.0
+
+[node name="SpikeMoveTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="animation_finished" from="SpikeMovingAnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="SpikeMoveTimer" to="." method="_on_spike_move_timer_timeout"]
+
+[editable path="SwordCollisionHandler"]

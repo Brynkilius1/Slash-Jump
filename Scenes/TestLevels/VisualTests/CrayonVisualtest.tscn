@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3jpyag1mqsxl"]
+
+[ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="1_0mbs0"]
+[ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="2_3c1um"]
+[ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="3_v4gfa"]
+[ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="5_a34n7"]
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="6_g0ogm"]
+[ext_resource type="Texture2D" uid="uid://spne8463xlbu" path="res://Images/Crayon/Misc/PaperBackround (1).png" id="7_205v1"]
+[ext_resource type="Texture2D" uid="uid://cds8be5c51y1h" path="res://Images/Crayon/Misc/SjumpCrayonConceptLevel.png" id="8_sfsvg"]
+[ext_resource type="PackedScene" uid="uid://dvfxphbd68tva" path="res://Scenes/PlayerCrayon.tscn" id="9_nvm3h"]
+[ext_resource type="PackedScene" uid="uid://bkijsc4bbmruy" path="res://Scenes/BaseScenes/base_tile_map.tscn" id="10_qb73n"]
+[ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="11_sed1q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf7jq"]
+size = Vector2(320, 180)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="WorldNessecities" type="Node2D" parent="."]
+
+[node name="CameraManager" type="Node2D" parent="WorldNessecities"]
+unique_name_in_owner = true
+script = ExtResource("1_0mbs0")
+
+[node name="PlayerSpawner" type="Node2D" parent="WorldNessecities"]
+unique_name_in_owner = true
+script = ExtResource("2_3c1um")
+spawn_player = false
+
+[node name="PlayerSpawnPoint" type="Node2D" parent="WorldNessecities"]
+unique_name_in_owner = true
+
+[node name="TransitionManager" type="Node2D" parent="WorldNessecities"]
+script = ExtResource("3_v4gfa")
+
+[node name="DeathTransistionCanvasLayer" type="CanvasLayer" parent="WorldNessecities/TransitionManager"]
+
+[node name="ScreenHolder" type="Node2D" parent="WorldNessecities"]
+script = ExtResource("5_a34n7")
+
+[node name="Screen" type="Area2D" parent="WorldNessecities/ScreenHolder"]
+z_index = 1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_g0ogm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldNessecities/ScreenHolder/Screen"]
+shape = SubResource("RectangleShape2D_nf7jq")
+
+[node name="RespawnPoints" type="Node2D" parent="WorldNessecities/ScreenHolder/Screen"]
+
+[node name="RespawnPoint" type="Node2D" parent="WorldNessecities/ScreenHolder/Screen/RespawnPoints"]
+position = Vector2(-150, 0)
+
+[node name="RespawnPoint2" type="Node2D" parent="WorldNessecities/ScreenHolder/Screen/RespawnPoints"]
+position = Vector2(149, 0)
+
+[node name="PaperBackround(1)" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_205v1")
+
+[node name="SjumpCrayonConceptLevel" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_sfsvg")
+
+[node name="Player" parent="." instance=ExtResource("9_nvm3h")]
+position = Vector2(62, -31)
+
+[node name="TileMap" parent="." instance=ExtResource("10_qb73n")]
+visible = false
+position = Vector2(2, 4)
+tile_set = ExtResource("11_sed1q")
+layer_0/tile_data = PackedInt32Array(458746, 65537, 3, 393210, 2, 2, 458747, 131073, 3, 524283, 327683, 0, 393211, 262146, 2, 458748, 131073, 3, 458749, 131073, 3, 458750, 131073, 3, 458751, 131073, 3, 393216, 131073, 3, 393217, 131073, 3, 327681, 262146, 2, 393218, 196609, 2, 327682, 1, 1, 262146, 1, 1, 196610, 1, 1, 131074, 1, 1, 65538, 1, 1, 2, 65537, 0, -65534, 327682, 0, 3, 131073, 3, -65533, 196610, 0, 4, 196609, 2, 65540, 589827, 0, -65532, 65537, 0, -65531, 131073, 3, -131067, 196610, 0, -65530, 196609, 0, 6, 65537, 2, -131066, 196610, 2, 65542, 131075, 0, 7, 196609, 0, 65543, 65537, 2, 131079, 458755, 0, 65544, 131073, 3, 131080, 3, 0, 8, 327682, 0, 65545, 131073, 3, 9, 393218, 0, 65546, 196609, 2, 10, 1, 1, -65526, 1, 1, -131062, 65537, 0, -196598, 131074, 2, -131061, 196609, 2, -196597, 65537, 0, -196596, 131073, 3, -131060, 131075, 0, -262132, 393218, 2, -196595, 196609, 3, -262131, 262146, 0, -458739, 196609, 3, -458740, 131073, 3, -393204, 393219, 0, -458741, 131073, 3, -393205, 131075, 0, -524277, 393218, 2, -458742, 131073, 3, -393206, 131075, 0, -524278, 131074, 2, -458743, 131073, 3, -524279, 196610, 2, -458744, 131073, 3, -393208, 131075, 0, -524280, 2, 2, -458745, 131073, 3, -524281, 65538, 2, -458746, 131073, 3, -393210, 3, 0, -524282, 196610, 0, -458747, 131073, 3, -524283, 131074, 0, -458748, 131073, 3, -524284, 2, 2, -458749, 131073, 3, -458750, 131073, 3, -458751, 131073, 3, -393215, 655363, 0, -524287, 131074, 0, -458752, 131073, 3, -393216, 65539, 0, -524288, 131074, 0, -393217, 131073, 3, -458753, 2, 2, -393218, 131073, 3, -327682, 393219, 0, -458754, 131074, 0, -393219, 65537, 0, -327683, 196609, 2, -458755, 196610, 0, -327684, 131073, 3, -393220, 327682, 2, -327685, 131073, 3, -262149, 65539, 0, -393221, 393218, 2, -327686, 131073, 3, -393222, 131074, 0, -327687, 131073, 3, -327688, 65537, 0, -393224, 327682, 2, -262152, 196609, 2, -262153, 65537, 0, -327689, 2, 0, -196617, 196609, 2, -196618, 65537, 0, -262154, 393218, 0, -131082, 1, 1, -65546, 196609, 2, -65547, 65537, 0, -131083, 2, 0, -11, 1, 1, 65525, 1, 1, 131061, 1, 1, 196597, 1, 1, 262133, 1, 1, 327669, 65537, 2, 327670, 196609, 0, 262134, 131074, 2, 393206, 1, 1, 458742, 1, 1, 524278, 1, 1, 589814, 1, 2, 524279, 8, 0, 524280, 65544, 0, 458744, 131080, 0, 458745, 196616, 0, 131070, 8, 0, 131071, 65544, 0, -4, 524289, 0, -65540, 196610, 2, 65532, 524289, 1, 131068, 524289, 3, 131069, 65545, 2, 65533, 720897, 2, -3, 720897, 0)
+
+[connection signal="change_screen" from="WorldNessecities/ScreenHolder" to="WorldNessecities/CameraManager" method="ChangeScreen"]
+[connection signal="set_next_screen" from="WorldNessecities/ScreenHolder" to="WorldNessecities/CameraManager" method="UpdateNextScreen"]
+[connection signal="body_entered" from="WorldNessecities/ScreenHolder/Screen" to="WorldNessecities/ScreenHolder/Screen" method="_on_body_entered"]
+[connection signal="body_exited" from="WorldNessecities/ScreenHolder/Screen" to="WorldNessecities/ScreenHolder/Screen" method="_on_body_exited"]

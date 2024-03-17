@@ -10,7 +10,7 @@
 size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kdkp"]
-size = Vector2(14, 14)
+size = Vector2(12, 12)
 
 [node name="NoGravBlock" type="Area2D"]
 position = Vector2(5.72205e-06, 0)

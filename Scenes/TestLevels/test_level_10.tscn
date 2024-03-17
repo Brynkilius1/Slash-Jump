@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://e57g3wmfx4y4"]
+[gd_scene load_steps=45 format=3 uid="uid://e57g3wmfx4y4"]
 
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="1_i7gg5"]
 [ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="2_h3kd8"]
@@ -51,12 +51,12 @@ animations = [{
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_oxkk6"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0wrns"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iym6e"]
 noise = SubResource("FastNoiseLite_oxkk6")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bvmpn"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m6iqc"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6kdec"]
 noise = SubResource("FastNoiseLite_bvmpn")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2f02g"]
@@ -76,8 +76,18 @@ shader_parameter/water_color = Color(0.0156863, 0.027451, 0.0784314, 1)
 shader_parameter/ripple_wave_count = 20.0
 shader_parameter/ripple_speed = 3.0
 shader_parameter/ripple_height = 0.003
-shader_parameter/noise = SubResource("NoiseTexture2D_0wrns")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_m6iqc")
+shader_parameter/noise = SubResource("NoiseTexture2D_iym6e")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_6kdec")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ihnnr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0wrns"]
+noise = SubResource("FastNoiseLite_ihnnr")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eymjp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m6iqc"]
+noise = SubResource("FastNoiseLite_eymjp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e8g7p"]
 shader = ExtResource("12_35266")
@@ -109,7 +119,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.823129, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_nh01v"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_utoyb"]
 gradient = SubResource("Gradient_l8euk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u67j5"]
@@ -121,7 +131,7 @@ spread = 5.0
 initial_velocity_min = 60.0
 initial_velocity_max = 80.0
 gravity = Vector3(0, 20, 0)
-color_ramp = SubResource("GradientTexture1D_nh01v")
+color_ramp = SubResource("GradientTexture1D_utoyb")
 anim_offset_max = 1.0
 turbulence_enabled = true
 turbulence_influence_min = 0.01
@@ -206,7 +216,6 @@ script = ExtResource("5_0vtu4")
 z_index = 1
 
 [node name="Screen2" parent="WorldNessecities/ScreenHolder" instance=ExtResource("6_3cyds")]
-visible = false
 z_index = 1
 position = Vector2(320, 35)
 
@@ -337,7 +346,6 @@ texture = ExtResource("13_s7gn7")
 centered = false
 
 [node name="LeafParticles2" type="GPUParticles2D" parent="."]
-visible = false
 material = SubResource("CanvasItemMaterial_uslgc")
 position = Vector2(324, 35)
 amount = 1
@@ -353,7 +361,6 @@ texture = ExtResource("15_3uswi")
 centered = false
 
 [node name="LeafParticles" type="GPUParticles2D" parent="."]
-visible = false
 material = SubResource("CanvasItemMaterial_uslgc")
 position = Vector2(324, 35)
 amount = 2
@@ -378,6 +385,7 @@ layer_0/tile_data = PackedInt32Array(262132, 1, 0, 262133, 65537, 0, 262134, 655
 [node name="ParallaxLayer" type="ParallaxLayer" parent="LeafParalax"]
 
 [node name="LeafParticles5" type="GPUParticles2D" parent="LeafParalax/ParallaxLayer"]
+visible = false
 material = SubResource("CanvasItemMaterial_uslgc")
 position = Vector2(149, -18)
 amount = 7
@@ -389,6 +397,7 @@ randomness = 0.21
 collision_base_size = 0.16
 
 [node name="LeafParticles6" type="GPUParticles2D" parent="LeafParalax/ParallaxLayer"]
+visible = false
 material = SubResource("CanvasItemMaterial_uslgc")
 position = Vector2(269, -99)
 amount = 7

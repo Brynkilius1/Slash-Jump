@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkijsc4bbmruy"]
 
-[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="1_lx6ue"]
+[ext_resource type="Script" path="res://Scripts/BaseObjectScripts/BetterTerrainSwordHitHandler.gd" id="1_a2uc8"]
 [ext_resource type="AudioStream" uid="uid://dveic13cofv33" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 1.mp3" id="1_o32ub"]
 
-[node name="TileMap" type="TileMap" node_paths=PackedStringArray("hit_sounds")]
+[node name="TileMap" type="TileMap"]
 format = 2
-script = ExtResource("1_lx6ue")
-hit_sounds = NodePath("SoundEffects/Hit")
+script = ExtResource("1_a2uc8")
 
 [node name="SoundEffects" type="Node2D" parent="."]
 

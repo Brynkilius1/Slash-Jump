@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="2_d6k62"]
 [ext_resource type="PackedScene" uid="uid://b2yno4awx6rjj" path="res://Scenes/LevelObjects/Enemies/WalkingEnemy.tscn" id="3_ke4xt"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="3_l5bvl"]
-[ext_resource type="PackedScene" uid="uid://0fjttedflhgg" path="res://Scenes/LevelObjects/crumbling_platform.tscn" id="3_ner8h"]
+[ext_resource type="PackedScene" uid="uid://0fjttedflhgg" path="res://Scenes/LevelObjects/CrumbingPlatforms/crumbling_platform.tscn" id="3_ner8h"]
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="4_q1bt4"]
 [ext_resource type="TileSet" uid="uid://c3g22q8vipa28" path="res://Tileset/Spikes.tres" id="5_r3578"]
 [ext_resource type="Script" path="res://Scripts/SwordCollisionScripts/GrassObjects.gd" id="6_fkwx3"]

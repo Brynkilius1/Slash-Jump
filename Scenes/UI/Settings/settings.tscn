@@ -1,0 +1,249 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvywh4gs5xuci"]
+
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="1_hci0q"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/MainSettings.gd" id="1_q1rm0"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/VideoSettings.gd" id="2_7xqac"]
+[ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="3_ufrlf"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/AudioSettings.gd" id="4_i6dhm"]
+[ext_resource type="Script" path="res://Scripts/UI/Settings/ContolSettings.gd" id="6_tffsd"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q1rm0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -86.0
+offset_right = 123.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.203922, 0.215686, 0.239216, 0.180392)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 4.0
+offset_right = 283.0
+offset_bottom = 174.0
+
+[node name="SettingsCategories" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VideoCategoryButton" type="Button" parent="VBoxContainer/SettingsCategories"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_font_sizes/font_size = 32
+text = "Video"
+
+[node name="AudioCategoryButton" type="Button" parent="VBoxContainer/SettingsCategories"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_font_sizes/font_size = 32
+text = "Audio"
+
+[node name="ControlCategoryButton" type="Button" parent="VBoxContainer/SettingsCategories"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
+[node name="VideoSettings" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_7xqac")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VideoSettings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+text = "FullScreen"
+
+[node name="VSyncCheckBox" type="CheckBox" parent="VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+text = "VSync"
+
+[node name="ScreenshakeCheckBox" type="CheckBox" parent="VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+button_pressed = true
+text = "Screenshake"
+
+[node name="FPSContainer" type="HBoxContainer" parent="VBoxContainer/VideoSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FPSLabel" type="Label" parent="VBoxContainer/VideoSettings/VBoxContainer/FPSContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ufrlf")
+text = "FPS: 300"
+
+[node name="FpsSlider" type="HSlider" parent="VBoxContainer/VideoSettings/VBoxContainer/FPSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 30.0
+max_value = 300.0
+value = 60.0
+
+[node name="AudioSettings" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_i6dhm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AudioSettings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="MasterVolumeSlider" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MasterVolumeLabel" type="Label" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ufrlf")
+text = "Volume: 60%"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 60.0
+
+[node name="SoundEffectSlider" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SoundEffectVolumeLabel" type="Label" parent="VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ufrlf")
+text = "Volume: 60%"
+
+[node name="SoundEffectVolumeSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 60.0
+
+[node name="MusicSlider" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicVolumeLabel" type="Label" parent="VBoxContainer/AudioSettings/VBoxContainer/MusicSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ufrlf")
+text = "Volume: 60%"
+
+[node name="musicVolumeSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MusicSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 60.0
+
+[node name="AmbienceSlider" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AmbienceVolumeLabel" type="Label" parent="VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ufrlf")
+text = "Volume: 60%"
+
+[node name="AmbienceVolumeSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 60.0
+
+[node name="ContolSettings" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("6_tffsd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContolSettings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="ChangeKeybindsButton" type="Button" parent="VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ufrlf")
+theme_override_font_sizes/font_size = 16
+text = "Change Keybinds"
+
+[node name="ControllerSettingsLabel" type="Label" parent="VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+text = "Controller Settings:"
+
+[node name="InvertStickInputCheckBox" type="CheckBox" parent="VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+text = "Invert Stick Input"
+
+[node name="ControllerDeadzoneSlider" type="HBoxContainer" parent="VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ControllerDeadzoneVolumeLabel" type="Label" parent="VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ufrlf")
+text = "Controller Deadzone: 0.3"
+
+[node name="ControllerDeadzoneVolumeSlider" type="HSlider" parent="VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 0.9
+step = 0.05
+value = 0.3
+
+[node name="MouseSettingsLabel" type="Label" parent="VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+text = "Mouse Settings:"
+
+[connection signal="pressed" from="VBoxContainer/SettingsCategories/VideoCategoryButton" to="." method="_on_video_category_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsCategories/AudioCategoryButton" to="." method="_on_audio_category_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsCategories/ControlCategoryButton" to="." method="_on_control_category_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/VideoSettings/VBoxContainer/FullScreenCheckBox" to="VBoxContainer/VideoSettings" method="_on_full_screen_check_box_toggled"]
+[connection signal="toggled" from="VBoxContainer/VideoSettings/VBoxContainer/VSyncCheckBox" to="VBoxContainer/VideoSettings" method="_on_v_sync_check_box_toggled"]
+[connection signal="toggled" from="VBoxContainer/VideoSettings/VBoxContainer/ScreenshakeCheckBox" to="VBoxContainer/VideoSettings" method="_on_screenshake_check_box_toggled"]
+[connection signal="drag_ended" from="VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="VBoxContainer/VideoSettings" method="_on_fps_slider_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="VBoxContainer/VideoSettings" method="_on_fps_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider/MasterVolumeSlider" to="VBoxContainer/AudioSettings" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider/SoundEffectVolumeSlider" to="VBoxContainer/AudioSettings" method="_on_sound_effect_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/AudioSettings/VBoxContainer/MusicSlider/musicVolumeSlider" to="VBoxContainer/AudioSettings" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider" to="VBoxContainer/AudioSettings" method="_on_ambience_volume_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/ContolSettings/VBoxContainer/InvertStickInputCheckBox" to="VBoxContainer/ContolSettings" method="_on_invert_stick_input_check_box_toggled"]
+[connection signal="value_changed" from="VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider" to="VBoxContainer/ContolSettings" method="_on_controller_deadzone_volume_slider_value_changed"]

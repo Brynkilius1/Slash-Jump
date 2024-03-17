@@ -3,9 +3,10 @@ extends CharacterBody2D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is too little #400 was nice, 420 too, 455 too much
 
+#slökkti á sfx í tilesets, breytti settings gravity í 325 frá 410, breytti hopp power, breytti walljump bias frá 20 og 25, tók í burtu player anims og sprites
 
 #export variables
-@export var swing_power = Vector2(0, 174) #(0, 174)
+@export var swing_power = Vector2(0, 174) #(0, 160) #(0, 140)
 @export var small_swing_power = Vector2(0, 100)
 @export var extra_grounded_power := 16  #20
 @export var friction := 0.3
@@ -20,9 +21,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @export_category("Walljump bias")
 
 @export_range (0, 3.14) var wall_bias_upper_limit : float = 2.6
-@export var upper_boost : int = 20  #40
+@export var upper_boost : int = 20  #10
 @export_range (0, 3.14) var wall_bias_middle_limit : float = 1.9
-@export var lower_boost : int = 25   #50
+@export var lower_boost : int = 25   #12
 @export_range (0, 3.14) var wall_bias_lower_limit : float = 1.5
 
 @export_category("Animations")
@@ -68,6 +69,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @onready var ledge_forgiveness_raycast_4 = $Raycasts/LedgeForgiveness/LedgeForgivenessRaycast4
 @onready var ledge_stop_raycast_1 = $Raycasts/LedgeStop/LedgeStopRaycast1
 @onready var ledge_stop_raycast_2 = $Raycasts/LedgeStop/LedgeStopRaycast2
+@onready var corner_boost_stopper_raycasts = $Raycasts/CornerBoostStopperRaycasts
+
 
 
 
@@ -129,7 +132,11 @@ var playing_with_controller = true
 
 #options variables
 var screenshake_disabled = false
+var inverted_controls = false
 
+
+#set variables
+var zero_g_counter : int = 0: set = SetZeroGCounter
 
 #to be removed later variables
 
@@ -141,6 +148,11 @@ func _ready():
 	GlobalObjects.player = self
 	swing_linger_timer.connect("timeout", SwingLingerTimeout)
 	knife_swing_linger_timer.connect("timeout", KnifeSwingLingerTimeout)
+	
+	#Settings:
+	controller_dead_zone = OptionsManager.controller_deadzone
+	inverted_controls = OptionsManager.inverted_controls
+	
 
 
 func _unhandled_input(event):
@@ -168,6 +180,7 @@ func _unhandled_input(event):
 
 #called each frame
 func _process(delta):
+	pass
 	UpdateAnimationParameteres()
 
 
@@ -205,7 +218,11 @@ func GetInputAngle():
 		input_vector.x = Input.get_action_strength("ControllerRight") - Input.get_action_strength("ControllerLeft")
 		input_vector.y = Input.get_action_strength("ControllerDown") - Input.get_action_strength("ControllerUp")
 		
-		input_vector = input_vector.rotated(1.5708)
+		
+		if inverted_controls == false:
+			input_vector = input_vector.rotated(1.5708)
+		else:
+			input_vector = input_vector.rotated(-1.5708)
 		
 		input_vector = ApplyDeadZone(input_vector)
 		
@@ -215,6 +232,8 @@ func GetInputAngle():
 			return_angle = saved_controller_angle
 		else:
 			saved_controller_angle = return_angle
+		
+		
 		
 		return return_angle
 		
@@ -283,8 +302,8 @@ func SwingAnimation():
 	
 	swing_dir = sign(sword_visual_pivot.rotation_degrees)
 	
-	sword_visual.rotation_degrees = 0
-	sword_visual_pivot.rotation_degrees = 0
+	sword_visual.rotation_degrees = 0 #-swing_dir * 25
+	sword_visual_pivot.rotation_degrees = 0 #-swing_dir * 45
 	
 	
 	var swing_visual_pivot_tween = create_tween()
@@ -443,14 +462,18 @@ func DeactivateSwordHitbox():
 
 func AddWallJumpBias(bounce_power, angle):
 	if abs(angle) > wall_bias_upper_limit:
+		print("Walljump power: ", 0)
 		return bounce_power
 	elif abs(angle) > wall_bias_middle_limit:
 		bounce_power.y -= upper_boost
+		print("Walljump power: ", upper_boost)
 		return bounce_power
 	elif abs(angle) > wall_bias_lower_limit:
 		bounce_power.y -= lower_boost
+		print("Walljump power: ", lower_boost)
 		return bounce_power
 	else:
+		print("Walljump power: ", 0)
 		return bounce_power
 
 func IsWallJumping():
@@ -459,11 +482,14 @@ func IsWallJumping():
 	for raycast in walljump_raycasts.get_children():
 		raycast.force_raycast_update()
 		if raycast.is_colliding() == true:
+			print(raycast.get_collision_normal())
 			if raycast.get_collision_normal().x != 0:
 				wall_hits += 1
 			elif raycast.get_collision_normal().y != 0:
 				floor_hits += 1
-			
+			else:
+				#for edge cases where you jump from inside an object (made for bubble, might have to change later)
+				wall_hits += 1
 	if is_on_floor() == true:
 		return false
 	elif wall_hits > floor_hits:
@@ -595,21 +621,30 @@ func KnifeLingerTimeoutTechnical():
 	checking_knife_hitbox = false
 func CheckIfKnifeSwingHit():
 	if knife_swing_linger_timer.time_left > 0:
+		print("stop swing miss timer")
 		swing_miss_timer.stop()
 	else:
+		print("start swing miss timer")
 		swing_miss_timer.start(swing_miss_cooldown)
 
 
 
 func KnifeDetectsHit(body):
-	KnifeHitSounds()
-	KnifeHitParticles()
-	KnifeHitTechnical()
-	#ShakeCamera(0.3, 0, 0.5)
-	
-	
-	SwordHitVelocity(small_swing_power, sword_pivot.rotation, IsWallJumping())
-
+	if knife_has_hit_this_swing == false:
+		SwordHitVelocity(small_swing_power, sword_pivot.rotation, IsWallJumping())
+		
+		#Juice
+		KnifeHitSounds()
+		KnifeHitParticles()
+		
+		#ShakeCamera(0.3, 0, 0.5)
+		
+		
+		
+		
+		#Technical
+		KnifeHitTechnical()
+		DeactivateKnifeHitbox()
 func KnifeHitSounds():
 	$Sounds/SwordHit.play()
 func KnifeHitParticles():
@@ -618,7 +653,11 @@ func KnifeHitParticles():
 func KnifeHitTechnical():
 	checking_knife_hitbox = false
 	knife_has_hit_this_swing = true
+func DeactivateKnifeHitbox():
+	LingerTimeoutTechnical()
+	CheckIfKnifeSwingHit()
 
+	knife_swing_linger_timer.stop()
 
 
 
@@ -659,20 +698,29 @@ func CheckCornerBoost():
 	
 	saved_x_speed = lerp(saved_x_speed, sign(saved_x_speed), 0.1) #return saved_x_speed to 0 over time
 
+func DoesLedgeForgivenessGoIntoHazards():
+	var return_bool = false
+	for i in corner_boost_stopper_raycasts.get_children():
+		if i.is_colliding() == true:
+			return_bool = true
+	return return_bool
+
 func CheckLedgeForgiveness():
 	if sign(saved_x_speed) == 1:
 		if ledge_forgiveness_raycast_1.is_colliding() == true and ledge_forgiveness_raycast_3.is_colliding() == false:
-			if velocity.y > 0:
-				global_position.y -= 5
-				global_position.x += 1
+			if DoesLedgeForgivenessGoIntoHazards() == false:
+				if velocity.y > 0:
+					global_position.y -= 5
+					global_position.x += 1
 	elif sign(saved_x_speed) == -1:
 		if ledge_forgiveness_raycast_2.is_colliding() == true and ledge_forgiveness_raycast_4.is_colliding() == false:
-			if velocity.y > 0:
-				global_position.y -= 5
-				global_position.x -= 1
+			if DoesLedgeForgivenessGoIntoHazards() == false:
+				if velocity.y > 0:
+					global_position.y -= 5
+					global_position.x -= 1
 
 func CheckLedgeStop():
-	if abs(velocity.x) < 95:
+	if abs(velocity.x) < 94:
 		if ledge_stop_raycast_1.is_colliding() != ledge_stop_raycast_2.is_colliding(): #XOR for if theyre colliding 
 			velocity.x  = 0
 
@@ -731,6 +779,7 @@ func _on_coyote_timer_timeout():
 
 func _on_swing_anim_animation_finished():
 	sword_swing_anim.visible = false
+	knife_swing_anim.visible = false
 	can_rotate_sword = true
 	
 	player_anim_tree["parameters/conditions/IsIdle"] = true
@@ -741,10 +790,13 @@ func _on_swing_anim_animation_finished():
 
 func SwingCooldownActive():
 	# can add more ifs, if more cooldowns are added
+	
 	var return_bool = false
 	if swing_miss_timer.time_left > 0:
 		return_bool = true
 	if swing_linger_timer.time_left > 0:
+		return_bool = true
+	if knife_swing_linger_timer.time_left > 0:
 		return_bool = true
 	return return_bool
 
@@ -760,6 +812,20 @@ func EmitParticles(particles, emit_pos, angle):
 	s.global_position = emit_pos
 	
 	get_tree().root.get_child(0).add_child(s)
+
+
+#Set functions
+func SetZeroGCounter(new_value):
+	print("zero g counter: ", new_value)
+	zero_g_counter = new_value
+	if zero_g_counter < 0:
+		zero_g_counter = 0
+	
+	if zero_g_counter == 0:
+		TurnOffGravity(false)
+	elif zero_g_counter >= 1:
+		TurnOffGravity(true)
+
 
 
 #Externally callable functions

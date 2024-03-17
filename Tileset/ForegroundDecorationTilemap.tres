@@ -1,0 +1,40 @@
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://hs46vmovikec"]
+
+[ext_resource type="Texture2D" uid="uid://cgg8pk2icaegm" path="res://Images/VisualTest/Decorations/Bush.png" id="1_0fukp"]
+[ext_resource type="Texture2D" uid="uid://3x7abiw46krh" path="res://Images/VisualTest/Decorations/Leafpile.png" id="2_bw1u7"]
+[ext_resource type="Texture2D" uid="uid://bw56d4ee2jfit" path="res://Images/VisualTest/Decorations/LightPole.png" id="3_mxrrj"]
+[ext_resource type="Texture2D" uid="uid://cs8hjybebrv6l" path="res://Images/VisualTest/Decorations/ScareCrowAnimated.png" id="4_nl3e4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ufhak"]
+texture = ExtResource("1_0fukp")
+texture_region_size = Vector2i(16, 12)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 6)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgfqa"]
+texture = ExtResource("2_bw1u7")
+texture_region_size = Vector2i(26, 8)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7ljd"]
+texture = ExtResource("3_mxrrj")
+texture_region_size = Vector2i(6, 16)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mftss"]
+texture = ExtResource("4_nl3e4")
+texture_region_size = Vector2i(18, 24)
+0:0/animation_columns = 2
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+
+[resource]
+tile_size = Vector2i(6, 6)
+sources/0 = SubResource("TileSetAtlasSource_ufhak")
+sources/1 = SubResource("TileSetAtlasSource_wgfqa")
+sources/2 = SubResource("TileSetAtlasSource_r7ljd")
+sources/3 = SubResource("TileSetAtlasSource_mftss")
