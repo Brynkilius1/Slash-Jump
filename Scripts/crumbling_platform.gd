@@ -16,6 +16,7 @@ var platform_respawn_time : float = 3.0
 @onready var player_detector_shape = $PlayerDetector/PlayerDetectorShape
 @onready var player_leaving_detector = $PlayerLeavingDetector
 @onready var player_leaving_detector_shape = $PlayerLeavingDetector/PlayerLeavingDetectorShape
+@onready var audio_master = $AudioMaster
 
 
 @onready var sprite_2d = $Sprite2D
@@ -73,3 +74,6 @@ func _on_player_leaving_detector_body_exited(body):
 
 func _on_disapear_timer_timeout():
 	respawner.StartRespawn()
+
+func LandOnTilemap(position):
+	audio_master.PlayRandomSound("Land")

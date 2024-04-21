@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://du8u2mbmfve2t"]
+
+[ext_resource type="Texture2D" uid="uid://ctbutf2ykvq4x" path="res://Images/Particles/Flower1Head1.png" id="1_ji2wn"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_b5y6s"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="3_qljh5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h7xfx"]
+
+[sub_resource type="Gradient" id="Gradient_p1h6y"]
+offsets = PackedFloat32Array(0, 0.870748, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cyo0y"]
+gradient = SubResource("Gradient_p1h6y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xhxpd"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector3(0, -1, 0)
+spread = 35.0
+initial_velocity_min = 35.0
+initial_velocity_max = 55.0
+angular_velocity_min = 180.0
+angular_velocity_max = 450.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_cyo0y")
+anim_offset_min = 1.0
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_h7xfx")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_xhxpd")
+texture = ExtResource("1_ji2wn")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.95
+script = ExtResource("2_b5y6s")
+dissapear_time = 1.2
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("3_qljh5")
+autostart_target = NodePath("..")

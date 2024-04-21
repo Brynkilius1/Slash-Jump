@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8kk7x56hyaec"]
+
+[ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="1_epcsk"]
+[ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="2_082wg"]
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioCollection.gd" id="2_c47y1"]
+[ext_resource type="AudioStream" uid="uid://dveic13cofv33" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 1.mp3" id="3_itweu"]
+[ext_resource type="AudioStream" uid="uid://c6p82a3jyday4" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 2.mp3" id="4_uq0vv"]
+[ext_resource type="AudioStream" uid="uid://c4eh63f6gjrwa" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword hit reject.mp3" id="6_q3ri2"]
+[ext_resource type="AudioStream" uid="uid://bb7byvoywcveg" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword terrain temp.mp3" id="7_2ey5i"]
+
+[sub_resource type="GDScript" id="GDScript_47lkk"]
+script/source = "extends Node2D
+
+@onready var audio_master = $Polygon2D/AudioMaster
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	audio_master.PlayRandomSound(\"GrassHit\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_just_pressed(\"BigSwing\"):
+		audio_master.PlayRandomSound(\"StoneHit\")
+	if Input.is_action_just_pressed(\"SmallSwing\"):
+		audio_master.StopCollectionSound(\"Hit\")
+"
+
+[node name="AudioSystem" type="Node2D"]
+script = SubResource("GDScript_47lkk")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-20, -32, 29, -33, 25, 33, -18, 37)
+
+[node name="AudioMaster" parent="Polygon2D" instance=ExtResource("1_epcsk")]
+
+[node name="AudioCollectionLand" parent="Polygon2D/AudioMaster" instance=ExtResource("2_082wg")]
+
+[node name="AudioCollectionWallLand" parent="Polygon2D/AudioMaster" instance=ExtResource("2_082wg")]
+
+[node name="AudioCollectionGrassWallLand" parent="Polygon2D/AudioMaster/AudioCollectionWallLand" instance=ExtResource("2_082wg")]
+
+[node name="AudioCollectionStoneWallLand" parent="Polygon2D/AudioMaster/AudioCollectionWallLand" instance=ExtResource("2_082wg")]
+
+[node name="AudioCollectionHit" parent="Polygon2D/AudioMaster" instance=ExtResource("2_082wg")]
+
+[node name="AudioCollectionGrassHit" type="Node2D" parent="Polygon2D/AudioMaster/AudioCollectionHit" groups=["AudioCollection"]]
+script = ExtResource("2_c47y1")
+
+[node name="GrassHit1" type="AudioStreamPlayer" parent="Polygon2D/AudioMaster/AudioCollectionHit/AudioCollectionGrassHit"]
+stream = ExtResource("3_itweu")
+
+[node name="GrassHit2" type="AudioStreamPlayer" parent="Polygon2D/AudioMaster/AudioCollectionHit/AudioCollectionGrassHit"]
+stream = ExtResource("4_uq0vv")
+
+[node name="AudioCollectionStoneHit" type="Node2D" parent="Polygon2D/AudioMaster/AudioCollectionHit" groups=["AudioCollection"]]
+script = ExtResource("2_c47y1")
+
+[node name="StoneHit1" type="AudioStreamPlayer" parent="Polygon2D/AudioMaster/AudioCollectionHit/AudioCollectionStoneHit"]
+stream = ExtResource("6_q3ri2")
+
+[node name="StoneHit2" type="AudioStreamPlayer" parent="Polygon2D/AudioMaster/AudioCollectionHit/AudioCollectionStoneHit"]
+stream = ExtResource("7_2ey5i")

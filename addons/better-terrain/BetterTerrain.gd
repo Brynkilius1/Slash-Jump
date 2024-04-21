@@ -720,6 +720,27 @@ func get_tiles_in_terrain(ts: TileSet, type: int) -> Array[TileData]:
 	
 	return result
 
+## Returns an Array of all [TileData] tiles included in the specified
+## terrain [code]type[/code] for the [TileSet] [code]ts[/code]
+func get_tiles_position_in_terrain(ts: TileSet, type: int) -> Array[Vector2i]:
+	var result:Array[Vector2i] = []
+	if !ts or type < TileCategory.EMPTY:
+		return result
+	
+	var cache := _get_cache(ts)
+	if type > cache.size():
+		return result
+	
+	var tiles = cache[type]
+	if !tiles:
+		return result
+	for c in tiles:
+		if c[0] < 0:
+			continue
+		result.push_back(c[1])
+	
+	return result
+
 
 ## Returns an [Array] of [Dictionary] items including information about each 
 ## tile included in the specified terrain [code]type[/code] for 

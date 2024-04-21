@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccs5fbi82tluw"]
+[gd_scene load_steps=6 format=3 uid="uid://ccs5fbi82tluw"]
 
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="1_kvc0g"]
 [ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="2_r8s0e"]
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="3_egdn0"]
 [ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="4_lewfa"]
+[ext_resource type="Script" path="res://Systems/TilemapDecorator/TilemapDecorator.gd" id="5_2hhwc"]
 
 [node name="WorldNessecities" type="Node2D"]
 
@@ -25,6 +26,9 @@ script = ExtResource("4_lewfa")
 
 [node name="ScreenHolder" type="Node2D" parent="."]
 script = ExtResource("3_egdn0")
+
+[node name="TilemapDecorator" type="Node2D" parent="."]
+script = ExtResource("5_2hhwc")
 
 [connection signal="change_screen" from="ScreenHolder" to="CameraManager" method="ChangeScreen"]
 [connection signal="set_next_screen" from="ScreenHolder" to="CameraManager" method="UpdateNextScreen"]

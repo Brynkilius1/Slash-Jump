@@ -385,8 +385,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1600.0
-offset_bottom = 900.0
+offset_right = 11520.0
+offset_bottom = 6480.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -762,7 +762,6 @@ text = "Back"
 
 [node name="Settings" type="Control" parent="MainMenu/Menu/Menu"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -816,6 +815,7 @@ theme_override_font_sizes/font_size = 32
 text = "Controls"
 
 [node name="VideoSettings" type="Control" parent="MainMenu/Menu/Menu/Settings/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("23_ugu4u")
@@ -954,7 +954,6 @@ focus_neighbor_bottom = NodePath("../../MasterVolumeSlider/MasterVolumeSlider")
 value = 60.0
 
 [node name="ContolSettings" type="Control" parent="MainMenu/Menu/Menu/Settings/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("26_08atv")

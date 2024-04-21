@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @export var swing_coyote_time := 0.2
 @export var swing_anim_length := 0.15
 @export var max_fall_speed := 250
+@export var ledge_stop_speed := 94
 @export var controller_dead_zone := 0.25
 
 @export_category("Walljump bias")
@@ -69,8 +70,13 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @onready var ledge_forgiveness_raycast_4 = $Raycasts/LedgeForgiveness/LedgeForgivenessRaycast4
 @onready var ledge_stop_raycast_1 = $Raycasts/LedgeStop/LedgeStopRaycast1
 @onready var ledge_stop_raycast_2 = $Raycasts/LedgeStop/LedgeStopRaycast2
+@onready var ledge_stop_raycast_3 = $Raycasts/LedgeStop/LedgeStopRaycast3
 @onready var corner_boost_stopper_raycasts = $Raycasts/CornerBoostStopperRaycasts
-
+@onready var decoration_particle_raycast = $Raycasts/ParticleSpawningRaycasts/DecorationParticleRaycast
+@onready var decoration_particle_raycast_2 = $Raycasts/ParticleSpawningRaycasts/DecorationParticleRaycast2
+@onready var ground_particle_raycast_1 = $Raycasts/ParticleSpawningRaycasts/GroundParticleRaycast1
+@onready var ground_particle_raycast_2 = $Raycasts/ParticleSpawningRaycasts/GroundParticleRaycast2
+@onready var knife_raycasts = $SwordPivot/Extended/KnifeRaycasts
 
 
 
@@ -87,12 +93,13 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @onready var sword_lingering_particles = $SwordPivot/Rotator/SwordVisualPivot/SwordLingeringParticles
 @onready var dirt_skidding_particles = $Particles/DirtSkiddingParticles
 
+
 #Animations
 @onready var player_anim_tree = $PlayerAnimationTree
 @onready var player_sprite = $PlayerSprite
 
 #Sounds
-@onready var swing_sounds = $Sounds/SwingSounds
+@onready var player_audio_master = $PlayerAudioMaster
 
 
 
@@ -101,12 +108,25 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 
 
 
+enum player_animation_states { #UNUSED
+	IDLE,
+	SWINGING,
+	IN_AIR,
+	LANDING
+}
+
+var current_anim_state = player_animation_states.IDLE: #UNUSED
+	set(value):
+		current_anim_state = value
+		PlayerAnimStateChanged(value)
+
 
 #instances
 const SWORD_COLISION_PARTICLES = preload("res://Scenes/Particles/sword_colision_particles.tscn")
 const AFTER_SWING_VFX = preload("res://Scenes/Particles/after_swing_vfx.tscn")
 const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
-
+const SMALL_LANDING_DUST = preload("res://Scenes/Particles/player_landing_dust.tscn")
+const DIRT_PARTICLES = preload("res://Scenes/Particles/dirt_particles.tscn")
 
 #signals
 signal player_died
@@ -127,6 +147,7 @@ var knife_has_hit_this_swing = false
 var checking_sword_hitbox = false
 var checking_knife_hitbox = false
 var extra_swing_power : int = 0
+var last_frame_velocity : Vector2
 
 var playing_with_controller = true
 
@@ -180,8 +201,8 @@ func _unhandled_input(event):
 
 #called each frame
 func _process(delta):
-	pass
-	UpdateAnimationParameteres()
+	CheckIfSwordBehindPlayer()
+	
 
 
 #8 times each frame (or how many times a physics frame is per fame)
@@ -197,9 +218,11 @@ func _physics_process(delta):
 	CheckCornerBoost()
 	CheckLedgeForgiveness()
 	CheckLedgeStop()
+	CheckIfPlayerImpact()
 	CheckSwordColision()
 	
 	
+	UpdateAnimationParameteres()
 	
 	
 	
@@ -287,12 +310,9 @@ func Swing():
 
 func SwingSoundEffects():
 	#maybe add changing sound effects depending on the type of tile hit
-	SwingSwooshSound()
+	player_audio_master.PlayRandomSound("SwingSword")
 
-func SwingSwooshSound():
-	var random_child = swing_sounds.get_child(randi_range(0, 4))
-	random_child.pitch_scale = randf_range(0.9, 1.1)
-	random_child.play()
+
 func SwingVisuals():
 	SwingAnimation()
 	PlayerSwingAnimation()
@@ -316,8 +336,9 @@ func SwingAnimation():
 	sword_visual.flip_v = swing_dir + 1
 
 func PlayerSwingAnimation():
-	player_anim_tree["parameters/conditions/IsIdle"] = false
-	player_anim_tree["parameters/conditions/IsSwinging"] = true
+	pass
+	#FlickOnAnimState("IsSwinging")
+	#current_anim_state = player_animation_states.SWINGING
 
 func SwingVFX():
 	#show the woosh in the air
@@ -337,6 +358,7 @@ func EmitSwingLingerParticles():
 func SwingTechnical():
 	
 	checking_sword_hitbox = true
+	sword_colision_shape.disabled = false
 	
 	#sword_colision_shape.disabled = false
 	sword_has_hit_this_swing = false
@@ -394,11 +416,12 @@ func CheckIfSwingHit():
 func SwordDetectsHit(body):
 	if sword_has_hit_this_swing == false:
 		#Hit
-		SwordHitVelocity(swing_power, sword_pivot.rotation, IsWallJumping())
+		SwordHitVelocity(swing_power, sword_pivot.rotation, IsWallJumping(walljump_raycasts))
 		
 		#Juice
 		SwordHitSounds()
 		SwordHitParticles()
+		DeformPlayer(swing_power, sword_pivot.rotation)
 		
 		
 		#ShakeCamera(0.4, 0, 1) #(0.7, 0, 6)
@@ -410,15 +433,30 @@ func SwordDetectsHit(body):
 		DeactivateSwordHitbox()
 
 func SwordHitSounds():
-	#maybe add more sounds later
-	$Sounds/SwordHit.play()
+	#moved to the tilesets themselves
+	pass
 func SwordHitParticles():
 	var sword_tip = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
-	var nearest_ground = GetClosestGround()
+	var nearest_ground = GetClosestGround(walljump_raycasts)
 	#EmitParticles(sword_colision_particles, nearest_ground, sword_pivot.rotation)
 	EmitParticles(DUSTCLOUDS, nearest_ground + Vector2(0, -2), 0)
 	
 	#ground particles are spawned in their respective scripts
+
+
+func DeformPlayer(deformation_power, sword_rotation):
+
+	var deformation = Vector2(0.6, 0).rotated(sword_rotation)
+	var limited_sword_rotation
+	
+	sword_rotation = rad_to_deg(sword_rotation)
+	if abs(sword_rotation) > 90:
+		sword_rotation += 180
+		if sword_rotation > 200:
+			sword_rotation -= 360
+	
+
+	print(sword_rotation)
 
 
 func SwordHitFramePause(pause_time):
@@ -476,13 +514,12 @@ func AddWallJumpBias(bounce_power, angle):
 		print("Walljump power: ", 0)
 		return bounce_power
 
-func IsWallJumping():
+func IsWallJumping(raycast_group):
 	var floor_hits := 0
 	var wall_hits := 0
-	for raycast in walljump_raycasts.get_children():
+	for raycast in raycast_group.get_children():
 		raycast.force_raycast_update()
 		if raycast.is_colliding() == true:
-			print(raycast.get_collision_normal())
 			if raycast.get_collision_normal().x != 0:
 				wall_hits += 1
 			elif raycast.get_collision_normal().y != 0:
@@ -497,48 +534,18 @@ func IsWallJumping():
 	else:
 		return false
 
-func GetClosestGround():
+func GetClosestGround(raycast_group):
 	#optimise later
-	var main_raycast = walljump_raycasts.get_child(0)
+	var main_raycast = raycast_group.get_child(0)
 	var emit_pos : Vector2 = main_raycast.global_position + main_raycast.target_position.rotated(sword_pivot.rotation)
 	var object_hit
 	
-	if main_raycast.is_colliding() == true:
-		emit_pos = main_raycast.get_collision_point()
-		object_hit = main_raycast.get_collider()
-		
-	elif walljump_raycasts.get_child(1).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(1).get_collision_point()
-		object_hit = walljump_raycasts.get_child(1).get_collider()
-		
-	elif walljump_raycasts.get_child(2).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(2).get_collision_point()
-		object_hit = walljump_raycasts.get_child(2).get_collider()
-		
-	elif walljump_raycasts.get_child(3).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(3).get_collision_point()
-		object_hit = walljump_raycasts.get_child(3).get_collider()
-		
-	elif walljump_raycasts.get_child(4).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(4).get_collision_point()
-		object_hit = walljump_raycasts.get_child(4).get_collider()
-		
-	elif walljump_raycasts.get_child(5).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(5).get_collision_point()
-		object_hit = walljump_raycasts.get_child(5).get_collider()
-		
-	elif walljump_raycasts.get_child(6).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(6).get_collision_point()
-		object_hit = walljump_raycasts.get_child(6).get_collider()
-		
-	elif walljump_raycasts.get_child(7).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(7).get_collision_point()
-		object_hit = walljump_raycasts.get_child(7).get_collider()
-		
-	elif walljump_raycasts.get_child(8).is_colliding() == true:
-		emit_pos = walljump_raycasts.get_child(8).get_collision_point()
-		object_hit = walljump_raycasts.get_child(8).get_collider()
-	
+	for i in raycast_group.get_children():
+		i.force_raycast_update()
+		if i.is_colliding() == true:
+			emit_pos = i.get_collision_point()
+			object_hit = i.get_collider()
+			break
 	
 	DirectSwordHitOnObject(object_hit, emit_pos)
 	
@@ -562,7 +569,7 @@ func SwingKnife():
 
 
 func KnifeSwingSounds():
-	#add sounds
+	player_audio_master.PlayRandomSound("SwingSword")
 	pass
 func KnifeSwingVisuals():
 	sword_swing_anim.stop()
@@ -575,6 +582,7 @@ func KnifeSwingParticles():
 func KnifeSwingTechnical():
 	
 	checking_knife_hitbox = true
+	knife_collision_shape.disabled = false
 	
 	#sword_colision_shape.disabled = false
 	knife_has_hit_this_swing = false
@@ -619,6 +627,7 @@ func KnifeLingerTimeoutParticles():
 	get_tree().current_scene.add_child(after_swing_vfx)
 func KnifeLingerTimeoutTechnical():
 	checking_knife_hitbox = false
+	
 func CheckIfKnifeSwingHit():
 	if knife_swing_linger_timer.time_left > 0:
 		print("stop swing miss timer")
@@ -631,7 +640,7 @@ func CheckIfKnifeSwingHit():
 
 func KnifeDetectsHit(body):
 	if knife_has_hit_this_swing == false:
-		SwordHitVelocity(small_swing_power, sword_pivot.rotation, IsWallJumping())
+		SwordHitVelocity(small_swing_power, sword_pivot.rotation, IsWallJumping(knife_raycasts))
 		
 		#Juice
 		KnifeHitSounds()
@@ -646,10 +655,12 @@ func KnifeDetectsHit(body):
 		KnifeHitTechnical()
 		DeactivateKnifeHitbox()
 func KnifeHitSounds():
-	$Sounds/SwordHit.play()
+	#moved to the tilsets themselves
+	pass
 func KnifeHitParticles():
-	var sword_tip = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
-	EmitParticles(SWORD_COLISION_PARTICLES, sword_tip, sword_pivot.rotation)
+	var sword_tip = knife_raycasts.get_child(0).global_position + knife_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
+	var nearest_ground = GetClosestGround(knife_raycasts)
+	EmitParticles(DUSTCLOUDS, nearest_ground + Vector2(0, -2), 0)
 func KnifeHitTechnical():
 	checking_knife_hitbox = false
 	knife_has_hit_this_swing = true
@@ -660,38 +671,28 @@ func DeactivateKnifeHitbox():
 	knife_swing_linger_timer.stop()
 
 
+func NearestGroundKnife():
+	
+	return
 
 
-func UpdateAnimationParameteres():
-	var sword_rotation_vector = Vector2.UP.rotated(sword_pivot.rotation)
-	
-	player_anim_tree["parameters/Idle/blend_position"] = sword_rotation_vector
-	player_anim_tree["parameters/Swing/blend_position"] = sword_rotation_vector
-	
-	if abs(rad_to_deg(sword_pivot.rotation)) > 15 and abs(rad_to_deg(sword_pivot.rotation)) < 165:
-		player_sprite.flip_h = sign(rad_to_deg(sword_pivot.rotation)) - 1
-	
-		
-	
-	#player_anim_tree["parameters/conditions/IsSwinging"]
-	#player_anim_tree["parameters/conditions/NotSwinging"]
 
 func PreventWallClimb():
 	if (wall_climb_prevention_raycast_1.is_colliding() == true or wall_climb_prevention_raycast_2.is_colliding() == true or wall_climb_prevention_raycast_3.is_colliding() == true or wall_climb_prevention_raycast_4.is_colliding() == true) and is_on_floor() == false:
 		sword_colision_shape.scale.x = 0.25
+		knife_collision_shape.scale.x = 0.3
 	else:
 		sword_colision_shape.scale.x = 1
+		knife_collision_shape.scale.x = 1
 
 func CheckCornerBoost():
 	if velocity.x == 0:
 		if sign(saved_x_speed) == 1:
 			if wall_climb_prevention_raycast_1.is_colliding() == false and wall_climb_prevention_raycast_3.is_colliding() == false:
-				print("corner boost")
 				velocity.x = saved_x_speed
 				saved_x_speed = 0.0
 		elif sign(saved_x_speed) == -1:
 			if wall_climb_prevention_raycast_2.is_colliding() == false and wall_climb_prevention_raycast_4.is_colliding() == false:
-				print("corner boost")
 				velocity.x = saved_x_speed
 				saved_x_speed = 0.0
 	
@@ -720,9 +721,75 @@ func CheckLedgeForgiveness():
 					global_position.x -= 1
 
 func CheckLedgeStop():
-	if abs(velocity.x) < 94:
-		if ledge_stop_raycast_1.is_colliding() != ledge_stop_raycast_2.is_colliding(): #XOR for if theyre colliding 
+	if velocity.x < ledge_stop_speed and velocity.x >= 0:
+		if ledge_stop_raycast_1.is_colliding() == true and ledge_stop_raycast_2.is_colliding() == false: #XOR for if theyre colliding 
+			#if ledge_stop_raycast_3.is_colliding() == true:
 			velocity.x  = 0
+	elif velocity.x > -ledge_stop_speed and velocity.x < 0:
+		if ledge_stop_raycast_1.is_colliding() == false and ledge_stop_raycast_2.is_colliding() == true: #XOR for if theyre colliding 
+			#if ledge_stop_raycast_3.is_colliding() == true:
+			velocity.x  = 0
+func CheckIfPlayerImpact():
+	CheckVerticalInpact()
+	CheckHorisontalInpact()
+	last_frame_velocity = velocity
+
+func CheckVerticalInpact():
+	var vertical_impact = JustLandedPower()
+	
+	if vertical_impact > 200:
+		player_anim_tree["parameters/Landing/blend_position"] = vertical_impact / (max_fall_speed)
+		#SpawnLandingParticles(DUSTCLOUDS)
+		#SpawnLandingParticles(DIRT_PARTICLES, 4, Vector2(0, 6))
+		print("vertical impact: ", vertical_impact)
+		LandingParticlesTechnical()
+		
+		
+		
+		FlickOnAnimState("IsLanding")
+		
+		#enable colision box to make flowers make particles
+		
+	elif vertical_impact > 120:
+		player_anim_tree["parameters/Landing/blend_position"] = vertical_impact / (max_fall_speed)
+		SpawnLandingParticles(SMALL_LANDING_DUST)
+		FlickOnAnimState("IsLanding")
+		
+	elif vertical_impact > 20:
+		SpawnLandingParticles(SMALL_LANDING_DUST, 3)
+
+
+func LandingParticlesTechnical():
+	ground_particle_raycast_1.force_raycast_update()
+	ground_particle_raycast_2.force_raycast_update()
+	
+	if ground_particle_raycast_1.is_colliding():
+		ground_particle_raycast_1.get_collider().LandOnTilemap(position)
+	elif decoration_particle_raycast_2.is_colliding():
+		ground_particle_raycast_2.get_collider().LandOnTilemap(position)
+	else:
+		print("ground landing particles failed to be summoned")
+
+
+func CheckHorisontalInpact():
+	var horisontal_impact = abs(JustWallBonked())
+	if horisontal_impact > 120:
+		player_anim_tree["parameters/SidewaysLanding/blend_position"] = horisontal_impact / (swing_power.y)
+		SpawnLandingParticles(SMALL_LANDING_DUST)
+		FlickOnAnimState("IsWallBonking")
+		
+	elif horisontal_impact > 65:
+		SpawnLandingParticles(SMALL_LANDING_DUST, 3)
+		FlickOnAnimState("IsWallBonking")
+
+func SpawnLandingParticles(particles, amount_override: int = 0, spawn_location_override: Vector2 = Vector2.ZERO, flipped: bool = false):
+	var d = particles.instantiate()
+	d.global_position = position + Vector2(0, 9)
+	if amount_override > 0:
+		d.amount = amount_override
+	if spawn_location_override != Vector2.ZERO:
+		d.global_position = position + spawn_location_override
+	get_tree().current_scene.add_child(d)
 
 func Friction():
 	if is_on_floor():
@@ -731,20 +798,22 @@ func Friction():
 	#if JustLanded() == true:
 	#	dirt_skidding_particles.emitting = true
 
-func JustLanded():
-	var return_var
-	if is_on_floor():
-		if was_on_ground_last_frame == false:
-			
-			return_var = true
-		else:
-			return_var = false
-		was_on_ground_last_frame = true
+func JustLandedPower():
+	var return_var : float = 0.0
+	if is_on_floor() and velocity.y == 0:
+		return_var = last_frame_velocity.y
 	else:
-		was_on_ground_last_frame = false
-		return_var =  false
+		return_var =  0
 	return return_var
 
+func JustWallBonked():
+	var return_var : float = 0.0
+	if is_on_wall() and velocity.x == 0:
+		return_var = last_frame_velocity.x
+		#print(return_var)
+	else:
+		return_var =  0
+	return return_var
 
 func FrictionParticles():
 	if abs(velocity.x) > 0.1 and is_on_floor() == true:
@@ -772,7 +841,8 @@ func CheckIfReload():
 
 
 func _on_swing_miss_timer_timeout():
-	$Sounds/SwordMiss.play()
+	player_audio_master.PlayRandomSound("SwordMiss")
+	
 
 func _on_coyote_timer_timeout():
 	pass
@@ -781,13 +851,15 @@ func _on_swing_anim_animation_finished():
 	sword_swing_anim.visible = false
 	knife_swing_anim.visible = false
 	can_rotate_sword = true
+	sword_colision_shape.disabled = true
 	
-	player_anim_tree["parameters/conditions/IsIdle"] = true
-	player_anim_tree["parameters/conditions/IsSwinging"] = false
+	#current_anim_state = player_animation_states.IDLE
 
-
-
-
+func _on_knife_swing_anim_animation_finished():
+	sword_swing_anim.visible = false
+	knife_swing_anim.visible = false
+	can_rotate_sword = true
+	knife_collision_shape.disabled = true
 func SwingCooldownActive():
 	# can add more ifs, if more cooldowns are added
 	
@@ -810,13 +882,13 @@ func EmitParticles(particles, emit_pos, angle):
 	var s = particles.instantiate()
 	s.rotation = angle
 	s.global_position = emit_pos
+	s.z_index = 2
 	
-	get_tree().root.get_child(0).add_child(s)
+	get_tree().current_scene.add_child(s)
 
 
 #Set functions
 func SetZeroGCounter(new_value):
-	print("zero g counter: ", new_value)
 	zero_g_counter = new_value
 	if zero_g_counter < 0:
 		zero_g_counter = 0
@@ -834,3 +906,75 @@ func TurnOffGravity(turn_off : bool):
 
 func IncreaseNextJumpPower(strength):
 	extra_swing_power = strength
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Player Animations!!!       Updates Animation tree's states and conditions
+@onready var temp_player_sprite = $TempPlayerSprite
+
+func UpdateAnimationParameteres(): #every frame
+	
+	#Update transistion conditions
+	player_anim_tree["parameters/conditions/IsIdle"] = is_on_floor()
+	player_anim_tree["parameters/conditions/IsAirborne"] = not is_on_floor()
+	
+	
+	
+	
+	
+	#Updates Animation tree's conditions
+	var sword_rotation_vector = Vector2.UP.rotated(sword_pivot.rotation)
+	player_anim_tree["parameters/Idle/blend_position"] = sword_rotation_vector
+	player_anim_tree["parameters/Swing/blend_position"] = sword_rotation_vector
+	player_anim_tree["parameters/Airborne/blend_position"] = Vector2(velocity.y / max_fall_speed, velocity.x / (swing_power.y)) 
+	
+	
+	
+	player_sprite.material.set_shader_parameter("deformation",
+	lerp(player_sprite.material.get_shader_parameter("deformation"), Vector2.ZERO, 0.1) )
+	
+
+	
+	#Flip player 
+	if abs(rad_to_deg(sword_pivot.rotation)) > 15 and abs(rad_to_deg(sword_pivot.rotation)) < 165:
+		player_sprite.flip_h = sign(rad_to_deg(sword_pivot.rotation)) - 1
+	
+		
+	
+	#player_anim_tree["parameters/conditions/IsSwinging"]
+	#player_anim_tree["parameters/conditions/NotSwinging"]
+
+
+func FlickOnAnimState(state, flick_time = 0.05):
+	player_anim_tree["parameters/conditions/" + str(state)] = true
+	await get_tree().create_timer(flick_time).timeout
+	player_anim_tree["parameters/conditions/" + str(state)] = false
+
+
+func PlayerAnimStateChanged(anim): #UNUSED
+	if anim == player_animation_states.IDLE:
+		player_anim_tree["parameters/conditions/IsIdle"] = true
+		player_anim_tree["parameters/conditions/IsSwinging"] = false
+	
+	elif  anim == player_animation_states.SWINGING:
+		player_anim_tree["parameters/conditions/IsIdle"] = false
+		player_anim_tree["parameters/conditions/IsSwinging"] = true
+
+
+func CheckIfSwordBehindPlayer():
+	
+	var sword_rotation_with_flip = sword_pivot.rotation_degrees * swing_dir
+	if sword_rotation_with_flip > 0 or abs(sword_rotation_with_flip) > 160:
+		sword_visual.z_index = -1
+	else:
+		sword_visual.z_index = 0

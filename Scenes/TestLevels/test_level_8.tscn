@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bsjn20f7toxp1"]
+[gd_scene load_steps=22 format=3 uid="uid://bsjn20f7toxp1"]
 
 [ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="1_atc54"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="2_ttjlb"]
@@ -12,7 +12,6 @@
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="8_ijb6o"]
 [ext_resource type="PackedScene" uid="uid://dpgnm1pv2r76j" path="res://Scenes/LevelObjects/tnt_barrel.tscn" id="9_0go0n"]
 [ext_resource type="TileSet" uid="uid://c3g22q8vipa28" path="res://Tileset/Spikes.tres" id="9_h80vj"]
-[ext_resource type="AudioStream" uid="uid://c4eh63f6gjrwa" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword hit reject.mp3" id="11_jl4xu"]
 [ext_resource type="TileSet" uid="uid://cg0ecaluwnove" path="res://Tileset/PitDeath.tres" id="12_6xyjc"]
 [ext_resource type="TileSet" uid="uid://w4f1o27hp8ym" path="res://Tileset/MechanicTileset.tres" id="13_ugyg6"]
 [ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="14_cgeto"]
@@ -40,7 +39,7 @@ size = Vector2(320, 431)
 [node name="WorldNessecities" parent="." instance=ExtResource("1_atc54")]
 
 [node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
-position = Vector2(1686, -451)
+position = Vector2(440, 37)
 
 [node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("2_ttjlb")]
 visible = false
@@ -237,9 +236,6 @@ layer_0/tile_data = PackedInt32Array(458738, 589825, 2, 458739, 589825, 2, 45874
 tile_set = ExtResource("9_h80vj")
 layer_0/tile_data = PackedInt32Array(-262138, 65537, 0, -2359286, 65537, 1610612736, -2293750, 65537, 1610612736, -2228214, 65537, 1610612736, -2162678, 65537, 1610612736, -2097142, 65537, 1610612736, -2031606, 65537, 1610612736, -1966070, 65537, 1610612736, -1900534, 65537, 1610612736, -1376246, 65537, 1610612736, -2424822, 65537, 1610612736, -1834998, 65537, 1610612736, -1769462, 1, 1610612736, -1572854, 1, 805306368, -1507318, 65537, 1610612736, -1441782, 65537, 1610612736, -1638391, 65537, 1610612736, -1703927, 65537, 1610612736, -1507333, 65537, 0, -1507332, 65537, 0, 2031605, 65537, 0, 2031606, 65537, 0, 2031607, 65537, 0, 1900537, 65537, 1610612736, 1835001, 65537, 1610612736, 1769465, 65537, 1610612736, 1703929, 65537, 1610612736, 2097144, 1, 0, 2228217, 1, 0, 2293754, 65537, 1342177280, 2293750, 1, 805306368, 2097140, 65537, 1610612736, 2228213, 1, 805306368, 2359286, 65537, 1610612736, 1638394, 65537, 0, 1638395, 65537, 0, 1638396, 65537, 0, 1638397, 65537, 0, 1638398, 65537, 0, 2162676, 65537, 1610612736, 1966073, 65537, 1610612736, 2228224, 1, 805306368, 2228223, 65537, 1610612736, 2293760, 65537, 1610612736, 2162681, 65537, 1342177280, 1310709, 65537, 1342177280, 1376245, 65537, 1342177280, 1441781, 65537, 1342177280, 1507317, 65537, 1342177280, 1572853, 65537, 1342177280, 1638389, 65537, 1342177280, 1703925, 65537, 1342177280, 1769461, 65537, 1342177280)
 shake_camera_when_hit = true
-
-[node name="AudioStreamPlayer" parent="SpikeTilemap/SoundEffects/Hit" index="0"]
-stream = ExtResource("11_jl4xu")
 
 [node name="PitDeathTilemap" parent="." instance=ExtResource("7_voo2o")]
 tile_set = ExtResource("12_6xyjc")

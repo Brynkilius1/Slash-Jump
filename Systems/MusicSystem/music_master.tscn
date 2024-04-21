@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba67hmq0qh6o2"]
+
+[ext_resource type="Script" path="res://Systems/MusicSystem/MusicMaster.gd" id="1_76uvt"]
+[ext_resource type="AudioStream" uid="uid://efo8ehfw50rn" path="res://Sounds/Music/alexander-nakarada-roaming-three.mp3" id="2_ylqkf"]
+
+[node name="MusicMaster" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_76uvt")
+starting_song = ExtResource("2_ylqkf")
+
+[node name="MainMusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_ylqkf")
+volume_db = -7.0
+bus = &"Music"
+
+[node name="FadeMusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -5.0
+bus = &"Music"
+
+[connection signal="finished" from="MainMusicPlayer" to="." method="_on_main_music_player_finished"]

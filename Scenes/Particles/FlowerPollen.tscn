@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://bijk35kirk8h3"]
+
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="1_6sly3"]
+[ext_resource type="Texture2D" uid="uid://bdbku7tq3anls" path="res://Images/Particles/RandomSmallParticles.png" id="1_iowew"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="3_h48jy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8fve8"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_rja74"]
+offsets = PackedFloat32Array(0, 0.721088, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.803922, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yrs2j"]
+gradient = SubResource("Gradient_rja74")
+
+[sub_resource type="Curve" id="Curve_n023i"]
+max_value = 50.0
+_data = [Vector2(0, 50), 0.0, 0.0, 0, 0, Vector2(0.0571429, 50), -161.538, -161.538, 0, 0, Vector2(0.154286, 8.24176), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3db1t"]
+curve = SubResource("Curve_n023i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k40pt"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+velocity_limit_curve = SubResource("CurveTexture_3db1t")
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 0.803922, 0.490196)
+color_ramp = SubResource("GradientTexture1D_yrs2j")
+anim_offset_max = 1.0
+turbulence_enabled = true
+turbulence_influence_min = 0.02
+turbulence_influence_max = 0.02
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_8fve8")
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_k40pt")
+texture = ExtResource("1_iowew")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.95
+fixed_fps = 60
+script = ExtResource("1_6sly3")
+dissapear_time = 2.0
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("3_h48jy")
+autostart_target = NodePath("..")

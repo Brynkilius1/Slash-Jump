@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dps06k8lbfi7w"]
+
+[ext_resource type="Script" path="res://Scripts/BaseObjectScripts/HitDetectingDecoration.gd" id="1_b4ef1"]
+[ext_resource type="PackedScene" uid="uid://du8u2mbmfve2t" path="res://Scenes/Particles/Flower1Heads.tscn" id="2_8vd11"]
+[ext_resource type="PackedScene" uid="uid://bijk35kirk8h3" path="res://Scenes/Particles/FlowerPollen.tscn" id="3_koixx"]
+[ext_resource type="Texture2D" uid="uid://dljxj5xw6dwjk" path="res://Images/Decorations/TutorialArea/Leafpile1.png" id="4_fclfo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0yxl"]
+size = Vector2(22, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3pjy"]
+size = Vector2(22, 7)
+
+[node name="LeafBush" type="Node2D" node_paths=PackedStringArray("decortaion_sprite")]
+script = ExtResource("1_b4ef1")
+decortaion_sprite = NodePath("DecorationSprites")
+hit_particles_list = [ExtResource("2_8vd11"), ExtResource("3_koixx")]
+enter_area_particles_list = [ExtResource("3_koixx")]
+
+[node name="DecorationSprites" type="Sprite2D" parent="."]
+position = Vector2(-13, -8)
+texture = ExtResource("4_fclfo")
+centered = false
+hframes = 2
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+z_index = 3
+z_as_relative = false
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+visible = false
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_q0yxl")
+
+[node name="SwordDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordDetector"]
+visible = false
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_l3pjy")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="area_entered" from="SwordDetector" to="." method="_on_sword_detector_area_entered"]

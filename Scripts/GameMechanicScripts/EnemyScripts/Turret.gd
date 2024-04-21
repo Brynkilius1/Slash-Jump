@@ -13,6 +13,11 @@ const TURRET_BULLET = preload("res://Scenes/SpawnableItems/turret_bullet.tscn")
 func _ready():
 	function_caller_timer.wait_time = shots_per_second
 
+func EnteredScreenActivate(): #Gets called on all children of a screen in the group "ScreenActivated" when the player enters a screen
+	await get_tree().create_timer(0.5).timeout
+	PlayShootAnim()
+	function_caller_timer.start()
+	
 
 
 func HitWithSword(_angle):
@@ -33,4 +38,4 @@ func SpawnBullet():
 	b.speed = bullet_speed
 	b.bullet_angle = rotation
 	b.global_position = bullet_spawn_point.global_position
-	get_tree().root.get_child(0).add_child(b)
+	get_tree().current_scene.add_child(b)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c20rk8fvkd5t6"]
+
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioCollection.gd" id="1_e0l6o"]
+
+[node name="AudioCollection" type="Node2D" groups=["AudioCollection"]]
+script = ExtResource("1_e0l6o")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SoundEffects"

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8icg4wsjjn0e"]
+
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="1_eot4c"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="2_yo6k0"]
+
+[sub_resource type="Gradient" id="Gradient_l61er"]
+offsets = PackedFloat32Array(0, 0.591837, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cl4vw"]
+gradient = SubResource("Gradient_l61er")
+
+[sub_resource type="Curve" id="Curve_4iymu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0909091, 1), 0.0, 0.0, 0, 0, Vector2(0.219251, 0.142857), 0.0, 0.0, 0, 0, Vector2(0.989305, 0.10989), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8elbv"]
+curve = SubResource("Curve_4iymu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j4cbr"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(3, 0, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+damping_min = 3.0
+damping_max = 3.0
+color_ramp = SubResource("GradientTexture1D_cl4vw")
+turbulence_enabled = true
+turbulence_noise_strength = 0.44
+turbulence_noise_speed_random = 0.5
+turbulence_influence_min = 0.03
+turbulence_influence_max = 0.03
+turbulence_influence_over_life = SubResource("CurveTexture_8elbv")
+
+[node name="PlayerLandingDust" type="GPUParticles2D"]
+modulate = Color(0.694118, 0.694118, 0.694118, 0.545098)
+z_index = 2
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_j4cbr")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.95
+script = ExtResource("1_eot4c")
+dissapear_time = 2.0
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("2_yo6k0")
+autostart_target = NodePath("..")

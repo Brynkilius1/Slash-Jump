@@ -25,10 +25,7 @@ DebugMaster="*res://Global/debug_master.tscn"
 OptionsManager="*res://Global/options_manager.gd"
 PauseMenu="*res://Scenes/UI/pause_menu.tscn"
 SaverAndLoader="*res://Global/SaverAndLoader.gd"
-
-[debug]
-
-settings/stdout/print_fps=true
+MusicMaster="*res://Systems/MusicSystem/music_master.tscn"
 
 [display]
 
@@ -127,6 +124,7 @@ Pause={
 2d_physics/layer_4="Bullet"
 2d_physics/layer_5="Hazards"
 2d_physics/layer_6="SwordCollision"
+2d_physics/layer_7="ActualSword"
 
 [physics]
 

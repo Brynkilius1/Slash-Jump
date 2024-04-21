@@ -9,6 +9,7 @@ signal change_screen_local(screen_exited)
 
 func _on_body_entered(body):
 	set_next_screen_local.emit(self)
+	ActivateScreenObjects()
 	
 	
 	#sets camera start pos to the room the player starts in
@@ -18,3 +19,8 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	change_screen_local.emit(self)
+
+func ActivateScreenObjects():
+	for i in get_children():
+		if i.is_in_group("ScreenActivated"):
+			i.EnteredScreenActivate()

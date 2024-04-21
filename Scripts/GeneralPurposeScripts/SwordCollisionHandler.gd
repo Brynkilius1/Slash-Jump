@@ -6,7 +6,11 @@ extends Node2D
 
 @export var shake_camera_when_hit = false
 
+@export var direct_hit_on : bool = true
+
 @export var hit_sounds : Node2D
+@export var audio_master : Node2D
+
 
 func _ready():
 	randomize()
@@ -17,12 +21,13 @@ func _ready():
 #Callable Fucntions
 
 func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
-	#BetterTerrain.get_cell(self, 0, hit_pos)
-	
-	SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
-	PlayHitSound()
-	if shake_camera_when_hit == true:
-		ShakeCamera()
+	if direct_hit_on == true:
+		#BetterTerrain.get_cell(self, 0, hit_pos)
+		
+		SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
+		PlayHitSound()
+		if shake_camera_when_hit == true:
+			ShakeCamera()
 
 func IndirectSwordHit(_angle):
 	if get_parent().has_method("HitWithSword") == true:
@@ -52,10 +57,8 @@ func EmitSwordHitParticles(amount, player_x_speed, emit_location, flipped : bool
 	get_tree().root.get_child(0).add_child(p)
 
 func PlayHitSound():
-	if hit_sounds != null:
-		var random_child = hit_sounds.get_child(randi_range(0, hit_sounds.get_child_count()) - 1)
-		random_child.pitch_scale = randf_range(0.9, 1.1)
-		random_child.play()
+	if audio_master != null:
+		audio_master.PlayRandomSound("Hit")
 	else:
 		print(get_parent(), " has no hit sounds registered!")
 

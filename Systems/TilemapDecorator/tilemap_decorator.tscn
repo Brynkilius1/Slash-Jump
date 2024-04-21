@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://txxilwt2ulkf"]
+
+[ext_resource type="Script" path="res://Systems/TilemapDecorator/TilemapDecorator.gd" id="1_au4gi"]
+
+[node name="TilemapDecorator" type="Node2D"]
+script = ExtResource("1_au4gi")
+tile_source_to_spawn_on_array = Array[int]([14, 15, 16, 17])
+spawn_position = 1

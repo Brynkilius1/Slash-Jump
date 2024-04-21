@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0fjttedflhgg"]
+[gd_scene load_steps=14 format=3 uid="uid://0fjttedflhgg"]
 
 [ext_resource type="Script" path="res://Scripts/crumbling_platform.gd" id="1_n5bx7"]
 [ext_resource type="Texture2D" uid="uid://0yfbwd6sxvob" path="res://Images/Tilesets/CrumblingTemp.png" id="2_17ey8"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="4_rjv10"]
 [ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="5_kdj56"]
 [ext_resource type="AudioStream" uid="uid://c6p82a3jyday4" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 2.mp3" id="6_mwbfo"]
+[ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="7_04f4m"]
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioCollection.gd" id="8_jk7uu"]
+[ext_resource type="AudioStream" uid="uid://ikb8ekn1hx62" path="res://Sounds/SoundEffects/Player/Land/GrassLand/GrassLand1.mp3" id="10_2h4om"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_acydd"]
 size = Vector2(12, 6)
@@ -39,8 +42,9 @@ respawn_time = 2.0
 respawning_object = NodePath("..")
 respawn_function = "DisableSelf"
 
-[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("4_rjv10")]
+[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds", "audio_master") instance=ExtResource("4_rjv10")]
 hit_sounds = NodePath("../Sounds/Hit")
+audio_master = NodePath("../AudioMaster")
 
 [node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]
 position = Vector2(0, 3)
@@ -81,6 +85,22 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds/Hit"]
 stream = ExtResource("6_mwbfo")
+
+[node name="AudioMaster" parent="." instance=ExtResource("7_04f4m")]
+
+[node name="AudioCollectionHit" type="Node2D" parent="AudioMaster" groups=["AudioCollection"]]
+script = ExtResource("8_jk7uu")
+
+[node name="Hit" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionHit"]
+stream = ExtResource("6_mwbfo")
+bus = &"SoundEffects"
+
+[node name="AudioCollectionLand" type="Node2D" parent="AudioMaster" groups=["AudioCollection"]]
+script = ExtResource("8_jk7uu")
+
+[node name="Land" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionLand"]
+stream = ExtResource("10_2h4om")
+bus = &"SoundEffects"
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerLeavingDetector" to="." method="_on_player_leaving_detector_body_exited"]

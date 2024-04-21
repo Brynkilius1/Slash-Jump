@@ -7,7 +7,8 @@ extends Area2D
 var stay_in_bubble_time = 2.0
 
 
-@onready var hit_sounds = $SoundEffects/Hit
+
+@onready var audio_master = $AudioMaster
 @onready var self_collision = $CollisionShape2D
 @onready var hit_detector_colision = $HitDetector/CollisionShape2D
 
@@ -17,10 +18,13 @@ var stay_in_bubble_time = 2.0
 
 
 
+
+
 func _on_body_entered(body):
 	if body == GlobalObjects.player:
 		CapturePlayer(body)
 		GlobalObjects.player.IncreaseNextJumpPower(10)
+		audio_master.PlayRandomSound("Enter")
 		
 func CapturePlayer(body):
 	body.global_position = global_position
@@ -72,9 +76,7 @@ func EmitSwordHitParticles(amount, player_x_speed, emit_location, flipped : bool
 	get_tree().root.get_child(0).add_child(p)
 
 func PlayHitSound():
-	var random_child = hit_sounds.get_child(randi_range(0, hit_sounds.get_child_count()) - 1)
-	random_child.pitch_scale = randf_range(0.9, 1.1)
-	random_child.play()
+	audio_master.PlayRandomSound("Hit")
 
 
 

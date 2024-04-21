@@ -1,0 +1,151 @@
+[gd_scene load_steps=21 format=3 uid="uid://dvmfrd46ngt1p"]
+
+[ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="1_8frgh"]
+[ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="2_ylsfi"]
+[ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="3_6rmfx"]
+[ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="4_oskhn"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="5_eqicy"]
+[ext_resource type="PackedScene" uid="uid://bkijsc4bbmruy" path="res://Scenes/BaseScenes/base_tile_map.tscn" id="6_a1pgg"]
+[ext_resource type="Shader" path="res://Shaders/TilemapSway.gdshader" id="7_3ok68"]
+[ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="7_qrhis"]
+[ext_resource type="Texture2D" uid="uid://wp75cix0b88m" path="res://Images/VisualTest/AutumnBackround/AutumnBackgroundLayer5.png" id="8_s3e77"]
+[ext_resource type="Texture2D" uid="uid://b41kbwadh2628" path="res://Images/VisualTest/AutumnBackround/AutumnBackgroundLayer4.png" id="9_arn1i"]
+[ext_resource type="Texture2D" uid="uid://c0fqf1fuuckd" path="res://Images/VisualTest/AutumnBackround/AutumnBackgroundLayer3.png" id="10_ih8vm"]
+[ext_resource type="Texture2D" uid="uid://bdhsnal2yd5rl" path="res://Images/VisualTest/AutumnBackround/AutumnBackgroundLayer2.png" id="11_cfcqr"]
+[ext_resource type="Texture2D" uid="uid://cy6orr73hox86" path="res://Images/VisualTest/AutumnBackround/AutumnBackgroundLayer1.png" id="12_m1y3a"]
+[ext_resource type="Texture2D" uid="uid://dlrftgjslgvi7" path="res://Images/Backrounds/SunsetBAckround/sunset320.png" id="13_nnf5k"]
+[ext_resource type="Texture2D" uid="uid://wumcc2c5botl" path="res://Images/Backrounds/SunsetBAckround/background_cliffs.png" id="14_4c2sc"]
+[ext_resource type="Texture2D" uid="uid://dkq1jiao2kg5d" path="res://Images/Backrounds/SunsetBAckround/background_cliffs_2.png" id="15_rgqrl"]
+[ext_resource type="Texture2D" uid="uid://dfrp84x45ydr0" path="res://Images/Backrounds/SunsetBAckround/forest.png" id="16_6w4tf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7q6wg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ob1wq"]
+noise = SubResource("FastNoiseLite_7q6wg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y3w53"]
+shader = ExtResource("7_3ok68")
+shader_parameter/render_noise = false
+shader_parameter/move_top = false
+shader_parameter/distortion_force = Vector2(2, 0)
+shader_parameter/time_scale = 0.05
+shader_parameter/noise_scale = 0.002
+shader_parameter/heightOffset = 0.0
+shader_parameter/global_transform = null
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ob1wq")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="WorldNessecities" type="Node2D" parent="."]
+
+[node name="CameraManager" type="Node2D" parent="WorldNessecities"]
+unique_name_in_owner = true
+script = ExtResource("1_8frgh")
+
+[node name="PlayerSpawner" type="Node2D" parent="WorldNessecities"]
+unique_name_in_owner = true
+script = ExtResource("2_ylsfi")
+
+[node name="PlayerSpawnPoint" type="Node2D" parent="WorldNessecities"]
+unique_name_in_owner = true
+position = Vector2(-20, -52)
+
+[node name="TransitionManager" type="Node2D" parent="WorldNessecities"]
+script = ExtResource("3_6rmfx")
+
+[node name="DeathTransistionCanvasLayer" type="CanvasLayer" parent="WorldNessecities/TransitionManager"]
+
+[node name="ScreenHolder" type="Node2D" parent="WorldNessecities"]
+script = ExtResource("4_oskhn")
+
+[node name="Screen" parent="WorldNessecities/ScreenHolder" instance=ExtResource("5_eqicy")]
+
+[node name="TileMap" parent="." instance=ExtResource("6_a1pgg")]
+material = SubResource("ShaderMaterial_y3w53")
+tile_set = ExtResource("7_qrhis")
+layer_0/tile_data = PackedInt32Array(327669, 524302, 0, 327670, 655377, 0, 393206, 589841, 3, 393205, 524304, 3, 327671, 720913, 0, 393207, 720910, 3, 327674, 524293, 0, 327675, 655365, 0, 393210, 524293, 3, 327673, 262151, 0, 262138, 131079, 0, 393211, 589829, 3, 393209, 262151, 0, 458746, 196615, 1, 458747, 196615, 1, 393212, 720901, 3, 327676, 720901, 0, 262139, 196615, 268435456, 262140, 196615, 268435456, 458748, 196615, 1, 262144, 8, 0, 262145, 8, 1, 327679, 1, 3, 262143, 327682, 0, 262147, 1, 3, 196611, 2, 0, 262146, 196616, 0, 196614, 65548, 0, 196615, 65548, 0, 196616, 65548, 0, 262150, 524289, 0, 327686, 524289, 3, 262151, 655361, 0, 327687, 589825, 3, 262152, 720897, 0, 327688, 720897, 3, -131075, 131088, 3, -196611, 393218, 2, -131074, 131089, 3, -131073, 131086, 3, -65537, 327683, 0, -196609, 65538, 2, -131076, 65553, 3, -196612, 393218, 0, -196608, 196622, 2, -262144, 14, 1, -327680, 15, 1, -393216, 655374, 3, -196606, 65537, 3, -262142, 327682, 0, -196605, 131088, 3, -196604, 131087, 3, -262140, 131074, 0, -196603, 131073, 3, -262139, 262146, 0, -196602, 196623, 3, -196600, 1, 2, -262136, 1, 1, -327672, 1, 0, -393208, 2, 2, -7, 327682, 0, 65530, 655374, 0, -5, 196610, 2, 65531, 655376, 0, 65532, 655377, 0, -4, 65538, 2, 131067, 589839, 3, 131066, 589838, 3, 131065, 524304, 3, 65529, 524303, 0, 65533, 655377, 0, -3, 196610, 2, 65534, 655375, 0, 65535, 655376, 0, 0, 655376, 0, -65536, 2, 0, 1, 655377, 0, 65537, 589838, 3, -65535, 131074, 0, 2, 655375, 0, -65534, 65538, 2, 3, 655377, 0, -65533, 327682, 0, 4, 655374, 0, 65540, 589838, 3, 5, 720911, 0, 65541, 720910, 3, -65531, 65538, 0, 65539, 589840, 3, 131075, 655363, 0, 65538, 589841, 3, 65536, 589839, 3, 131071, 589839, 3, 196607, 65539, 0, 131070, 589841, 3, 131069, 589841, 3, 131068, 589839, 3, -2, 393218, 0, -1, 393218, 2, -196610, 458755, 0, -262141, 327682, 2, -262138, 327682, 2, -6, 262146, 0, -65532, 65538, 2, -393227, 589840, 2, -458763, 393232, 1, -393226, 589838, 2, -327690, 589838, 2, -458762, 655376, 0, -524298, 196610, 2, -458761, 655377, 0, -524297, 262146, 0, -458760, 327694, 1, -393224, 589839, 2, -524296, 524303, 0, -589832, 196610, 2, -524295, 655375, 0, -589831, 327682, 0, -524294, 327697, 1, -589830, 524305, 1, -458758, 589840, 2, -458757, 589840, 2, -393221, 589838, 2, -524293, 589838, 2, -327685, 589841, 2, -262149, 393230, 2, -327686, 589838, 2, -393222, 589840, 2, -262150, 589841, 2, -262151, 589841, 2, -327687, 589838, 2, -262152, 589841, 2, -327688, 589838, 2, -262153, 589838, 2, -327689, 589840, 2, -262154, 589838, 2, -262155, 589838, 2, -327691, 589839, 2, -393225, 589839, 2, -393223, 589841, 2, -458759, 589841, 2, -65549, 589840, 2, -13, 589838, 2, -131085, 589838, 2, -65550, 589838, 2, -131086, 589839, 2, -14, 589841, 2, 65522, 589838, 2, 65523, 589839, 2, 65524, 589838, 2, 131060, 327694, 2, -12, 589841, 2, 65525, 393230, 2, -11, 589840, 2, -65547, 393231, 1, -10, 720913, 2, -65546, 393231, 0, -131083, 720911, 2, -65548, 589839, 2, -131084, 589841, 2, 65526, 393231, 3, 65527, 196624, 3, 131063, 655363, 0, -9, 262146, 2, -131082, 393218, 0, -65545, 196624, 3, -131081, 327683, 0, 131058, 589839, 3, 196594, 524291, 0, 131057, 589840, 3, 65521, 589838, 2, -15, 589838, 2, -65551, 589839, 2, -196621, 589840, 2, -196622, 327697, 1, 131056, 393230, 2, 65520, 589838, 2, 196592, 720913, 3, 262128, 458755, 0, 196591, 524305, 3, 131055, 524302, 1, 65519, 524305, 1, -17, 327695, 2, -65553, 589838, 2, -131089, 327695, 1, -196625, 524304, 0, -262161, 2, 2, -16, 589841, 2, -65552, 589838, 2, -131087, 589838, 2, -196623, 655377, 0, -262159, 262146, 2, -262158, 524303, 0, -18, 524304, 3, -65554, 524302, 1, -131090, 524304, 0, -196626, 196610, 2, -131088, 589841, 2, -196624, 655376, 0, 131061, 720912, 2, 131059, 589840, 3, 196596, 524304, 3, 262132, 65539, 0, 196597, 720913, 3, -262160, 65538, 2, -589829, 589839, 2, -655365, 589839, 2, -655364, 589839, 2, -589828, 589838, 2, -720900, 327694, 1, -655363, 589841, 2, -720899, 589840, 2, -720898, 589841, 2, -655362, 589838, 2, -786434, 589839, 2, -720897, 589839, 2, -786433, 589839, 2, -786432, 589840, 2, -851968, 589840, 2, -786431, 589838, 2, -851967, 589839, 2, -720895, 589841, 2, -720894, 589840, 2, -655358, 589838, 2, -786430, 589838, 2, -589822, 393230, 2, -589823, 589838, 2, -655359, 589841, 2, -524287, 393232, 2, -524288, 589839, 2, -589824, 589839, 2, -458753, 589840, 2, -524289, 589840, 2, -458754, 589839, 2, -524290, 589840, 2, -458755, 589839, 2, -524291, 589840, 2, -458756, 589841, 2, -393220, 589838, 2, -524292, 589840, 2, -589827, 589839, 2, -589826, 589840, 2, -655361, 589841, 2, -720896, 589841, 2, -655360, 589839, 2, -589825, 589839, 2, -393219, 589840, 2, -327683, 589839, 2, -327684, 589838, 2, -327682, 393231, 2, -393218, 589839, 2, -393217, 589840, 2, -458752, 589840, 2, -589821, 720911, 3, -655357, 720913, 2, -720893, 393233, 2, -458751, 720913, 2, -393215, 720910, 3, -327681, 589839, 3, -262145, 393219, 0, -262148, 589840, 3, -196613, 720910, 3, -262146, 720912, 3, -262147, 589841, 3, -524286, 720913, 3, -458750, 65539, 0, -524299, 720911, 0, -589835, 131074, 0, -524300, 393232, 1, -589836, 720912, 0, -655372, 262146, 2, -393228, 589838, 2, -327692, 589838, 2, -458764, 589839, 2, -589837, 655374, 0, -655373, 131074, 2, -589838, 524305, 0, -524302, 524302, 2, -655374, 196610, 2, -458766, 524305, 1, -393229, 327697, 2, -458765, 589841, 2, -327693, 524303, 1, -262157, 327694, 1, -393230, 524305, 3, -327694, 2, 0, -524303, 65552, 3, -589839, 2, 2, -524301, 589839, 2, 262133, 3, 0, 262134, 327682, 0, 262135, 65538, 0, -262156, 589841, 2, -196620, 589838, 2, -196619, 393232, 2, -196618, 589840, 3, -196616, 589839, 3, -196617, 589839, 3, -196615, 589841, 3, -655366, 524304, 1, -720901, 655376, 0, -786437, 327682, 2, -786436, 524304, 1, -851972, 524304, 0, -917508, 2, 0, -851971, 327697, 1, -786435, 589839, 2, -917507, 524305, 0, -851970, 589839, 2, -917506, 655376, 0, -983042, 196610, 0, -917505, 655374, 0, -983041, 131074, 0, -983040, 720913, 0, -1048576, 2, 2, -917503, 655377, 0, -983039, 131074, 2, -851969, 589841, 2, -917504, 393231, 1, -983043, 131074, 2, -720902, 524303, 0, -786438, 393218, 0, -917502, 655377, 0, -983038, 196610, 0, -917501, 655376, 0, -983037, 196610, 0, -851965, 589840, 2, -786429, 589839, 2, -917500, 720911, 0, -851964, 393230, 1, -983036, 2, 0, -786428, 589838, 2, -851966, 589841, 2, -720892, 589839, 3, -786427, 720911, 1, -720891, 720910, 3, -851963, 720910, 0, -917499, 196610, 2, -786426, 196622, 3, -851962, 131074, 2, -655355, 262147, 0, -131077, 262147, 0, -196614, 589841, 3)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+position = Vector2(0, -13)
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(320, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("8_s3e77")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+position = Vector2(0, -13)
+motion_scale = Vector2(0.01, 0.01)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("9_arn1i")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+position = Vector2(0, -13)
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("10_ih8vm")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+position = Vector2(0, -13)
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("11_cfcqr")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+position = Vector2(0, -13)
+motion_scale = Vector2(0.11, 0.11)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("12_m1y3a")
+centered = false
+
+[node name="Sunset1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_offset = Vector2(160, 90)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sunset1"]
+texture = ExtResource("13_nnf5k")
+
+[node name="Sunset2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.013, 0.013)
+motion_offset = Vector2(200, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sunset2"]
+texture = ExtResource("14_4c2sc")
+
+[node name="Sunset3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.019, 0.019)
+motion_offset = Vector2(200, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sunset3"]
+texture = ExtResource("15_rgqrl")
+offset = Vector2(0, 50)
+
+[node name="Sunset4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.06, 0.06)
+motion_offset = Vector2(200, 130)
+motion_mirroring = Vector2(480, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sunset4"]
+texture = ExtResource("16_6w4tf")
+
+[connection signal="change_screen" from="WorldNessecities/ScreenHolder" to="WorldNessecities/CameraManager" method="ChangeScreen"]
+[connection signal="set_next_screen" from="WorldNessecities/ScreenHolder" to="WorldNessecities/CameraManager" method="UpdateNextScreen"]

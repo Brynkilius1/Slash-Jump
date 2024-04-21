@@ -1,7 +1,9 @@
 extends Area2D
 
 const DEATH_PARTICLES = preload("res://Scenes/Particles/death_particles.tscn")
-@onready var death_sound = $"../Sounds/Death"
+
+@onready var player_audio_master = $"../PlayerAudioMaster"
+
 signal player_died #connected to player spawner
 
 
@@ -17,7 +19,7 @@ func DeathVisuals():
 	EmitParticles(DEATH_PARTICLES, global_position)
 
 func DeathSound():
-	death_sound.play()
+	player_audio_master.PlayRandomSound("Die")
 
 func DeathTechnical():
 	get_parent().has_control = false
@@ -28,4 +30,4 @@ func EmitParticles(particles, emit_pos):
 	var s = particles.instantiate()
 	s.global_position = emit_pos
 	
-	get_tree().root.get_child(0).add_child(s)
+	get_tree().current_scene.add_child(s)

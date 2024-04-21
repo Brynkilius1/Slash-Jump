@@ -1,15 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkijsc4bbmruy"]
 
 [ext_resource type="Script" path="res://Scripts/BaseObjectScripts/BetterTerrainSwordHitHandler.gd" id="1_a2uc8"]
-[ext_resource type="AudioStream" uid="uid://dveic13cofv33" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 1.mp3" id="1_o32ub"]
+[ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="3_t7rjv"]
 
 [node name="TileMap" type="TileMap"]
 format = 2
 script = ExtResource("1_a2uc8")
 
-[node name="SoundEffects" type="Node2D" parent="."]
-
-[node name="Hit" type="Node2D" parent="SoundEffects"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects/Hit"]
-stream = ExtResource("1_o32ub")
+[node name="AudioMaster" parent="." instance=ExtResource("3_t7rjv")]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://q3s4l7x4clqx"]
+
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="1_fxnmp"]
+
+[node name="AudioMaster" type="Node2D" groups=["AudioMaster"]]
+script = ExtResource("1_fxnmp")

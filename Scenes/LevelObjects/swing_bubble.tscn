@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds533p8ork6c6"]
+[gd_scene load_steps=12 format=3 uid="uid://ds533p8ork6c6"]
 
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/SwingBubble.gd" id="1_y3ukb"]
 [ext_resource type="Texture2D" uid="uid://bapk7sr2ggh1p" path="res://Images/Mechanics/Bubble.png" id="2_lr7hp"]
 [ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="2_q8sdg"]
 [ext_resource type="PackedScene" uid="uid://dy6588a5ev3v4" path="res://Scenes/CustomNodes/respawner.tscn" id="3_glwp3"]
 [ext_resource type="PackedScene" uid="uid://tyud1ede0c3u" path="res://Scenes/CustomNodes/function_caller_timer.tscn" id="5_2qjsq"]
-[ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="5_rup4c"]
+[ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="7_8h0vg"]
+[ext_resource type="AudioStream" uid="uid://dnra41lkt7m11" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubbleLeave1.wav" id="8_8qjmh"]
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioCollection.gd" id="8_k5owg"]
+[ext_resource type="AudioStream" uid="uid://dolii0muwexow" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubbleEnter1.wav" id="9_cqbyq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_owvu6"]
 radius = 11.0
@@ -44,12 +47,22 @@ node_to_call_function_on = NodePath("..")
 function_name = "IndirectSwordHit"
 send_empty_string_in_call = true
 
-[node name="SoundEffects" type="Node2D" parent="."]
+[node name="AudioMaster" parent="." instance=ExtResource("7_8h0vg")]
 
-[node name="Hit" type="Node2D" parent="SoundEffects"]
+[node name="AudioCollectionHit" type="Node2D" parent="AudioMaster" groups=["AudioCollection"]]
+script = ExtResource("8_k5owg")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects/Hit"]
-stream = ExtResource("5_rup4c")
-volume_db = 15.0
+[node name="Hit" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionHit"]
+stream = ExtResource("8_8qjmh")
+volume_db = 10.0
+bus = &"SoundEffects"
+
+[node name="AudioCollectionEnter" type="Node2D" parent="AudioMaster" groups=["AudioCollection"]]
+script = ExtResource("8_k5owg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionEnter"]
+stream = ExtResource("9_cqbyq")
+volume_db = 5.0
+bus = &"SoundEffects"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
