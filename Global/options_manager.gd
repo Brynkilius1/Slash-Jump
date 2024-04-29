@@ -69,5 +69,49 @@ func UpdateVolume(volume_value, bus_index):
 #endregion
 
 #Controls:
-var inverted_controls : bool = false
-var controller_deadzone : float = 0.3
+var inverted_controls : bool = false: set = SetInvertedControls
+var controller_deadzone : float = 0.3: set = SetControllerDeadzone
+var big_swing_button : InputEvent = InputMap.action_get_events("BigSwing")[0]: set = SetBigSwingButton
+var big_swing_input_type : String = "InputEventKey": set = SetBigSwingType
+var small_swing_button : InputEvent = InputMap.action_get_events("SmallSwing")[0]: set = SetSmallSwingButton
+var small_swing_input_type : String = "InputEventKey": set = SetSmallSwingType
+
+#region Video Settings set calls (it updates the actual settings when you change the variable)
+func SetInvertedControls(new_value):
+	inverted_controls = new_value
+	
+func SetControllerDeadzone(new_value):
+	controller_deadzone = new_value
+
+func SetBigSwingType(new_value):
+	print("set big swing type: ", new_value)
+	big_swing_input_type = new_value
+
+func SetBigSwingButton(new_value):
+	big_swing_button  = new_value
+	
+	RebindControl("BigSwing", new_value)
+	print("GetInputTypeFromAction: ", GetInputTypeFromAction(new_value))
+	big_swing_input_type = GetInputTypeFromAction(new_value)
+
+func SetSmallSwingType(new_value):
+	small_swing_input_type = new_value
+
+func SetSmallSwingButton(new_value):
+	small_swing_button = new_value
+	
+	RebindControl("SmallSwing", new_value)
+	small_swing_input_type = GetInputTypeFromAction(new_value)
+
+
+func RebindControl(input_name, new_key):
+	InputMap.action_erase_events(input_name)
+	InputMap.action_add_event(input_name, new_key)
+	print("just changed the input map of ", input_name, " to: ", new_key)
+
+func GetInputTypeFromAction(action):
+	action = str(action)
+	action = action.get_slice(":", 0)
+	return action
+
+#endregion

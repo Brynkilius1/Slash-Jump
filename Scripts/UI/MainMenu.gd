@@ -5,17 +5,19 @@ extends Control
 
 @onready var main_menu_buttons = %MainMenuButtons
 @onready var settings = %Settings
-@onready var rebind_controls = $Menu/Menu/RebindControls
+@onready var rebind_controls = $Menu/Menu/Settings/RebindControls
 @onready var saver_and_loader = %SaverAndLoader
 @onready var start_button = $Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton
 @onready var settings_button = $Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton
-@onready var full_screen_check_box = $Menu/Menu/Settings/VBoxContainer/VideoSettings/VBoxContainer/FullScreenCheckBox
+@onready var full_screen_check_box = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FullScreenCheckBox
 @onready var level_select = $Menu/Menu/LevelSelect
 @onready var level_1 = $Menu/Menu/LevelSelect/Level1
 @onready var level_2 = $Menu/Menu/LevelSelect/Level2
 @onready var level_zoom_animation_player = $Menu/LevelZoomAnimationPlayer
 @onready var root_node = $".."
 @onready var menu = $Menu/Menu
+@onready var settings_holder = $Menu/Menu/Settings/SettingsHolder
+
 
 
 
@@ -98,6 +100,7 @@ func _on_quit_button_pressed():
 func _on_settings_button_pressed():
 	ToggleSettingsVisible(true)
 	settings.GetExpectedFocus()
+	settings.current_settings_menu = 1
 
 
 func _on_settings_back_button_pressed():
@@ -105,6 +108,7 @@ func _on_settings_back_button_pressed():
 	settings.UpdateSettingsVisuals()
 	ToggleSettingsVisible(false)
 	settings_button.grab_focus()
+	settings.current_settings_menu = 0
 
 func _on_level_select_back_button_pressed():
 	level_1.visible = true
@@ -115,6 +119,7 @@ func _on_level_select_back_button_pressed():
 
 func ToggleSettingsVisible(toggle):
 	settings.visible = toggle
+	settings_holder.visible = toggle
 	main_menu_buttons.visible = not toggle
 
 

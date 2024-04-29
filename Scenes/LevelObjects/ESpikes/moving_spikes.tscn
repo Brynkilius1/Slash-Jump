@@ -85,6 +85,9 @@ frame = 1
 [node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("3_ybvf2")]
 hit_particles = ExtResource("4_emtuc")
 shake_camera_when_hit = true
+small_motor_rumble = 1.0
+big_motor_rumble = 0.9
+rumble_duration = 0.15
 hit_sounds = NodePath("../Sounds/Hit")
 
 [node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]

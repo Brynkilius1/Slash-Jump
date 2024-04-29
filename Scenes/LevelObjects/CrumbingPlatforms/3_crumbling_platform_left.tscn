@@ -46,6 +46,8 @@ respawning_object = NodePath("..")
 respawn_function = "DisableSelf"
 
 [node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("audio_master") instance=ExtResource("4_npxot")]
+small_motor_rumble = 0.2
+big_motor_rumble = 0.9
 audio_master = NodePath("../AudioMaster")
 
 [node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]

@@ -25,6 +25,8 @@ shape = SubResource("CircleShape2D_q22ah")
 texture = ExtResource("2_df8pm")
 
 [node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("2_i05s1")]
+small_motor_rumble = 0.7
+big_motor_rumble = 0.9
 hit_sounds = NodePath("../SoundEffects/Hit")
 
 [node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]

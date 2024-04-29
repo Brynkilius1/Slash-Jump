@@ -37,7 +37,11 @@ func save_data(path : String):
 			"music_volume": OptionsManager.music_volume,
 			"ambience_volume": OptionsManager.ambience_volume,
 			"inverted_controls": OptionsManager.inverted_controls,
-			"controller_deadzone": OptionsManager.controller_deadzone
+			"controller_deadzone": OptionsManager.controller_deadzone,
+			"big_swing_button": OptionsManager.big_swing_button,
+			"big_swing_input_type": OptionsManager.big_swing_button ,
+			"small_swing_button": OptionsManager.small_swing_button,
+			"small_swing_input_type": OptionsManager.small_swing_button
 		}
 	}
 	
@@ -86,6 +90,12 @@ func LoadInData(data):
 	#Controls
 	settings_data.inverted_controls = data.settings_data.inverted_controls
 	settings_data.controller_deadzone = data.settings_data.controller_deadzone
+	settings_data.big_swing_input_type = data.settings_data.big_swing_input_type
+	settings_data.small_swing_input_type = data.settings_data.small_swing_input_type
+	
+	LoadKeybinds(data.settings_data)
+	#settings_data.big_swing_button = data.settings_data.big_swing_button
+	#settings_data.small_swing_button = data.settings_data.small_swing_button
 
 
 func ApplyLoadedVariablesToOptionManager():
@@ -103,9 +113,52 @@ func ApplyLoadedVariablesToOptionManager():
 	#Controls
 	OptionsManager.inverted_controls = settings_data.inverted_controls
 	OptionsManager.controller_deadzone = settings_data.controller_deadzone
+	OptionsManager.big_swing_input_type = settings_data.big_swing_input_type
+	OptionsManager.big_swing_button = settings_data.big_swing_button
+	OptionsManager.small_swing_input_type = settings_data.small_swing_input_type
+	OptionsManager.small_swing_button = settings_data.small_swing_button
 
 
+func LoadKeybinds(data):
+	var loaded_big_swing = ReturnInputEventType(data.big_swing_input_type)
+	var loaded_small_swing = ReturnInputEventType(data.small_swing_input_type)
 
+	SetUntypedKeycode(loaded_big_swing, data.big_swing_button)
+	SetUntypedKeycode(loaded_small_swing, data.small_swing_button)
+	
+	settings_data.big_swing_button = loaded_big_swing
+	settings_data.small_swing_button = loaded_small_swing
+
+func ReturnInputEventType(type):
+	type = GetInputTypeFromAction(type)
+	if type == "InputEventKey":
+		return InputEventKey.new()
+	elif type == "InputEventMouseButton":
+		return InputEventMouseButton.new()
+	elif type == "InputEventJoypadButton":
+		return InputEventJoypadButton.new()
+	else:
+		print("ReturnInputEventType did not get a proper event type!: ", type)
+		return InputEventKey.new()
+
+func GetInputTypeFromAction(action):
+	action = str(action)
+	action = action.get_slice(":", 0)
+	return action
+
+func SetUntypedKeycode(loaded_swing, keycode):
+	if loaded_swing is InputEventKey:
+		loaded_swing.set_physical_keycode(int(keycode))
+	elif loaded_swing is InputEventMouseButton:
+		keycode = keycode.get_slice(":", 1)
+		keycode = keycode.get_slice(",", 0)
+		loaded_swing.set_button_index(int(keycode))
+	elif loaded_swing is InputEventJoypadButton:
+		keycode = keycode.get_slice(":", 1)
+		keycode = keycode.get_slice(",", 0)
+		loaded_swing.set_button_index(int(keycode))
+	else:
+		print("SaverAndLoader: SetUntypedKeycode recived invalid input!: ", keycode)
 func _on_save_button_pressed():
 	save_data(SAVE_DIR + SAVE_FILE_NAME)
 

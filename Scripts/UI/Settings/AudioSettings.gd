@@ -43,12 +43,19 @@ func UpdateVolumeVisuals(volume_value, volume_label, label_text):
 
 func UpdateSettingsVisuals():
 	master_volume_slider.value = OptionsManager.master_volume
+	master_volume_slider.actual_value = OptionsManager.master_volume
 	UpdateVolumeVisuals(OptionsManager.master_volume, master_volume_label, "Master")
+	
 	sound_effect_volume_slider.value = OptionsManager.sound_effect_volume
+	sound_effect_volume_slider.actual_value = OptionsManager.sound_effect_volume
 	UpdateVolumeVisuals(OptionsManager.sound_effect_volume, sound_effect_volume_label, "Sound Effect")
+	
 	music_volume_slider.value = OptionsManager.music_volume
+	music_volume_slider.actual_value = OptionsManager.music_volume
 	UpdateVolumeVisuals(OptionsManager.music_volume, music_volume_label, "Music")
+	
 	ambience_volume_slider.value = OptionsManager.ambience_volume
+	ambience_volume_slider.actual_value = OptionsManager.ambience_volume
 	UpdateVolumeVisuals(OptionsManager.ambience_volume, ambience_volume_label, "Ambient")
 
 

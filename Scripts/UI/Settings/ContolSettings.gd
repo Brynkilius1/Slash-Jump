@@ -3,6 +3,15 @@ extends Control
 @onready var invert_stick_input_check_box = $VBoxContainer/InvertStickInputCheckBox
 @onready var controller_deadzone_volume_label = $VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeLabel
 @onready var controller_deadzone_volume_slider = $VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider
+@onready var rebind_controls = $"../../../RebindControls"
+@onready var settings_holder = $"../.."
+@onready var settings = $"../../.."
+@onready var change_sword_swing_button = %ChangeSwordSwingButton
+@onready var rebind_back_button = $"../../../RebindControls/RebindBackButton"
+
+
+
+
 
 
 
@@ -20,3 +29,27 @@ func UpdateSettingsVisuals():
 	invert_stick_input_check_box.button_pressed = OptionsManager.inverted_controls
 	controller_deadzone_volume_slider.value = OptionsManager.controller_deadzone
 	controller_deadzone_volume_label.text = str("Controller Deadzone: ", OptionsManager.controller_deadzone)
+
+
+func _on_change_keybinds_button_pressed():
+	rebind_controls.GetFocus()
+	rebind_controls.visible = true
+	settings_holder.visible = false
+	settings.current_settings_menu = 2
+
+
+func _on_rebind_back_button_pressed():
+	settings.GetExpectedFocus()
+	rebind_controls.visible = false
+	settings_holder.visible = true
+	settings.current_settings_menu = 1
+
+
+func _on_rebind_controls_opened_rebind_menu():
+	rebind_back_button.visible = false
+	settings.current_settings_menu = 3
+
+
+func _on_rebind_controls_closed_rebind_menu():
+	rebind_back_button.visible = true
+	settings.current_settings_menu = 2

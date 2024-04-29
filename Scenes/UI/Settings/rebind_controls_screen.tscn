@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dno85da3ev1uv"]
+[gd_scene load_steps=3 format=3 uid="uid://dno85da3ev1uv"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Settings/RebindControlsSettings.gd" id="1_c7s31"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="2_58yip"]
 
 [node name="RebindControls" type="Control"]
 layout_mode = 3
@@ -7,8 +10,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_c7s31")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="SwingSelector" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="SwingSelector"]
 layout_mode = 0
 offset_left = 19.0
 offset_top = 21.0
@@ -16,7 +29,8 @@ offset_right = 298.0
 offset_bottom = 163.0
 color = Color(0.203922, 0.215686, 0.239216, 0.180392)
 
-[node name="ChangeSwordSwingButton" type="Button" parent="."]
+[node name="ChangeSwordSwingButton" type="Button" parent="SwingSelector"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 28.0
 offset_top = 43.0
@@ -25,7 +39,7 @@ offset_bottom = 97.0
 text = "Change Sword
 Swing"
 
-[node name="Label" type="Label" parent="ChangeSwordSwingButton"]
+[node name="SwordSwingLabel" type="Label" parent="SwingSelector/ChangeSwordSwingButton"]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 60.0
@@ -33,7 +47,7 @@ offset_right = 77.0
 offset_bottom = 83.0
 text = "A"
 
-[node name="ChangeKnifeSwingButton" type="Button" parent="."]
+[node name="ChangeKnifeSwingButton" type="Button" parent="SwingSelector"]
 layout_mode = 0
 offset_left = 170.0
 offset_top = 43.0
@@ -42,10 +56,42 @@ offset_bottom = 97.0
 text = "Change Knife
 Swing"
 
-[node name="Label" type="Label" parent="ChangeKnifeSwingButton"]
+[node name="KnifeSwingLabel" type="Label" parent="SwingSelector/ChangeKnifeSwingButton"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 60.0
 offset_right = 88.0
 offset_bottom = 83.0
 text = "B"
+
+[node name="KeyButtonConfirmer" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="KeyButtonConfirmer"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 24.0
+offset_right = 277.0
+offset_bottom = 143.0
+mouse_filter = 1
+color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[node name="Label" type="Label" parent="KeyButtonConfirmer"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 47.0
+offset_right = 257.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("2_58yip")
+text = "Press the key you want to set it to."
+
+[connection signal="pressed" from="SwingSelector/ChangeSwordSwingButton" to="." method="_on_change_sword_swing_button_pressed"]
+[connection signal="pressed" from="SwingSelector/ChangeKnifeSwingButton" to="." method="_on_change_knife_swing_button_pressed"]

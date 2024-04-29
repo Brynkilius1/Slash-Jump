@@ -1,17 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvlwvs3kbk1id"]
+[gd_scene load_steps=3 format=3 uid="uid://bvlwvs3kbk1id"]
 
 [ext_resource type="Script" path="res://Scripts/UI/PauseMenu.gd" id="1_atrbb"]
 [ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="2_he722"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_hipj1"]
-device = -1
-keycode = 4194305
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ufu1c"]
-pressed = true
-
-[sub_resource type="Shortcut" id="Shortcut_016jp"]
-events = [SubResource("InputEventKey_hipj1"), SubResource("InputEventJoypadButton_ufu1c")]
 
 [node name="Control" type="Control"]
 process_mode = 3
@@ -19,6 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="PauseCanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
@@ -32,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_atrbb")
 
 [node name="PauseMenuButtons" type="VBoxContainer" parent="PauseCanvasLayer/PauseMenu"]
@@ -68,7 +60,6 @@ offset_left = 255.0
 offset_top = 143.0
 offset_right = 300.0
 offset_bottom = 174.0
-shortcut = SubResource("Shortcut_016jp")
 text = "Back"
 
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu" method="_on_return_pressed"]

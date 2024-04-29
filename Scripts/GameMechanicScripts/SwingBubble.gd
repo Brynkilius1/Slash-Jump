@@ -39,11 +39,13 @@ func IndirectSwordHit(_angle):
 	GlobalObjects.player.TurnOffGravity(false)
 	respawner.StartRespawn()
 	stay_in_bubble_timer.stop()
+	
 
 
 func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 	#print("Sword hit bubble at: ", hit_pos, " with angle: ", sword_angle, " with x_speed: ", player_x_speed)
 	SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
+	Input.start_joy_vibration(0, 0.4, 0.05, 0.1)
 	PlayHitSound()
 
 

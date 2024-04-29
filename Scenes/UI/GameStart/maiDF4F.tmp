@@ -370,8 +370,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2240.0
-offset_bottom = 1260.0
+offset_right = 14080.0
+offset_bottom = 7920.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -444,7 +444,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton/SelectionSwords"]
 layout_mode = 0
@@ -490,7 +489,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton/SelectionSwords"]
 layout_mode = 0
@@ -535,7 +533,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton/SelectionSwords"]
 layout_mode = 0
@@ -753,9 +750,6 @@ text = "Back"
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-
-[node name="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings" index="0"]
-focus_mode = 2
 
 [node name="SettingsBackButton" type="Button" parent="MainMenu/Menu/Menu/Settings/SettingsHolder" index="1"]
 layout_mode = 0

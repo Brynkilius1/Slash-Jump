@@ -1,5 +1,5 @@
 extends Node2D
-
+@export_category("General Hit Settings")
 @export var hit_particles : PackedScene = preload("res://Scenes/Particles/dirt_particles.tscn")
 @export var higher_particle_count : int = 5
 @export var lower_particle_count : int = 2
@@ -7,7 +7,13 @@ extends Node2D
 @export var shake_camera_when_hit = false
 
 @export var direct_hit_on : bool = true
+@export_category("Rumble Settings")
+@export_range(0.0, 1.0) var small_motor_rumble = 0.5
+@export_range(0.0, 1.0) var big_motor_rumble = 0.5
+@export var rumble_duration = 0.1
 
+
+@export_category("Node Refrences")
 @export var hit_sounds : Node2D
 @export var audio_master : Node2D
 
@@ -26,6 +32,7 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 		
 		SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
 		PlayHitSound()
+		Input.start_joy_vibration(0, small_motor_rumble, big_motor_rumble, rumble_duration)
 		if shake_camera_when_hit == true:
 			ShakeCamera()
 
