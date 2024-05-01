@@ -15,10 +15,15 @@ func _unhandled_input(event):
 		if Input.is_action_just_pressed("Pause"):
 			settings.UpdateSettingsVisuals()
 			TogglePauseMenu(not visible)
-
+	
+	if visible == true:
+		if settings.current_settings_menu == 0:
+			if Input.is_action_just_pressed("ui_cancel"):
+				_on_return_pressed()
 
 func _on_return_pressed():
 	TogglePauseMenu(false)
+	GlobalObjects.player.UpdateControlSettings()
 
 
 func _on_settings_pressed():

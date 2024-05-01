@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	if sliding_dir == 0: return
 	
 	actual_value += (slider_speed * delta) * sliding_dir
-	actual_value = clampf(actual_value, 0.0, 100.0)
+	actual_value = clampf(actual_value, min_value, max_value)
 	value = actual_value
 	print("actual value: ", actual_value, " current value: ", value)
 
@@ -85,10 +85,14 @@ func handle_dpad(event: InputEvent) -> void:
 	
 	if event is InputEventJoypadButton and event.button_index == JOY_BUTTON_DPAD_LEFT and event.is_pressed():
 		value -= dpad_step
+		actual_value -= dpad_step
 		get_viewport().set_input_as_handled()
+		accept_event()
 	elif event is InputEventJoypadButton and event.button_index == JOY_BUTTON_DPAD_RIGHT and event.is_pressed():
 		value += dpad_step
+		actual_value += dpad_step
 		get_viewport().set_input_as_handled()
+		accept_event()
 
 func _on_gui_input(event):
 	if not editable: return

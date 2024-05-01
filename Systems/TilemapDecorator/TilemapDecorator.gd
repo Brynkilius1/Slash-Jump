@@ -94,7 +94,7 @@ func RedecorateTilemap(tile_source_list : Array, decoration_source):
 
 func ClearDecorationTilemap():
 	if Engine.is_editor_hint():
-		var all_tile_decorations = decoration_spawning_tilemap.get_used_cells_by_id(0, decoration_source_id)
+		var all_tile_decorations = decoration_spawning_tilemap.get_used_cells_by_id(0)#, decoration_source_id)
 		for tile in all_tile_decorations:
 			decoration_spawning_tilemap.erase_cell(0, tile) 
 

@@ -57,6 +57,7 @@ theme_override_font_sizes/font_size = 32
 text = "Controls"
 
 [node name="VideoSettings" type="Control" parent="SettingsHolder/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_7xqac")
@@ -100,6 +101,9 @@ size_flags_vertical = 1
 min_value = 30.0
 max_value = 300.0
 value = 60.0
+script = ExtResource("6_7wjb0")
+slider_speed = 120.0
+dpad_step = 1
 
 [node name="AudioSettings" type="Control" parent="SettingsHolder/VBoxContainer"]
 visible = false
@@ -203,7 +207,6 @@ slider_speed = 60.0
 dpad_step = 1
 
 [node name="ContolSettings" type="Control" parent="SettingsHolder/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("6_tffsd")
@@ -247,6 +250,15 @@ size_flags_vertical = 1
 max_value = 0.9
 step = 0.05
 value = 0.3
+script = ExtResource("6_7wjb0")
+slider_speed = 0.5
+dpad_step = 1
+
+[node name="RumbleCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+button_pressed = true
+text = "Controller Rumble"
 
 [node name="MouseSettingsLabel" type="Label" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
 layout_mode = 2
@@ -298,6 +310,8 @@ text = "Back"
 [connection signal="pressed" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ChangeKeybindsButton" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_change_keybinds_button_pressed"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/InvertStickInputCheckBox" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_invert_stick_input_check_box_toggled"]
 [connection signal="value_changed" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_controller_deadzone_volume_slider_value_changed"]
+[connection signal="toggled" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/RumbleCheckBox" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_rumble_check_box_toggled"]
+[connection signal="activate_rebind_control_dead_timer" from="RebindControls" to="." method="_on_rebind_controls_activate_rebind_control_dead_timer"]
 [connection signal="closed_rebind_menu" from="RebindControls" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_rebind_controls_closed_rebind_menu"]
 [connection signal="opened_rebind_menu" from="RebindControls" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_rebind_controls_opened_rebind_menu"]
 [connection signal="pressed" from="RebindControls/RebindBackButton" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_rebind_back_button_pressed"]

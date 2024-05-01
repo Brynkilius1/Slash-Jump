@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cquownppc5w4q"]
+
+[node name="CutsceneTrigger" type="Node2D"]

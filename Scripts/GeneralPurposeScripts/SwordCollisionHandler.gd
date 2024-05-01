@@ -32,7 +32,9 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 		
 		SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
 		PlayHitSound()
-		Input.start_joy_vibration(0, small_motor_rumble, big_motor_rumble, rumble_duration)
+		
+		if OptionsManager.rumble_enabled:
+			Input.start_joy_vibration(0, small_motor_rumble, big_motor_rumble, rumble_duration)
 		if shake_camera_when_hit == true:
 			ShakeCamera()
 

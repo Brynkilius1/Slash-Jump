@@ -3,6 +3,7 @@ extends Control
 @onready var invert_stick_input_check_box = $VBoxContainer/InvertStickInputCheckBox
 @onready var controller_deadzone_volume_label = $VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeLabel
 @onready var controller_deadzone_volume_slider = $VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider
+@onready var rumble_check_box = $VBoxContainer/RumbleCheckBox
 @onready var rebind_controls = $"../../../RebindControls"
 @onready var settings_holder = $"../.."
 @onready var settings = $"../../.."
@@ -23,13 +24,16 @@ func _on_controller_deadzone_volume_slider_value_changed(value):
 	OptionsManager.controller_deadzone = value
 	controller_deadzone_volume_label.text = str("Controller Deadzone: ", value)
 
+func _on_rumble_check_box_toggled(toggled_on):
+	OptionsManager.rumble_enabled = toggled_on
 
 
 func UpdateSettingsVisuals():
 	invert_stick_input_check_box.button_pressed = OptionsManager.inverted_controls
 	controller_deadzone_volume_slider.value = OptionsManager.controller_deadzone
+	controller_deadzone_volume_slider.actual_value = OptionsManager.controller_deadzone
 	controller_deadzone_volume_label.text = str("Controller Deadzone: ", OptionsManager.controller_deadzone)
-
+	rumble_check_box.button_pressed = OptionsManager.rumble_enabled
 
 func _on_change_keybinds_button_pressed():
 	rebind_controls.GetFocus()
@@ -53,3 +57,6 @@ func _on_rebind_controls_opened_rebind_menu():
 func _on_rebind_controls_closed_rebind_menu():
 	rebind_back_button.visible = true
 	settings.current_settings_menu = 2
+
+
+

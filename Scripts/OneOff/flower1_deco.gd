@@ -10,6 +10,11 @@ const FLOWER_1_HEAD_2_IMG = preload("res://Images/Particles/Flower1Head2.png")
 var been_hit = false
 
 
+func _ready():
+	flower_sprites.material.set("shader_paramater/position_offset", position.x);
+	print("set ", self, "'s position offset to: ", position.x)
+
+
 func _on_sword_detector_area_entered(area):
 	if been_hit == false:
 		flower_sprites.frame = 1

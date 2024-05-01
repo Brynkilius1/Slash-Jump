@@ -19,6 +19,8 @@ var current_settings_category : int = 0: set = SetCurrentSettingsCategory
 
 var current_settings_menu = settings_menus.NONE: set = SetCurrentSettingsMenu
 
+var rebind_control_dead_time_active = false
+
 enum settings_menus {
 	NONE,
 	AVC_SETTINGS,
@@ -62,7 +64,7 @@ func _unhandled_input(event):
 				GetExpectedFocus()
 
 func _process(delta):
-	if Input.is_action_just_pressed("SmallSwing") or Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("Pause"):
 		print("tried to go back through menu")
 		print("current menu number: ", current_settings_menu)
 		if current_settings_menu == settings_menus.AVC_SETTINGS:
@@ -71,7 +73,8 @@ func _process(delta):
 			elif pause_settings_back_button:
 				pause_settings_back_button.emit_signal("pressed")
 		elif current_settings_menu == settings_menus.REBIND_CONTROLS:
-			rebind_back_button.emit_signal("pressed")
+			if rebind_control_dead_time_active == false:
+				rebind_back_button.emit_signal("pressed")
 	
 
 func _on_video_category_button_pressed():
@@ -111,3 +114,10 @@ func UpdateSettingsVisuals():
 	video_settings.UpdateSettingsVisuals()
 	audio_settings.UpdateSettingsVisuals()
 	contol_settings.UpdateSettingsVisuals()
+
+
+func _on_rebind_controls_activate_rebind_control_dead_timer():
+	rebind_control_dead_time_active = true
+	await get_tree().create_timer(0.1).timeout
+	rebind_control_dead_time_active = false
+

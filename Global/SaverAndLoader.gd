@@ -38,6 +38,7 @@ func save_data(path : String):
 			"ambience_volume": OptionsManager.ambience_volume,
 			"inverted_controls": OptionsManager.inverted_controls,
 			"controller_deadzone": OptionsManager.controller_deadzone,
+			"rumble_enabled": OptionsManager.rumble_enabled,
 			"big_swing_button": OptionsManager.big_swing_button,
 			"big_swing_input_type": OptionsManager.big_swing_button ,
 			"small_swing_button": OptionsManager.small_swing_button,
@@ -90,6 +91,7 @@ func LoadInData(data):
 	#Controls
 	settings_data.inverted_controls = data.settings_data.inverted_controls
 	settings_data.controller_deadzone = data.settings_data.controller_deadzone
+	settings_data.rumble_enabled = data.settings_data.rumble_enabled
 	settings_data.big_swing_input_type = data.settings_data.big_swing_input_type
 	settings_data.small_swing_input_type = data.settings_data.small_swing_input_type
 	
@@ -113,6 +115,7 @@ func ApplyLoadedVariablesToOptionManager():
 	#Controls
 	OptionsManager.inverted_controls = settings_data.inverted_controls
 	OptionsManager.controller_deadzone = settings_data.controller_deadzone
+	OptionsManager.rumble_enabled = settings_data.rumble_enabled
 	OptionsManager.big_swing_input_type = settings_data.big_swing_input_type
 	OptionsManager.big_swing_button = settings_data.big_swing_button
 	OptionsManager.small_swing_input_type = settings_data.small_swing_input_type

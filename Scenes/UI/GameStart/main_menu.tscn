@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=42 format=3 uid="uid://jumgmkw5n5jc"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
 [ext_resource type="Texture2D" uid="uid://ccqghblkl4u1e" path="res://Images/UI/MainMenu/MainMenuBackround.png" id="2_3tavq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="11_fycji"]
 [ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="12_62rsl"]
 [ext_resource type="PackedScene" uid="uid://krc5l4r450cl" path="res://Global/saver_and_loader.tscn" id="17_ccu1f"]
+[ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="17_pbjll"]
 [ext_resource type="Texture2D" uid="uid://cmg536rv7usov" path="res://Images/VisualTest/RainLandingAnim.png" id="19_f6qtp"]
 [ext_resource type="Shader" uid="uid://pl1mn3bnleeh" path="res://Shaders/testVisuals.tres" id="20_nnmj5"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="20_no80h"]
@@ -370,8 +371,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2240.0
-offset_bottom = 1260.0
+offset_right = 6720.0
+offset_bottom = 3780.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -781,6 +782,13 @@ position = Vector2(160, 90)
 [node name="Cache" type="Node2D" parent="MainMenu"]
 script = ExtResource("21_46i84")
 
+[node name="DeathTransistionCanvasLayer" type="CanvasLayer" parent="MainMenu"]
+layer = 100
+
+[node name="BarTransition" parent="MainMenu/DeathTransistionCanvasLayer" instance=ExtResource("17_pbjll")]
+visible = false
+uncover_screen_when_loaded = false
+
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_focus_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_settings_button_focus_entered"]
@@ -794,6 +802,7 @@ script = ExtResource("21_46i84")
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/LevelSelectBackButton" to="MainMenu" method="_on_level_select_back_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu" method="_on_settings_back_button_pressed"]
 [connection signal="animation_finished" from="MainMenu/Menu/LevelZoomAnimationPlayer" to="MainMenu" method="_on_level_zoom_animation_player_animation_finished"]
+[connection signal="cover_finished" from="MainMenu/DeathTransistionCanvasLayer/BarTransition" to="MainMenu" method="_on_bar_transition_cover_finished"]
 
 [editable path="MainMenu/Menu/Menu/Settings"]
 [editable path="MainMenu/Menu/Menu/Settings/RebindControls"]

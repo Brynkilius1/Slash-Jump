@@ -71,6 +71,7 @@ func UpdateVolume(volume_value, bus_index):
 #Controls:
 var inverted_controls : bool = false: set = SetInvertedControls
 var controller_deadzone : float = 0.3: set = SetControllerDeadzone
+var rumble_enabled : bool = true
 var big_swing_button : InputEvent = InputMap.action_get_events("BigSwing")[0]: set = SetBigSwingButton
 var big_swing_input_type : String = "InputEventKey": set = SetBigSwingType
 var small_swing_button : InputEvent = InputMap.action_get_events("SmallSwing")[0]: set = SetSmallSwingButton

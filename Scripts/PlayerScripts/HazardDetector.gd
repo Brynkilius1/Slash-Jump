@@ -17,13 +17,16 @@ func _on_body_entered(body):
 func DeathVisuals():
 	get_parent().visible = false
 	EmitParticles(DEATH_PARTICLES, global_position)
+	get_parent().ShakeCamera(0.6, 0, 2)
 
 func DeathSound():
 	player_audio_master.PlayRandomSound("Die")
 
 func DeathTechnical():
 	get_parent().has_control = false
+	get_parent().TurnOffGravity(true)
 	get_parent().velocity = Vector2.ZERO
+	
 	
 
 func EmitParticles(particles, emit_pos):

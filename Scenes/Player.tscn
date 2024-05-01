@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=119 format=3 uid="uid://dkvddstk3im3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
 [ext_resource type="Texture2D" uid="uid://0fol4ct05yva" path="res://Images/Player/KnightTempAnimations.png" id="2_b130x"]
@@ -23,10 +23,13 @@
 [ext_resource type="AudioStream" uid="uid://bthd8awbp0atv" path="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 4.mp3" id="12_nlq4n"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerCamera.gd" id="12_t3nax"]
 [ext_resource type="AudioStream" uid="uid://boila1hptjpk" path="res://Sounds/SoundEffects/Player/Sword/SwordSwing/sword 5.mp3" id="13_kruof"]
+[ext_resource type="Shader" path="res://Scenes/OutlineShader.gdshader" id="14_dme5a"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/HazardDetector.gd" id="14_ke5sk"]
 [ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="15_oq7mg"]
+[ext_resource type="Texture2D" uid="uid://b0xdl7dlxnu32" path="res://Images/Player/SwordNotPixelart3.png" id="15_scvkf"]
 [ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioCollection.gd" id="16_d7dat"]
 [ext_resource type="AudioStream" uid="uid://c4jlycusdpe44" path="res://Sounds/SoundEffects/Player/PlayerDeath.mp3" id="17_wqc7i"]
+[ext_resource type="Texture2D" uid="uid://dhwx1wc8u8f0k" path="res://Images/Player/PlayerLight.png" id="30_d8gnn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqp1k"]
 size = Vector2(6, 12)
@@ -585,6 +588,91 @@ states/Swing/position = Vector2(761, 67)
 transitions = ["Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_ws4ur"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_4e2jn"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_kauga"), "Landing", "Idle", SubResource("AnimationNodeStateMachineTransition_axvno"), "Landing", "Swing", SubResource("AnimationNodeStateMachineTransition_lp4oq"), "Swing", "Airborne", SubResource("AnimationNodeStateMachineTransition_f2waa"), "Airborne", "Swing", SubResource("AnimationNodeStateMachineTransition_15den"), "Idle", "Airborne", SubResource("AnimationNodeStateMachineTransition_ta55d"), "Airborne", "Landing", SubResource("AnimationNodeStateMachineTransition_u3kyq"), "Airborne", "SidewaysLanding", SubResource("AnimationNodeStateMachineTransition_umcwh"), "SidewaysLanding", "Idle", SubResource("AnimationNodeStateMachineTransition_ksryp"), "SidewaysLanding", "Swing", SubResource("AnimationNodeStateMachineTransition_gqx56")]
 graph_offset = Vector2(-70, 41)
 
+[sub_resource type="Animation" id="Animation_i2vm8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordPivot/Rotator/SwordVisualPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.65806]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordPivot/Rotator/SwordVisualPivot/SwordNotPixelart:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordPivot/Rotator/SwordVisualPivot/SwordNotPixelart:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_oufuv"]
+resource_name = "SwingLeft"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordPivot/Rotator/SwordVisualPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.65806, 0.785398, -1.65806, -2.57785, -1.65806]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordPivot/Rotator/SwordVisualPivot/SwordNotPixelart:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.7, 1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 0.942478, 0.942478, 0.942478, -1.5708, -1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordPivot/Rotator/SwordVisualPivot/SwordNotPixelart:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojb0n"]
+_data = {
+"RESET": SubResource("Animation_i2vm8"),
+"SwingLeft": SubResource("Animation_oufuv")
+}
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ry6xv"]
 atlas = ExtResource("5_4i1gg")
 region = Rect2(0, 0, 26, 25)
@@ -628,6 +716,15 @@ animations = [{
 "name": &"Swing",
 "speed": 12.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n5rwt"]
+shader = ExtResource("14_dme5a")
+shader_parameter/color = Color(0.0588235, 0.0156863, 0.101961, 1)
+shader_parameter/width = 11.589
+shader_parameter/pattern = 2
+shader_parameter/inside = true
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klsuo"]
 size = Vector2(18, 18)
@@ -722,6 +819,12 @@ parameters/Idle/blend_position = Vector2(-0.00513405, 0.995506)
 parameters/Landing/blend_position = 0.99891
 parameters/SidewaysLanding/blend_position = 0.702452
 parameters/Swing/blend_position = Vector2(0.0450656, -0.433708)
+
+[node name="SwordAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ojb0n")
+}
+speed_scale = 10.0
 
 [node name="IndicatorPivot" type="Node2D" parent="."]
 
@@ -1011,6 +1114,7 @@ offset = Vector2(1.5, 3)
 polygon = PackedVector2Array(-3, -3, 0, -3, 0, 9, -3, 9)
 
 [node name="SwordVisual" type="Sprite2D" parent="SwordPivot/Rotator/SwordVisualPivot"]
+visible = false
 y_sort_enabled = true
 position = Vector2(6, 0)
 rotation = 1.5708
@@ -1021,6 +1125,14 @@ offset = Vector2(-9, 0)
 [node name="SwordLingeringParticles" parent="SwordPivot/Rotator/SwordVisualPivot" instance=ExtResource("7_mf5py")]
 position = Vector2(7.96956, -0.697194)
 rotation = 1.5708
+
+[node name="SwordNotPixelart" type="Sprite2D" parent="SwordPivot/Rotator/SwordVisualPivot"]
+material = SubResource("ShaderMaterial_n5rwt")
+position = Vector2(6.06432, 0.473299)
+rotation = 1.5708
+scale = Vector2(-0.085, -0.085)
+texture = ExtResource("15_scvkf")
+offset = Vector2(-109, 0)
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 process_callback = 0
@@ -1274,6 +1386,13 @@ visibility_layer = 2
 occluder = SubResource("OccluderPolygon2D_phhvs")
 sdf_collision = false
 occluder_light_mask = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("30_d8gnn")
+texture_scale = 0.7
 
 [connection signal="animation_finished" from="SwordPivot/Extended/Sword/SwingAnim" to="." method="_on_swing_anim_animation_finished"]
 [connection signal="animation_finished" from="SwordPivot/Extended/Knife/KnifeSwingAnim" to="." method="_on_knife_swing_anim_animation_finished"]

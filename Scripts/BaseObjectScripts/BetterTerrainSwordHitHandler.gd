@@ -32,17 +32,17 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 	if hit_terrain == 8 or hit_terrain == 10: #spikes
 		SwordHitPaticles(hit_particles_list[1], hit_pos, sword_angle, player_x_speed)
 		HitTilemap("SpikeHit", 13, true)
-		Input.start_joy_vibration(0, 1.0, 0.9, 0.15)
+		ControllerRumble(0, 1.0, 0.9, 0.15)
 	elif hit_terrain == 2 or hit_terrain == 3: #grass/autumn grass
 		SwordHitPaticles(hit_particles_list[0], hit_pos, sword_angle, player_x_speed)
 		HitTilemap("GrassHit", 0, false)
-		Input.start_joy_vibration(0, 0.9, 0.2, 0.1)
+		ControllerRumble(0, 0.9, 0.2, 0.1)
 	elif hit_terrain == 4: # Stone
 		SwordHitPaticles(hit_particles_list[0], hit_pos, sword_angle, player_x_speed)
 		HitTilemap("StoneHit", 0, false)
-		Input.start_joy_vibration(0, 0.2, 0.9, 0.1)
+		ControllerRumble(0, 0.2, 0.9, 0.1)
 	elif hit_terrain == 5: #WoodPlatforms
-		Input.start_joy_vibration(0, 0.8, 0.5, 0.1)
+		ControllerRumble(0, 0.8, 0.5, 0.1)
 	print("terrain hit: ", hit_terrain)
 	print("Sword rotation: ", sword_angle)
 	print("")
@@ -141,9 +141,10 @@ func EmitSwordHitParticles(particle_type, amount, player_x_speed, emit_location,
 
 func PlayHitSound(hit_sound, volume):
 	audio_master.PlayRandomSound(hit_sound)
-	
-	
-	
+
+func ControllerRumble(controller_number : int, small_rumble : float, big_rumble : float, rumble_time : float):
+	if OptionsManager.rumble_enabled == true:
+		Input.start_joy_vibration(controller_number, small_rumble, big_rumble, rumble_time)
 
 func ShakeCamera():
 	if OptionsManager.screenshake == true:

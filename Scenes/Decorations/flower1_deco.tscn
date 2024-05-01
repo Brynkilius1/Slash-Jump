@@ -1,7 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://wa77vuep7bo3"]
+[gd_scene load_steps=6 format=3 uid="uid://wa77vuep7bo3"]
 
 [ext_resource type="Texture2D" uid="uid://b1n1xgfccpoup" path="res://Images/Decorations/TutorialArea/Flower1.png" id="1_qikce"]
 [ext_resource type="Script" path="res://Scripts/OneOff/flower1_deco.gd" id="1_utlrv"]
+[ext_resource type="Shader" path="res://Scenes/PlaytestLevels/WindWavingShader.gdshader" id="2_xa22d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylvh0"]
+shader = ExtResource("2_xa22d")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = null
+shader_parameter/flip_base_pos = 1.0
+shader_parameter/offset = 0.0
+shader_parameter/position_offset_scale = 0.03
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhi7g"]
 size = Vector2(12, 12)
@@ -10,6 +25,7 @@ size = Vector2(12, 12)
 script = ExtResource("1_utlrv")
 
 [node name="FlowerSprites" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ylvh0")
 position = Vector2(-6, -15)
 texture = ExtResource("1_qikce")
 centered = false

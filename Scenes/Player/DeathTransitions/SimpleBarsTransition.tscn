@@ -169,7 +169,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(384, 12)]
+"values": [Vector2(128, 12)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -181,7 +181,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(384, 36)]
+"values": [Vector2(128, 36)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -193,7 +193,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(384, 60)]
+"values": [Vector2(128, 60)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -205,7 +205,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(384, 84)]
+"values": [Vector2(128, 84)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -217,7 +217,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(384, 108)]
+"values": [Vector2(128, 108)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -229,7 +229,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(384, 132)]
+"values": [Vector2(128, 132)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjwfg"]
@@ -254,7 +254,6 @@ script = ExtResource("1_f6u8p")
 libraries = {
 "": SubResource("AnimationLibrary_jjwfg")
 }
-autoplay = "LeaveScreen"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -269,27 +268,27 @@ scale = Vector2(1.25, 1.25)
 mouse_filter = 2
 
 [node name="BlackTransitionBar" type="Sprite2D" parent="Control"]
-position = Vector2(384, 12)
+position = Vector2(128, 12)
 texture = ExtResource("1_qeube")
 
 [node name="BlackTransitionBar2" type="Sprite2D" parent="Control"]
-position = Vector2(384, 36)
+position = Vector2(128, 36)
 texture = ExtResource("1_qeube")
 
 [node name="BlackTransitionBar3" type="Sprite2D" parent="Control"]
-position = Vector2(384, 60)
+position = Vector2(128, 60)
 texture = ExtResource("1_qeube")
 
 [node name="BlackTransitionBar4" type="Sprite2D" parent="Control"]
-position = Vector2(384, 84)
+position = Vector2(128, 84)
 texture = ExtResource("1_qeube")
 
 [node name="BlackTransitionBar5" type="Sprite2D" parent="Control"]
-position = Vector2(384, 108)
+position = Vector2(128, 108)
 texture = ExtResource("1_qeube")
 
 [node name="BlackTransitionBar6" type="Sprite2D" parent="Control"]
-position = Vector2(384, 132)
+position = Vector2(128, 132)
 texture = ExtResource("1_qeube")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

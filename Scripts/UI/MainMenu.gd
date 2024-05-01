@@ -17,6 +17,8 @@ extends Control
 @onready var root_node = $".."
 @onready var menu = $Menu/Menu
 @onready var settings_holder = $Menu/Menu/Settings/SettingsHolder
+@onready var bar_transition = $DeathTransistionCanvasLayer/BarTransition
+
 
 
 
@@ -40,11 +42,14 @@ func _ready():
 
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/PlaytestLevels/playtest_level_2_buffed.tscn")
+	bar_transition.PlayScreenCoverAnim()
+	
 	
 	#level_select.visible = true
 	#main_menu_buttons.visible = false
-	
+
+func _on_bar_transition_cover_finished():
+	get_tree().change_scene_to_file("res://Scenes/PlaytestLevels/playtest_level_2_buffed.tscn")
 
 
 func _on_start_level_1_button_pressed():
@@ -155,6 +160,9 @@ func DisableVisibilityOnAllSwordSelectors():
 	selection_swords_start.visible = false
 	selection_swords_settings.visible = false
 	selection_swords_quit.visible = false
+
+
+
 
 
 

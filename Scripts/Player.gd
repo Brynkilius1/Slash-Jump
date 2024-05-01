@@ -43,7 +43,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @onready var sword_swing_anim = $SwordPivot/Extended/Sword/SwingAnim
 
 #SwordVisual
-@onready var sword_visual = $SwordPivot/Rotator/SwordVisualPivot/SwordVisual
+@onready var sword_visual = $SwordPivot/Rotator/SwordVisualPivot/SwordNotPixelart
+
 @onready var sword_visual_pivot = $SwordPivot/Rotator/SwordVisualPivot
 
 
@@ -171,8 +172,7 @@ func _ready():
 	knife_swing_linger_timer.connect("timeout", KnifeSwingLingerTimeout)
 	
 	#Settings:
-	controller_dead_zone = OptionsManager.controller_deadzone
-	inverted_controls = OptionsManager.inverted_controls
+	UpdateControlSettings()
 	
 
 
@@ -322,8 +322,8 @@ func SwingAnimation():
 	
 	swing_dir = sign(sword_visual_pivot.rotation_degrees)
 	
-	sword_visual.rotation_degrees = 0 #-swing_dir * 25
-	sword_visual_pivot.rotation_degrees = 0 #-swing_dir * 45
+	sword_visual.rotation_degrees = 16 #-swing_dir * 25
+	sword_visual_pivot.rotation_degrees = 45 #-swing_dir * 45
 	
 	
 	var swing_visual_pivot_tween = create_tween()
@@ -907,7 +907,9 @@ func TurnOffGravity(turn_off : bool):
 func IncreaseNextJumpPower(strength):
 	extra_swing_power = strength
 
-
+func UpdateControlSettings():
+	controller_dead_zone = OptionsManager.controller_deadzone
+	inverted_controls = OptionsManager.inverted_controls
 
 
 

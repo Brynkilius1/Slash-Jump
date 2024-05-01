@@ -30,9 +30,10 @@ func _on_screenshake_check_box_toggled(toggled_on):
 
 func _on_fps_slider_value_changed(value): #Updates the FPS number visualy
 	fps_label.text = str("FPS: ", value)
-	saved_fps = value
-func _on_fps_slider_drag_ended(value_changed): #Actualy changes the MAx fps
-	OptionsManager.fps = saved_fps
+	OptionsManager.fps = value
+	#saved_fps = value
+#func _on_fps_slider_drag_ended(value_changed): #Actualy changes the MAx fps
+	
 
 
 func UpdateSettingsVisuals():
@@ -40,4 +41,5 @@ func UpdateSettingsVisuals():
 	v_sync_check_box.button_pressed = OptionsManager.v_sync
 	screenshake_check_box.button_pressed = OptionsManager.screenshake
 	fps_slider.value = OptionsManager.fps
+	fps_slider.actual_value = OptionsManager.fps
 	fps_label.text = str("FPS: ", OptionsManager.fps)

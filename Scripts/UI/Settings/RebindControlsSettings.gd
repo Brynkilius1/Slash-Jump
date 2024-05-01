@@ -15,6 +15,7 @@ var input_to_be_changed
 
 signal opened_rebind_menu
 signal closed_rebind_menu
+signal activate_rebind_control_dead_timer
 
 #func _process(delta):
 	#print(InputMap.action_get_events("BigSwing"))
@@ -34,6 +35,8 @@ func _unhandled_input(event):
 			else:
 				UpdateControlVisual(knife_swing_label, event)
 				OptionsManager.small_swing_button = event
+			
+			activate_rebind_control_dead_timer.emit()
 			closed_rebind_menu.emit()
 			change_sword_swing_button.grab_focus()
 
