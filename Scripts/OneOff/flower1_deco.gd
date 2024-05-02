@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var flower_sprites = $FlowerSprites
+@onready var no_head_flower_sprites = $NoHeadFlowerSprites
+
 
 
 const FLOWER_POLLEN = preload("res://Scenes/Particles/FlowerPollen.tscn")
@@ -10,14 +12,11 @@ const FLOWER_1_HEAD_2_IMG = preload("res://Images/Particles/Flower1Head2.png")
 var been_hit = false
 
 
-func _ready():
-	flower_sprites.material.set("shader_paramater/position_offset", position.x);
-	print("set ", self, "'s position offset to: ", position.x)
 
 
 func _on_sword_detector_area_entered(area):
 	if been_hit == false:
-		flower_sprites.frame = 1
+		
 		#emit pollen particles
 		var f = FLOWER_POLLEN.instantiate()
 		f.global_position = global_position
@@ -30,17 +29,14 @@ func _on_sword_detector_area_entered(area):
 		h.global_position = global_position
 		h.global_position.y -= 8
 		h.z_index = 2
+		h.flower_type = get_parent().flower_type
 		get_tree().current_scene.add_child(h)
 		
-		var h2 = FLOWER_1_HEADS.instantiate()
-		h2.global_position = global_position
-		h2.global_position.y -= 8
-		h2.texture = FLOWER_1_HEAD_2_IMG
-		h2.z_index = 2
-		get_tree().current_scene.add_child(h2)
+
 		
 		been_hit = true
-		
+		flower_sprites.visible = false
+		no_head_flower_sprites.visible = true
 	
 
 

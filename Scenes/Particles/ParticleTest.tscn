@@ -22,7 +22,7 @@ turbulence_influence_max = 0.02
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_a0osm")
 lifetime = 2.0
-fixed_fps = 60
+fixed_fps = 120
 trail_enabled = true
 trail_lifetime = 0.04
 

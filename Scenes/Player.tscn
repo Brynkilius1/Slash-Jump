@@ -1388,7 +1388,7 @@ sdf_collision = false
 occluder_light_mask = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.2
+energy = 0.17
 shadow_enabled = true
 shadow_filter = 1
 texture = ExtResource("30_d8gnn")

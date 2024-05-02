@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://ds533p8ork6c6"]
 
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/SwingBubble.gd" id="1_y3ukb"]
-[ext_resource type="Texture2D" uid="uid://bapk7sr2ggh1p" path="res://Images/Mechanics/Bubble.png" id="2_lr7hp"]
 [ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="2_q8sdg"]
+[ext_resource type="Texture2D" uid="uid://bapk7sr2ggh1p" path="res://Images/Mechanics/bubble.png" id="3_01cnm"]
 [ext_resource type="PackedScene" uid="uid://dy6588a5ev3v4" path="res://Scenes/CustomNodes/respawner.tscn" id="3_glwp3"]
 [ext_resource type="PackedScene" uid="uid://tyud1ede0c3u" path="res://Scenes/CustomNodes/function_caller_timer.tscn" id="5_2qjsq"]
 [ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="7_8h0vg"]
@@ -26,7 +26,7 @@ hit_particles = ExtResource("2_q8sdg")
 shape = SubResource("CircleShape2D_owvu6")
 
 [node name="Bubble" type="Sprite2D" parent="."]
-texture = ExtResource("2_lr7hp")
+texture = ExtResource("3_01cnm")
 
 [node name="HitDetector" type="StaticBody2D" parent="."]
 collision_layer = 32

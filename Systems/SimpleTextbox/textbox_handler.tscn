@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwb3tm7yit8ui"]
+
+[ext_resource type="Script" path="res://Scripts/OneOff/TextboxHandler.gd" id="1_p2mex"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="2_kl7tj"]
+
+[node name="TextboxHandler" type="Node2D"]
+script = ExtResource("1_p2mex")
+text_array = PackedStringArray("Johny boy is a gamer at heart Gemer jaknapifheufyodsfnogrehegfoqwubdofbf", "HE is very sexy and hot and epic weiofyvsxbpiaviyfgbrpfadigfvbesroigbpa", "I love him woeifbvspdiufhwoifbwepiyfgdspifbpiefbwuo rwigber", "God be with you oyge fuoyuewgfoyewgfo iwgfowygf ouydgow", "iywgfp idyg fpwihefpowfh doifgwe fg oiygewpuhwd", "wdpufhdwi fgwufhwpd gpfh ewfhdwfpwhf")
+
+[node name="TextboxLayer" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+
+[node name="TextboxBackround" type="ColorRect" parent="TextboxLayer"]
+offset_left = 4.0
+offset_top = 118.0
+offset_right = 316.0
+offset_bottom = 176.0
+color = Color(0.340563, 0.367925, 0.384693, 1)
+
+[node name="TextboxText" type="Label" parent="TextboxLayer"]
+offset_left = 8.0
+offset_top = 123.0
+offset_right = 312.0
+offset_bottom = 176.0
+theme_override_fonts/font = ExtResource("2_kl7tj")
+text = "Hello gamers my name is john and this is my dog earnard, he likes to eat balls, not like in sexual way just like noraml tennis balls"
+autowrap_mode = 2
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="TextProgressTimer" type="Timer" parent="TextboxLayer"]
+wait_time = 0.018
+
+[connection signal="timeout" from="TextboxLayer/TextProgressTimer" to="." method="_on_text_progress_timer_timeout"]

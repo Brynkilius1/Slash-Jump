@@ -18,9 +18,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.803922, 0)
 gradient = SubResource("Gradient_rja74")
 
 [sub_resource type="Curve" id="Curve_n023i"]
-max_value = 50.0
-_data = [Vector2(0, 50), 0.0, 0.0, 0, 0, Vector2(0.0571429, 50), -161.538, -161.538, 0, 0, Vector2(0.154286, 8.24176), 0.0, 0.0, 0, 0]
-point_count = 3
+max_value = 70.0
+_data = [Vector2(0, 70), 0.0, 0.0, 0, 0, Vector2(0.0457143, 70), -161.538, -161.538, 0, 0, Vector2(0.108571, 24.1758), 0.0, 0.0, 0, 0, Vector2(0.188571, 6.15385), -4.22143, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_3db1t"]
 curve = SubResource("Curve_n023i")
@@ -30,8 +30,8 @@ particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 3.0
 spread = 180.0
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
 velocity_limit_curve = SubResource("CurveTexture_3db1t")
 gravity = Vector3(0, 0, 0)
 color = Color(1, 1, 0.803922, 0.490196)
@@ -47,10 +47,10 @@ emitting = false
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_k40pt")
 texture = ExtResource("1_iowew")
-lifetime = 2.0
+lifetime = 1.7
 one_shot = true
 explosiveness = 0.95
-fixed_fps = 60
+fixed_fps = 120
 script = ExtResource("1_6sly3")
 dissapear_time = 2.0
 

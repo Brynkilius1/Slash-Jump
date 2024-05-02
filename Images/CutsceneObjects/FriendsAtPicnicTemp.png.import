@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bapk7sr2ggh1p"
-path="res://.godot/imported/bubble.png-897c106c1bc37ca737518a84483fafc7.ctex"
+uid="uid://221soy4upqjm"
+path="res://.godot/imported/FriendsAtPicnicTemp.png-e58261892e5322d19bb7c7fcb228d91e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Mechanics/bubble.png"
-dest_files=["res://.godot/imported/bubble.png-897c106c1bc37ca737518a84483fafc7.ctex"]
+source_file="res://Images/CutsceneObjects/FriendsAtPicnicTemp.png"
+dest_files=["res://.godot/imported/FriendsAtPicnicTemp.png-e58261892e5322d19bb7c7fcb228d91e.ctex"]
 
 [params]
 

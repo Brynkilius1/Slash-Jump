@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bapk7sr2ggh1p"
-path="res://.godot/imported/bubble.png-897c106c1bc37ca737518a84483fafc7.ctex"
+uid="uid://c52rhxysua54f"
+path="res://.godot/imported/ROYflowers.png-45c513f3c108b0ee45c97704cef0108e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Mechanics/bubble.png"
-dest_files=["res://.godot/imported/bubble.png-897c106c1bc37ca737518a84483fafc7.ctex"]
+source_file="res://Images/Decorations/ForegroundLevel1/ROYflowers.png"
+dest_files=["res://.godot/imported/ROYflowers.png-45c513f3c108b0ee45c97704cef0108e.ctex"]
 
 [params]
 
