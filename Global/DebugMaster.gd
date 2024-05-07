@@ -5,33 +5,46 @@ extends Node2D
 
 @onready var swing_raycast_pos_hit_indicator = $Indicators/SwingRaycastPosHitIndicator
 @onready var swing_raycast_object_hit_indicator = $Indicators/SwingRaycastObjectHitIndicator
+@onready var expected_line_indicator = $Indicators/ExpectedLineIndicator
+@onready var new_control_scheme_toggle = $UI/Control/VBoxContainer/NewControlScheme
 
 
 
 var print_object_sword_hit = false
 
 func _ready():
-	pass
 	ui.visible = false
-
+	await get_tree().create_timer(0.1).timeout
+	new_control_scheme_toggle.button_pressed = GlobalObjects.player.new_control_feel
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("ToggleDebug"):
+		
 		ui.visible = not ui.visible
 		first_option.grab_focus()
 
 
 #Info Updates
-func UpdateSwingRaycastIndicators(hit_pos, hit_object):
+func UpdateSwingRaycastIndicators(hit_pos, hit_object, player_sword_rotation):
 	swing_raycast_pos_hit_indicator.global_position = hit_pos
 	swing_raycast_object_hit_indicator.global_position = hit_object.global_position
+	
+	
+	UpdateExpectedLine(player_sword_rotation)
+	
 	
 	if print_object_sword_hit == true:
 		print(hit_object)
 
-
+func UpdateExpectedLine(player_sword_rotation):
+	var line_endpoint_pos = Vector2(0, 200).rotated(player_sword_rotation)
+	line_endpoint_pos += GlobalObjects.player.global_position
+	
+	expected_line_indicator.clear_points()
+	expected_line_indicator.add_point(GlobalObjects.player.global_position)
+	expected_line_indicator.add_point(line_endpoint_pos)
 
 
 #Options
@@ -54,3 +67,15 @@ func _on_fullscreen_toggled(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func _on_new_control_scheme_toggled(toggled_on):
+	GlobalObjects.player.new_control_feel = toggled_on
+
+
+func _on_show_expected_line_toggled(toggled_on):
+	expected_line_indicator.visible = toggled_on
+
+
+func _on_show_player_travel_line_toggled(toggled_on):
+	pass # Replace with function body.

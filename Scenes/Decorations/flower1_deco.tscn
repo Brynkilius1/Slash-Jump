@@ -39,7 +39,7 @@ size = Vector2(12, 12)
 
 [node name="FlowerDeco" type="Node2D"]
 script = ExtResource("1_1tbj5")
-flower_type = 3
+flower_type = 8
 
 [node name="FlowerCode" type="Node2D" parent="."]
 script = ExtResource("1_utlrv")
@@ -50,7 +50,7 @@ position = Vector2(-3, -12)
 texture = ExtResource("4_gi1rc")
 centered = false
 hframes = 12
-frame = 3
+frame = 8
 
 [node name="NoHeadFlowerSprites" type="Sprite2D" parent="FlowerCode"]
 visible = false
@@ -59,7 +59,7 @@ position = Vector2(-3, -12)
 texture = ExtResource("5_xov2o")
 centered = false
 hframes = 12
-frame = 3
+frame = 8
 
 [node name="PlayerDetector" type="Area2D" parent="FlowerCode"]
 z_index = 3

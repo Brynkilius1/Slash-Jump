@@ -6,7 +6,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 #slökkti á sfx í tilesets, breytti settings gravity í 325 frá 410, breytti hopp power, breytti walljump bias frá 20 og 25, tók í burtu player anims og sprites
 
 #export variables
-@export var swing_power = Vector2(0, 174) #(0, 160) #(0, 140)
+@export var swing_power = Vector2(0, 150) #(0, 174) #(0, 160) #(0, 140)
 @export var small_swing_power = Vector2(0, 100)
 @export var extra_grounded_power := 16  #20
 @export var friction := 0.3
@@ -33,6 +33,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @export var sword_miss_time = 0.1
 @export var sword_miss_recover_time = 0.1
 
+@export_category("Tests")
+@export var new_control_feel = true: set = SetNewControlFeel
 
 #node references
 #Sword
@@ -135,6 +137,7 @@ signal player_died
 
 #code variables
 var has_control = true
+var can_rotate_indicator = true
 
 var can_rotate_sword = true
 var graity_enabled = true
@@ -164,6 +167,13 @@ var zero_g_counter : int = 0: set = SetZeroGCounter
 
 
 
+func SetNewControlFeel(new_var):
+	new_control_feel = new_var
+	if new_control_feel == true:
+		swing_power = Vector2(0, 150)
+	else:
+		swing_power = Vector2(0, 174)
+
 
 
 func _ready():
@@ -177,24 +187,26 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event is InputEventJoypadMotion:
-		if playing_with_controller == false:
-			playing_with_controller = true
-		indicator_pivot.rotation = GetInputAngle()
-		if can_rotate_sword == true:
-			sword_pivot.rotation = GetInputAngle()
+	if can_rotate_indicator == true:
+		if event is InputEventJoypadMotion:
+		
+			if playing_with_controller == false:
+				playing_with_controller = true
+			indicator_pivot.rotation = GetInputAngle()
+			if can_rotate_sword == true:
+				sword_pivot.rotation = GetInputAngle()
 			
 			#if GetControllerAngle() == 0:
 				#pass
 				#add code that puts away your sword afer a seconds or two
 	
-	elif event is InputEventMouseMotion:
-		if playing_with_controller == true:
-			playing_with_controller = false
-		
-		indicator_pivot.rotation = GetInputAngle()
-		if can_rotate_sword == true:
-			sword_pivot.rotation = GetInputAngle()
+		elif event is InputEventMouseMotion:
+			if playing_with_controller == true:
+				playing_with_controller = false
+			
+			indicator_pivot.rotation = GetInputAngle()
+			if can_rotate_sword == true:
+				sword_pivot.rotation = GetInputAngle()
 
 
 
@@ -468,6 +480,10 @@ func SwordHitTechnical():
 	#sword_colision_shape.call_deferred("set_disabled", true)
 	checking_sword_hitbox = false
 	sword_has_hit_this_swing = true
+	if new_control_feel == true:
+		TurnOffGravity(true)
+		await get_tree().create_timer(0.08).timeout
+		TurnOffGravity(false)
 func HitObjects():
 	var hit_objects = sword_collision.get_overlapping_bodies()
 	for i in hit_objects:
@@ -484,8 +500,9 @@ func SwordHitVelocity(power, angle, is_wall_jumping):
 	extra_swing_power = 0
 	bounce_power.y += int(is_on_floor()) * extra_grounded_power #add slighty mode power if player is grounded
 	bounce_power = bounce_power.rotated(angle)
-	if is_wall_jumping == true:
-		bounce_power = AddWallJumpBias(bounce_power, angle)
+	if new_control_feel == false:
+		if is_wall_jumping == true:
+			bounce_power = AddWallJumpBias(bounce_power, angle)
 	
 	saved_x_speed = bounce_power.x
 	velocity = bounce_power
@@ -550,7 +567,7 @@ func GetClosestGround(raycast_group):
 	DirectSwordHitOnObject(object_hit, emit_pos)
 	
 	if object_hit != null: 
-		DebugMaster.UpdateSwingRaycastIndicators(emit_pos, object_hit) #update debug stuff
+		DebugMaster.UpdateSwingRaycastIndicators(emit_pos, object_hit, sword_pivot.rotation) #update debug stuff
 	
 	return emit_pos
 
