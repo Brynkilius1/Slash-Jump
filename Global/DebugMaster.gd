@@ -12,10 +12,12 @@ extends Node2D
 
 var print_object_sword_hit = false
 
+var anti_grav_controls = true
+
 func _ready():
 	ui.visible = false
 	await get_tree().create_timer(0.1).timeout
-	new_control_scheme_toggle.button_pressed = GlobalObjects.player.new_control_feel
+	anti_grav_controls = GlobalObjects.player.new_control_feel
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,6 +73,7 @@ func _on_fullscreen_toggled(toggled_on):
 
 func _on_new_control_scheme_toggled(toggled_on):
 	GlobalObjects.player.new_control_feel = toggled_on
+	anti_grav_controls = toggled_on
 
 
 func _on_show_expected_line_toggled(toggled_on):

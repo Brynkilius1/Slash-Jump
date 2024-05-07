@@ -6,7 +6,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 #slökkti á sfx í tilesets, breytti settings gravity í 325 frá 410, breytti hopp power, breytti walljump bias frá 20 og 25, tók í burtu player anims og sprites
 
 #export variables
-@export var swing_power = Vector2(0, 150) #(0, 174) #(0, 160) #(0, 140)
+@export var swing_power = Vector2(0, 165) #(0, 174) #(0, 160) #(0, 140)
+@export var swing_antigrav_duration : float = 0.05
 @export var small_swing_power = Vector2(0, 100)
 @export var extra_grounded_power := 16  #20
 @export var friction := 0.3
@@ -170,9 +171,11 @@ var zero_g_counter : int = 0: set = SetZeroGCounter
 func SetNewControlFeel(new_var):
 	new_control_feel = new_var
 	if new_control_feel == true:
-		swing_power = Vector2(0, 150)
+		swing_power = Vector2(0, 165)
+		gravity = 440
 	else:
 		swing_power = Vector2(0, 174)
+		gravity = 410
 
 
 
@@ -183,6 +186,8 @@ func _ready():
 	
 	#Settings:
 	UpdateControlSettings()
+	
+	new_control_feel = DebugMaster.anti_grav_controls
 	
 
 
@@ -482,7 +487,7 @@ func SwordHitTechnical():
 	sword_has_hit_this_swing = true
 	if new_control_feel == true:
 		TurnOffGravity(true)
-		await get_tree().create_timer(0.08).timeout
+		await get_tree().create_timer(swing_antigrav_duration).timeout
 		TurnOffGravity(false)
 func HitObjects():
 	var hit_objects = sword_collision.get_overlapping_bodies()
