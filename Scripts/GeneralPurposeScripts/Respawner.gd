@@ -9,8 +9,9 @@ var respawn_timer = Timer.new()
 
 #Externaly callable functions
 func StartRespawn():
-	CallDisableFunction(true)
-	respawn_timer.start(respawn_time)
+	if respawn_timer.time_left == 0:
+		CallDisableFunction(true)
+		respawn_timer.start(respawn_time)
 
 
 

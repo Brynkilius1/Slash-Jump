@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjrnj3531nup5"]
+
+[ext_resource type="Texture2D" uid="uid://dmuruv55wkfud" path="res://Images/Particles/CrumblingPlatformLeaves.png" id="1_8xrym"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="2_16jty"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="3_evoqq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rkew1"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 3
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_iwfqv"]
+offsets = PackedFloat32Array(0, 0.605442, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0k0h1"]
+gradient = SubResource("Gradient_iwfqv")
+
+[sub_resource type="Curve" id="Curve_nf7ep"]
+_data = [Vector2(0, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.497326, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7r241"]
+curve = SubResource("Curve_nf7ep")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tpkpy"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 2, 1)
+direction = Vector3(0, -1, 0)
+spread = 70.0
+initial_velocity_min = 60.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 100, 0)
+damping_min = 55.0
+damping_max = 60.0
+color_ramp = SubResource("GradientTexture1D_0k0h1")
+anim_offset_max = 1.0
+turbulence_enabled = true
+turbulence_influence_min = 0.02
+turbulence_influence_max = 0.04
+turbulence_influence_over_life = SubResource("CurveTexture_7r241")
+
+[node name="CrumblingPlatformLeaves" type="GPUParticles2D"]
+z_index = 1
+material = SubResource("CanvasItemMaterial_rkew1")
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_tpkpy")
+texture = ExtResource("1_8xrym")
+lifetime = 2.0
+explosiveness = 0.98
+fixed_fps = 120
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
+script = ExtResource("2_16jty")
+autostart_target = NodePath("..")
+
+[node name="Node2D2" type="Node2D" parent="." node_paths=PackedStringArray("dissapear_target")]
+script = ExtResource("3_evoqq")
+dissapear_time = 2.0
+dissapear_target = NodePath("..")

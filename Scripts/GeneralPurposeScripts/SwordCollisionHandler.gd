@@ -14,7 +14,6 @@ extends Node2D
 
 
 @export_category("Node Refrences")
-@export var hit_sounds : Node2D
 @export var audio_master : Node2D
 
 
@@ -30,7 +29,8 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 	if direct_hit_on == true:
 		#BetterTerrain.get_cell(self, 0, hit_pos)
 		
-		SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
+		if hit_particles != null:
+			SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
 		PlayHitSound()
 		
 		if OptionsManager.rumble_enabled:

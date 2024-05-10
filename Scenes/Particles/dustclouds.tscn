@@ -39,12 +39,11 @@ material = SubResource("CanvasItemMaterial_dpcw6")
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_rv3ex")
 texture = ExtResource("1_b1loj")
-lifetime = 3.0
+lifetime = 1.5
 one_shot = true
 explosiveness = 0.98
 visibility_rect = Rect2(-50, -15, 100, 30)
 script = ExtResource("2_3sxer")
-dissapear_time = 3.0
 
 [node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
 script = ExtResource("3_iepmo")

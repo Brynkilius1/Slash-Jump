@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://5rjpih6w5veg"]
+
+[ext_resource type="Script" path="res://Scripts/OneOff/Bubble_particles.gd" id="1_2nik6"]
+[ext_resource type="Texture2D" uid="uid://dg0e6r5p4d0tm" path="res://Images/Particles/MechanicPArticles/BubbleParticles.png" id="1_yytob"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_8pi4i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_back8"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_3mjn4"]
+offsets = PackedFloat32Array(0, 0.591837, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_76ryw"]
+gradient = SubResource("Gradient_3mjn4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ldq3"]
+particle_flag_disable_z = true
+direction = Vector3(0.909297, 0.416147, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_76ryw")
+anim_offset_max = 1.0
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_efxin"]
+gradient = SubResource("Gradient_3mjn4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lpnkk"]
+particle_flag_disable_z = true
+direction = Vector3(0.909297, 0.416147, 0)
+spread = 90.0
+initial_velocity_min = 30.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_efxin")
+
+[node name="BubblePopParticles" type="Node2D"]
+z_index = 1
+script = ExtResource("1_2nik6")
+
+[node name="BigDroplets" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_back8")
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_8ldq3")
+texture = ExtResource("1_yytob")
+one_shot = true
+preprocess = 0.2
+explosiveness = 0.95
+
+[node name="Mist" type="GPUParticles2D" parent="."]
+modulate = Color(0.780392, 0.913725, 1, 1)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_lpnkk")
+one_shot = true
+preprocess = 0.2
+explosiveness = 0.95
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("dissapear_target")]
+script = ExtResource("2_8pi4i")
+dissapear_time = 1.0
+dissapear_target = NodePath("..")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds533p8ork6c6"]
+[gd_scene load_steps=20 format=3 uid="uid://ds533p8ork6c6"]
 
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/SwingBubble.gd" id="1_y3ukb"]
-[ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="2_q8sdg"]
-[ext_resource type="Texture2D" uid="uid://bapk7sr2ggh1p" path="res://Images/Mechanics/bubble.png" id="3_01cnm"]
+[ext_resource type="PackedScene" uid="uid://5rjpih6w5veg" path="res://Scenes/Particles/Bubble_pop.tscn" id="2_dvkkh"]
 [ext_resource type="PackedScene" uid="uid://dy6588a5ev3v4" path="res://Scenes/CustomNodes/respawner.tscn" id="3_glwp3"]
+[ext_resource type="Texture2D" uid="uid://bnf8qv7hpxy33" path="res://Images/Mechanics/Bubble/bubbleExplodeAnimation.png" id="3_ysggm"]
 [ext_resource type="PackedScene" uid="uid://tyud1ede0c3u" path="res://Scenes/CustomNodes/function_caller_timer.tscn" id="5_2qjsq"]
 [ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="7_8h0vg"]
 [ext_resource type="AudioStream" uid="uid://dnra41lkt7m11" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubbleLeave1.wav" id="8_8qjmh"]
@@ -13,6 +13,73 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_owvu6"]
 radius = 11.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy1qo"]
+atlas = ExtResource("3_ysggm")
+region = Rect2(54, 0, 27, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04v81"]
+atlas = ExtResource("3_ysggm")
+region = Rect2(27, 0, 27, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5vbx"]
+atlas = ExtResource("3_ysggm")
+region = Rect2(0, 0, 27, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg3xd"]
+atlas = ExtResource("3_ysggm")
+region = Rect2(0, 0, 27, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jqnw"]
+atlas = ExtResource("3_ysggm")
+region = Rect2(27, 0, 27, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hc86"]
+atlas = ExtResource("3_ysggm")
+region = Rect2(54, 0, 27, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1x5s"]
+atlas = ExtResource("3_ysggm")
+region = Rect2(0, 0, 27, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwnc8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy1qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04v81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5vbx")
+}],
+"loop": false,
+"name": &"Appear",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg3xd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jqnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hc86")
+}],
+"loop": false,
+"name": &"Pop",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1x5s")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_touop"]
 radius = 13.0
 
@@ -20,13 +87,17 @@ radius = 13.0
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_y3ukb")
-hit_particles = ExtResource("2_q8sdg")
+hit_particles = ExtResource("2_dvkkh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_owvu6")
 
-[node name="Bubble" type="Sprite2D" parent="."]
-texture = ExtResource("3_01cnm")
+[node name="Bubble" type="AnimatedSprite2D" parent="."]
+position = Vector2(-14, -14)
+sprite_frames = SubResource("SpriteFrames_wwnc8")
+animation = &"Pop"
+autoplay = "default"
+centered = false
 
 [node name="HitDetector" type="StaticBody2D" parent="."]
 collision_layer = 32
@@ -44,8 +115,7 @@ respawn_function = "DisableSelf"
 one_shot = true
 autostart = false
 node_to_call_function_on = NodePath("..")
-function_name = "IndirectSwordHit"
-send_empty_string_in_call = true
+function_name = "BubbleTimeout"
 
 [node name="AudioMaster" parent="." instance=ExtResource("7_8h0vg")]
 

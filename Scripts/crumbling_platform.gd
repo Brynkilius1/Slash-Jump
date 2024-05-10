@@ -17,9 +17,11 @@ var platform_respawn_time : float = 3.0
 @onready var player_leaving_detector = $PlayerLeavingDetector
 @onready var player_leaving_detector_shape = $PlayerLeavingDetector/PlayerLeavingDetectorShape
 @onready var audio_master = $AudioMaster
+@onready var particle_spawner = $ParticleSpawner
 
 
 @onready var sprite_2d = $Sprite2D
+@onready var platform_animated_sprite = $PlatformAnimatedSprite
 @onready var shaker = $Shaker
 @onready var respawner = $Respawner
 @onready var disapear_timer = $DisapearTimer
@@ -50,15 +52,30 @@ func HitWithSword(_angle):
 
 
 func DisableSelf(disabled_self : bool):
-	visible = not disabled_self
+	print("called DisableSelf", self)
+	#animations
+	if disabled_self == false:
+		platform_animated_sprite.play("appear")
+		platform_animated_sprite.visible = not disabled_self
+		await get_tree().create_timer(0.3).timeout
+		TogglePlatformEnabled(disabled_self)
+		
+	else:
+		particle_spawner.SpawnParticles()
+		platform_animated_sprite.play("disapear")
+		await get_tree().create_timer(0.1).timeout
+		TogglePlatformEnabled(disabled_self)
+		await get_tree().create_timer(0.25).timeout
+		platform_animated_sprite.visible = not disabled_self
+	
+	
+func TogglePlatformEnabled(disabled_self):
 	collision_shape_2d.call_deferred("set_disabled", disabled_self)
 	sword_collision_handler_shape.call_deferred("set_disabled", disabled_self)
 	player_detector_shape.call_deferred("set_disabled", disabled_self)
 	player_leaving_detector_shape.call_deferred("set_disabled", disabled_self)
 	if disabled_self == false:
 		triggerable = true
-	
-
 
 func _on_player_detector_body_entered(body):
 	if triggerable == true:
@@ -69,11 +86,18 @@ func _on_player_detector_body_entered(body):
 
 func _on_player_leaving_detector_body_exited(body):
 	if triggerable == false:
+		platform_animated_sprite.play("disapear")
 		respawner.StartRespawn()
+		shaker.stop()
 
 
 func _on_disapear_timer_timeout():
 	respawner.StartRespawn()
+	shaker.stop()
 
 func LandOnTilemap(position):
+	particle_spawner.SpawnParticles(4)
 	audio_master.PlayRandomSound("Land")
+
+
+
