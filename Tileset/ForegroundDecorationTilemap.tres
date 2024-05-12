@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://hs46vmovikec"]
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://hs46vmovikec"]
 
 [ext_resource type="Texture2D" uid="uid://cgg8pk2icaegm" path="res://Images/VisualTest/Decorations/Bush.png" id="1_0fukp"]
 [ext_resource type="Texture2D" uid="uid://3x7abiw46krh" path="res://Images/VisualTest/Decorations/Leafpile.png" id="2_bw1u7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cs8hjybebrv6l" path="res://Images/VisualTest/Decorations/ScareCrowAnimated.png" id="4_nl3e4"]
 [ext_resource type="PackedScene" uid="uid://wa77vuep7bo3" path="res://Scenes/Decorations/flower1_deco.tscn" id="5_ipfgv"]
 [ext_resource type="Texture2D" uid="uid://bj53h0fdan7nk" path="res://Images/Decorations/ForegroundLevel1/supportBeam.png" id="6_37ve8"]
+[ext_resource type="Texture2D" uid="uid://d1b7fdgllxnmm" path="res://Images/Decorations/ForegroundLevel1/rocks.png" id="7_wqru6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ufhak"]
 texture = ExtResource("1_0fukp")
@@ -67,6 +68,70 @@ texture_region_size = Vector2i(8, 24)
 0:4/0/terrains_peering_bit/bottom_side = 0
 0:4/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_subgv"]
+texture = ExtResource("7_wqru6")
+texture_region_size = Vector2i(6, 6)
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/y_sort_origin = 12
+4:1/size_in_atlas = Vector2i(2, 1)
+4:1/0 = 0
+4:1/0/texture_origin = Vector2i(0, 3)
+4:1/0/y_sort_origin = 3
+4:3/size_in_atlas = Vector2i(2, 1)
+4:3/0 = 0
+4:3/0/texture_origin = Vector2i(0, 3)
+4:3/0/y_sort_origin = 3
+4:5/size_in_atlas = Vector2i(2, 1)
+4:5/0 = 0
+4:5/0/texture_origin = Vector2i(0, 3)
+4:5/0/y_sort_origin = 3
+4:6/size_in_atlas = Vector2i(2, 2)
+4:6/0 = 0
+4:6/0/texture_origin = Vector2i(0, 6)
+4:6/0/y_sort_origin = 6
+0:5/size_in_atlas = Vector2i(4, 3)
+0:5/0 = 0
+0:5/0/texture_origin = Vector2i(0, 9)
+0:5/0/y_sort_origin = 9
+0:8/size_in_atlas = Vector2i(4, 4)
+0:8/0 = 0
+0:8/0/texture_origin = Vector2i(0, 12)
+0:8/0/y_sort_origin = 12
+4:8/size_in_atlas = Vector2i(2, 2)
+4:8/0 = 0
+4:8/0/texture_origin = Vector2i(0, 6)
+4:8/0/y_sort_origin = 6
+4:10/size_in_atlas = Vector2i(2, 2)
+4:10/0 = 0
+4:10/0/texture_origin = Vector2i(0, 6)
+4:10/0/y_sort_origin = 6
+6:7/size_in_atlas = Vector2i(4, 5)
+6:7/0 = 0
+6:7/0/texture_origin = Vector2i(0, 15)
+6:7/0/y_sort_origin = 15
+7:13/size_in_atlas = Vector2i(5, 3)
+7:13/0 = 0
+7:13/0/texture_origin = Vector2i(0, 9)
+7:13/0/y_sort_origin = 9
+6:16/size_in_atlas = Vector2i(5, 4)
+6:16/0 = 0
+6:16/0/texture_origin = Vector2i(0, 12)
+6:16/0/y_sort_origin = 12
+4:13/size_in_atlas = Vector2i(2, 3)
+4:13/0 = 0
+4:13/0/texture_origin = Vector2i(0, 9)
+4:13/0/y_sort_origin = 9
+0:12/size_in_atlas = Vector2i(4, 2)
+0:12/0 = 0
+0:12/0/texture_origin = Vector2i(0, 6)
+0:12/0/y_sort_origin = 6
+1:15/size_in_atlas = Vector2i(3, 5)
+1:15/0 = 0
+1:15/0/texture_origin = Vector2i(0, 15)
+1:15/0/y_sort_origin = 15
+
 [resource]
 tile_size = Vector2i(6, 6)
 terrain_set_0/mode = 0
@@ -78,3 +143,4 @@ sources/2 = SubResource("TileSetAtlasSource_r7ljd")
 sources/3 = SubResource("TileSetAtlasSource_mftss")
 sources/4 = SubResource("TileSetScenesCollectionSource_di5by")
 sources/5 = SubResource("TileSetAtlasSource_onjkv")
+sources/6 = SubResource("TileSetAtlasSource_subgv")

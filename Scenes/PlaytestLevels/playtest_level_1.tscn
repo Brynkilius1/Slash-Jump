@@ -192,7 +192,7 @@ texture = ExtResource("8_fkils")
 [node name="WorldNessecities" parent="." instance=ExtResource("1_sdib6")]
 
 [node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
-position = Vector2(-128, 49)
+position = Vector2(1480, -261)
 
 [node name="BarTransition2" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("3_l5bvl")]
 visible = false

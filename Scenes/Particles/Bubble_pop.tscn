@@ -43,6 +43,7 @@ z_index = 1
 script = ExtResource("1_2nik6")
 
 [node name="BigDroplets" type="GPUParticles2D" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_back8")
 emitting = false
 amount = 3

@@ -15,10 +15,11 @@ func _ready():
 
 func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 	EmitSwordHitPaticles(hit_pos, sword_angle, player_x_speed)
-	PlayGrassSound()
+	#PlayGrassSound()
 
 
-
+func LandOnTilemap(_pos):
+	pass
 
 
 

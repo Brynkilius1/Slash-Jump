@@ -129,6 +129,7 @@ size = Vector2(12, 1)
 size = Vector2(12, 22)
 
 [node name="CrumbingPlatform" type="StaticBody2D"]
+light_mask = 2
 position = Vector2(0, -6)
 collision_mask = 2
 script = ExtResource("1_q8irc")
@@ -143,10 +144,12 @@ region_enabled = true
 region_rect = Rect2(0, 0, 36, 12)
 
 [node name="PlatformAnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 sprite_frames = SubResource("SpriteFrames_7kli0")
-animation = &"disapear"
+animation = &"appear"
 autoplay = "default"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)

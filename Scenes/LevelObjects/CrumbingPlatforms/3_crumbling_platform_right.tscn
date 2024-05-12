@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform.tscn" id="1_sy04b"]
 
 [node name="CrumblingPlatformParent" type="Node2D"]
+position = Vector2(6, 0)
 
 [node name="CrumbingPlatform" parent="." instance=ExtResource("1_sy04b")]
 position = Vector2(0, 0)

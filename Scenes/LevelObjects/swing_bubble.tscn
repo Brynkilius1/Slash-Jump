@@ -84,6 +84,7 @@ animations = [{
 radius = 13.0
 
 [node name="SwingBubble" type="Area2D"]
+light_mask = 2
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_y3ukb")
