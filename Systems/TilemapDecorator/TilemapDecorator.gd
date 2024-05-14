@@ -76,7 +76,7 @@ func RedecorateTilemap(tile_source_list : Array, decoration_source):
 			
 			# Spawn the tile
 			if using_terrain == false:
-				decoration_spawning_tilemap.set_cell(0 , tile, decoration_source, Vector2i(randi_range(0, 4), randi_range(0, 1))) #spawns tile
+				decoration_spawning_tilemap.set_cell(0 , tile, decoration_source, Vector2i(randi_range(0, 3), randi_range(0, 1))) #spawns tile
 			else:
 				tiles_with_restrictions.append(tile)
 				#decoration_spawning_tilemap.set_cells_terrain_path(0, [tile], decoration_source, 0)

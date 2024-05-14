@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 #export variables
 @export var swing_power = Vector2(0, 165) #(0, 174) #(0, 160) #(0, 140)
 @export var swing_antigrav_duration : float = 0.05
-@export var small_swing_power = Vector2(0, 100)
+@export var small_swing_power = Vector2(0, 90)
 @export var extra_grounded_power := 16  #20
 @export var friction := 0.3
 @export var cut_x_speed := 0.15
@@ -91,6 +91,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @onready var swing_miss_timer = $SwingMissTimer
 @onready var coyote_timer = $CoyoteTimer
 @onready var knife_coyote_timer = $KnifeCoyoteTimer
+@onready var swing_anti_grav_timer = $SwingAntiGravTimer
 
 
 #Particles
@@ -487,8 +488,7 @@ func SwordHitTechnical():
 	sword_has_hit_this_swing = true
 	if new_control_feel == true:
 		TurnOffGravity(true)
-		await get_tree().create_timer(swing_antigrav_duration).timeout
-		TurnOffGravity(false)
+		StartAntiGravSwingTimer()
 func HitObjects():
 	var hit_objects = sword_collision.get_overlapping_bodies()
 	for i in hit_objects:
@@ -686,6 +686,8 @@ func KnifeHitParticles():
 func KnifeHitTechnical():
 	checking_knife_hitbox = false
 	knife_has_hit_this_swing = true
+	TurnOffGravity(true)
+	StartAntiGravSwingTimer()
 func DeactivateKnifeHitbox():
 	LingerTimeoutTechnical()
 	CheckIfKnifeSwingHit()
@@ -861,6 +863,14 @@ func CheckIfReload():
 
 
 
+func StartAntiGravSwingTimer():
+	if swing_anti_grav_timer.is_stopped() == false:
+		swing_anti_grav_timer.stop()
+	swing_anti_grav_timer.start(swing_antigrav_duration)
+
+
+func _on_swing_anti_grav_timer_timeout():
+	TurnOffGravity(false)
 
 func _on_swing_miss_timer_timeout():
 	player_audio_master.PlayRandomSound("SwordMiss")
@@ -1002,3 +1012,6 @@ func CheckIfSwordBehindPlayer():
 		sword_visual.z_index = -1
 	else:
 		sword_visual.z_index = 0
+
+
+

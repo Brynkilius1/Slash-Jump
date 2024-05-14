@@ -3,6 +3,7 @@ extends Node2D
 const STONE_HIT_PATRICLES = preload("res://Scenes/Particles/StoneHitPatricles.tscn")
 
 @export var platform_width : int = 1
+@export var particle_rotation : float = 0
 
 var crumble_time : float = 0.8
 var platform_respawn_time : float = 3.0
@@ -61,7 +62,7 @@ func DisableSelf(disabled_self : bool):
 		TogglePlatformEnabled(disabled_self)
 		
 	else:
-		particle_spawner.SpawnParticles()
+		particle_spawner.SpawnParticles(particle_rotation)
 		platform_animated_sprite.play("disapear")
 		await get_tree().create_timer(0.1).timeout
 		TogglePlatformEnabled(disabled_self)
@@ -96,7 +97,7 @@ func _on_disapear_timer_timeout():
 	shaker.stop()
 
 func LandOnTilemap(position):
-	particle_spawner.SpawnParticles(4)
+	particle_spawner.SpawnParticles(particle_rotation, 4)
 	audio_master.PlayRandomSound("Land")
 
 

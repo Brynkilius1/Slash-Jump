@@ -1157,6 +1157,8 @@ one_shot = true
 [node name="SwingMissTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="SwingAntiGravTimer" type="Timer" parent="."]
+
 [node name="EnemyDetector" type="Area2D" parent="."]
 visible = false
 collision_layer = 2
@@ -1401,6 +1403,7 @@ texture_scale = 0.7
 [connection signal="timeout" from="SwingLingerTimer" to="." method="_on_swing_cooldown_timer_timeout"]
 [connection signal="timeout" from="KnifeSwingLingerTimer" to="." method="_on_swing_cooldown_timer_timeout"]
 [connection signal="timeout" from="SwingMissTimer" to="." method="_on_swing_miss_timer_timeout"]
+[connection signal="timeout" from="SwingAntiGravTimer" to="." method="_on_swing_anti_grav_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
 [connection signal="area_entered" from="HazardDetector" to="HazardDetector" method="_on_body_entered"]
 [connection signal="body_entered" from="HazardDetector" to="HazardDetector" method="_on_body_entered"]

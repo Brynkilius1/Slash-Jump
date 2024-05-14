@@ -57,7 +57,6 @@ theme_override_font_sizes/font_size = 32
 text = "Controls"
 
 [node name="VideoSettings" type="Control" parent="SettingsHolder/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_7xqac")
@@ -207,6 +206,7 @@ slider_speed = 60.0
 dpad_step = 1
 
 [node name="ContolSettings" type="Control" parent="SettingsHolder/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("6_tffsd")

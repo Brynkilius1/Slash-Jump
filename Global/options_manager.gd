@@ -109,7 +109,18 @@ func RebindControl(input_name, new_key):
 	InputMap.action_erase_events(input_name)
 	InputMap.action_add_event(input_name, new_key)
 	print("just changed the input map of ", input_name, " to: ", new_key)
-
+	
+	
+	#Add mouse controls always
+	if input_name == "BigSwing":
+		var mouse_input = InputEventMouseButton.new()
+		mouse_input.button_index = 1
+		InputMap.action_add_event(input_name, mouse_input)
+	elif input_name == "SmallSwing":
+		var mouse_input = InputEventMouseButton.new()
+		mouse_input.button_index = 2
+		InputMap.action_add_event(input_name, mouse_input)
+	
 func GetInputTypeFromAction(action):
 	action = str(action)
 	action = action.get_slice(":", 0)
