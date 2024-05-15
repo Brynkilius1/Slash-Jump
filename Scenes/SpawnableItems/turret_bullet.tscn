@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d27o2dojnnvid"]
 
 [ext_resource type="Script" path="res://Scripts/SpawnableItemScripts/turret_bullet.gd" id="1_3hph4"]
-[ext_resource type="Texture2D" uid="uid://djykn8n6klv06" path="res://Images/Mechanics/TurretBullet.png" id="2_df8pm"]
+[ext_resource type="Texture2D" uid="uid://7g630020doir" path="res://Images/Mechanics/cannonBall.png" id="2_0bj6f"]
 [ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="2_i05s1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q22ah"]
@@ -22,12 +22,11 @@ script = ExtResource("1_3hph4")
 shape = SubResource("CircleShape2D_q22ah")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_df8pm")
+texture = ExtResource("2_0bj6f")
 
-[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds") instance=ExtResource("2_i05s1")]
+[node name="SwordCollisionHandler" parent="." instance=ExtResource("2_i05s1")]
 small_motor_rumble = 0.7
 big_motor_rumble = 0.9
-hit_sounds = NodePath("../SoundEffects/Hit")
 
 [node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]
 shape = SubResource("CircleShape2D_plaxo")

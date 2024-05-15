@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=68 format=3 uid="uid://71tupyk65yoe"]
+[gd_resource type="TileSet" load_steps=72 format=3 uid="uid://71tupyk65yoe"]
 
 [ext_resource type="Texture2D" uid="uid://wvyq7rd0c1v4" path="res://Images/Tilesets/DirtTilesets/grassEdges.png" id="1_atelq"]
 [ext_resource type="Texture2D" uid="uid://vj3137hnboo0" path="res://Images/VisualTest/Grass_Autotile_HNS_Pallete.png" id="2_tdtbq"]
@@ -16,7 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://joiac3jl2yw1" path="res://Images/VisualTest/OneWayDirtConnector.png" id="10_csks7"]
 [ext_resource type="Texture2D" uid="uid://dokmbmvg0hnt4" path="res://Images/Tilesets/DirtTilesets/dirttileset4.png" id="10_f5poo"]
 [ext_resource type="Texture2D" uid="uid://dl100qspmjt6q" path="res://Images/Tilesets/DirtTilesets/grasstop.png" id="11_cc8e1"]
+[ext_resource type="Texture2D" uid="uid://cp3j0a2sax6jb" path="res://Images/Tilesets/Sludge/sludgeTileset2.png" id="12_clqmn"]
 [ext_resource type="Texture2D" uid="uid://dqa0h7nu1noid" path="res://Images/Tilesets/StoneTiles/stoneTileSet.png" id="12_w03oh"]
+[ext_resource type="Texture2D" uid="uid://pn3s7k0ksb7a" path="res://Images/Tilesets/Sludge/sludgeTransitionTileset.png" id="14_8772j"]
 [ext_resource type="Texture2D" uid="uid://dvunj41y357sr" path="res://Images/Tilesets/DirtTilesets/AutumnLeavesTileset.png" id="15_cpx82"]
 [ext_resource type="Texture2D" uid="uid://d1oy7t857qpmd" path="res://Images/Tilesets/Hazards/stonespikes.png" id="15_xux1f"]
 
@@ -809,11 +811,6 @@ texture_region_size = Vector2i(12, 12)
 0:0/0/physics_layer_2/angular_velocity = 0.0
 0:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_3/angular_velocity = 0.0
-0:0/0/metadata/_better_terrain = {
-0: [6],
-4: [6],
-"type": 6
-}
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -824,12 +821,6 @@ texture_region_size = Vector2i(12, 12)
 1:0/0/physics_layer_2/angular_velocity = 0.0
 1:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_3/angular_velocity = 0.0
-1:0/0/metadata/_better_terrain = {
-0: [6],
-4: [6],
-8: [6],
-"type": 6
-}
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
@@ -840,11 +831,6 @@ texture_region_size = Vector2i(12, 12)
 2:0/0/physics_layer_2/angular_velocity = 0.0
 2:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_3/angular_velocity = 0.0
-2:0/0/metadata/_better_terrain = {
-4: [6],
-8: [6],
-"type": 6
-}
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
@@ -855,12 +841,6 @@ texture_region_size = Vector2i(12, 12)
 0:1/0/physics_layer_2/angular_velocity = 0.0
 0:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_3/angular_velocity = 0.0
-0:1/0/metadata/_better_terrain = {
-0: [6],
-4: [6],
-12: [6],
-"type": 6
-}
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
@@ -871,13 +851,6 @@ texture_region_size = Vector2i(12, 12)
 1:1/0/physics_layer_2/angular_velocity = 0.0
 1:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_3/angular_velocity = 0.0
-1:1/0/metadata/_better_terrain = {
-0: [6],
-4: [6],
-8: [6],
-12: [6],
-"type": 6
-}
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
@@ -888,12 +861,6 @@ texture_region_size = Vector2i(12, 12)
 2:1/0/physics_layer_2/angular_velocity = 0.0
 2:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_3/angular_velocity = 0.0
-2:1/0/metadata/_better_terrain = {
-4: [6],
-8: [6],
-12: [6],
-"type": 6
-}
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
@@ -904,11 +871,6 @@ texture_region_size = Vector2i(12, 12)
 0:2/0/physics_layer_2/angular_velocity = 0.0
 0:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_3/angular_velocity = 0.0
-0:2/0/metadata/_better_terrain = {
-0: [6],
-12: [6],
-"type": 6
-}
 1:2/0 = 0
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
@@ -919,12 +881,6 @@ texture_region_size = Vector2i(12, 12)
 1:2/0/physics_layer_2/angular_velocity = 0.0
 1:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_3/angular_velocity = 0.0
-1:2/0/metadata/_better_terrain = {
-0: [6],
-8: [6],
-12: [6],
-"type": 6
-}
 2:2/0 = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
@@ -935,11 +891,6 @@ texture_region_size = Vector2i(12, 12)
 2:2/0/physics_layer_2/angular_velocity = 0.0
 2:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_3/angular_velocity = 0.0
-2:2/0/metadata/_better_terrain = {
-8: [6],
-12: [6],
-"type": 6
-}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1two8"]
 texture = ExtResource("5_1cx4b")
@@ -5178,6 +5129,809 @@ texture_region_size = Vector2i(12, 12)
 3:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_3/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qartk"]
+texture = ExtResource("12_clqmn")
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+0:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_2/angular_velocity = 0.0
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_3/angular_velocity = 0.0
+0:0/0/metadata/_better_terrain = {
+4: [7, 0],
+"type": 7
+}
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_1/angular_velocity = 0.0
+1:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_2/angular_velocity = 0.0
+1:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_3/angular_velocity = 0.0
+1:0/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+"type": 7
+}
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_1/angular_velocity = 0.0
+2:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_2/angular_velocity = 0.0
+2:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_3/angular_velocity = 0.0
+2:0/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+8: [7, 0],
+"type": 7
+}
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_1/angular_velocity = 0.0
+3:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_2/angular_velocity = 0.0
+3:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_3/angular_velocity = 0.0
+3:0/0/metadata/_better_terrain = {
+4: [7, 0],
+8: [7, 0],
+"type": 7
+}
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_1/angular_velocity = 0.0
+4:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_2/angular_velocity = 0.0
+4:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_3/angular_velocity = 0.0
+4:0/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_1/angular_velocity = 0.0
+5:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_2/angular_velocity = 0.0
+5:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_3/angular_velocity = 0.0
+5:0/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+8: [7, 0],
+"type": 7
+}
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_1/angular_velocity = 0.0
+6:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_2/angular_velocity = 0.0
+6:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+6:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_3/angular_velocity = 0.0
+6:0/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+"type": 7
+}
+7:0/0 = 0
+7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_0/angular_velocity = 0.0
+7:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_1/angular_velocity = 0.0
+7:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_2/angular_velocity = 0.0
+7:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+7:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_3/angular_velocity = 0.0
+7:0/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+8: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+8:0/0 = 0
+8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_0/angular_velocity = 0.0
+8:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_1/angular_velocity = 0.0
+8:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_2/angular_velocity = 0.0
+8:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+8:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_3/angular_velocity = 0.0
+8:0/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+"type": 7
+}
+9:0/0 = 0
+9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_0/angular_velocity = 0.0
+9:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_1/angular_velocity = 0.0
+9:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_2/angular_velocity = 0.0
+9:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+9:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_3/angular_velocity = 0.0
+9:0/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+10:0/0 = 0
+10:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_0/angular_velocity = 0.0
+10:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_1/angular_velocity = 0.0
+10:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_2/angular_velocity = 0.0
+10:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+10:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_3/angular_velocity = 0.0
+10:0/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+"type": 7
+}
+11:0/0 = 0
+11:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_0/angular_velocity = 0.0
+11:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_1/angular_velocity = 0.0
+11:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_2/angular_velocity = 0.0
+11:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+11:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_3/angular_velocity = 0.0
+11:0/0/metadata/_better_terrain = {
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+"type": 7
+}
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_1/angular_velocity = 0.0
+0:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_2/angular_velocity = 0.0
+0:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_3/angular_velocity = 0.0
+0:1/0/metadata/_better_terrain = {
+4: [7, 0],
+12: [7, 0],
+"type": 7
+}
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_1/angular_velocity = 0.0
+1:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_2/angular_velocity = 0.0
+1:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_3/angular_velocity = 0.0
+1:1/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+12: [7, 0],
+"type": 7
+}
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_1/angular_velocity = 0.0
+2:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_2/angular_velocity = 0.0
+2:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_3/angular_velocity = 0.0
+2:1/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_1/angular_velocity = 0.0
+3:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_2/angular_velocity = 0.0
+3:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_3/angular_velocity = 0.0
+3:1/0/metadata/_better_terrain = {
+4: [7, 0],
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_1/angular_velocity = 0.0
+4:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_2/angular_velocity = 0.0
+4:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_3/angular_velocity = 0.0
+4:1/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+12: [7, 0],
+"type": 7
+}
+5:1/0 = 0
+5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_0/angular_velocity = 0.0
+5:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_1/angular_velocity = 0.0
+5:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_2/angular_velocity = 0.0
+5:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_3/angular_velocity = 0.0
+5:1/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+6:1/0 = 0
+6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_0/angular_velocity = 0.0
+6:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_1/angular_velocity = 0.0
+6:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_2/angular_velocity = 0.0
+6:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+6:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_3/angular_velocity = 0.0
+6:1/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+7:1/0 = 0
+7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_0/angular_velocity = 0.0
+7:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_1/angular_velocity = 0.0
+7:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_2/angular_velocity = 0.0
+7:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+7:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_3/angular_velocity = 0.0
+7:1/0/metadata/_better_terrain = {
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+8:1/0 = 0
+8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_0/angular_velocity = 0.0
+8:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_1/angular_velocity = 0.0
+8:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_2/angular_velocity = 0.0
+8:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+8:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_3/angular_velocity = 0.0
+8:1/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+9:1/0 = 0
+9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_0/angular_velocity = 0.0
+9:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_1/angular_velocity = 0.0
+9:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_2/angular_velocity = 0.0
+9:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+9:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_3/angular_velocity = 0.0
+9:1/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+11:1/0 = 0
+11:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_0/angular_velocity = 0.0
+11:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_1/angular_velocity = 0.0
+11:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_2/angular_velocity = 0.0
+11:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+11:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_3/angular_velocity = 0.0
+11:1/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_1/angular_velocity = 0.0
+0:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_2/angular_velocity = 0.0
+0:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_3/angular_velocity = 0.0
+0:2/0/metadata/_better_terrain = {
+12: [7, 0],
+"type": 7
+}
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_1/angular_velocity = 0.0
+1:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_2/angular_velocity = 0.0
+1:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_3/angular_velocity = 0.0
+1:2/0/metadata/_better_terrain = {
+0: [7, 0],
+12: [7, 0],
+"type": 7
+}
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_1/angular_velocity = 0.0
+2:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_2/angular_velocity = 0.0
+2:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_3/angular_velocity = 0.0
+2:2/0/metadata/_better_terrain = {
+0: [7, 0],
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_1/angular_velocity = 0.0
+3:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_2/angular_velocity = 0.0
+3:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_3/angular_velocity = 0.0
+3:2/0/metadata/_better_terrain = {
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_1/angular_velocity = 0.0
+4:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_2/angular_velocity = 0.0
+4:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_3/angular_velocity = 0.0
+4:2/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+5:2/0 = 0
+5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_0/angular_velocity = 0.0
+5:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_1/angular_velocity = 0.0
+5:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_2/angular_velocity = 0.0
+5:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_3/angular_velocity = 0.0
+5:2/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+6:2/0 = 0
+6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_0/angular_velocity = 0.0
+6:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_1/angular_velocity = 0.0
+6:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_2/angular_velocity = 0.0
+6:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+6:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_3/angular_velocity = 0.0
+6:2/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+7:2/0 = 0
+7:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_0/angular_velocity = 0.0
+7:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_1/angular_velocity = 0.0
+7:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_2/angular_velocity = 0.0
+7:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+7:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_3/angular_velocity = 0.0
+7:2/0/metadata/_better_terrain = {
+4: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+8:2/0 = 0
+8:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_0/angular_velocity = 0.0
+8:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_1/angular_velocity = 0.0
+8:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_2/angular_velocity = 0.0
+8:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+8:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_3/angular_velocity = 0.0
+8:2/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+8: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+9:2/0 = 0
+9:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:2/0/physics_layer_0/angular_velocity = 0.0
+9:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+9:2/0/physics_layer_1/angular_velocity = 0.0
+9:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+9:2/0/physics_layer_2/angular_velocity = 0.0
+9:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+9:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+9:2/0/physics_layer_3/angular_velocity = 0.0
+9:2/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+10:2/0 = 0
+10:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_0/angular_velocity = 0.0
+10:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_1/angular_velocity = 0.0
+10:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_2/angular_velocity = 0.0
+10:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+10:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_3/angular_velocity = 0.0
+10:2/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+11:2/0 = 0
+11:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_0/angular_velocity = 0.0
+11:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_1/angular_velocity = 0.0
+11:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_2/angular_velocity = 0.0
+11:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+11:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_3/angular_velocity = 0.0
+11:2/0/metadata/_better_terrain = {
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_1/angular_velocity = 0.0
+0:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_2/angular_velocity = 0.0
+0:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_3/angular_velocity = 0.0
+0:3/0/metadata/_better_terrain = {
+"type": 7
+}
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_1/angular_velocity = 0.0
+1:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_2/angular_velocity = 0.0
+1:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_3/angular_velocity = 0.0
+1:3/0/metadata/_better_terrain = {
+0: [7, 0],
+"type": 7
+}
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_1/angular_velocity = 0.0
+2:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_2/angular_velocity = 0.0
+2:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_3/angular_velocity = 0.0
+2:3/0/metadata/_better_terrain = {
+0: [7, 0],
+8: [7, 0],
+"type": 7
+}
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_1/angular_velocity = 0.0
+3:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_2/angular_velocity = 0.0
+3:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_3/angular_velocity = 0.0
+3:3/0/metadata/_better_terrain = {
+8: [7, 0],
+"type": 7
+}
+4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
+4:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_1/angular_velocity = 0.0
+4:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_2/angular_velocity = 0.0
+4:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_3/angular_velocity = 0.0
+4:3/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+7: [7, 0],
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+5:3/0 = 0
+5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_0/angular_velocity = 0.0
+5:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_1/angular_velocity = 0.0
+5:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_2/angular_velocity = 0.0
+5:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_3/angular_velocity = 0.0
+5:3/0/metadata/_better_terrain = {
+0: [7, 0],
+8: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+6:3/0 = 0
+6:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_0/angular_velocity = 0.0
+6:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_1/angular_velocity = 0.0
+6:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_2/angular_velocity = 0.0
+6:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+6:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_3/angular_velocity = 0.0
+6:3/0/metadata/_better_terrain = {
+0: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+7:3/0 = 0
+7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_0/angular_velocity = 0.0
+7:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_1/angular_velocity = 0.0
+7:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_2/angular_velocity = 0.0
+7:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+7:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_3/angular_velocity = 0.0
+7:3/0/metadata/_better_terrain = {
+0: [7, 0],
+3: [7, 0],
+4: [7, 0],
+8: [7, 0],
+12: [7, 0],
+"type": 7
+}
+8:3/0 = 0
+8:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_0/angular_velocity = 0.0
+8:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_1/angular_velocity = 0.0
+8:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_2/angular_velocity = 0.0
+8:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+8:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_3/angular_velocity = 0.0
+8:3/0/metadata/_better_terrain = {
+0: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+9:3/0 = 0
+9:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:3/0/physics_layer_0/angular_velocity = 0.0
+9:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+9:3/0/physics_layer_1/angular_velocity = 0.0
+9:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+9:3/0/physics_layer_2/angular_velocity = 0.0
+9:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+9:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+9:3/0/physics_layer_3/angular_velocity = 0.0
+9:3/0/metadata/_better_terrain = {
+0: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+10:3/0 = 0
+10:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_0/angular_velocity = 0.0
+10:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_1/angular_velocity = 0.0
+10:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_2/angular_velocity = 0.0
+10:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+10:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_3/angular_velocity = 0.0
+10:3/0/metadata/_better_terrain = {
+0: [7, 0],
+4: [7, 0],
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+15: [7, 0],
+"type": 7
+}
+11:3/0 = 0
+11:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_0/angular_velocity = 0.0
+11:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_1/angular_velocity = 0.0
+11:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_2/angular_velocity = 0.0
+11:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+11:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_3/angular_velocity = 0.0
+11:3/0/metadata/_better_terrain = {
+8: [7, 0],
+11: [7, 0],
+12: [7, 0],
+"type": 7
+}
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8arym"]
 texture = ExtResource("12_w03oh")
 texture_region_size = Vector2i(12, 12)
@@ -5978,6 +6732,735 @@ texture_region_size = Vector2i(12, 12)
 11: [1, 0],
 12: [1, 0],
 "type": 4
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikopb"]
+texture = ExtResource("14_8772j")
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+0:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_2/angular_velocity = 0.0
+0:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_3/angular_velocity = 0.0
+0:0/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+7: [7],
+8: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_1/angular_velocity = 0.0
+1:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_2/angular_velocity = 0.0
+1:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_3/angular_velocity = 0.0
+1:0/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+8: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_1/angular_velocity = 0.0
+2:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_2/angular_velocity = 0.0
+2:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_3/angular_velocity = 0.0
+2:0/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_1/angular_velocity = 0.0
+3:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_2/angular_velocity = 0.0
+3:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_3/angular_velocity = 0.0
+3:0/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+7: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_1/angular_velocity = 0.0
+4:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_2/angular_velocity = 0.0
+4:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_3/angular_velocity = 0.0
+4:0/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+15: [7],
+"type": -1
+}
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_1/angular_velocity = 0.0
+5:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_2/angular_velocity = 0.0
+5:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_3/angular_velocity = 0.0
+5:0/0/metadata/_better_terrain = {
+7: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_1/angular_velocity = 0.0
+6:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_2/angular_velocity = 0.0
+6:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_3/angular_velocity = 0.0
+6:0/0/metadata/_better_terrain = {
+3: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+7:0/0 = 0
+7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_0/angular_velocity = 0.0
+7:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_1/angular_velocity = 0.0
+7:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_2/angular_velocity = 0.0
+7:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_3/angular_velocity = 0.0
+7:0/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+11: [7],
+"type": -1
+}
+8:0/0 = 0
+8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_0/angular_velocity = 0.0
+8:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_1/angular_velocity = 0.0
+8:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_2/angular_velocity = 0.0
+8:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_3/angular_velocity = 0.0
+8:0/0/metadata/_better_terrain = {
+7: [7],
+8: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+9:0/0 = 0
+9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_0/angular_velocity = 0.0
+9:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_1/angular_velocity = 0.0
+9:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_2/angular_velocity = 0.0
+9:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_3/angular_velocity = 0.0
+9:0/0/metadata/_better_terrain = {
+11: [7],
+15: [7],
+"type": -1
+}
+10:0/0 = 0
+10:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_0/angular_velocity = 0.0
+10:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_1/angular_velocity = 0.0
+10:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_2/angular_velocity = 0.0
+10:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+10:0/0/physics_layer_3/angular_velocity = 0.0
+10:0/0/metadata/_better_terrain = {
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+11:0/0 = 0
+11:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_0/angular_velocity = 0.0
+11:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_1/angular_velocity = 0.0
+11:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_2/angular_velocity = 0.0
+11:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_3/angular_velocity = 0.0
+11:0/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_1/angular_velocity = 0.0
+0:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_2/angular_velocity = 0.0
+0:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_3/angular_velocity = 0.0
+0:1/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+7: [7],
+8: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_1/angular_velocity = 0.0
+1:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_2/angular_velocity = 0.0
+1:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_3/angular_velocity = 0.0
+1:1/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+8: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_1/angular_velocity = 0.0
+2:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_2/angular_velocity = 0.0
+2:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_3/angular_velocity = 0.0
+2:1/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_1/angular_velocity = 0.0
+3:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_2/angular_velocity = 0.0
+3:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_3/angular_velocity = 0.0
+3:1/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+7: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_1/angular_velocity = 0.0
+4:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_2/angular_velocity = 0.0
+4:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_3/angular_velocity = 0.0
+4:1/0/metadata/_better_terrain = {
+7: [7],
+8: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+5:1/0 = 0
+5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_0/angular_velocity = 0.0
+5:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_1/angular_velocity = 0.0
+5:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_2/angular_velocity = 0.0
+5:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_3/angular_velocity = 0.0
+5:1/0/metadata/_better_terrain = {
+11: [7],
+"type": -1
+}
+6:1/0 = 0
+6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_0/angular_velocity = 0.0
+6:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_1/angular_velocity = 0.0
+6:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_2/angular_velocity = 0.0
+6:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_3/angular_velocity = 0.0
+6:1/0/metadata/_better_terrain = {
+15: [7],
+"type": -1
+}
+7:1/0 = 0
+7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_0/angular_velocity = 0.0
+7:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_1/angular_velocity = 0.0
+7:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_2/angular_velocity = 0.0
+7:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_3/angular_velocity = 0.0
+7:1/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+8:1/0 = 0
+8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_0/angular_velocity = 0.0
+8:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_1/angular_velocity = 0.0
+8:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_2/angular_velocity = 0.0
+8:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:1/0/physics_layer_3/angular_velocity = 0.0
+8:1/0/metadata/_better_terrain = {
+7: [7],
+8: [7],
+11: [7],
+"type": -1
+}
+9:1/0 = 0
+9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_0/angular_velocity = 0.0
+9:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_1/angular_velocity = 0.0
+9:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_2/angular_velocity = 0.0
+9:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_3/angular_velocity = 0.0
+9:1/0/metadata/_better_terrain = {
+11: [7],
+"type": -1
+}
+11:1/0 = 0
+11:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_0/angular_velocity = 0.0
+11:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_1/angular_velocity = 0.0
+11:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_2/angular_velocity = 0.0
+11:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_3/angular_velocity = 0.0
+11:1/0/metadata/_better_terrain = {
+3: [7],
+15: [7],
+"type": -1
+}
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_1/angular_velocity = 0.0
+0:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_2/angular_velocity = 0.0
+0:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_3/angular_velocity = 0.0
+0:2/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+4: [7],
+7: [7],
+8: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_1/angular_velocity = 0.0
+1:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_2/angular_velocity = 0.0
+1:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_3/angular_velocity = 0.0
+1:2/0/metadata/_better_terrain = {
+3: [7],
+4: [7],
+7: [7],
+8: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_1/angular_velocity = 0.0
+2:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_2/angular_velocity = 0.0
+2:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_3/angular_velocity = 0.0
+2:2/0/metadata/_better_terrain = {
+3: [7],
+4: [7],
+7: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_1/angular_velocity = 0.0
+3:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_2/angular_velocity = 0.0
+3:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_3/angular_velocity = 0.0
+3:2/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+4: [7],
+7: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_1/angular_velocity = 0.0
+4:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_2/angular_velocity = 0.0
+4:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_3/angular_velocity = 0.0
+4:2/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+8: [7],
+11: [7],
+"type": -1
+}
+5:2/0 = 0
+5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_0/angular_velocity = 0.0
+5:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_1/angular_velocity = 0.0
+5:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_2/angular_velocity = 0.0
+5:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_3/angular_velocity = 0.0
+5:2/0/metadata/_better_terrain = {
+7: [7],
+"type": -1
+}
+6:2/0 = 0
+6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_0/angular_velocity = 0.0
+6:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_1/angular_velocity = 0.0
+6:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_2/angular_velocity = 0.0
+6:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_3/angular_velocity = 0.0
+6:2/0/metadata/_better_terrain = {
+3: [7],
+"type": -1
+}
+7:2/0 = 0
+7:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_0/angular_velocity = 0.0
+7:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_1/angular_velocity = 0.0
+7:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_2/angular_velocity = 0.0
+7:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_3/angular_velocity = 0.0
+7:2/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+7: [7],
+15: [7],
+"type": -1
+}
+8:2/0 = 0
+8:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_0/angular_velocity = 0.0
+8:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_1/angular_velocity = 0.0
+8:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_2/angular_velocity = 0.0
+8:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_3/angular_velocity = 0.0
+8:2/0/metadata/_better_terrain = {
+7: [7],
+11: [7],
+"type": -1
+}
+10:2/0 = 0
+10:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_0/angular_velocity = 0.0
+10:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_1/angular_velocity = 0.0
+10:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_2/angular_velocity = 0.0
+10:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+10:2/0/physics_layer_3/angular_velocity = 0.0
+10:2/0/metadata/_better_terrain = {
+7: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+11:2/0 = 0
+11:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_0/angular_velocity = 0.0
+11:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_1/angular_velocity = 0.0
+11:2/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_2/angular_velocity = 0.0
+11:2/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_3/angular_velocity = 0.0
+11:2/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+15: [7],
+"type": -1
+}
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_1/angular_velocity = 0.0
+0:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_2/angular_velocity = 0.0
+0:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_3/angular_velocity = 0.0
+0:3/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+4: [7],
+7: [7],
+8: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_1/angular_velocity = 0.0
+1:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_2/angular_velocity = 0.0
+1:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_3/angular_velocity = 0.0
+1:3/0/metadata/_better_terrain = {
+3: [7],
+4: [7],
+7: [7],
+8: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_1/angular_velocity = 0.0
+2:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_2/angular_velocity = 0.0
+2:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_3/angular_velocity = 0.0
+2:3/0/metadata/_better_terrain = {
+3: [7],
+4: [7],
+7: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_1/angular_velocity = 0.0
+3:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_2/angular_velocity = 0.0
+3:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_3/angular_velocity = 0.0
+3:3/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+4: [7],
+7: [7],
+11: [7],
+12: [7],
+15: [7],
+"type": -1
+}
+4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
+4:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_1/angular_velocity = 0.0
+4:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_2/angular_velocity = 0.0
+4:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_3/angular_velocity = 0.0
+4:3/0/metadata/_better_terrain = {
+3: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+5:3/0 = 0
+5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_0/angular_velocity = 0.0
+5:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_1/angular_velocity = 0.0
+5:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_2/angular_velocity = 0.0
+5:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_3/angular_velocity = 0.0
+5:3/0/metadata/_better_terrain = {
+3: [7],
+4: [7],
+7: [7],
+11: [7],
+"type": -1
+}
+6:3/0 = 0
+6:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_0/angular_velocity = 0.0
+6:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_1/angular_velocity = 0.0
+6:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_2/angular_velocity = 0.0
+6:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_3/angular_velocity = 0.0
+6:3/0/metadata/_better_terrain = {
+3: [7],
+4: [7],
+7: [7],
+15: [7],
+"type": -1
+}
+7:3/0 = 0
+7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_0/angular_velocity = 0.0
+7:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_1/angular_velocity = 0.0
+7:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_2/angular_velocity = 0.0
+7:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_3/angular_velocity = 0.0
+7:3/0/metadata/_better_terrain = {
+7: [7],
+11: [7],
+15: [7],
+"type": -1
+}
+8:3/0 = 0
+8:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_0/angular_velocity = 0.0
+8:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_1/angular_velocity = 0.0
+8:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_2/angular_velocity = 0.0
+8:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_3/angular_velocity = 0.0
+8:3/0/metadata/_better_terrain = {
+3: [7],
+4: [7],
+7: [7],
+8: [7],
+11: [7],
+"type": -1
+}
+10:3/0 = 0
+10:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_0/angular_velocity = 0.0
+10:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_1/angular_velocity = 0.0
+10:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_2/angular_velocity = 0.0
+10:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+10:3/0/physics_layer_3/angular_velocity = 0.0
+10:3/0/metadata/_better_terrain = {
+3: [7],
+7: [7],
+"type": -1
+}
+11:3/0 = 0
+11:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_0/angular_velocity = 0.0
+11:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_1/angular_velocity = 0.0
+11:3/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_2/angular_velocity = 0.0
+11:3/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_3/angular_velocity = 0.0
+11:3/0/metadata/_better_terrain = {
+0: [7],
+3: [7],
+4: [7],
+7: [7],
+15: [7],
+"type": -1
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iij5k"]
@@ -7698,6 +9181,8 @@ sources/2 = SubResource("TileSetAtlasSource_8arym")
 sources/5 = SubResource("TileSetAtlasSource_k76f4")
 sources/6 = SubResource("TileSetAtlasSource_3rb1j")
 sources/0 = SubResource("TileSetAtlasSource_v7mc2")
+sources/19 = SubResource("TileSetAtlasSource_qartk")
+sources/21 = SubResource("TileSetAtlasSource_ikopb")
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
 "path": "res://addons/better-terrain/icons/Decoration.svg"
@@ -7722,9 +9207,9 @@ metadata/_better_terrain = {
 }], ["Unbouncable", Color(0.443137, 0.341176, 0.745098, 1), 0, [0], {
 "coord": Vector2i(1, 0),
 "source_id": 11
-}], ["UnbounceableHazard", Color(0.687057, 0.133552, 0.649376, 1), 0, [0], {
-"coord": Vector2i(0, 0),
-"source_id": 10
+}], ["UnbounceableHazard", Color(0, 0.00415039, 0.265625, 1), 0, [], {
+"coord": Vector2i(0, 3),
+"source_id": 19
 }], ["Spikes", Color(0.67451, 0.678431, 0.768627, 1), 0, [], {
 "coord": Vector2i(1, 0),
 "source_id": 12

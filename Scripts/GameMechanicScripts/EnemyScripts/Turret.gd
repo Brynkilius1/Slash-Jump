@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+@export var flipped : bool = false
+
 @export var bullet_speed : float = 100
 @export var shots_per_second : float = 2.0
 
@@ -8,10 +10,14 @@ const TURRET_BULLET = preload("res://Scenes/SpawnableItems/turret_bullet.tscn")
 @onready var bullet_spawn_point = $BulletSpawnPoint
 @onready var function_caller_timer = $FunctionCallerTimer
 @onready var animation_player = $AnimationPlayer
+@onready var sprite_2d = $Sprite2D
 
 
 func _ready():
 	function_caller_timer.wait_time = shots_per_second
+	if flipped:
+		sprite_2d.flip_h = true
+		bullet_spawn_point.position.x = -8
 
 func EnteredScreenActivate(): #Gets called on all children of a screen in the group "ScreenActivated" when the player enters a screen
 	await get_tree().create_timer(0.5).timeout
@@ -36,6 +42,6 @@ func Shoot():
 func SpawnBullet():
 	var  b = TURRET_BULLET.instantiate()
 	b.speed = bullet_speed
-	b.bullet_angle = rotation
+	b.bullet_angle = rotation + (int(flipped) * PI)
 	b.global_position = bullet_spawn_point.global_position
 	get_tree().current_scene.add_child(b)

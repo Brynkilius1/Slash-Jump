@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=3 uid="uid://x6nv0536w5oy"]
+
+[ext_resource type="Script" path="res://Scripts/OneOff/GenerateClippingMaskFromTileset.gd" id="1_pudo8"]
+[ext_resource type="Shader" path="res://Shaders/SimpleMask.gdshader" id="2_lamxi"]
+[ext_resource type="Texture2D" uid="uid://dqolil3p4h2a4" path="res://Images/Tilesets/Sludge/sludgeTexture.png" id="3_h6h6y"]
+[ext_resource type="TileSet" uid="uid://b26nfwgm3ttqw" path="res://Tileset/Sludge.tres" id="4_fqnay"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b44ys"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g56cc"]
+seamless = true
+noise = SubResource("FastNoiseLite_b44ys")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0qmnw"]
+seed = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pkwxd"]
+seamless = true
+noise = SubResource("FastNoiseLite_0qmnw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqdrr"]
+shader = ExtResource("2_lamxi")
+shader_parameter/world_texture_size = Vector2(132, 72)
+shader_parameter/distortion_strength = 0.025
+shader_parameter/distortion_speed = 0.03
+shader_parameter/noise_scale = 1.0
+shader_parameter/world_texture = ExtResource("3_h6h6y")
+shader_parameter/noise_1 = SubResource("NoiseTexture2D_g56cc")
+shader_parameter/noise_2 = SubResource("NoiseTexture2D_pkwxd")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_pudo8")
+
+[node name="TileMap" type="TileMap" parent="."]
+clip_children = 2
+material = SubResource("ShaderMaterial_yqdrr")
+tile_set = ExtResource("4_fqnay")
+format = 2
+layer_0/tile_data = PackedInt32Array(327689, 524290, 0, 327690, 655362, 0, 327691, 655362, 0, 327692, 655362, 0, 393228, 589826, 2, 393229, 589826, 2, 458765, 589826, 2, 524301, 589826, 2, 589837, 589826, 2, 655373, 589826, 3, 655372, 589826, 3, 655371, 589826, 3, 655370, 524290, 3, 589834, 327682, 2, 589833, 589826, 3, 589832, 524290, 3, 524296, 327682, 2, 524295, 524290, 3, 458759, 524290, 1, 393223, 524290, 0, 393224, 655362, 0, 393225, 327682, 1, 327693, 655362, 0, 327694, 655362, 0, 393231, 393218, 1, 393232, 655362, 0, 458769, 393218, 1, 524305, 589826, 2, 589841, 589826, 2, 589840, 589826, 2, 655375, 589826, 2, 655374, 327682, 2, 458760, 589826, 2, 458761, 589826, 2, 458762, 589826, 2, 458763, 589826, 2, 458764, 589826, 2, 393230, 589826, 2, 524297, 589826, 2, 524298, 589826, 2, 524299, 589826, 2, 524300, 589826, 2, 524302, 589826, 2, 524303, 589826, 2, 524304, 589826, 2, 589836, 589826, 2, 589835, 589826, 2, 393227, 589826, 2, 327695, 720898, 0, 458767, 589826, 2, 458766, 589826, 2, 393226, 589826, 2, 458770, 655362, 0, 458771, 720898, 0, 524308, 393218, 0, 524309, 196610, 3, 524307, 393218, 1, 524306, 589826, 2, 589838, 589826, 2, 720910, 524290, 1, 720911, 589826, 2, 458768, 589826, 2, 393233, 720898, 0, 589839, 589826, 2, 786446, 524290, 3, 786447, 327682, 2, 851984, 589826, 3, 851985, 720898, 3, 786449, 393218, 2, 786450, 589826, 3, 786451, 720898, 3, 720915, 393218, 2, 720916, 720898, 3, 655380, 720898, 2, 589844, 720898, 2, 589843, 589826, 2, 655376, 589826, 2, 720913, 589826, 2, 655377, 589826, 2, 589842, 589826, 2, 655378, 589826, 2, 786448, 589826, 2, 851983, 524290, 3, 720912, 589826, 2, 655379, 589826, 2, 720914, 589826, 2)
