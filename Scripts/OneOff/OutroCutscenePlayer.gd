@@ -13,6 +13,7 @@ func _ready():
 
 
 func _on_cutscene_initiation_area_2d_body_entered(body):
+	MusicMaster.PlaySong("res://Sounds/Music/Happy_Hot_Dogs.mp3", 1)
 	GlobalObjects.player.has_control = false
 	GlobalObjects.player.can_rotate_indicator = false
 	await get_tree().create_timer(1.0).timeout

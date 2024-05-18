@@ -54,18 +54,50 @@ text = "Quit Game"
 visible = false
 layout_mode = 1
 
+[node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 24.0
+offset_bottom = 9.0
+
+[node name="FpsSlider" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
+
+[node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 24.0
+offset_bottom = 9.0
+
+[node name="AmbienceVolumeSlider" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
+
+[node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 24.0
+offset_bottom = 9.0
+
+[node name="RumbleCheckBox" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer" index="3"]
+focus_neighbor_bottom = NodePath("../../../../SettingsBackButton")
+
 [node name="SettingsBackButton" type="Button" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder" index="2"]
 layout_mode = 0
 offset_left = 255.0
 offset_top = 143.0
 offset_right = 300.0
 offset_bottom = 174.0
+focus_neighbor_left = NodePath(".")
 text = "Back"
 
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu" method="_on_return_pressed"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/Settings" to="PauseCanvasLayer/PauseMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/BackToMenu" to="PauseCanvasLayer/PauseMenu" method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/QuitGame" to="PauseCanvasLayer/PauseMenu" method="_on_quit_game_pressed"]
+[connection signal="settings_category_changed" from="PauseCanvasLayer/PauseMenu/Settings" to="PauseCanvasLayer/PauseMenu" method="_on_settings_settings_category_changed"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/SettingsBackButton" to="PauseCanvasLayer/PauseMenu" method="_on_settings_back_button_pressed"]
 
 [editable path="PauseCanvasLayer/PauseMenu/Settings"]

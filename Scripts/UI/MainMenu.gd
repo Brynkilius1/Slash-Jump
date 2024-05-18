@@ -18,7 +18,12 @@ extends Control
 @onready var menu = $Menu/Menu
 @onready var settings_holder = $Menu/Menu/Settings/SettingsHolder
 @onready var bar_transition = $DeathTransistionCanvasLayer/BarTransition
+@onready var settings_back_button = $Menu/Menu/Settings/SettingsHolder/SettingsBackButton
+@onready var selection_swords = $MainMenuVisuals/SelectionSwords
 
+@onready var fps_slider = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider
+@onready var ambience_volume_slider = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider
+@onready var rumble_check_box = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/RumbleCheckBox
 
 
 
@@ -106,6 +111,7 @@ func _on_settings_button_pressed():
 	ToggleSettingsVisible(true)
 	settings.GetExpectedFocus()
 	settings.current_settings_menu = 1
+	_on_settings_settings_category_changed(0)
 
 
 func _on_settings_back_button_pressed():
@@ -113,6 +119,7 @@ func _on_settings_back_button_pressed():
 	settings.UpdateSettingsVisuals()
 	ToggleSettingsVisible(false)
 	settings_button.grab_focus()
+	settings.ChangeToCategory(0)
 	settings.current_settings_menu = 0
 
 func _on_level_select_back_button_pressed():
@@ -126,6 +133,7 @@ func ToggleSettingsVisible(toggle):
 	settings.visible = toggle
 	settings_holder.visible = toggle
 	main_menu_buttons.visible = not toggle
+	selection_swords.visible = not toggle
 
 
 
@@ -145,7 +153,7 @@ func ToggleRebindControlsVisible(toggle):
 
 
 #Focus entered
-
+"""
 func _on_start_button_focus_entered():
 	DisableVisibilityOnAllSwordSelectors()
 	selection_swords_start.visible = true
@@ -160,6 +168,7 @@ func DisableVisibilityOnAllSwordSelectors():
 	selection_swords_start.visible = false
 	selection_swords_settings.visible = false
 	selection_swords_quit.visible = false
+"""
 
 
 
@@ -178,3 +187,14 @@ func DisableVisibilityOnAllSwordSelectors():
 
 
 
+
+func _on_settings_settings_category_changed(settings_category):
+	var focus_neighbor
+	if settings_category == 0:
+		focus_neighbor = fps_slider
+	elif settings_category == 1:
+		focus_neighbor = ambience_volume_slider
+	elif settings_category == 2:
+		focus_neighbor = rumble_check_box
+		
+	settings_back_button.set_focus_neighbor(SIDE_TOP, settings_back_button.get_path_to(focus_neighbor))

@@ -5,6 +5,13 @@ var main_menu = preload("res://Scenes/UI/GameStart/main_menu.tscn")
 @onready var return_button = $PauseMenuButtons/Return
 @onready var settings_button = $PauseMenuButtons/Settings
 
+@onready var fps_slider = $Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider
+@onready var ambience_volume_slider = $Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider
+@onready var rumble_check_box = $Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/RumbleCheckBox
+
+@onready var settings_back_button = $Settings/SettingsHolder/SettingsBackButton
+
+
 
 
 @onready var settings = $Settings
@@ -30,11 +37,13 @@ func _on_settings_pressed():
 	ToggleSettingsVisible(true)
 	settings.GetExpectedFocus()
 	settings.current_settings_menu = 1
+	_on_settings_settings_category_changed(0)
 
 func _on_settings_back_button_pressed():
 	print("pressed settings back button")
 	ToggleSettingsVisible(false)
 	SaverAndLoader.save_data(SaverAndLoader.SAVE_DIR + SaverAndLoader.SAVE_FILE_NAME)
+	settings.ChangeToCategory(0)
 	settings.current_settings_menu = 0
 	settings_button.grab_focus()
 
@@ -70,3 +79,15 @@ func ToggleSettingsVisible(toggle):
 
 
 
+
+
+func _on_settings_settings_category_changed(settings_category):
+	var focus_neighbor
+	if settings_category == 0:
+		focus_neighbor = fps_slider
+	elif settings_category == 1:
+		focus_neighbor = ambience_volume_slider
+	elif settings_category == 2:
+		focus_neighbor = rumble_check_box
+		
+	settings_back_button.set_focus_neighbor(SIDE_TOP, settings_back_button.get_path_to(focus_neighbor))

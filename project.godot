@@ -41,7 +41,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/gdrama/plugin.cfg", "res://addons/nklbdev.previewing_parallax_background/plugin.cfg")
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/gdrama/plugin.cfg", "res://addons/nklbdev.previewing_parallax_background/plugin.cfg", "res://addons/slidergamepad/plugin.cfg")
 
 [input]
 

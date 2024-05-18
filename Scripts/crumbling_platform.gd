@@ -4,6 +4,7 @@ const STONE_HIT_PATRICLES = preload("res://Scenes/Particles/StoneHitPatricles.ts
 
 @export var platform_width : int = 1
 @export var particle_rotation : float = 0
+@export var flip_tree : bool = false
 
 var crumble_time : float = 0.8
 var platform_respawn_time : float = 3.0
@@ -19,6 +20,7 @@ var platform_respawn_time : float = 3.0
 @onready var player_leaving_detector_shape = $PlayerLeavingDetector/PlayerLeavingDetectorShape
 @onready var audio_master = $AudioMaster
 @onready var particle_spawner = $ParticleSpawner
+@onready var tree_animated_sprite = $CrumbingPlatformTree
 
 
 @onready var sprite_2d = $Sprite2D
@@ -36,6 +38,9 @@ func _ready():
 	disapear_timer.wait_time = crumble_time
 	shaker.stop()
 	SetPlatformWidth()
+	tree_animated_sprite.play("Regrow")
+	if flip_tree == true:
+		tree_animated_sprite.flip_h = true
 
 func SetPlatformWidth():
 	sword_collision_handler.scale.x = platform_width
@@ -56,14 +61,18 @@ func DisableSelf(disabled_self : bool):
 	print("called DisableSelf", self)
 	#animations
 	if disabled_self == false:
+		StoodOn(false)
 		platform_animated_sprite.play("appear")
 		platform_animated_sprite.visible = not disabled_self
+		tree_animated_sprite.play("Regrow")
 		await get_tree().create_timer(0.3).timeout
+		
 		TogglePlatformEnabled(disabled_self)
 		
 	else:
 		particle_spawner.SpawnParticles(particle_rotation)
 		platform_animated_sprite.play("disapear")
+		tree_animated_sprite.play("Hit")
 		await get_tree().create_timer(0.1).timeout
 		TogglePlatformEnabled(disabled_self)
 		await get_tree().create_timer(0.25).timeout
@@ -81,12 +90,14 @@ func TogglePlatformEnabled(disabled_self):
 func _on_player_detector_body_entered(body):
 	if triggerable == true:
 		triggerable = false
+		StoodOn(true)
 		disapear_timer.start()
 		shaker.start()
 
 
 func _on_player_leaving_detector_body_exited(body):
 	if triggerable == false:
+		StoodOn(false)
 		platform_animated_sprite.play("disapear")
 		respawner.StartRespawn()
 		shaker.stop()
@@ -101,4 +112,14 @@ func LandOnTilemap(position):
 	audio_master.PlayRandomSound("Land")
 
 
+func StoodOn(standing_toggle):
+	if rotation_degrees == 0:
+		if standing_toggle == true:
+			tree_animated_sprite.play("StoodOn")
+			platform_animated_sprite.position.y = -4
+			collision_shape_2d.position.y = 5
+
+		elif standing_toggle == false:
+			platform_animated_sprite.position.y = -3
+			collision_shape_2d.position.y = 3
 

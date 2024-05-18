@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cys6fkwqr1a2a"]
+
+[ext_resource type="Texture2D" uid="uid://ckh0tvohv2lvc" path="res://Images/sindri/crumblingPlatformTree.png" id="1_r0anm"]
+
+[node name="CrumblingPlatformTree" type="Sprite2D"]
+position = Vector2(-16, -12)
+texture = ExtResource("1_r0anm")
+centered = false

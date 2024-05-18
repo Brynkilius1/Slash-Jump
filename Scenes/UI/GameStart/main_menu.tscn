@@ -1,114 +1,18 @@
-[gd_scene load_steps=42 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=28 format=3 uid="uid://jumgmkw5n5jc"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
-[ext_resource type="Texture2D" uid="uid://ccqghblkl4u1e" path="res://Images/UI/MainMenu/MainMenuBackround.png" id="2_3tavq"]
+[ext_resource type="Script" path="res://Scripts/UI/MainMenuVisuals.gd" id="2_aaf8t"]
+[ext_resource type="Script" path="res://Scripts/UI/SelectionSwords.gd" id="3_tb5wg"]
 [ext_resource type="Texture2D" uid="uid://bmj4yofmf4gqu" path="res://Images/UI/MainMenu/SlashJumpLogo.png" id="7_8chwq"]
-[ext_resource type="Texture2D" uid="uid://c12buqkamyyli" path="res://Images/VisualTest/RainParticles.png" id="7_j12lg"]
-[ext_resource type="Texture2D" uid="uid://bfyftpjjhxpvu" path="res://Images/VisualTest/RainLandingGroundAnim.png" id="8_epjdf"]
 [ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="9_oovw4"]
 [ext_resource type="Texture2D" uid="uid://dljkyxwamk3jo" path="res://Images/Crayon/Misc/SlashJumpConcept1Rotated.png" id="10_g6gpd"]
 [ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="11_fycji"]
 [ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="12_62rsl"]
 [ext_resource type="PackedScene" uid="uid://krc5l4r450cl" path="res://Global/saver_and_loader.tscn" id="17_ccu1f"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="17_pbjll"]
-[ext_resource type="Texture2D" uid="uid://cmg536rv7usov" path="res://Images/VisualTest/RainLandingAnim.png" id="19_f6qtp"]
-[ext_resource type="Shader" uid="uid://pl1mn3bnleeh" path="res://Shaders/testVisuals.tres" id="20_nnmj5"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="20_no80h"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Cache.gd" id="21_46i84"]
 [ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="22_g0apr"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x4mvw"]
-particles_animation = true
-particles_anim_h_frames = 4
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xaak"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(200, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(-0.7, 1, 0)
-spread = 5.0
-initial_velocity_min = 200.0
-initial_velocity_max = 300.0
-gravity = Vector3(0, 500, 0)
-collision_mode = 2
-collision_use_scale = true
-sub_emitter_mode = 3
-sub_emitter_amount_at_collision = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpi2y"]
-particles_animation = true
-particles_anim_h_frames = 3
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_elit4"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aa8vx"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(400, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(-0.7, 1, 0)
-spread = 5.0
-initial_velocity_min = 100.0
-initial_velocity_max = 200.0
-gravity = Vector3(0, 200, 0)
-collision_mode = 2
-collision_use_scale = true
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_so7ib"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(200, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(-0.7, 1, 0)
-spread = 5.0
-initial_velocity_min = 230.0
-initial_velocity_max = 300.0
-gravity = Vector3(0, 500, 0)
-collision_use_scale = true
-sub_emitter_mode = 2
-sub_emitter_amount_at_end = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nraj0"]
-particles_animation = true
-particles_anim_h_frames = 6
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c54kq"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(200, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(-0.7, 1, 0)
-spread = 5.0
-initial_velocity_min = 700.0
-initial_velocity_max = 800.0
-gravity = Vector3(0, 1000, 0)
-collision_mode = 2
-collision_use_scale = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ov4af"]
-noise_type = 2
-fractal_type = 0
-cellular_distance_function = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_imcrb"]
-seamless = true
-noise = SubResource("FastNoiseLite_ov4af")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_88m76"]
-shader = ExtResource("20_nnmj5")
-shader_parameter/ColorParameter = Color(0.169537, 0.375915, 0.674706, 1)
-shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_imcrb")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2i1nt"]
 
@@ -225,142 +129,163 @@ _data = {
 
 [node name="RootNode" type="Node2D"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.73, 0.555895, 0.3431, 1)
+
 [node name="MainMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qcmvg")
 
-[node name="BAckround" type="CanvasLayer" parent="MainMenu"]
+[node name="MainMenuVisuals" type="Control" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_aaf8t")
 
-[node name="Sprite2D" type="Sprite2D" parent="MainMenu/BAckround"]
-position = Vector2(160, 90)
-texture = ExtResource("2_3tavq")
+[node name="SelectionSwords" type="Control" parent="MainMenu/MainMenuVisuals"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 76.0
+offset_right = -104.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_tb5wg")
 
-[node name="Rain" type="Node2D" parent="MainMenu/BAckround"]
-position = Vector2(153, 80)
+[node name="SwordLeft" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwords"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 11.0
+offset_right = 34.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
 
-[node name="Rain" type="GPUParticles2D" parent="MainMenu/BAckround/Rain"]
-modulate = Color(0.85098, 0.85098, 0.85098, 1)
-material = SubResource("CanvasItemMaterial_x4mvw")
-position = Vector2(2, -108)
-amount = 20
-sub_emitter = NodePath("RainLanding")
-process_material = SubResource("ParticleProcessMaterial_2xaak")
-texture = ExtResource("7_j12lg")
-lifetime = 0.6
-fixed_fps = 60
-collision_base_size = 2.5
-trail_sections = 3
-trail_section_subdivisions = 2
+[node name="SwordRight" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwords"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 11.0
+offset_right = 120.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+flip_h = true
 
-[node name="RainLanding" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/Rain"]
-material = SubResource("CanvasItemMaterial_rpi2y")
-emitting = false
-amount = 1
-process_material = SubResource("ParticleProcessMaterial_elit4")
-texture = ExtResource("8_epjdf")
-lifetime = 0.2
-one_shot = true
-
-[node name="Backround" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
-layer = -3
-scale = Vector2(4, 4)
-transform = Transform2D(4, 0, 0, 4, 0, 0)
-follow_viewport_enabled = true
-follow_viewport_scale = 0.25
-
-[node name="CanvasModulate2" type="CanvasModulate" parent="MainMenu/BAckround/Rain/Backround"]
-color = Color(0.517647, 0.517647, 0.517647, 1)
-
-[node name="MiddleBackround" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
-layer = -1
-follow_viewport_enabled = true
-follow_viewport_scale = 0.5
-
-[node name="CanvasModulate3" type="CanvasModulate" parent="MainMenu/BAckround/Rain/MiddleBackround"]
-color = Color(0.435294, 0.435294, 0.435294, 1)
-
-[node name="Rain3" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/MiddleBackround"]
-modulate = Color(0.509804, 0.509804, 0.509804, 1)
-material = SubResource("CanvasItemMaterial_x4mvw")
-position = Vector2(102, -210)
-amount = 70
-process_material = SubResource("ParticleProcessMaterial_aa8vx")
-texture = ExtResource("7_j12lg")
-lifetime = 1.5
-visibility_rect = Rect2(-100, -100, 300, 300)
-
-[node name="MiddleForground" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
-follow_viewport_enabled = true
-follow_viewport_scale = 1.2
-
-[node name="Rain" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/MiddleForground"]
-modulate = Color(0.466667, 0.466667, 0.466667, 1)
-material = SubResource("CanvasItemMaterial_x4mvw")
-position = Vector2(2, -108)
-amount = 12
-sub_emitter = NodePath("RainLanding")
-process_material = SubResource("ParticleProcessMaterial_so7ib")
-texture = ExtResource("7_j12lg")
-lifetime = 0.59
-fixed_fps = 60
-collision_base_size = 2.5
-visibility_rect = Rect2(-100, -100, 200, 300)
-trail_sections = 3
-trail_section_subdivisions = 2
-
-[node name="RainLanding" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/MiddleForground/Rain"]
-material = SubResource("CanvasItemMaterial_nraj0")
-emitting = false
-amount = 1
-process_material = SubResource("ParticleProcessMaterial_elit4")
-texture = ExtResource("19_f6qtp")
-lifetime = 0.2
-one_shot = true
-fixed_fps = 60
-
-[node name="CanvasModulate2" type="CanvasModulate" parent="MainMenu/BAckround/Rain/MiddleForground"]
-color = Color(0.407843, 0.407843, 0.407843, 1)
-
-[node name="Foreground" type="CanvasLayer" parent="MainMenu/BAckround/Rain"]
-layer = 3
-follow_viewport_enabled = true
-follow_viewport_scale = 1.5
-
-[node name="CanvasModulate2" type="CanvasModulate" parent="MainMenu/BAckround/Rain/Foreground"]
-color = Color(0.576471, 0.576471, 0.576471, 1)
-
-[node name="Rain2" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/Foreground"]
-modulate = Color(0.329412, 0.329412, 0.329412, 1)
-light_mask = 2
-visibility_layer = 2
-material = SubResource("CanvasItemMaterial_x4mvw")
-position = Vector2(2, -108)
-process_material = SubResource("ParticleProcessMaterial_c54kq")
-texture = ExtResource("7_j12lg")
-lifetime = 0.5
-
-[node name="Rain3" type="GPUParticles2D" parent="MainMenu/BAckround/Rain/Foreground"]
-modulate = Color(0.329412, 0.329412, 0.329412, 1)
-light_mask = 2
-visibility_layer = 2
-material = SubResource("CanvasItemMaterial_x4mvw")
-position = Vector2(-129, -102.5)
-process_material = SubResource("ParticleProcessMaterial_c54kq")
-texture = ExtResource("7_j12lg")
-lifetime = 0.5
-
-[node name="ColorRect3" type="ColorRect" parent="MainMenu/BAckround/Rain"]
+[node name="SelectionSwordStart" type="Control" parent="MainMenu/MainMenuVisuals"]
 visible = false
-texture_repeat = 2
-material = SubResource("ShaderMaterial_88m76")
-offset_right = 246.0
-offset_bottom = 175.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 76.0
+offset_right = 110.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordStart"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 11.0
+offset_right = 35.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordStart"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 12.0
+offset_right = 119.0
+offset_bottom = 52.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+flip_h = true
+
+[node name="SelectionSwordsSettings" type="Control" parent="MainMenu/MainMenuVisuals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 102.0
+offset_right = 110.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsSettings"]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 10.0
+offset_right = 19.0
+offset_bottom = 50.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsSettings"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 11.0
+offset_right = 136.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+flip_h = true
+
+[node name="SelectionSwordsQuit" type="Control" parent="MainMenu/MainMenuVisuals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 151.0
+offset_right = 110.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsQuit"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 10.0
+offset_right = 41.0
+offset_bottom = 50.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsQuit"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 11.0
+offset_right = 113.0
+offset_bottom = 51.0
+texture = ExtResource("9_oovw4")
+stretch_mode = 2
+flip_h = true
 
 [node name="Menu" type="CanvasLayer" parent="MainMenu"]
 layer = 2
@@ -371,8 +296,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 18560.0
-offset_bottom = 10440.0
+offset_right = 2880.0
+offset_bottom = 1620.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -415,12 +340,13 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 110
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 110
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_bottom = 17
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = -1
 
 [node name="StartButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -428,8 +354,8 @@ focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
 theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
-theme_override_colors/font_hover_color = Color(0.960784, 0.937255, 0.909804, 1)
-theme_override_colors/font_focus_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
 theme_override_fonts/font = ExtResource("22_g0apr")
 theme_override_font_sizes/font_size = 32
@@ -438,42 +364,14 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_71xlg")
 text = "Start"
 flat = true
 
-[node name="SelectionSwords" type="Control" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton/SelectionSwords"]
-layout_mode = 0
-offset_left = -5.0
-offset_top = 11.0
-offset_right = 35.0
-offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton/SelectionSwords"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 12.0
-offset_right = 119.0
-offset_bottom = 52.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-flip_h = true
-
 [node name="SettingsButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
 theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
 theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
-theme_override_colors/font_hover_color = Color(0.960784, 0.937255, 0.909804, 1)
-theme_override_colors/font_focus_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
 theme_override_fonts/font = ExtResource("22_g0apr")
 theme_override_font_sizes/font_size = 32
@@ -483,43 +381,31 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_o22x4")
 text = "Settings"
 flat = true
 
-[node name="SelectionSwords" type="Control" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton/SelectionSwords"]
-layout_mode = 0
-offset_left = -21.0
-offset_top = 10.0
-offset_right = 19.0
-offset_bottom = 50.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton/SelectionSwords"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 11.0
-offset_right = 136.0
-offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-flip_h = true
+[node name="CreditsButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wjcwm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s04aq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o22x4")
+text = "Credits"
+flat = true
 
 [node name="QuitButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_top = NodePath("../CreditsButton")
 focus_neighbor_bottom = NodePath("../StartButton")
 theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
 theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
-theme_override_colors/font_hover_color = Color(0.960784, 0.937255, 0.909804, 1)
-theme_override_colors/font_focus_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
 theme_override_fonts/font = ExtResource("22_g0apr")
 theme_override_font_sizes/font_size = 32
@@ -527,35 +413,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_y1day")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cmcge")
 text = "Quit"
 flat = true
-
-[node name="SelectionSwords" type="Control" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton/SelectionSwords"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 10.0
-offset_right = 41.0
-offset_bottom = 50.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton/SelectionSwords"]
-layout_mode = 0
-offset_left = 73.0
-offset_top = 11.0
-offset_right = 113.0
-offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-flip_h = true
 
 [node name="MyName" type="Label" parent="MainMenu/Menu/Menu/MainMenuButtons"]
 layout_mode = 1
@@ -569,9 +426,12 @@ offset_top = -15.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
+theme_override_constants/line_spacing = -1
 theme_override_fonts/font = ExtResource("22_g0apr")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xa1ch")
-text = "By: Brynjar Á."
+text = "By:
+ Brynjar Á.
+ Sindri H"
 
 [node name="LevelSelect" type="Control" parent="MainMenu/Menu/Menu"]
 visible = false
@@ -755,8 +615,38 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings" index="0"]
+[node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 24.0
+offset_bottom = 9.0
+
+[node name="FpsSlider" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
+
+[node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 24.0
+offset_bottom = 9.0
+
+[node name="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings" index="1"]
 focus_mode = 2
+
+[node name="AmbienceVolumeSlider" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
+
+[node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 24.0
+offset_bottom = 9.0
+
+[node name="RumbleCheckBox" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer" index="3"]
+focus_neighbor_bottom = NodePath("../../../../SettingsBackButton")
 
 [node name="SettingsBackButton" type="Button" parent="MainMenu/Menu/Menu/Settings/SettingsHolder" index="1"]
 layout_mode = 0
@@ -790,16 +680,21 @@ visible = false
 uncover_screen_when_loaded = false
 
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu/MainMenuVisuals" method="_on_start_button_focus_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_settings_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu/MainMenuVisuals" method="_on_settings_button_focus_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/CreditsButton" to="MainMenu/MainMenuVisuals" method="_on_credits_button_focus_entered"]
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu/MainMenuVisuals" method="_on_quit_button_focus_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer/StartLevel1Button" to="MainMenu" method="_on_start_level_1_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/NextLevelButton" to="MainMenu" method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer/StartLevel2Button" to="MainMenu" method="_on_start_level_2_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level2/PrevLevelButton" to="MainMenu" method="_on_prev_level_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/LevelSelectBackButton" to="MainMenu" method="_on_level_select_back_button_pressed"]
+[connection signal="settings_category_changed" from="MainMenu/Menu/Menu/Settings" to="MainMenu" method="_on_settings_settings_category_changed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu" method="_on_settings_back_button_pressed"]
 [connection signal="animation_finished" from="MainMenu/Menu/LevelZoomAnimationPlayer" to="MainMenu" method="_on_level_zoom_animation_player_animation_finished"]
 [connection signal="cover_finished" from="MainMenu/DeathTransistionCanvasLayer/BarTransition" to="MainMenu" method="_on_bar_transition_cover_finished"]

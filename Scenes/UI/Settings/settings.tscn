@@ -1,13 +1,217 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvywh4gs5xuci"]
+[gd_scene load_steps=28 format=3 uid="uid://bvywh4gs5xuci"]
 
 [ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="1_hci0q"]
 [ext_resource type="Script" path="res://Scripts/UI/Settings/MainSettings.gd" id="1_q1rm0"]
 [ext_resource type="Script" path="res://Scripts/UI/Settings/VideoSettings.gd" id="2_7xqac"]
 [ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="3_ufrlf"]
+[ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="4_3vgss"]
 [ext_resource type="Script" path="res://Scripts/UI/Settings/AudioSettings.gd" id="4_i6dhm"]
+[ext_resource type="Texture2D" uid="uid://ct5oq2a4g322m" path="res://Images/UI/Settings/CheckBoxChecked.png" id="4_xrmkj"]
+[ext_resource type="Texture2D" uid="uid://qyilxw6god3t" path="res://Images/UI/Settings/SliderGrabber.png" id="5_h0sey"]
+[ext_resource type="Texture2D" uid="uid://dubgju6qj0hrv" path="res://Images/UI/Settings/CheckBoxUnchecked.png" id="5_t52an"]
 [ext_resource type="Script" path="res://addons/slidergamepad/hslider_gamepad.gd" id="6_7wjb0"]
+[ext_resource type="Texture2D" uid="uid://dhbn31fj5p26y" path="res://Images/UI/Settings/SliderGrabberHeld.png" id="6_plli8"]
 [ext_resource type="Script" path="res://Scripts/UI/Settings/ContolSettings.gd" id="6_tffsd"]
 [ext_resource type="PackedScene" uid="uid://dno85da3ev1uv" path="res://Scenes/UI/Settings/rebind_controls_screen.tscn" id="7_7ecvv"]
+[ext_resource type="Texture2D" uid="uid://bh51uquxsl0k4" path="res://Images/UI/MainMenu/MainMenuSelectSwordArrow.png" id="12_q001r"]
+
+[sub_resource type="GDScript" id="GDScript_wna22"]
+script/source = "extends Control
+
+@onready var sword_indicator = $SwordIndicator
+
+
+@onready var full_screen_check_box = $\"../VBoxContainer/FullScreenCheckBox\"
+@onready var v_sync_check_box = $\"../VBoxContainer/VSyncCheckBox\"
+@onready var screenshake_check_box = $\"../VBoxContainer/ScreenshakeCheckBox\"
+@onready var fps_slider = $\"../VBoxContainer/FPSContainer/FpsSlider\"
+
+const MAIN_MENU_SELECT_SWORD = preload(\"res://Images/UI/MainMenu/MainMenuSelectSword.png\")
+const MAIN_MENU_SELECT_SWORD_ARROW = preload(\"res://Images/UI/MainMenu/MainMenuSelectSwordArrow.png\")
+
+
+func _on_full_screen_check_box_focus_entered():
+	TweenSelectionSwordPosX(full_screen_check_box)
+
+
+func _on_v_sync_check_box_focus_entered():
+	TweenSelectionSwordPosX(v_sync_check_box)
+
+
+func _on_screenshake_check_box_focus_entered():
+	TweenSelectionSwordPosX(screenshake_check_box)
+
+
+func _on_fps_slider_focus_entered():
+	TweenSelectionSwordPosX(fps_slider)
+	sword_indicator.texture = MAIN_MENU_SELECT_SWORD_ARROW
+
+func _on_fps_slider_focus_exited():
+	sword_indicator.texture = MAIN_MENU_SELECT_SWORD
+
+
+func TweenSelectionSwordPosX(button):
+	var sword_tween = create_tween()
+	sword_tween.tween_property(sword_indicator, \"global_position:y\",  button.global_position.y + 8, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+
+
+
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sr0tm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4evp"]
+content_margin_left = 7.0
+content_margin_top = 4.0
+content_margin_right = 5.0
+content_margin_bottom = 4.0
+bg_color = Color(0.670588, 0.6, 0.643137, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58ugl"]
+bg_color = Color(0.6, 0.6, 0.72549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmdr5"]
+bg_color = Color(0.6, 0.6, 0.862745, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="GDScript" id="GDScript_slku4"]
+script/source = "extends Control
+
+@onready var sword_indicator = $SwordIndicator
+
+
+@onready var master_volume_slider = $\"../VBoxContainer/MasterVolumeSlider/MasterVolumeSlider\"
+@onready var sound_effect_volume_slider = $\"../VBoxContainer/SoundEffectSlider/SoundEffectVolumeSlider\"
+@onready var music_volume_slider = $\"../VBoxContainer/MusicSlider/musicVolumeSlider\"
+@onready var ambience_volume_slider = $\"../VBoxContainer/AmbienceSlider/AmbienceVolumeSlider\"
+
+
+
+func _on_master_volume_slider_focus_entered():
+	TweenSelectionSwordPosX(master_volume_slider)
+
+
+func _on_sound_effect_volume_slider_focus_entered():
+	TweenSelectionSwordPosX(sound_effect_volume_slider)
+
+
+func _on_music_volume_slider_focus_entered():
+	TweenSelectionSwordPosX(music_volume_slider)
+
+
+func _on_ambience_volume_slider_focus_entered():
+	TweenSelectionSwordPosX(ambience_volume_slider)
+
+
+
+func TweenSelectionSwordPosX(button):
+	var sword_tween = create_tween()
+	sword_tween.tween_property(sword_indicator, \"global_position:y\",  button.global_position.y + 8, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uom0o"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4kw1"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.6, 0.6, 0.733333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb2ag"]
+bg_color = Color(0.6, 0.6, 0.854902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="GDScript" id="GDScript_vldg2"]
+script/source = "extends Control
+
+@onready var sword_indicator = $SwordIndicator
+
+
+@onready var change_keybinds_button = $\"../VBoxContainer/ChangeKeybindsButton\"
+@onready var invert_stick_input_check_box = $\"../VBoxContainer/InvertStickInputCheckBox\"
+@onready var controller_deadzone_volume_slider = $\"../VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider\"
+@onready var rumble_check_box = $\"../VBoxContainer/RumbleCheckBox\"
+
+const MAIN_MENU_SELECT_SWORD = preload(\"res://Images/UI/MainMenu/MainMenuSelectSword.png\")
+const MAIN_MENU_SELECT_SWORD_ARROW = preload(\"res://Images/UI/MainMenu/MainMenuSelectSwordArrow.png\")
+
+
+
+func _on_change_keybinds_button_focus_entered():
+	TweenSelectionSwordPosX(change_keybinds_button)
+
+
+func _on_invert_stick_input_check_box_focus_entered():
+	TweenSelectionSwordPosX(invert_stick_input_check_box)
+
+
+func _on_controller_deadzone_volume_slider_focus_entered():
+	TweenSelectionSwordPosX(controller_deadzone_volume_slider)
+	sword_indicator.texture = MAIN_MENU_SELECT_SWORD_ARROW
+
+
+func _on_controller_deadzone_volume_slider_focus_exited():
+	sword_indicator.texture = MAIN_MENU_SELECT_SWORD
+
+
+func _on_rumble_check_box_focus_entered():
+	TweenSelectionSwordPosX(rumble_check_box)
+
+
+
+func TweenSelectionSwordPosX(button):
+	var sword_tween = create_tween()
+	sword_tween.tween_property(sword_indicator, \"global_position:y\",  button.global_position.y + 8, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+
+
+
+
+
+
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j143g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxb3i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omgf3"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -34,69 +238,113 @@ offset_top = 4.0
 offset_right = 283.0
 offset_bottom = 174.0
 
-[node name="SettingsCategories" type="HBoxContainer" parent="SettingsHolder/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsHolder/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="VideoCategoryButton" type="Button" parent="SettingsHolder/VBoxContainer/SettingsCategories"]
+[node name="VideoCategoryButton" type="Button" parent="SettingsHolder/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../ControlCategoryButton")
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_font_sizes/font_size = 32
 text = "Video"
 
-[node name="AudioCategoryButton" type="Button" parent="SettingsHolder/VBoxContainer/SettingsCategories"]
+[node name="AudioCategoryButton" type="Button" parent="SettingsHolder/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_font_sizes/font_size = 32
 text = "Audio"
 
-[node name="ControlCategoryButton" type="Button" parent="SettingsHolder/VBoxContainer/SettingsCategories"]
+[node name="ControlCategoryButton" type="Button" parent="SettingsHolder/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_right = NodePath("../VideoCategoryButton")
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_font_sizes/font_size = 32
 text = "Controls"
+
+[node name="SettingsCategories" type="HBoxContainer" parent="SettingsHolder/VBoxContainer"]
+layout_mode = 2
+alignment = 1
 
 [node name="VideoSettings" type="Control" parent="SettingsHolder/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_7xqac")
 
+[node name="SwordIndicatorMover" type="Control" parent="SettingsHolder/VBoxContainer/VideoSettings"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_wna22")
+
+[node name="SwordIndicator" type="TextureRect" parent="SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 27.0
+offset_bottom = 15.0
+texture = ExtResource("4_3vgss")
+stretch_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsHolder/VBoxContainer/VideoSettings"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 100.0
+offset_left = 29.0
+offset_right = -13.0
+offset_bottom = 108.0
 grow_horizontal = 2
 
 [node name="FullScreenCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer/VideoCategoryButton")
 theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_icons/checked = ExtResource("4_xrmkj")
+theme_override_icons/unchecked = ExtResource("5_t52an")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sr0tm")
 text = "FullScreen"
 
 [node name="VSyncCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_icons/checked = ExtResource("4_xrmkj")
+theme_override_icons/unchecked = ExtResource("5_t52an")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sr0tm")
 text = "VSync"
 
 [node name="ScreenshakeCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_hci0q")
-button_pressed = true
+theme_override_icons/checked = ExtResource("4_xrmkj")
+theme_override_icons/unchecked = ExtResource("5_t52an")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sr0tm")
 text = "Screenshake"
 
 [node name="FPSContainer" type="HBoxContainer" parent="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="FPSLabel" type="Label" parent="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "FPS: 300"
+clip_text = true
 
 [node name="FpsSlider" type="HSlider" parent="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("5_h0sey")
+theme_override_icons/grabber_highlight = ExtResource("6_plli8")
+theme_override_styles/slider = SubResource("StyleBoxFlat_c4evp")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_58ugl")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_cmdr5")
 min_value = 30.0
 max_value = 300.0
 value = 60.0
@@ -110,12 +358,36 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("4_i6dhm")
 
+[node name="SwordIndicatorMover" type="Control" parent="SettingsHolder/VBoxContainer/AudioSettings"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_slku4")
+
+[node name="SwordIndicator" type="TextureRect" parent="SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 27.0
+offset_bottom = 15.0
+texture = ExtResource("12_q001r")
+stretch_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsHolder/VBoxContainer/AudioSettings"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 100.0
+offset_left = 29.0
+offset_right = -13.0
+offset_bottom = 113.0
 grow_horizontal = 2
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hci0q")
+text = "Volume:"
 
 [node name="MasterVolumeSlider" type="HBoxContainer" parent="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer"]
 layout_mode = 2
@@ -125,15 +397,22 @@ theme_override_constants/separation = 10
 [node name="MasterVolumeLabel" type="Label" parent="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 theme_override_fonts/font = ExtResource("3_ufrlf")
-text = "Volume: 60%"
+text = "Master: 60%"
 
 [node name="MasterVolumeSlider" type="HSlider" parent="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_top = NodePath("../../AmbienceSlider/AmbienceVolumeSlider")
+focus_neighbor_top = NodePath("../../../../HBoxContainer/AudioCategoryButton")
 focus_neighbor_bottom = NodePath("../../SoundEffectSlider/SoundEffectVolumeSlider")
+theme_override_icons/grabber = ExtResource("5_h0sey")
+theme_override_icons/grabber_highlight = ExtResource("6_plli8")
+theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -147,6 +426,8 @@ theme_override_constants/separation = 10
 [node name="SoundEffectVolumeLabel" type="Label" parent="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Volume: 60%"
 
@@ -156,6 +437,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_top = NodePath("../../MasterVolumeSlider/MasterVolumeSlider")
 focus_neighbor_bottom = NodePath("../../MusicSlider/musicVolumeSlider")
+theme_override_icons/grabber = ExtResource("5_h0sey")
+theme_override_icons/grabber_highlight = ExtResource("6_plli8")
+theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -169,6 +455,8 @@ theme_override_constants/separation = 10
 [node name="MusicVolumeLabel" type="Label" parent="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MusicSlider"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Volume: 60%"
 
@@ -178,6 +466,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_top = NodePath("../../SoundEffectSlider/SoundEffectVolumeSlider")
 focus_neighbor_bottom = NodePath("../../AmbienceSlider/AmbienceVolumeSlider")
+theme_override_icons/grabber = ExtResource("5_h0sey")
+theme_override_icons/grabber_highlight = ExtResource("6_plli8")
+theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -191,6 +484,8 @@ theme_override_constants/separation = 10
 [node name="AmbienceVolumeLabel" type="Label" parent="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Volume: 60%"
 
@@ -200,6 +495,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 focus_neighbor_top = NodePath("../../MusicSlider/musicVolumeSlider")
 focus_neighbor_bottom = NodePath("../../MasterVolumeSlider/MasterVolumeSlider")
+theme_override_icons/grabber = ExtResource("5_h0sey")
+theme_override_icons/grabber_highlight = ExtResource("6_plli8")
+theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -211,27 +511,46 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("6_tffsd")
 
+[node name="SwordIndicatorMover" type="Control" parent="SettingsHolder/VBoxContainer/ContolSettings"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_vldg2")
+
+[node name="SwordIndicator" type="TextureRect" parent="SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 27.0
+offset_bottom = 15.0
+texture = ExtResource("4_3vgss")
+stretch_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsHolder/VBoxContainer/ContolSettings"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 100.0
+offset_left = 29.0
+offset_right = -13.0
+offset_bottom = 139.0
 grow_horizontal = 2
+theme_override_constants/separation = 0
 
 [node name="ChangeKeybindsButton" type="Button" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer/ControlCategoryButton")
 theme_override_fonts/font = ExtResource("3_ufrlf")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j143g")
 text = "Change Keybinds"
-
-[node name="ControllerSettingsLabel" type="Label" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_hci0q")
-text = "Controller Settings:"
 
 [node name="InvertStickInputCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_icons/checked = ExtResource("4_xrmkj")
+theme_override_icons/unchecked = ExtResource("5_t52an")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dxb3i")
 text = "Invert Stick Input"
 
 [node name="ControllerDeadzoneSlider" type="HBoxContainer" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
@@ -240,6 +559,8 @@ theme_override_constants/separation = 10
 
 [node name="ControllerDeadzoneVolumeLabel" type="Label" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Controller Deadzone: 0.3"
 
@@ -247,6 +568,11 @@ text = "Controller Deadzone: 0.3"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("5_h0sey")
+theme_override_icons/grabber_highlight = ExtResource("6_plli8")
+theme_override_styles/slider = SubResource("StyleBoxFlat_omgf3")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
 max_value = 0.9
 step = 0.05
 value = 0.3
@@ -257,15 +583,14 @@ dpad_step = 1
 [node name="RumbleCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_icons/checked = ExtResource("4_xrmkj")
+theme_override_icons/unchecked = ExtResource("5_t52an")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dxb3i")
 button_pressed = true
 text = "Controller Rumble"
 
-[node name="MouseSettingsLabel" type="Label" parent="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_hci0q")
-text = "Mouse Settings:"
-
 [node name="ColorRect" type="ColorRect" parent="SettingsHolder"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -295,21 +620,43 @@ offset_bottom = 161.0
 theme_override_fonts/font = ExtResource("1_hci0q")
 text = "Back"
 
-[connection signal="pressed" from="SettingsHolder/VBoxContainer/SettingsCategories/VideoCategoryButton" to="." method="_on_video_category_button_pressed"]
-[connection signal="pressed" from="SettingsHolder/VBoxContainer/SettingsCategories/AudioCategoryButton" to="." method="_on_audio_category_button_pressed"]
-[connection signal="pressed" from="SettingsHolder/VBoxContainer/SettingsCategories/ControlCategoryButton" to="." method="_on_control_category_button_pressed"]
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/HBoxContainer/VideoCategoryButton" to="." method="_on_video_category_button_focus_entered"]
+[connection signal="pressed" from="SettingsHolder/VBoxContainer/HBoxContainer/VideoCategoryButton" to="." method="_on_video_category_button_pressed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/HBoxContainer/AudioCategoryButton" to="." method="_on_audio_category_button_focus_entered"]
+[connection signal="pressed" from="SettingsHolder/VBoxContainer/HBoxContainer/AudioCategoryButton" to="." method="_on_audio_category_button_pressed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/HBoxContainer/ControlCategoryButton" to="." method="_on_control_category_button_focus_entered"]
+[connection signal="pressed" from="SettingsHolder/VBoxContainer/HBoxContainer/ControlCategoryButton" to="." method="_on_control_category_button_pressed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FullScreenCheckBox" to="SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" method="_on_full_screen_check_box_focus_entered"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FullScreenCheckBox" to="SettingsHolder/VBoxContainer/VideoSettings" method="_on_full_screen_check_box_toggled"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/VSyncCheckBox" to="SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" method="_on_v_sync_check_box_focus_entered"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/VSyncCheckBox" to="SettingsHolder/VBoxContainer/VideoSettings" method="_on_v_sync_check_box_toggled"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/ScreenshakeCheckBox" to="SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" method="_on_screenshake_check_box_focus_entered"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/ScreenshakeCheckBox" to="SettingsHolder/VBoxContainer/VideoSettings" method="_on_screenshake_check_box_toggled"]
 [connection signal="drag_ended" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="SettingsHolder/VBoxContainer/VideoSettings" method="_on_fps_slider_drag_ended"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" method="_on_fps_slider_focus_entered"]
+[connection signal="focus_exited" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" method="_on_fps_slider_focus_exited"]
 [connection signal="value_changed" from="SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider" to="SettingsHolder/VBoxContainer/VideoSettings" method="_on_fps_slider_value_changed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider/MasterVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" method="_on_master_volume_slider_focus_entered"]
 [connection signal="value_changed" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider/MasterVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings" method="_on_master_volume_slider_value_changed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider/SoundEffectVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" method="_on_sound_effect_volume_slider_focus_entered"]
 [connection signal="value_changed" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/SoundEffectSlider/SoundEffectVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings" method="_on_sound_effect_volume_slider_value_changed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MusicSlider/musicVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" method="_on_music_volume_slider_focus_entered"]
 [connection signal="value_changed" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MusicSlider/musicVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings" method="_on_music_volume_slider_value_changed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" method="_on_ambience_volume_slider_focus_entered"]
 [connection signal="value_changed" from="SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider" to="SettingsHolder/VBoxContainer/AudioSettings" method="_on_ambience_volume_slider_value_changed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ChangeKeybindsButton" to="SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" method="_on_change_keybinds_button_focus_entered"]
 [connection signal="pressed" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ChangeKeybindsButton" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_change_keybinds_button_pressed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/InvertStickInputCheckBox" to="SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" method="_on_invert_stick_input_check_box_focus_entered"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/InvertStickInputCheckBox" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_invert_stick_input_check_box_toggled"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider" to="SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" method="_on_controller_deadzone_volume_slider_focus_entered"]
+[connection signal="focus_exited" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider" to="SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" method="_on_controller_deadzone_volume_slider_focus_exited"]
 [connection signal="value_changed" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_controller_deadzone_volume_slider_value_changed"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/RumbleCheckBox" to="SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" method="_on_rumble_check_box_focus_entered"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/RumbleCheckBox" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_rumble_check_box_toggled"]
 [connection signal="activate_rebind_control_dead_timer" from="RebindControls" to="." method="_on_rebind_controls_activate_rebind_control_dead_timer"]
 [connection signal="closed_rebind_menu" from="RebindControls" to="SettingsHolder/VBoxContainer/ContolSettings" method="_on_rebind_controls_closed_rebind_menu"]
