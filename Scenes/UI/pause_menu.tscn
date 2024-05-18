@@ -55,7 +55,6 @@ visible = false
 layout_mode = 1
 
 [node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 24.0
@@ -65,7 +64,6 @@ offset_bottom = 9.0
 focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
 
 [node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 24.0
@@ -75,7 +73,6 @@ offset_bottom = 9.0
 focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
 
 [node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 24.0

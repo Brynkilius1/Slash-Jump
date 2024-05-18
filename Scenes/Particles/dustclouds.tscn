@@ -36,7 +36,6 @@ turbulence_noise_speed = Vector3(10, 0, 0)
 [node name="GPUParticles2D" type="GPUParticles2D"]
 modulate = Color(0.458824, 0.458824, 0.458824, 1)
 material = SubResource("CanvasItemMaterial_dpcw6")
-emitting = false
 process_material = SubResource("ParticleProcessMaterial_rv3ex")
 texture = ExtResource("1_b1loj")
 lifetime = 1.5

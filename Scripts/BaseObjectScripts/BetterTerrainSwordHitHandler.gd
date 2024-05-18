@@ -1,7 +1,8 @@
 extends TileMap
 
-var hit_particles_list = [preload("res://Scenes/Particles/dirt_particles.tscn"), load("res://Scenes/Particles/MetalObjectSparks.tscn")]
-@export var higher_particle_count : int = 5
+const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
+var hit_particles_list = [preload("res://Scenes/Particles/dirt_particles.tscn"), load("res://Scenes/Particles/ParticleTests/SpikesSparks.tscn"), load("res://Scenes/Particles/StoneHitPatricles.tscn"), load("res://Scenes/Particles/wood_particles.tscn")]
+@export var higher_particle_count : int = 4
 @export var lower_particle_count : int = 2
 
 @export var shake_camera_when_hit = false
@@ -35,13 +36,15 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 		ControllerRumble(0, 1.0, 0.9, 0.15)
 	elif hit_terrain == 2 or hit_terrain == 3: #grass/autumn grass
 		SwordHitPaticles(hit_particles_list[0], hit_pos, sword_angle, player_x_speed)
+		EmitParticles(DUSTCLOUDS, -1, hit_pos, false)
 		HitTilemap("GrassHit", 0, false)
 		ControllerRumble(0, 0.9, 0.2, 0.1)
 	elif hit_terrain == 4: # Stone
-		SwordHitPaticles(hit_particles_list[0], hit_pos, sword_angle, player_x_speed)
+		SwordHitPaticles(hit_particles_list[2], hit_pos, sword_angle, player_x_speed)
 		HitTilemap("StoneHit", 0, false)
 		ControllerRumble(0, 0.2, 0.9, 0.1)
 	elif hit_terrain == 5: #WoodPlatforms
+		SwordHitPaticles(hit_particles_list[3], hit_pos, sword_angle, player_x_speed)
 		ControllerRumble(0, 0.8, 0.5, 0.1)
 	print("terrain hit: ", hit_terrain)
 	print("Sword rotation: ", sword_angle)
@@ -88,13 +91,13 @@ func LandOnTilemap(player_pos):
 	var hit_tile = floor(player_pos/12)
 	var hit_terrain = CheckTileTerrainType(hit_tile)
 	if hit_terrain == 2 or hit_terrain == 3: #grass/autumn grass
-		EmitParticles(hit_particles_list[0], 3, player_pos, false)
-		EmitParticles(hit_particles_list[0], 3, player_pos, true)
+		EmitParticles(hit_particles_list[0], 3, player_pos + Vector2(0, 9), false)
+		EmitParticles(hit_particles_list[0], 3, player_pos + Vector2(0, 9), true)
 		print("playing land on grass sound")
 		audio_master.PlayRandomSound("LandGrass")
 	elif hit_terrain == 4: #Stone
-		EmitParticles(hit_particles_list[1], 3, player_pos, false)
-		EmitParticles(hit_particles_list[1], 3, player_pos, true)
+		EmitParticles(hit_particles_list[2], 3, player_pos + Vector2(0, 9), false)
+		EmitParticles(hit_particles_list[2], 3, player_pos + Vector2(0, 9), true)
 		HitTilemap("StoneHit", 0, false)
 	else:
 		print("landed on unknown ground type")
@@ -109,7 +112,8 @@ func EmitParticles(particle_type, amount, emit_location, flipped : bool):
 	if flipped == true:
 		p.scale.x = -1
 	
-	p.amount = amount
+	if amount >= 0:
+		p.amount = amount
 	p.global_position = emit_location
 	p.z_index = 2
 	get_tree().current_scene.add_child(p)

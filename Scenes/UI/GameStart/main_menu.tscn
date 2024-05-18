@@ -296,8 +296,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2880.0
-offset_bottom = 1620.0
+offset_right = 3840.0
+offset_bottom = 2160.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -616,7 +616,6 @@ visible = false
 layout_mode = 1
 
 [node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 24.0
@@ -626,7 +625,6 @@ offset_bottom = 9.0
 focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
 
 [node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 24.0
@@ -639,7 +637,6 @@ focus_mode = 2
 focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
 
 [node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 24.0

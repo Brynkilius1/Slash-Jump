@@ -1,7 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnuu582vlvxmi"]
+[gd_scene load_steps=8 format=3 uid="uid://bnuu582vlvxmi"]
 
+[ext_resource type="Texture2D" uid="uid://cy8x1ru4oqiww" path="res://Images/Particles/SwordHitParticles/StoneParticles.png" id="1_5hfuo"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="1_im66s"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="2_lpbyu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vqt65"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 5
+particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_deqbp"]
 offsets = PackedFloat32Array(0, 0.0884354, 0.789116, 1)
@@ -14,20 +21,21 @@ gradient = SubResource("Gradient_deqbp")
 particle_flag_disable_z = true
 direction = Vector3(1, -1, 0)
 spread = 30.0
-initial_velocity_min = 40.0
-initial_velocity_max = 60.0
+initial_velocity_min = 35.0
+initial_velocity_max = 55.0
 gravity = Vector3(0, 98, 0)
 color_ramp = SubResource("GradientTexture1D_ilx3j")
+anim_offset_max = 1.0
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
-modulate = Color(0.458824, 0.458824, 0.458824, 1)
+material = SubResource("CanvasItemMaterial_vqt65")
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_ijjw0")
-lifetime = 0.7
+texture = ExtResource("1_5hfuo")
 one_shot = true
 explosiveness = 0.96
 script = ExtResource("1_im66s")
-dissapear_time = 0.7
+dissapear_time = 1.0
 
 [node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
 script = ExtResource("2_lpbyu")

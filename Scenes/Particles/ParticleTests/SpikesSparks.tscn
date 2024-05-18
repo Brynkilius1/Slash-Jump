@@ -1,0 +1,136 @@
+[gd_scene load_steps=18 format=3 uid="uid://5d8p7t7vpwkb"]
+
+[ext_resource type="Texture2D" uid="uid://b43xjd3c544td" path="res://Images/Particles/ParticleAddons/WhiteLine.png" id="1_gc1t8"]
+
+[sub_resource type="GDScript" id="GDScript_qgu58"]
+script/source = "extends Node2D
+
+var amount : int
+
+@onready var gpu_particles_2d = $GPUParticles2D
+@onready var gpu_particles_2d_2 = $GPUParticles2D2
+@onready var gpu_particles_2d_3 = $GPUParticles2D3
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	gpu_particles_2d.amount = amount
+	gpu_particles_2d.emitting = true
+	gpu_particles_2d_2.emitting = true
+	gpu_particles_2d_3.emitting = true
+	await get_tree().create_timer(2.4).timeout
+	queue_free()
+
+
+
+"
+
+[sub_resource type="Gradient" id="Gradient_52yi5"]
+offsets = PackedFloat32Array(0, 0.272109, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_34w4i"]
+gradient = SubResource("Gradient_52yi5")
+
+[sub_resource type="Curve" id="Curve_cdwd5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.137143, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vlqyp"]
+curve = SubResource("Curve_cdwd5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hwdom"]
+particle_flag_disable_z = true
+angle_max = 60.0
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_vlqyp")
+color = Color(1, 1, 1, 0.337255)
+color_ramp = SubResource("GradientTexture1D_34w4i")
+
+[sub_resource type="Gradient" id="Gradient_annf1"]
+offsets = PackedFloat32Array(0, 0.115646, 0.414966, 0.646259, 0.70068, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.192157, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fxmyn"]
+gradient = SubResource("Gradient_annf1")
+
+[sub_resource type="Curve" id="Curve_b8gsw"]
+_data = [Vector2(0, 0.076923), 0.0, 0.0, 0, 0, Vector2(0.614973, 0.208791), 0.0, 0.0, 0, 0, Vector2(0.775401, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_nte75"]
+curve = SubResource("Curve_b8gsw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qpl12"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 35.0
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, -10, 0)
+scale_over_velocity_max = 128.71
+color_ramp = SubResource("GradientTexture1D_fxmyn")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, -1, 0)
+turbulence_influence_min = 0.065
+turbulence_influence_max = 0.243
+turbulence_influence_over_life = SubResource("CurveTexture_nte75")
+
+[sub_resource type="Gradient" id="Gradient_yq1cp"]
+offsets = PackedFloat32Array(0, 0.401361, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kp3ik"]
+gradient = SubResource("Gradient_yq1cp")
+
+[sub_resource type="Curve" id="Curve_0msug"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.291429, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cq7in"]
+curve = SubResource("Curve_0msug")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uuv2j"]
+particle_flag_disable_z = true
+angle_max = 60.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_cq7in")
+color = Color(1, 1, 1, 0.698039)
+color_ramp = SubResource("GradientTexture1D_kp3ik")
+
+[node name="MetalSparks" type="Node2D"]
+script = SubResource("GDScript_qgu58")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+z_index = 100
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_hwdom")
+texture = ExtResource("1_gc1t8")
+lifetime = 1.2
+one_shot = true
+fixed_fps = 120
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_qpl12")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.95
+fixed_fps = 120
+trail_enabled = true
+trail_lifetime = 0.1
+trail_sections = 4
+trail_section_subdivisions = 1
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_uuv2j")
+texture = ExtResource("1_gc1t8")
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0

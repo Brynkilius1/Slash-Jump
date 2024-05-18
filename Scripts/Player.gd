@@ -456,8 +456,8 @@ func SwordHitSounds():
 func SwordHitParticles():
 	var sword_tip = walljump_raycasts.get_child(0).global_position + walljump_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
 	var nearest_ground = GetClosestGround(walljump_raycasts)
-	#EmitParticles(sword_colision_particles, nearest_ground, sword_pivot.rotation)
-	EmitParticles(DUSTCLOUDS, nearest_ground + Vector2(0, -2), 0)
+
+	#EmitParticles(DUSTCLOUDS, nearest_ground + Vector2(0, -2), 0)
 	
 	#ground particles are spawned in their respective scripts
 

@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://4l05n1oygo5e"]
+[gd_scene load_steps=8 format=3 uid="uid://cl3xpxkn0q1lu"]
 
-[ext_resource type="Texture2D" uid="uid://dln5sjibsek3" path="res://Images/Particles/SwordHitParticles/DirtParticles.png" id="1_15nff"]
-[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_wq4i2"]
-[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="3_jme3i"]
+[ext_resource type="Texture2D" uid="uid://bxn6qf8nftcaa" path="res://Images/Particles/SwordHitParticles/WoodParticles.png" id="1_2euhm"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Disapear.gd" id="2_uh5e6"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/ParticleAutostart.gd" id="3_y18ar"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_suv0y"]
 particles_animation = true
@@ -38,12 +38,12 @@ z_index = 3
 material = SubResource("CanvasItemMaterial_suv0y")
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_3rexw")
-texture = ExtResource("1_15nff")
+texture = ExtResource("1_2euhm")
 one_shot = true
 explosiveness = 0.95
-script = ExtResource("2_wq4i2")
+script = ExtResource("2_uh5e6")
 dissapear_time = 1.0
 
 [node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("autostart_target")]
-script = ExtResource("3_jme3i")
+script = ExtResource("3_y18ar")
 autostart_target = NodePath("..")
