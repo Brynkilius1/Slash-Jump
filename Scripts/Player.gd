@@ -34,8 +34,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 @export var sword_miss_time = 0.1
 @export var sword_miss_recover_time = 0.1
 
-@export_category("Tests")
-@export var new_control_feel = true: set = SetNewControlFeel
+
 
 #node references
 #Sword
@@ -169,14 +168,6 @@ var zero_g_counter : int = 0: set = SetZeroGCounter
 
 
 
-func SetNewControlFeel(new_var):
-	new_control_feel = new_var
-	if new_control_feel == true:
-		swing_power = Vector2(0, 165)
-		gravity = 440
-	else:
-		swing_power = Vector2(0, 174)
-		gravity = 410
 
 
 
@@ -187,8 +178,6 @@ func _ready():
 	
 	#Settings:
 	UpdateControlSettings()
-	
-	new_control_feel = DebugMaster.anti_grav_controls
 	
 
 
@@ -486,9 +475,10 @@ func SwordHitTechnical():
 	#sword_colision_shape.call_deferred("set_disabled", true)
 	checking_sword_hitbox = false
 	sword_has_hit_this_swing = true
-	if new_control_feel == true:
-		TurnOffGravity(true)
-		StartAntiGravSwingTimer()
+	TurnOffGravity(true)
+	StartAntiGravSwingTimer()
+
+
 func HitObjects():
 	var hit_objects = sword_collision.get_overlapping_bodies()
 	for i in hit_objects:
@@ -505,9 +495,9 @@ func SwordHitVelocity(power, angle, is_wall_jumping):
 	extra_swing_power = 0
 	bounce_power.y += int(is_on_floor()) * extra_grounded_power #add slighty mode power if player is grounded
 	bounce_power = bounce_power.rotated(angle)
-	if new_control_feel == false:
-		if is_wall_jumping == true:
-			bounce_power = AddWallJumpBias(bounce_power, angle)
+	
+	#if is_wall_jumping == true:
+	#	bounce_power = AddWallJumpBias(bounce_power, angle)
 	
 	saved_x_speed = bounce_power.x
 	velocity = bounce_power
@@ -556,7 +546,7 @@ func IsWallJumping(raycast_group):
 	else:
 		return false
 
-func GetClosestGround(raycast_group):
+func GetClosestGround(raycast_group, big_swing : bool = true):
 	#optimise later
 	var main_raycast = raycast_group.get_child(0)
 	var emit_pos : Vector2 = main_raycast.global_position + main_raycast.target_position.rotated(sword_pivot.rotation)
@@ -569,19 +559,19 @@ func GetClosestGround(raycast_group):
 			object_hit = i.get_collider()
 			break
 	
-	DirectSwordHitOnObject(object_hit, emit_pos)
+	DirectSwordHitOnObject(object_hit, emit_pos, big_swing)
 	
 	if object_hit != null: 
 		DebugMaster.UpdateSwingRaycastIndicators(emit_pos, object_hit, sword_pivot.rotation) #update debug stuff
 	
 	return emit_pos
 
-func DirectSwordHitOnObject(object_hit, emit_pos):
+func DirectSwordHitOnObject(object_hit, emit_pos, big_swing):
 	if object_hit:
 		if object_hit.has_method("DirectSwordHit") == true:
-			object_hit.DirectSwordHit(emit_pos, sword_pivot.rotation, saved_x_speed)
+			object_hit.DirectSwordHit(emit_pos, sword_pivot.rotation, saved_x_speed, big_swing)
 		elif object_hit.get_parent().has_method("DirectSwordHit") == true:
-			object_hit.get_parent().DirectSwordHit(emit_pos, sword_pivot.rotation, saved_x_speed)
+			object_hit.get_parent().DirectSwordHit(emit_pos, sword_pivot.rotation, saved_x_speed, big_swing)
 
 func SwingKnife():
 	KnifeSwingSounds()
@@ -681,8 +671,9 @@ func KnifeHitSounds():
 	pass
 func KnifeHitParticles():
 	var sword_tip = knife_raycasts.get_child(0).global_position + knife_raycasts.get_child(0).target_position.rotated(sword_pivot.rotation)
-	var nearest_ground = GetClosestGround(knife_raycasts)
-	EmitParticles(DUSTCLOUDS, nearest_ground + Vector2(0, -2), 0)
+	var nearest_ground = GetClosestGround(knife_raycasts, false)
+
+
 func KnifeHitTechnical():
 	checking_knife_hitbox = false
 	knife_has_hit_this_swing = true

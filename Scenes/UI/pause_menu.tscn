@@ -1,7 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvlwvs3kbk1id"]
+[gd_scene load_steps=11 format=3 uid="uid://bvlwvs3kbk1id"]
 
 [ext_resource type="Script" path="res://Scripts/UI/PauseMenu.gd" id="1_atrbb"]
+[ext_resource type="Texture2D" uid="uid://dh3hdbbeccxaq" path="res://Images/UI/PauseMenu/PauseMenu.png" id="2_ayd4p"]
 [ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="2_he722"]
+[ext_resource type="Shader" path="res://Shaders/BlurScreenTexture.gdshader" id="2_y543y"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="3_3501b"]
+[ext_resource type="Script" path="res://Scripts/UI/SelectionSwords.gd" id="4_y8bga"]
+[ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="5_pldmk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_473lo"]
+shader = ExtResource("2_y543y")
+shader_parameter/lod = 0.6
+
+[sub_resource type="GDScript" id="GDScript_6rkvl"]
+script/source = "extends VBoxContainer
+
+@onready var return_button = $Return
+@onready var settings_button = $Settings
+@onready var back_to_menu_button = $BackToMenu
+@onready var quit_game_button = $QuitGame
+
+@onready var selection_swords = %SelectionSwords
+
+
+
+
+func _on_return_focus_entered():
+	TweenSelectionSwordPos(return_button, 38)
+
+
+func _on_settings_focus_entered():
+	TweenSelectionSwordPos(settings_button, 47)
+
+
+func _on_back_to_menu_focus_entered():
+	TweenSelectionSwordPos(back_to_menu_button, 73)
+
+
+func _on_quit_game_focus_entered():
+	TweenSelectionSwordPos(quit_game_button, 55)
+
+
+
+
+func TweenSelectionSwordPos(button, width):
+	TweenSelectionSwordPosX(button)
+	TweenSelectionSwordPosY(width)
+
+
+func TweenSelectionSwordPosX(button):
+	
+	var sword_tween = create_tween()
+	sword_tween.tween_property(selection_swords, \"global_position:y\",  button.global_position.y, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+
+
+func TweenSelectionSwordPosY(width):
+	var sword_tween = create_tween()
+	sword_tween.tween_property(selection_swords, \"width\",  width, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iqiv"]
 
 [node name="Control" type="Control"]
 process_mode = 3
@@ -26,62 +84,126 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_atrbb")
 
-[node name="PauseMenuButtons" type="VBoxContainer" parent="PauseCanvasLayer/PauseMenu"]
+[node name="ColorRect" type="ColorRect" parent="PauseCanvasLayer/PauseMenu"]
+material = SubResource("ShaderMaterial_473lo")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="Return" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+[node name="PauseMenuBackround" type="TextureRect" parent="PauseCanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -67.5
+offset_right = 88.0
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ayd4p")
+
+[node name="PauseMenuButtons" type="VBoxContainer" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = SubResource("GDScript_6rkvl")
+
+[node name="Return" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_3501b")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1iqiv")
 text = "Return"
+flat = true
 
-[node name="Settings" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+[node name="Settings" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_3501b")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1iqiv")
 text = "Settings"
+flat = true
 
-[node name="BackToMenu" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+[node name="BackToMenu" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_3501b")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1iqiv")
 text = "Back to Menu"
+flat = true
 
-[node name="QuitGame" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuButtons"]
+[node name="QuitGame" type="Button" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_3501b")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1iqiv")
 text = "Quit Game"
+flat = true
+
+[node name="SelectionSwords" type="Control" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = 103.5
+offset_right = -138.0
+offset_bottom = -31.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_y8bga")
+
+[node name="SwordLeft" type="TextureRect" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround/SelectionSwords"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 11.0
+offset_right = 10.0
+offset_bottom = 51.0
+texture = ExtResource("5_pldmk")
+stretch_mode = 2
+
+[node name="SwordRight" type="TextureRect" parent="PauseCanvasLayer/PauseMenu/PauseMenuBackround/SelectionSwords"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 11.0
+offset_right = 144.0
+offset_bottom = 51.0
+texture = ExtResource("5_pldmk")
+stretch_mode = 2
+flip_h = true
 
 [node name="Settings" parent="PauseCanvasLayer/PauseMenu" instance=ExtResource("2_he722")]
 visible = false
 layout_mode = 1
 
-[node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 24.0
-offset_bottom = 9.0
+[node name="FpsSlider" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/MarginContainer/FPSContainer" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../../../SettingsBackButton")
 
-[node name="FpsSlider" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer" index="1"]
+[node name="AmbienceVolumeSlider" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/MarginContainer/VBoxContainer/AmbienceSlider" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../../../SettingsBackButton")
+
+[node name="RumbleCheckBox" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer" index="3"]
 focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
-
-[node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 24.0
-offset_bottom = 9.0
-
-[node name="AmbienceVolumeSlider" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider" index="1"]
-focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
-
-[node name="SwordIndicator" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 24.0
-offset_bottom = 9.0
-
-[node name="RumbleCheckBox" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer" index="3"]
-focus_neighbor_bottom = NodePath("../../../../SettingsBackButton")
 
 [node name="SettingsBackButton" type="Button" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder" index="2"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 255.0
 offset_top = 143.0
@@ -90,10 +212,14 @@ offset_bottom = 174.0
 focus_neighbor_left = NodePath(".")
 text = "Back"
 
-[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu" method="_on_return_pressed"]
-[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/Settings" to="PauseCanvasLayer/PauseMenu" method="_on_settings_pressed"]
-[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/BackToMenu" to="PauseCanvasLayer/PauseMenu" method="_on_back_to_menu_pressed"]
-[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuButtons/QuitGame" to="PauseCanvasLayer/PauseMenu" method="_on_quit_game_pressed"]
+[connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons" method="_on_return_focus_entered"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu" method="_on_return_pressed"]
+[connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/Settings" to="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons" method="_on_settings_focus_entered"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/Settings" to="PauseCanvasLayer/PauseMenu" method="_on_settings_pressed"]
+[connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/BackToMenu" to="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons" method="_on_back_to_menu_focus_entered"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/BackToMenu" to="PauseCanvasLayer/PauseMenu" method="_on_back_to_menu_pressed"]
+[connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/QuitGame" to="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons" method="_on_quit_game_focus_entered"]
+[connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/QuitGame" to="PauseCanvasLayer/PauseMenu" method="_on_quit_game_pressed"]
 [connection signal="settings_category_changed" from="PauseCanvasLayer/PauseMenu/Settings" to="PauseCanvasLayer/PauseMenu" method="_on_settings_settings_category_changed"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/SettingsBackButton" to="PauseCanvasLayer/PauseMenu" method="_on_settings_back_button_pressed"]
 

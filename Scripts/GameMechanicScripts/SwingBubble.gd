@@ -12,6 +12,7 @@ var extra_swing_power = 15
 @onready var self_collision = $CollisionShape2D
 @onready var hit_detector_colision = $HitDetector/CollisionShape2D
 @onready var bubble_animated_sprite = $Bubble
+@onready var bubble_player_cover = $BubblePlayerCover
 
 @onready var respawner = $Respawner
 @onready var stay_in_bubble_timer = $StayInBubbleTimer
@@ -65,14 +66,20 @@ func IndirectSwordHit(_angle):
 	
 
 
-func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
+func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed, big_swing):
 	#print("Sword hit bubble at: ", hit_pos, " with angle: ", sword_angle, " with x_speed: ", player_x_speed)
 	last_hit_angle = sword_angle
 	#SwordHitPaticles(hit_pos, sword_angle, player_x_speed)
 	if OptionsManager.rumble_enabled:
 		Input.start_joy_vibration(0, 0.4, 0.05, 0.1)
 	PlayHitSound()
-
+	
+	#This sould be in indirect hit but it works for now
+	if big_swing == false:
+		respawner.StartRespawn()
+		stay_in_bubble_timer.stop()
+		if sword_angle is float:
+			last_hit_angle = sword_angle
 
 
 
@@ -110,6 +117,7 @@ func DisableSelf(disabled_self : bool):
 		DisableTechnical(disabled_self)
 		SpawnPopParticles(hit_particles)
 		bubble_animated_sprite.play("Pop")
+		bubble_player_cover.visible = false
 		
 		await get_tree().create_timer(0.2).timeout
 		visible = not disabled_self
@@ -117,6 +125,7 @@ func DisableSelf(disabled_self : bool):
 		visible = not disabled_self
 		bubble_animated_sprite.play("Appear")
 		await get_tree().create_timer(0.2).timeout
+		bubble_player_cover.visible = true
 		DisableTechnical(disabled_self)
 		
 

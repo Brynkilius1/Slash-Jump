@@ -2,8 +2,10 @@ extends TileMap
 
 const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
 var hit_particles_list = [preload("res://Scenes/Particles/dirt_particles.tscn"), load("res://Scenes/Particles/ParticleTests/SpikesSparks.tscn"), load("res://Scenes/Particles/StoneHitPatricles.tscn"), load("res://Scenes/Particles/wood_particles.tscn")]
-@export var higher_particle_count : int = 4
-@export var lower_particle_count : int = 2
+@export var big_swing_higher_particle_count : int = 4
+@export var big_swing_lower_particle_count : int = 2
+@export var small_swing_higher_particle_count : int = 2
+@export var small_swing_lower_particle_count : int = 1
 
 @export var shake_camera_when_hit = false
 
@@ -21,7 +23,10 @@ func _ready():
 
 #Callable Fucntions
 
-func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
+func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed, big_swing : bool = true):
+	var dust_cloud_amount = -1
+	if big_swing == false:
+		dust_cloud_amount = 4
 	
 	var hit_tile = floor(hit_pos/12)
 	if sword_angle < -0.7 and sword_angle > -2.2:
@@ -31,20 +36,22 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
 	var hit_terrain = CheckTileTerrainType(hit_tile)  #gets the type of tile at the position you hit
 	
 	if hit_terrain == 8 or hit_terrain == 10: #spikes
-		SwordHitPaticles(hit_particles_list[1], hit_pos, sword_angle, player_x_speed)
+		SwordHitPaticles(hit_particles_list[1], hit_pos, sword_angle, player_x_speed, big_swing)
 		HitTilemap("SpikeHit", 13, true)
 		ControllerRumble(0, 1.0, 0.9, 0.15)
 	elif hit_terrain == 2 or hit_terrain == 3: #grass/autumn grass
-		SwordHitPaticles(hit_particles_list[0], hit_pos, sword_angle, player_x_speed)
-		EmitParticles(DUSTCLOUDS, -1, hit_pos, false)
+		SwordHitPaticles(hit_particles_list[0], hit_pos, sword_angle, player_x_speed, big_swing)
+		EmitParticles(DUSTCLOUDS, dust_cloud_amount, hit_pos, false)
 		HitTilemap("GrassHit", 0, false)
 		ControllerRumble(0, 0.9, 0.2, 0.1)
 	elif hit_terrain == 4: # Stone
-		SwordHitPaticles(hit_particles_list[2], hit_pos, sword_angle, player_x_speed)
+		SwordHitPaticles(hit_particles_list[2], hit_pos, sword_angle, player_x_speed, big_swing)
+		EmitParticles(DUSTCLOUDS, dust_cloud_amount, hit_pos, false)
 		HitTilemap("StoneHit", 0, false)
 		ControllerRumble(0, 0.2, 0.9, 0.1)
 	elif hit_terrain == 5: #WoodPlatforms
-		SwordHitPaticles(hit_particles_list[3], hit_pos, sword_angle, player_x_speed)
+		SwordHitPaticles(hit_particles_list[3], hit_pos, sword_angle, player_x_speed, big_swing)
+		EmitParticles(DUSTCLOUDS, dust_cloud_amount, hit_pos, false)
 		ControllerRumble(0, 0.8, 0.5, 0.1)
 	print("terrain hit: ", hit_terrain)
 	print("Sword rotation: ", sword_angle)
@@ -105,6 +112,7 @@ func LandOnTilemap(player_pos):
 
 
 func EmitParticles(particle_type, amount, emit_location, flipped : bool):
+	
 	var p = particle_type.instantiate()
 	
 
@@ -117,6 +125,7 @@ func EmitParticles(particle_type, amount, emit_location, flipped : bool):
 	p.global_position = emit_location
 	p.z_index = 2
 	get_tree().current_scene.add_child(p)
+	print("spawned particles of type: ", particle_type, " in amount: ", p.amount)
 
 func AddShaderToTileType(tileset : TileMap, shader : Material):
 	pass
@@ -124,9 +133,20 @@ func AddShaderToTileType(tileset : TileMap, shader : Material):
 		#if CheckTileTerrainType(child) == 2:
 		#	library.tile_set_material(id, material)
 
-func SwordHitPaticles(particle_type, hit_pos : Vector2, sword_angle, player_x_speed):
+
+func SwordHitPaticles(particle_type, hit_pos : Vector2, sword_angle, player_x_speed, big_swing):
+	#Change the amount of particles depending on the swing type
+	var higher_particle_count = big_swing_higher_particle_count
+	var lower_particle_count = big_swing_lower_particle_count
+	if big_swing == false:
+		higher_particle_count = small_swing_higher_particle_count
+		lower_particle_count = small_swing_lower_particle_count
+	
+	
 	EmitSwordHitParticles(particle_type, higher_particle_count, player_x_speed, hit_pos, false)
 	EmitSwordHitParticles(particle_type, lower_particle_count, player_x_speed, hit_pos, true)
+
+
 func EmitSwordHitParticles(particle_type, amount, player_x_speed, emit_location, flipped : bool):
 	
 	var p = particle_type.instantiate()
@@ -137,6 +157,7 @@ func EmitSwordHitParticles(particle_type, amount, player_x_speed, emit_location,
 	
 	if emit_direction == 1:
 		p.scale.x = -1
+	
 	
 	p.amount = amount
 	p.global_position = emit_location

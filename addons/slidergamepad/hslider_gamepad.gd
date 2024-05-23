@@ -21,6 +21,11 @@ var actual_value : float
 func _ready() -> void:
 	# Connect the event
 	gui_input.connect(_on_gui_input)
+	get_viewport().connect("gui_focus_changed", _on_focus_changed)
+
+func _on_focus_changed(control:Control) -> void:
+	if control != null:
+		sliding_dir = 0.0
 
 func _process(delta: float) -> void:
 	if sliding_dir == 0: return
@@ -28,7 +33,6 @@ func _process(delta: float) -> void:
 	actual_value += (slider_speed * delta) * sliding_dir
 	actual_value = clampf(actual_value, min_value, max_value)
 	value = actual_value
-	print("actual value: ", actual_value, " current value: ", value)
 
 func handle_joystick(event: InputEvent) -> void:
 	if not event is InputEventJoypadMotion: return

@@ -2,19 +2,25 @@ extends Node2D
 
 @export var play_intro_cutscene = true
 @onready var cutscene_animation_player = $CutsceneAnimationPlayer
+@onready var player_hammock = $CutsceneObjects/PlayerHammock
+@onready var death_transistion_canvas_layer = $"../WorldNessecities/TransitionManager/DeathTransistionCanvasLayer"
+@onready var cutscene_camera = $Camera2D
 
-@onready var player_sleeping_hammock_temp = $"../WorldNessecities/ScreenHolder/Screen27/PlayerSleepingHammockTemp"
+
 @onready var textbox_handler = $IntroTextboxHandler
+
+
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if GlobalVariables.first_respawn == true and play_intro_cutscene == true:
+		#death_transistion_canvas_layer.visible = false
 		PlayCutscene("IntroHammock")
 	else:
-		player_sleeping_hammock_temp.frame = 2
-
+		player_hammock.play("Fallen")
+		cutscene_camera.visible = false
 
 func PlayCutscene(cutscene_name : String):
 	cutscene_animation_player.play(cutscene_name)
@@ -33,6 +39,8 @@ func _on_cutscene_animation_player_animation_finished(anim_name):
 		GlobalObjects.player.visible = true
 		GlobalObjects.player.has_control = true
 		GlobalObjects.camera.enabled = true
+		cutscene_camera.enabled = false
+		death_transistion_canvas_layer.visible = true
 
 
 

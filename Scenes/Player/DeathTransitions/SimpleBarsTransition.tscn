@@ -5,8 +5,8 @@
 
 [sub_resource type="Animation" id="Animation_uxutg"]
 resource_name = "CoverScreen"
-length = 0.55
-step = 0.05
+length = 0.35
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -14,7 +14,7 @@ tracks/0/path = NodePath("Control/BlackTransitionBar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.175),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(384, 12), Vector2(128, 12)]
@@ -26,7 +26,7 @@ tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.05, 0.3),
+"times": PackedFloat32Array(0.025, 0.2),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(384, 36), Vector2(128, 36)]
@@ -38,7 +38,7 @@ tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
+"times": PackedFloat32Array(0.05, 0.225),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(384, 60), Vector2(128, 60)]
@@ -50,7 +50,7 @@ tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.4),
+"times": PackedFloat32Array(0.075, 0.25),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(384, 84), Vector2(128, 84)]
@@ -62,7 +62,7 @@ tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.2, 0.45),
+"times": PackedFloat32Array(0.1, 0.275),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(384, 108), Vector2(128, 108)]
@@ -74,7 +74,7 @@ tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.25, 0.5),
+"times": PackedFloat32Array(0.125, 0.3),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(384, 132), Vector2(128, 132)]
@@ -82,8 +82,8 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_7h8rl"]
 resource_name = "LeaveScreen"
-length = 0.5
-step = 0.05
+length = 0.3
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -91,7 +91,7 @@ tracks/0/path = NodePath("Control/BlackTransitionBar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.175),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(128, 12), Vector2(-128, 12)]
@@ -103,7 +103,7 @@ tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.05, 0.3),
+"times": PackedFloat32Array(0.025, 0.2),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(128, 36), Vector2(-128, 36)]
@@ -115,7 +115,7 @@ tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
+"times": PackedFloat32Array(0.05, 0.225),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(128, 60), Vector2(-128, 60)]
@@ -127,7 +127,7 @@ tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.4),
+"times": PackedFloat32Array(0.075, 0.25),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(128, 84), Vector2(-128, 84)]
@@ -139,7 +139,7 @@ tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.2, 0.45),
+"times": PackedFloat32Array(0.1, 0.275),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(128, 108), Vector2(-128, 108)]
@@ -151,7 +151,7 @@ tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.25, 0.5),
+"times": PackedFloat32Array(0.125, 0.3),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
 "values": [Vector2(128, 132), Vector2(-128, 132)]

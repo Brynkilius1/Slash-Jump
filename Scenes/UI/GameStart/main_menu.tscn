@@ -1,8 +1,17 @@
-[gd_scene load_steps=28 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=57 format=3 uid="uid://jumgmkw5n5jc"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
+[ext_resource type="Texture2D" uid="uid://bxpri51ixw1ti" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sky.png" id="1_skej4"]
 [ext_resource type="Script" path="res://Scripts/UI/MainMenuVisuals.gd" id="2_aaf8t"]
+[ext_resource type="Texture2D" uid="uid://dsyvojkrivljr" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sword.png" id="2_ce5ef"]
+[ext_resource type="Texture2D" uid="uid://c06jc7323k5w7" path="res://Images/Backrounds/SunsetBAckround/forest_3.png" id="2_e25cx"]
+[ext_resource type="Texture2D" uid="uid://blot2dmjlmnxv" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_scarf.png" id="3_lp3fo"]
 [ext_resource type="Script" path="res://Scripts/UI/SelectionSwords.gd" id="3_tb5wg"]
+[ext_resource type="Texture2D" uid="uid://cw136hoickmca" path="res://Images/Backrounds/SunsetBAckround/forest_2.png" id="3_u65st"]
+[ext_resource type="Texture2D" uid="uid://csvxxgky0eha3" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_foreground_grass2.png" id="4_qwfvi"]
+[ext_resource type="Texture2D" uid="uid://dfrp84x45ydr0" path="res://Images/Backrounds/SunsetBAckround/forest.png" id="4_yuhkl"]
+[ext_resource type="Texture2D" uid="uid://c5qoenwwd2s1v" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_foreground_grass.png" id="5_hi5l4"]
+[ext_resource type="Texture2D" uid="uid://ccexglxmrto3n" path="res://Images/UI/MainMenu/MAinMenuBackround/menuClothAnimation.png" id="6_slatv"]
 [ext_resource type="Texture2D" uid="uid://bmj4yofmf4gqu" path="res://Images/UI/MainMenu/SlashJumpLogo.png" id="7_8chwq"]
 [ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="9_oovw4"]
 [ext_resource type="Texture2D" uid="uid://dljkyxwamk3jo" path="res://Images/Crayon/Misc/SlashJumpConcept1Rotated.png" id="10_g6gpd"]
@@ -12,7 +21,116 @@
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="17_pbjll"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="20_no80h"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Cache.gd" id="21_46i84"]
+[ext_resource type="Texture2D" uid="uid://dh3hdbbeccxaq" path="res://Images/UI/PauseMenu/PauseMenu.png" id="21_kqvle"]
+[ext_resource type="Texture2D" uid="uid://bttehw2m30d8u" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_logo.png" id="22_1b8qc"]
+[ext_resource type="Texture2D" uid="uid://38d80eiwwbuq" path="res://Images/UI/Settings/BackSign.png" id="22_752a2"]
 [ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="22_g0apr"]
+
+[sub_resource type="Gradient" id="Gradient_54m58"]
+offsets = PackedFloat32Array(0, 0.598639, 0.77551, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.662745, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qovla"]
+gradient = SubResource("Gradient_54m58")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mqvfb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 100, 1)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(200, 5, 0)
+color = Color(1, 1, 1, 0.466667)
+color_ramp = SubResource("GradientTexture1D_qovla")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.02
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a46gl"]
+atlas = ExtResource("6_slatv")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6ri3"]
+atlas = ExtResource("6_slatv")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8vbp"]
+atlas = ExtResource("6_slatv")
+region = Rect2(640, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_768h4"]
+atlas = ExtResource("6_slatv")
+region = Rect2(960, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gqyd"]
+atlas = ExtResource("6_slatv")
+region = Rect2(1280, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjrg2"]
+atlas = ExtResource("6_slatv")
+region = Rect2(1600, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hoqa"]
+atlas = ExtResource("6_slatv")
+region = Rect2(1920, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpxxl"]
+atlas = ExtResource("6_slatv")
+region = Rect2(2240, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hxmp"]
+atlas = ExtResource("6_slatv")
+region = Rect2(2560, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uocdd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a46gl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6ri3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8vbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_768h4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gqyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjrg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hoqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpxxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hxmp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.5
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5kkn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 100, 1)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+gravity = Vector3(600, 5, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(1, 1, 1, 0.466667)
+color_ramp = SubResource("GradientTexture1D_qovla")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.02
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2i1nt"]
 
@@ -41,6 +159,24 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_4v8m7"]
 events = [SubResource("InputEventJoypadButton_qn5nm"), SubResource("InputEventKey_jlm4w")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rra73"]
+
+[sub_resource type="GDScript" id="GDScript_k82me"]
+script/source = "extends Control
+
+var credits_accepting_inputs : bool = false
+@onready var main_menu = $\"../../..\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if credits_accepting_inputs == true:
+		if Input.is_action_just_pressed(\"ui_cancel\"):
+			credits_accepting_inputs = false
+			main_menu.ToggleCreditsVisible(false)
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_km48y"]
 
 [sub_resource type="Animation" id="Animation_33egm"]
 length = 0.001
@@ -130,9 +266,108 @@ _data = {
 [node name="RootNode" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0.73, 0.555895, 0.3431, 1)
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(160, 90)
+motion_scale = Vector2(0, 0)
+
+[node name="Skybox" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+texture = ExtResource("1_skej4")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(160, 90)
+motion_scale = Vector2(0, 0.01)
+
+[node name="Trees2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer7"]
+position = Vector2(-32, 135)
+texture = ExtResource("2_e25cx")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(160, 90)
+motion_scale = Vector2(0, 0.03)
+
+[node name="Trees2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer6"]
+position = Vector2(-20, 113)
+texture = ExtResource("3_u65st")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(160, 90)
+motion_scale = Vector2(0.05, 0.05)
+
+[node name="Trees1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer5"]
+position = Vector2(2, 131)
+texture = ExtResource("4_yuhkl")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParallaxBackground2/ParallaxLayer5"]
+process_mode = 3
+position = Vector2(-160, -4)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_mqvfb")
+lifetime = 4.0
+preprocess = 2.0
+fixed_fps = 120
+visibility_rect = Rect2(-0.841368, -89.8903, 452.207, 188.308)
+trail_enabled = true
+trail_lifetime = 0.04
+trail_sections = 2
+
+[node name="Node2D" type="Node2D" parent="ParallaxBackground2/ParallaxLayer5/GPUParticles2D"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(160, 90)
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="Sword" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+texture = ExtResource("2_ce5ef")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+sprite_frames = SubResource("SpriteFrames_uocdd")
+autoplay = "default"
+frame_progress = 0.648313
+
+[node name="MainMenuScarf" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+visible = false
+texture = ExtResource("3_lp3fo")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground2/ParallaxLayer2"]
+process_mode = 3
+position = Vector2(-160, -4)
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_f5kkn")
+lifetime = 2.0
+preprocess = 2.0
+fixed_fps = 120
+visibility_rect = Rect2(-0.841368, -89.8903, 452.207, 188.308)
+trail_enabled = true
+trail_lifetime = 0.06
+trail_sections = 4
+trail_section_subdivisions = 8
+
+[node name="Node2D" type="Node2D" parent="ParallaxBackground2/ParallaxLayer2/GPUParticles2D2"]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(160, 90)
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Grass1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3"]
+position = Vector2(0, -7)
+texture = ExtResource("4_qwfvi")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(160, 90)
+motion_scale = Vector2(0.7, 0.7)
+
+[node name="Grass1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer4"]
+texture = ExtResource("5_hi5l4")
+
+[node name="BackroundCamera2D" type="Camera2D" parent="."]
+position = Vector2(160, 78)
 
 [node name="MainMenu" type="Control" parent="."]
 layout_mode = 3
@@ -146,8 +381,11 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qcmvg")
 
-[node name="MainMenuVisuals" type="Control" parent="MainMenu"]
-layout_mode = 1
+[node name="Menu" type="CanvasLayer" parent="MainMenu"]
+layer = 2
+
+[node name="MainMenuVisuals" type="Control" parent="MainMenu/Menu"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -155,21 +393,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_aaf8t")
 
-[node name="SelectionSwords" type="Control" parent="MainMenu/MainMenuVisuals"]
+[node name="SelectionSwords" type="Control" parent="MainMenu/Menu/MainMenuVisuals"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 110.0
-offset_top = 76.0
+offset_top = 75.0
 offset_right = -104.0
-offset_bottom = -74.0
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_tb5wg")
 
-[node name="SwordLeft" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwords"]
+[node name="SwordLeft" type="TextureRect" parent="MainMenu/Menu/MainMenuVisuals/SelectionSwords"]
 layout_mode = 0
 offset_left = -6.0
 offset_top = 11.0
@@ -178,7 +417,7 @@ offset_bottom = 51.0
 texture = ExtResource("9_oovw4")
 stretch_mode = 2
 
-[node name="SwordRight" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwords"]
+[node name="SwordRight" type="TextureRect" parent="MainMenu/Menu/MainMenuVisuals/SelectionSwords"]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 11.0
@@ -188,121 +427,17 @@ texture = ExtResource("9_oovw4")
 stretch_mode = 2
 flip_h = true
 
-[node name="SelectionSwordStart" type="Control" parent="MainMenu/MainMenuVisuals"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 110.0
-offset_top = 76.0
-offset_right = 110.0
-offset_bottom = 76.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordStart"]
-layout_mode = 0
-offset_left = -5.0
-offset_top = 11.0
-offset_right = 35.0
-offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordStart"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 12.0
-offset_right = 119.0
-offset_bottom = 52.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-flip_h = true
-
-[node name="SelectionSwordsSettings" type="Control" parent="MainMenu/MainMenuVisuals"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 110.0
-offset_top = 102.0
-offset_right = 110.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsSettings"]
-layout_mode = 0
-offset_left = -21.0
-offset_top = 10.0
-offset_right = 19.0
-offset_bottom = 50.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsSettings"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 11.0
-offset_right = 136.0
-offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-flip_h = true
-
-[node name="SelectionSwordsQuit" type="Control" parent="MainMenu/MainMenuVisuals"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 110.0
-offset_top = 151.0
-offset_right = 110.0
-offset_bottom = 151.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsQuit"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 10.0
-offset_right = 41.0
-offset_bottom = 50.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MainMenu/MainMenuVisuals/SelectionSwordsQuit"]
-layout_mode = 0
-offset_left = 73.0
-offset_top = 11.0
-offset_right = 113.0
-offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
-stretch_mode = 2
-flip_h = true
-
-[node name="Menu" type="CanvasLayer" parent="MainMenu"]
-layer = 2
-
 [node name="Menu" type="Control" parent="MainMenu/Menu"]
 custom_minimum_size = Vector2(320, 180)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 3840.0
-offset_bottom = 2160.0
+offset_right = 640.0
+offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
-size_flags_horizontal = 0
-size_flags_vertical = 0
 mouse_filter = 1
 
 [node name="MainMenuButtons" type="Control" parent="MainMenu/Menu/Menu"]
@@ -327,9 +462,11 @@ theme_override_constants/margin_right = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2"]
+[node name="Logo" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2"]
+visible = false
 layout_mode = 2
 texture = ExtResource("7_8chwq")
 stretch_mode = 3
@@ -340,12 +477,11 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 110
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 110
-theme_override_constants/margin_bottom = 17
+theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer"]
 layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = -1
 
 [node name="StartButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
@@ -432,6 +568,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_xa1ch")
 text = "By:
  Brynjar Á.
  Sindri H"
+
+[node name="MainMenuLogo" type="Sprite2D" parent="MainMenu/Menu/Menu/MainMenuButtons"]
+z_index = 1
+position = Vector2(160, 90)
+texture = ExtResource("22_1b8qc")
 
 [node name="LevelSelect" type="Control" parent="MainMenu/Menu/Menu"]
 visible = false
@@ -611,51 +752,112 @@ shortcut_in_tooltip = false
 text = "Back"
 
 [node name="Settings" parent="MainMenu/Menu/Menu" instance=ExtResource("12_62rsl")]
-unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/SwordIndicatorMover" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 24.0
-offset_bottom = 9.0
-
-[node name="FpsSlider" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer" index="1"]
-focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
-
-[node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings/SwordIndicatorMover" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 24.0
-offset_bottom = 9.0
-
-[node name="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings" index="1"]
-focus_mode = 2
-
-[node name="AmbienceVolumeSlider" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider" index="1"]
-focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
-
-[node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/ContolSettings/SwordIndicatorMover" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 24.0
-offset_bottom = 9.0
-
-[node name="RumbleCheckBox" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer" index="3"]
-focus_neighbor_bottom = NodePath("../../../../SettingsBackButton")
-
 [node name="SettingsBackButton" type="Button" parent="MainMenu/Menu/Menu/Settings/SettingsHolder" index="1"]
 layout_mode = 0
-offset_left = 277.0
-offset_top = 151.0
-offset_right = 307.0
-offset_bottom = 172.0
+offset_left = 265.0
+offset_top = 157.0
+offset_right = 295.0
+offset_bottom = 178.0
 theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rra73")
 text = "Back"
+flat = true
+
+[node name="SwordIndicatorMover" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings" index="0"]
+offset_top = 1.0
+offset_bottom = 41.0
+
+[node name="SwordIndicator" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" index="0"]
+offset_top = 5.0
+offset_bottom = 14.0
+
+[node name="FpsSlider" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/MarginContainer/FPSContainer" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../../../SettingsBackButton")
+
+[node name="AmbienceVolumeSlider" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/MarginContainer/VBoxContainer/AmbienceSlider" index="1"]
+focus_neighbor_bottom = NodePath("../../../../../../../SettingsBackButton")
+
+[node name="RumbleCheckBox" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer" index="3"]
+focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
 
 [node name="SaverAndLoader" parent="MainMenu/Menu/Menu" instance=ExtResource("17_ccu1f")]
 unique_name_in_owner = true
+
+[node name="Credits" type="Control" parent="MainMenu/Menu/Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_k82me")
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Menu/Menu/Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -76.0
+offset_right = 88.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_kqvle")
+
+[node name="Label" type="Label" parent="MainMenu/Menu/Menu/Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -71.5
+offset_right = 64.0
+offset_bottom = 71.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("22_g0apr")
+text = "Programming and Design:
+Brynjar Á
+
+Art:
+Sindri H
+
+Music:
+Sindri S
+
+Sound Effects:
+Auður E"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MainMenu/Menu/Menu/Credits"]
+position = Vector2(248, 146)
+texture = ExtResource("22_752a2")
+centered = false
+
+[node name="CreditsBackButton" type="Button" parent="MainMenu/Menu/Menu/Credits"]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 158.0
+offset_right = 289.0
+offset_bottom = 179.0
+theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_km48y")
+text = "Back"
+flat = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="MainMenu/Menu/Menu/Credits"]
+position = Vector2(242, 170)
+texture = ExtResource("9_oovw4")
 
 [node name="LevelZoomAnimationPlayer" type="AnimationPlayer" parent="MainMenu/Menu"]
 libraries = {
@@ -677,14 +879,19 @@ visible = false
 uncover_screen_when_loaded = false
 
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_focus_entered"]
-[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu/MainMenuVisuals" method="_on_start_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_start_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_settings_button_focus_entered"]
-[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu/MainMenuVisuals" method="_on_settings_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_settings_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/CreditsButton" to="MainMenu/MainMenuVisuals" method="_on_credits_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/CreditsButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_credits_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/CreditsButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_credits_button_mouse_entered"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/CreditsButton" to="MainMenu" method="_on_credits_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_focus_entered"]
-[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu/MainMenuVisuals" method="_on_quit_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_quit_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer/StartLevel1Button" to="MainMenu" method="_on_start_level_1_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/NextLevelButton" to="MainMenu" method="_on_next_level_button_pressed"]
@@ -692,7 +899,12 @@ uncover_screen_when_loaded = false
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level2/PrevLevelButton" to="MainMenu" method="_on_prev_level_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/LevelSelectBackButton" to="MainMenu" method="_on_level_select_back_button_pressed"]
 [connection signal="settings_category_changed" from="MainMenu/Menu/Menu/Settings" to="MainMenu" method="_on_settings_settings_category_changed"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_entered"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_entered"]
+[connection signal="focus_exited" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_exited"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu" method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/Credits/CreditsBackButton" to="MainMenu" method="_on_credits_back_button_pressed"]
 [connection signal="animation_finished" from="MainMenu/Menu/LevelZoomAnimationPlayer" to="MainMenu" method="_on_level_zoom_animation_player_animation_finished"]
 [connection signal="cover_finished" from="MainMenu/DeathTransistionCanvasLayer/BarTransition" to="MainMenu" method="_on_bar_transition_cover_finished"]
 

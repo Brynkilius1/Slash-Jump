@@ -1,11 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhoymk1i3u4eq"]
+[gd_scene load_steps=24 format=3 uid="uid://dhoymk1i3u4eq"]
 
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/MovingSpikes.gd" id="1_vhbb2"]
 [ext_resource type="Texture2D" uid="uid://c2t3wg3nlc6wk" path="res://Images/Mechanics/Espikes/bigSpikeExtend-Sheet.png" id="2_05joc"]
+[ext_resource type="PackedScene" uid="uid://5d8p7t7vpwkb" path="res://Scenes/Particles/ParticleTests/SpikesSparks.tscn" id="3_sb7kp"]
 [ext_resource type="Texture2D" uid="uid://cclr5rfduua0" path="res://Images/Mechanics/Espikes/bigSpikeRetract-Sheet.png" id="3_tp05j"]
 [ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="3_ybvf2"]
-[ext_resource type="PackedScene" uid="uid://cqaft1ueqbrun" path="res://Scenes/Particles/MetalObjectSparks.tscn" id="4_emtuc"]
 [ext_resource type="AudioStream" uid="uid://bb7byvoywcveg" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword terrain temp.mp3" id="5_r7cnq"]
+[ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="7_shr4u"]
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioCollection.gd" id="8_i3pox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08i63"]
 size = Vector2(14, 19)
@@ -285,12 +287,13 @@ script = ExtResource("1_vhbb2")
 position = Vector2(-2.38419e-07, -9.5)
 shape = SubResource("RectangleShape2D_08i63")
 
-[node name="SwordCollisionHandler" parent="." instance=ExtResource("3_ybvf2")]
-hit_particles = ExtResource("4_emtuc")
+[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("audio_master") instance=ExtResource("3_ybvf2")]
+hit_particles = ExtResource("3_sb7kp")
 shake_camera_when_hit = true
 small_motor_rumble = 1.0
 big_motor_rumble = 0.9
 rumble_duration = 0.15
+audio_master = NodePath("../AudioMaster")
 
 [node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]
 position = Vector2(0, -10)
@@ -325,6 +328,15 @@ volume_db = 13.0
 
 [node name="SpikeMoveTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioMaster" parent="." instance=ExtResource("7_shr4u")]
+
+[node name="AudioCollectionHit" type="Node2D" parent="AudioMaster" groups=["AudioCollection"]]
+script = ExtResource("8_i3pox")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionHit"]
+stream = ExtResource("5_r7cnq")
+bus = &"SoundEffects"
 
 [connection signal="animation_finished" from="SpikeMovingAnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="SpikeMoveTimer" to="." method="_on_spike_move_timer_timeout"]

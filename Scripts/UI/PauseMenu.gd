@@ -1,20 +1,21 @@
 extends Control
 
 var main_menu = preload("res://Scenes/UI/GameStart/main_menu.tscn")
-@onready var pause_menu_buttons = $PauseMenuButtons
-@onready var return_button = $PauseMenuButtons/Return
-@onready var settings_button = $PauseMenuButtons/Settings
+@onready var pause_menu_backround = $PauseMenuBackround
+
+@onready var return_button = $PauseMenuBackround/PauseMenuButtons/Return
+@onready var settings_button = $PauseMenuBackround/PauseMenuButtons/Settings
 
 @onready var fps_slider = $Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider
-@onready var ambience_volume_slider = $Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider
+@onready var ambience_volume_slider = $Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/MarginContainer/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider
 @onready var rumble_check_box = $Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/RumbleCheckBox
 
-@onready var settings_back_button = $Settings/SettingsHolder/SettingsBackButton
-
+@onready var settings_back_button = %SettingsBackButton
 
 
 
 @onready var settings = $Settings
+
 
 
 func _unhandled_input(event):
@@ -26,6 +27,7 @@ func _unhandled_input(event):
 	if visible == true:
 		if settings.current_settings_menu == 0:
 			if Input.is_action_just_pressed("ui_cancel"):
+				accept_event()
 				_on_return_pressed()
 
 func _on_return_pressed():
@@ -75,13 +77,14 @@ func Pause(pause_: bool):
 
 func ToggleSettingsVisible(toggle):
 	settings.visible = toggle
-	pause_menu_buttons.visible = not toggle
+	pause_menu_backround.visible = not toggle
 
 
 
 
 
 func _on_settings_settings_category_changed(settings_category):
+	
 	var focus_neighbor
 	if settings_category == 0:
 		focus_neighbor = fps_slider
@@ -89,5 +92,13 @@ func _on_settings_settings_category_changed(settings_category):
 		focus_neighbor = ambience_volume_slider
 	elif settings_category == 2:
 		focus_neighbor = rumble_check_box
-		
+	
+	print("changed back buttons neighbor to : ", focus_neighbor)
 	settings_back_button.set_focus_neighbor(SIDE_TOP, settings_back_button.get_path_to(focus_neighbor))
+
+"""
+func SetBottomButtonsFocusNeighbor():
+	fps_slider.set_focus_neighbor(SIDE_BOTTOM, fps_slider.get_path_to(settings_back_button))
+	ambience_volume_slider.set_focus_neighbor(SIDE_BOTTOM, ambience_volume_slider.get_path_to(settings_back_button))
+	rumble_check_box.set_focus_neighbor(SIDE_BOTTOM, rumble_check_box.get_path_to(settings_back_button))
+"""

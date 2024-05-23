@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqisjdimddck0"]
+
+[ext_resource type="Texture2D" uid="uid://d3wjuhdqtttkw" path="res://Images/Particles/ParticleAddons/CircleWithHole.png" id="1_pmen4"]
+
+[sub_resource type="Gradient" id="Gradient_tfwhj"]
+offsets = PackedFloat32Array(0, 0.197279, 0.782313, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rygmv"]
+gradient = SubResource("Gradient_tfwhj")
+
+[sub_resource type="Curve" id="Curve_f16lk"]
+max_value = 70.0
+_data = [Vector2(1e-05, 70), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_beqdf"]
+curve = SubResource("Curve_f16lk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ov1j3"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 1)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+velocity_limit_curve = SubResource("CurveTexture_beqdf")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 0.5
+linear_accel_max = 1.0
+color_ramp = SubResource("GradientTexture1D_rygmv")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 5, 0)
+turbulence_influence_min = 0.003
+turbulence_influence_max = 0.01
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+modulate = Color(1, 1, 1, 0.388235)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_ov1j3")
+texture = ExtResource("1_pmen4")
+lifetime = 25.0
+preprocess = 25.0
+fixed_fps = 120

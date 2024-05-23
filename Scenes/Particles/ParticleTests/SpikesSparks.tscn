@@ -63,6 +63,7 @@ point_count = 4
 curve = SubResource("Curve_b8gsw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qpl12"]
+lifetime_randomness = 0.26
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 35.0
@@ -105,6 +106,7 @@ color_ramp = SubResource("GradientTexture1D_kp3ik")
 script = SubResource("GDScript_qgu58")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+visible = false
 z_index = 100
 emitting = false
 amount = 1

@@ -17,8 +17,6 @@ var anti_grav_controls = true
 func _ready():
 	ui.visible = false
 	await get_tree().create_timer(0.1).timeout
-	if GlobalObjects.player != null:
-		anti_grav_controls = GlobalObjects.player.new_control_feel
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

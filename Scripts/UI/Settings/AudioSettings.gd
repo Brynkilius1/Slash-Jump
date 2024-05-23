@@ -5,10 +5,10 @@ extends Control
 @onready var music_volume_label = %MusicVolumeLabel
 @onready var ambience_volume_label = %AmbienceVolumeLabel
 
-@onready var master_volume_slider = $VBoxContainer/MasterVolumeSlider/MasterVolumeSlider
-@onready var sound_effect_volume_slider = $VBoxContainer/SoundEffectSlider/SoundEffectVolumeSlider
-@onready var music_volume_slider = $VBoxContainer/MusicSlider/musicVolumeSlider
-@onready var ambience_volume_slider = $VBoxContainer/AmbienceSlider/AmbienceVolumeSlider
+@onready var master_volume_slider = %MasterVolumeSlider
+@onready var sound_effect_volume_slider = %SoundEffectVolumeSlider
+@onready var music_volume_slider = %musicVolumeSlider
+@onready var ambience_volume_slider = %AmbienceVolumeSlider
 
 
 

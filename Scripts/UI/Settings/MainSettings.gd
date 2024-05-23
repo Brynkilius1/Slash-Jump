@@ -1,12 +1,12 @@
 extends Control
 
-@onready var video_settings = $SettingsHolder/VBoxContainer/VideoSettings
-@onready var audio_settings = $SettingsHolder/VBoxContainer/AudioSettings
-@onready var contol_settings = $SettingsHolder/VBoxContainer/ContolSettings
+@onready var video_settings = %VideoSettings
+@onready var audio_settings = %AudioSettings
+@onready var contol_settings = %ContolSettings
 
-@onready var full_screen_check_box = $SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FullScreenCheckBox
-@onready var master_volume_slider = $SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/MasterVolumeSlider/MasterVolumeSlider
-@onready var change_keybinds_button = $SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/ChangeKeybindsButton
+@onready var full_screen_check_box = %FullScreenCheckBox
+@onready var master_volume_slider = %MasterVolumeSlider
+@onready var change_keybinds_button = %ChangeKeybindsButton
 @onready var settings_holder = $SettingsHolder
 
 @onready var settings_back_button = $SettingsHolder/SettingsBackButton
@@ -16,6 +16,10 @@ extends Control
 @onready var video_category_button = %VideoCategoryButton
 @onready var audio_category_button = %AudioCategoryButton
 @onready var control_category_button = %ControlCategoryButton
+
+@onready var video_sword_indicator = $SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover/SwordIndicator
+@onready var audio_sword_indicator = $SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/SwordIndicatorMover/SwordIndicator
+@onready var control_sword_indicator = $SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/SwordIndicatorMover/SwordIndicator
 
 
 var current_settings_category : int = 0: set = SetCurrentSettingsCategory
@@ -168,3 +172,12 @@ func _on_rebind_controls_activate_rebind_control_dead_timer():
 
 
 
+
+
+func _on_settings_category_changed(settings_category):
+	video_sword_indicator.global_position.y = full_screen_check_box.global_position.y + 8
+	audio_sword_indicator.global_position.y = master_volume_slider.global_position.y  + 8
+	control_sword_indicator.global_position.y = change_keybinds_button.global_position.y  + 8
+	video_sword_indicator.global_position.x = 41
+	audio_sword_indicator.global_position.x = 41
+	control_sword_indicator.global_position.x = 41

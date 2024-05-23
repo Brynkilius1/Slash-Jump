@@ -100,6 +100,14 @@ animation = &"Pop"
 autoplay = "default"
 centered = false
 
+[node name="BubblePlayerCover" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.447059)
+z_index = 5
+position = Vector2(-14, -14)
+texture = ExtResource("3_ysggm")
+centered = false
+hframes = 3
+
 [node name="HitDetector" type="StaticBody2D" parent="."]
 collision_layer = 32
 collision_mask = 0

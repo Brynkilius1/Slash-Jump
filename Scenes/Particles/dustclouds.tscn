@@ -11,7 +11,7 @@ particles_anim_v_frames = 2
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_u221l"]
-offsets = PackedFloat32Array(0, 0.0737705, 0.385246, 1)
+offsets = PackedFloat32Array(0, 0.0737705, 0.170068, 0.795918)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_05h5w"]
@@ -21,8 +21,8 @@ gradient = SubResource("Gradient_u221l")
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 180.0
-initial_velocity_min = 7.0
-initial_velocity_max = 10.0
+initial_velocity_min = 13.0
+initial_velocity_max = 17.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = 22.0
 linear_accel_max = 25.0
@@ -36,9 +36,10 @@ turbulence_noise_speed = Vector3(10, 0, 0)
 [node name="GPUParticles2D" type="GPUParticles2D"]
 modulate = Color(0.458824, 0.458824, 0.458824, 1)
 material = SubResource("CanvasItemMaterial_dpcw6")
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_rv3ex")
 texture = ExtResource("1_b1loj")
-lifetime = 1.5
+lifetime = 0.7
 one_shot = true
 explosiveness = 0.98
 visibility_rect = Rect2(-50, -15, 100, 30)

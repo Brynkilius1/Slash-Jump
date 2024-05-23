@@ -815,7 +815,7 @@ parameters/conditions/IsLanding = false
 parameters/conditions/IsSwinging = false
 parameters/conditions/IsWallBonking = false
 parameters/Airborne/blend_position = Vector2(0.00171137, 0.474747)
-parameters/Idle/blend_position = Vector2(-0.00513405, 0.995506)
+parameters/Idle/blend_position = Vector2(0.114661, 0.015625)
 parameters/Landing/blend_position = 0.99891
 parameters/SidewaysLanding/blend_position = 0.702452
 parameters/Swing/blend_position = Vector2(0.0450656, -0.433708)
@@ -869,11 +869,11 @@ animation = &"Swing"
 centered = false
 
 [node name="SwordCollision" type="Area2D" parent="SwordPivot/Extended/Sword"]
-visible = false
 collision_layer = 64
 collision_mask = 32
 
 [node name="SwordColisionShape" type="CollisionPolygon2D" parent="SwordPivot/Extended/Sword/SwordCollision"]
+visible = false
 polygon = PackedVector2Array(-3, 15, -12, 9, -12, -1, -8, -7, -3, -10, 4, -10, 9, -7, 13, -1, 13, 9, 3, 15)
 disabled = true
 
@@ -913,6 +913,24 @@ target_position = Vector2(0, -25)
 collision_mask = 32
 hit_from_inside = true
 
+[node name="RayCast2D4" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(4, -25)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D5" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(-3, -25)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(9, -22)
+collision_mask = 32
+hit_from_inside = true
+
 [node name="RayCast2D6" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
 target_position = Vector2(-8, -22)
@@ -922,6 +940,12 @@ hit_from_inside = true
 [node name="RayCast2D9" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
 enabled = false
 target_position = Vector2(-12, -16)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D7" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
+enabled = false
+target_position = Vector2(13, -16)
 collision_mask = 32
 hit_from_inside = true
 
@@ -936,30 +960,6 @@ hit_from_inside = true
 position = Vector2(3, 0)
 enabled = false
 target_position = Vector2(10, -6)
-collision_mask = 32
-hit_from_inside = true
-
-[node name="RayCast2D3" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
-enabled = false
-target_position = Vector2(9, -22)
-collision_mask = 32
-hit_from_inside = true
-
-[node name="RayCast2D4" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
-enabled = false
-target_position = Vector2(4, -25)
-collision_mask = 32
-hit_from_inside = true
-
-[node name="RayCast2D5" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
-enabled = false
-target_position = Vector2(-3, -25)
-collision_mask = 32
-hit_from_inside = true
-
-[node name="RayCast2D7" type="RayCast2D" parent="SwordPivot/Extended/WalljumpRaycasts"]
-enabled = false
-target_position = Vector2(13, -16)
 collision_mask = 32
 hit_from_inside = true
 
@@ -1025,79 +1025,106 @@ visible = false
 [node name="RayCast2D9" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(0, 14)
 enabled = false
-target_position = Vector2(0, -18)
+target_position = Vector2(0, -17)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D14" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
+position = Vector2(0, 14)
+enabled = false
+target_position = Vector2(-3, -16)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D15" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
+position = Vector2(0, 14)
+enabled = false
+target_position = Vector2(4, -16)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D10" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(0, 14)
 enabled = false
-target_position = Vector2(-8, -16)
+target_position = Vector2(-6, -16)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D11" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(0, 14)
 enabled = false
-target_position = Vector2(8, -16)
+target_position = Vector2(6, -16)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D12" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(0, 14)
 enabled = false
-target_position = Vector2(10, -9)
+target_position = Vector2(9, -13)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D13" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(0, 14)
 enabled = false
-target_position = Vector2(-11, -9)
+target_position = Vector2(-9, -13)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D7" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
+position = Vector2(3, 14)
+enabled = false
+target_position = Vector2(6, -5)
+collision_mask = 32
+hit_from_inside = true
+
+[node name="RayCast2D8" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
+position = Vector2(-3, 14)
+enabled = false
+target_position = Vector2(-6, -5)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(-6, -2)
 enabled = false
 target_position = Vector2(7, -2)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D2" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(6, -2)
 enabled = false
 target_position = Vector2(-7, -2)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D3" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(9, 1)
 enabled = false
 target_position = Vector2(-3, -4)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D4" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(-9, 1)
 enabled = false
 target_position = Vector2(3, -4)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D5" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(-9, 9)
 enabled = false
 target_position = Vector2(-1, -9)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="RayCast2D6" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
 position = Vector2(9, 9)
 enabled = false
 target_position = Vector2(1, -9)
-hit_from_inside = true
-
-[node name="RayCast2D7" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
-position = Vector2(3, 14)
-enabled = false
-target_position = Vector2(8, -6)
-hit_from_inside = true
-
-[node name="RayCast2D8" type="RayCast2D" parent="SwordPivot/Extended/KnifeRaycasts"]
-position = Vector2(-3, 14)
-enabled = false
-target_position = Vector2(-7, -6)
+collision_mask = 32
 hit_from_inside = true
 
 [node name="Rotator" type="Node2D" parent="SwordPivot"]

@@ -25,7 +25,7 @@ func _ready():
 
 #Callable Fucntions
 
-func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed):
+func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed, big_swing):
 	if direct_hit_on == true:
 		#BetterTerrain.get_cell(self, 0, hit_pos)
 		

@@ -1,14 +1,14 @@
 extends Control
 
-@onready var invert_stick_input_check_box = $VBoxContainer/InvertStickInputCheckBox
-@onready var controller_deadzone_volume_label = $VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeLabel
-@onready var controller_deadzone_volume_slider = $VBoxContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider
+@onready var invert_stick_input_check_box = %InvertStickInputCheckBox
+@onready var controller_deadzone_volume_label = %ControllerDeadzoneVolumeLabel
+@onready var controller_deadzone_volume_slider = %ControllerDeadzoneVolumeSlider
 @onready var rumble_check_box = $VBoxContainer/RumbleCheckBox
-@onready var rebind_controls = $"../../../RebindControls"
-@onready var settings_holder = $"../.."
-@onready var settings = $"../../.."
+@onready var rebind_controls = %RebindControls
+@onready var settings_holder = %SettingsHolder
+@onready var settings = $"../../../.."
 @onready var change_sword_swing_button = %ChangeSwordSwingButton
-@onready var rebind_back_button = $"../../../RebindControls/RebindBackButton"
+@onready var rebind_back_button = %RebindBackButton
 
 
 

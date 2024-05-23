@@ -4,7 +4,8 @@ extends Control
 @export var level_2_path : String = "res://Scenes/TestLevels/test_level_12.tscn"
 
 @onready var main_menu_buttons = %MainMenuButtons
-@onready var settings = %Settings
+@onready var settings = $Menu/Menu/Settings
+@onready var credits = $Menu/Menu/Credits
 @onready var rebind_controls = $Menu/Menu/Settings/RebindControls
 @onready var saver_and_loader = %SaverAndLoader
 @onready var start_button = $Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton
@@ -19,21 +20,20 @@ extends Control
 @onready var settings_holder = $Menu/Menu/Settings/SettingsHolder
 @onready var bar_transition = $DeathTransistionCanvasLayer/BarTransition
 @onready var settings_back_button = $Menu/Menu/Settings/SettingsHolder/SettingsBackButton
-@onready var selection_swords = $MainMenuVisuals/SelectionSwords
+@onready var selection_swords = %SelectionSwords
+@onready var credits_back_button = $Menu/Menu/Credits/CreditsBackButton
+@onready var credits_button = $Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/CreditsButton
 
-@onready var fps_slider = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/VideoSettings/VBoxContainer/FPSContainer/FpsSlider
-@onready var ambience_volume_slider = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/AudioSettings/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider
-@onready var rumble_check_box = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/ContolSettings/VBoxContainer/RumbleCheckBox
-
-
-
-
+@onready var fps_slider = %FpsSlider
+@onready var ambience_volume_slider = $Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/MarginContainer/VBoxContainer/AmbienceSlider/AmbienceVolumeSlider
+@onready var rumble_check_box = %RumbleCheckBox
 
 
 
-@onready var selection_swords_start = $Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton/SelectionSwords
-@onready var selection_swords_settings = $Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton/SelectionSwords
-@onready var selection_swords_quit = $Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton/SelectionSwords
+
+
+
+
 
 
 var next_scene_path : String
@@ -43,6 +43,7 @@ var next_scene_loaded
 func _ready():
 	start_button.grab_focus()
 	menu.size = Vector2(320, 180)
+	MusicMaster.PlaySong("res://Sounds/Music/Slash_Jump_Menu.mp3")
 	
 
 
@@ -152,31 +153,6 @@ func ToggleRebindControlsVisible(toggle):
 
 
 
-#Focus entered
-"""
-func _on_start_button_focus_entered():
-	DisableVisibilityOnAllSwordSelectors()
-	selection_swords_start.visible = true
-func _on_settings_button_focus_entered():
-	DisableVisibilityOnAllSwordSelectors()
-	selection_swords_settings.visible = true
-func _on_quit_button_focus_entered():
-	DisableVisibilityOnAllSwordSelectors()
-	selection_swords_quit.visible = true
-
-func DisableVisibilityOnAllSwordSelectors():
-	selection_swords_start.visible = false
-	selection_swords_settings.visible = false
-	selection_swords_quit.visible = false
-"""
-
-
-
-
-
-
-
-
 
 
 
@@ -196,5 +172,25 @@ func _on_settings_settings_category_changed(settings_category):
 		focus_neighbor = ambience_volume_slider
 	elif settings_category == 2:
 		focus_neighbor = rumble_check_box
-		
+	
+
 	settings_back_button.set_focus_neighbor(SIDE_TOP, settings_back_button.get_path_to(focus_neighbor))
+
+
+func _on_credits_button_pressed():
+	credits.credits_accepting_inputs = true
+	ToggleCreditsVisible(true)
+	
+
+func ToggleCreditsVisible(toggle):
+	credits.visible = toggle
+	main_menu_buttons.visible = not toggle
+	selection_swords.visible = not toggle
+	if toggle == true:
+		credits_back_button.grab_focus()
+	else:
+		credits_button.grab_focus()
+
+func _on_credits_back_button_pressed():
+	ToggleCreditsVisible(false)
+	

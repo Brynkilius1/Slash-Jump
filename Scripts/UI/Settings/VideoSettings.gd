@@ -1,12 +1,12 @@
 extends Control
 
-@onready var fps_label = $VBoxContainer/FPSContainer/FPSLabel
-@onready var fps_container = $VBoxContainer/FPSContainer
+@onready var fps_label = %FPSLabel
+@onready var fps_container = %FPSContainer
 
-@onready var full_screen_check_box = $VBoxContainer/FullScreenCheckBox
-@onready var v_sync_check_box = $VBoxContainer/VSyncCheckBox
-@onready var screenshake_check_box = $VBoxContainer/ScreenshakeCheckBox
-@onready var fps_slider = $VBoxContainer/FPSContainer/FpsSlider
+@onready var full_screen_check_box = %FullScreenCheckBox
+@onready var v_sync_check_box = %VSyncCheckBox
+@onready var screenshake_check_box = %ScreenshakeCheckBox
+@onready var fps_slider = %FpsSlider
 
 
 
