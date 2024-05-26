@@ -95,6 +95,7 @@ func LoadInData(data):
 	settings_data.big_swing_input_type = data.settings_data.big_swing_input_type
 	settings_data.small_swing_input_type = data.settings_data.small_swing_input_type
 	
+	print("big swing input type: ",settings_data.big_swing_input_type)
 	LoadKeybinds(data.settings_data)
 	#settings_data.big_swing_button = data.settings_data.big_swing_button
 	#settings_data.small_swing_button = data.settings_data.small_swing_button
@@ -120,6 +121,7 @@ func ApplyLoadedVariablesToOptionManager():
 	OptionsManager.big_swing_button = settings_data.big_swing_button
 	OptionsManager.small_swing_input_type = settings_data.small_swing_input_type
 	OptionsManager.small_swing_button = settings_data.small_swing_button
+	print("loaded big swing input type: ", settings_data.big_swing_input_type)
 
 
 func LoadKeybinds(data):
@@ -140,6 +142,8 @@ func ReturnInputEventType(type):
 		return InputEventMouseButton.new()
 	elif type == "InputEventJoypadButton":
 		return InputEventJoypadButton.new()
+	elif type == "InputEventJoypadMotion":
+		return InputEventJoypadMotion.new()
 	else:
 		print("ReturnInputEventType did not get a proper event type!: ", type)
 		return InputEventKey.new()
@@ -160,6 +164,10 @@ func SetUntypedKeycode(loaded_swing, keycode):
 		keycode = keycode.get_slice(":", 1)
 		keycode = keycode.get_slice(",", 0)
 		loaded_swing.set_button_index(int(keycode))
+	elif loaded_swing is InputEventJoypadMotion:
+		keycode = keycode.get_slice(":", 1)
+		keycode = keycode.get_slice(",", 0)
+		loaded_swing.set_axis(int(keycode))
 	else:
 		print("SaverAndLoader: SetUntypedKeycode recived invalid input!: ", keycode)
 func _on_save_button_pressed():

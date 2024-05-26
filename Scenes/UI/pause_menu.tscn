@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvlwvs3kbk1id"]
+[gd_scene load_steps=12 format=3 uid="uid://bvlwvs3kbk1id"]
 
 [ext_resource type="Script" path="res://Scripts/UI/PauseMenu.gd" id="1_atrbb"]
 [ext_resource type="Texture2D" uid="uid://dh3hdbbeccxaq" path="res://Images/UI/PauseMenu/PauseMenu.png" id="2_ayd4p"]
@@ -60,6 +60,8 @@ func TweenSelectionSwordPosY(width):
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iqiv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dlc0q"]
 
 [node name="Control" type="Control"]
 process_mode = 3
@@ -205,12 +207,16 @@ focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
 [node name="SettingsBackButton" type="Button" parent="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder" index="2"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 255.0
-offset_top = 143.0
-offset_right = 300.0
-offset_bottom = 174.0
+offset_left = 264.0
+offset_top = 157.0
+offset_right = 294.0
+offset_bottom = 178.0
 focus_neighbor_left = NodePath(".")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_3501b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dlc0q")
 text = "Back"
+flat = true
 
 [connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons" method="_on_return_focus_entered"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/Return" to="PauseCanvasLayer/PauseMenu" method="_on_return_pressed"]
@@ -221,6 +227,12 @@ text = "Back"
 [connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/QuitGame" to="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons" method="_on_quit_game_focus_entered"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/PauseMenuBackround/PauseMenuButtons/QuitGame" to="PauseCanvasLayer/PauseMenu" method="_on_quit_game_pressed"]
 [connection signal="settings_category_changed" from="PauseCanvasLayer/PauseMenu/Settings" to="PauseCanvasLayer/PauseMenu" method="_on_settings_settings_category_changed"]
+[connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/SettingsBackButton" to="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_entered"]
+[connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/SettingsBackButton" to="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_entered"]
+[connection signal="focus_entered" from="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/SettingsBackButton" to="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_entered"]
+[connection signal="focus_exited" from="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/SettingsBackButton" to="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_exited"]
 [connection signal="pressed" from="PauseCanvasLayer/PauseMenu/Settings/SettingsHolder/SettingsBackButton" to="PauseCanvasLayer/PauseMenu" method="_on_settings_back_button_pressed"]
+[connection signal="mouse_entered" from="PauseCanvasLayer/PauseMenu/Settings/RebindControls/RebindBackButton" to="PauseCanvasLayer/PauseMenu/Settings/RebindControls/SwordIndicatorMover" method="_on_rebind_back_button_mouse_entered"]
 
 [editable path="PauseCanvasLayer/PauseMenu/Settings"]
+[editable path="PauseCanvasLayer/PauseMenu/Settings/RebindControls"]

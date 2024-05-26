@@ -17,20 +17,24 @@ var main_menu = preload("res://Scenes/UI/GameStart/main_menu.tscn")
 @onready var settings = $Settings
 
 
+signal pause_menu_closed
 
 func _unhandled_input(event):
-	if GlobalObjects.camera != null:
-		if Input.is_action_just_pressed("Pause"):
-			settings.UpdateSettingsVisuals()
-			TogglePauseMenu(not visible)
-	
 	if visible == true:
 		if settings.current_settings_menu == 0:
 			if Input.is_action_just_pressed("ui_cancel"):
 				accept_event()
 				_on_return_pressed()
 
+	elif GlobalObjects.camera != null:
+		if Input.is_action_just_pressed("Pause"):
+			accept_event()
+			settings.UpdateSettingsVisuals()
+			TogglePauseMenu(not visible)
+
+
 func _on_return_pressed():
+	pause_menu_closed.emit()
 	TogglePauseMenu(false)
 	GlobalObjects.player.UpdateControlSettings()
 
@@ -50,6 +54,7 @@ func _on_settings_back_button_pressed():
 	settings_button.grab_focus()
 
 func _on_back_to_menu_pressed():
+	GlobalVariables.ResetGlobalVariables()
 	TogglePauseMenu(false)
 	get_tree().change_scene_to_packed(main_menu)
 

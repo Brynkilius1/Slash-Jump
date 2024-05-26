@@ -28,10 +28,6 @@ SaverAndLoader="*res://Global/SaverAndLoader.gd"
 MusicMaster="*res://Systems/MusicSystem/music_master.tscn"
 CutscenerGlobal="*res://addons/Cutscener/clazz/CutscenerGlobal.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/viewport_width=320

@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd8r1d5a5kahm"]
+
+[ext_resource type="Texture2D" uid="uid://cgv8i0d1y6lrs" path="res://Images/UI/MovementTutorial/TutorialPopupMenu.png" id="1_xpe5o"]
+[ext_resource type="Texture2D" uid="uid://cmose3m1q5cwn" path="res://Images/UI/MovementTutorial/PlayerSmallSwinging.png" id="2_1j3jl"]
+[ext_resource type="Texture2D" uid="uid://dltgf20cnwcty" path="res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png" id="3_cow82"]
+
+[sub_resource type="GDScript" id="GDScript_o6b8w"]
+script/source = "extends Control
+
+@onready var swing_input_sprite = $SwingInputSprite
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	PauseMenu.get_child(0).get_child(0).connect(\"pause_menu_closed\", UpdateInputSprite)
+	UpdateInputSprite()
+
+
+func UpdateInputSprite():
+	swing_input_sprite.texture = ReturnButtonIcon(OptionsManager.small_swing_button)
+
+
+
+func ReturnButtonIcon(event):
+	if event is InputEventJoypadButton:
+		return CheckButtons(event.button_index)
+	elif event is InputEventJoypadMotion:
+		return CheckBumpers(event.axis)
+	
+
+func CheckButtons(button_index):
+	match button_index:
+		0:#Face buttons
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Down.png\")
+		1:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png\")
+		2:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Left.png\")
+		3:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Up.png\")
+		7:#Sticks pressed
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Left_Pressed.png\")
+		8:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Right_Pressed.png\")
+		9: #Bumpers
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Trigger_Left.png\")
+		10:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/TriggerRight.png\")
+		11:#Directional buttons
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Up.png\")
+		12:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Down.png\")
+		13:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Left.png\")
+		14:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Right.png\")
+
+func CheckBumpers(axis_index):
+	match axis_index:
+		4:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Bumper_Left.png\")
+		5:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Bumper_Right.png\")
+
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_o6b8w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-37, -27)
+scale = Vector2(0.503546, 1)
+texture = ExtResource("1_xpe5o")
+centered = false
+
+[node name="PlayerSmallSwinging" type="Sprite2D" parent="."]
+position = Vector2(-23, -12)
+texture = ExtResource("2_1j3jl")
+centered = false
+
+[node name="SwingInputSprite" type="Sprite2D" parent="."]
+position = Vector2(3, -8)
+texture = ExtResource("3_cow82")
+centered = false

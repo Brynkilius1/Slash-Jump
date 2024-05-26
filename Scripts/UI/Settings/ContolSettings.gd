@@ -34,6 +34,8 @@ func UpdateSettingsVisuals():
 	controller_deadzone_volume_slider.actual_value = OptionsManager.controller_deadzone
 	controller_deadzone_volume_label.text = str("Controller Deadzone: ", OptionsManager.controller_deadzone)
 	rumble_check_box.button_pressed = OptionsManager.rumble_enabled
+	rebind_controls.icon_updater.ChangeBigSwingIcon(OptionsManager.big_swing_button)
+	rebind_controls.icon_updater.ChangeSmallSwingIcon(OptionsManager.small_swing_button)
 
 func _on_change_keybinds_button_pressed():
 	rebind_controls.GetFocus()

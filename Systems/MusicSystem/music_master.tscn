@@ -11,12 +11,12 @@ starting_song = ExtResource("2_ylqkf")
 [node name="MainMusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_ylqkf")
-volume_db = -7.0
+volume_db = -20.0
 bus = &"Music"
 
 [node name="FadeMusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -5.0
+volume_db = -20.0
 bus = &"Music"
 
 [connection signal="finished" from="MainMusicPlayer" to="." method="_on_main_music_player_finished"]

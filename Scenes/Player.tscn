@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://dkvddstk3im3e"]
+[gd_scene load_steps=118 format=3 uid="uid://dkvddstk3im3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_exm0d"]
 [ext_resource type="Texture2D" uid="uid://0fol4ct05yva" path="res://Images/Player/KnightTempAnimations.png" id="2_b130x"]
@@ -7,7 +7,6 @@
 [ext_resource type="Shader" path="res://Shaders/PlayerDeformation1.gdshader" id="3_cd5my"]
 [ext_resource type="Texture2D" uid="uid://hkekst6o0j0n" path="res://Images/Player/PlayerSquishOffsetMap.png" id="4_a5xo2"]
 [ext_resource type="Texture2D" uid="uid://bgqu1sre6ixf8" path="res://Images/Player/Swing_Animation_Test.png" id="5_4i1gg"]
-[ext_resource type="AudioStream" uid="uid://bliakwl8p66a0" path="res://Sounds/SoundEffects/Player/Sword/clean-fast-swooshaiff-14784.mp3" id="5_7vu0m"]
 [ext_resource type="Shader" path="res://Shaders/PlayerDeformation.gdshader" id="5_dflss"]
 [ext_resource type="Texture2D" uid="uid://biu5c0yr0xoft" path="res://Images/Player/goldknight.png" id="5_o7xnd"]
 [ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="5_qi3ec"]
@@ -1341,29 +1340,29 @@ explosiveness = 0.58
 [node name="AudioCollectionSwingSword" type="Node2D" parent="PlayerAudioMaster" groups=["AudioCollection"]]
 script = ExtResource("16_d7dat")
 
-[node name="SwordSwing" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionSwingSword"]
-stream = ExtResource("5_7vu0m")
-volume_db = -20.0
-pitch_scale = 0.6
-
 [node name="SwordSwing1" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionSwingSword"]
 stream = ExtResource("9_p7e5d")
+volume_db = -17.0
 bus = &"SoundEffects"
 
 [node name="SwordSwing2" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionSwingSword"]
 stream = ExtResource("10_3xnpq")
+volume_db = -15.0
 bus = &"SoundEffects"
 
 [node name="SwordSwing3" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionSwingSword"]
 stream = ExtResource("11_yvwgw")
+volume_db = -15.0
 bus = &"SoundEffects"
 
 [node name="SwordSwing4" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionSwingSword"]
 stream = ExtResource("12_nlq4n")
+volume_db = -15.0
 bus = &"SoundEffects"
 
 [node name="SwordSwing5" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionSwingSword"]
 stream = ExtResource("13_kruof")
+volume_db = -17.0
 bus = &"SoundEffects"
 
 [node name="AudioCollectionSwordMiss" type="Node2D" parent="PlayerAudioMaster" groups=["AudioCollection"]]
@@ -1371,6 +1370,7 @@ script = ExtResource("16_d7dat")
 
 [node name="SwordMiss" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionSwordMiss"]
 stream = ExtResource("7_msmtn")
+volume_db = -15.0
 bus = &"SoundEffects"
 
 [node name="AudioCollectionDie" type="Node2D" parent="PlayerAudioMaster" groups=["AudioCollection"]]
@@ -1378,7 +1378,7 @@ script = ExtResource("16_d7dat")
 
 [node name="Death" type="AudioStreamPlayer" parent="PlayerAudioMaster/AudioCollectionDie"]
 stream = ExtResource("17_wqc7i")
-volume_db = -10.0
+volume_db = -25.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true

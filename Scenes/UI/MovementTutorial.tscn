@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfj0bc11e8twg"]
+
+[ext_resource type="Texture2D" uid="uid://cgv8i0d1y6lrs" path="res://Images/UI/MovementTutorial/TutorialPopupMenu.png" id="1_4ofwk"]
+[ext_resource type="Texture2D" uid="uid://clgiwotahgio" path="res://Images/UI/MovementTutorial/PlayerSwinging.png" id="2_3n6qa"]
+[ext_resource type="Texture2D" uid="uid://myhrtlchkuik" path="res://Images/UI/MovementTutorial/PlayerSpinning.png" id="3_l6f60"]
+[ext_resource type="Texture2D" uid="uid://lxf7j414ot8c" path="res://Images/UI/MovementTutorial/MoveStickIcon.png" id="4_8kmdk"]
+[ext_resource type="Texture2D" uid="uid://dltgf20cnwcty" path="res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png" id="5_4yjrm"]
+
+[sub_resource type="GDScript" id="GDScript_gwkpm"]
+script/source = "extends Control
+
+@onready var swing_input_sprite = $SwingInputSprite
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	PauseMenu.get_child(0).get_child(0).connect(\"pause_menu_closed\", UpdateInputSprite)
+	UpdateInputSprite()
+
+
+func UpdateInputSprite():
+	swing_input_sprite.texture = ReturnButtonIcon(OptionsManager.big_swing_button)
+
+
+
+func ReturnButtonIcon(event):
+	if event is InputEventJoypadButton:
+		return CheckButtons(event.button_index)
+	elif event is InputEventJoypadMotion:
+		return CheckBumpers(event.axis)
+	
+
+func CheckButtons(button_index):
+	match button_index:
+		0:#Face buttons
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Down.png\")
+		1:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png\")
+		2:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Left.png\")
+		3:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Up.png\")
+		7:#Sticks pressed
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Left_Pressed.png\")
+		8:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Right_Pressed.png\")
+		9: #Bumpers
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Trigger_Left.png\")
+		10:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/TriggerRight.png\")
+		11:#Directional buttons
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Up.png\")
+		12:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Down.png\")
+		13:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Left.png\")
+		14:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Right.png\")
+
+func CheckBumpers(axis_index):
+	match axis_index:
+		4:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Bumper_Left.png\")
+		5:
+			return load(\"res://Images/UI/RebindMenu/ButtonImages/Bumper_Right.png\")
+
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ircm2"]
+atlas = ExtResource("3_l6f60")
+region = Rect2(0, 0, 22, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdept"]
+atlas = ExtResource("3_l6f60")
+region = Rect2(22, 0, 22, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44t88"]
+atlas = ExtResource("3_l6f60")
+region = Rect2(44, 0, 22, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owrqx"]
+atlas = ExtResource("3_l6f60")
+region = Rect2(66, 0, 22, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nmdi"]
+atlas = ExtResource("3_l6f60")
+region = Rect2(88, 0, 22, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u80ee"]
+atlas = ExtResource("3_l6f60")
+region = Rect2(110, 0, 22, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_moya4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ircm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdept")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44t88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owrqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nmdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u80ee")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_gwkpm")
+
+[node name="TutorialPopupMenu" type="Sprite2D" parent="."]
+position = Vector2(83, 42)
+texture = ExtResource("1_4ofwk")
+centered = false
+
+[node name="PlayerSwinging" type="Sprite2D" parent="."]
+position = Vector2(149, 56)
+texture = ExtResource("2_3n6qa")
+centered = false
+
+[node name="PlayerLooking" type="AnimatedSprite2D" parent="."]
+position = Vector2(96, 60)
+sprite_frames = SubResource("SpriteFrames_moya4")
+autoplay = "default"
+frame_progress = 0.620429
+centered = false
+
+[node name="StickMove" type="Sprite2D" parent="."]
+position = Vector2(132, 69)
+texture = ExtResource("4_8kmdk")
+
+[node name="SwingInputSprite" type="Sprite2D" parent="."]
+position = Vector2(195, 70)
+texture = ExtResource("5_4yjrm")

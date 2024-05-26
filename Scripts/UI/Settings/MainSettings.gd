@@ -8,6 +8,7 @@ extends Control
 @onready var master_volume_slider = %MasterVolumeSlider
 @onready var change_keybinds_button = %ChangeKeybindsButton
 @onready var settings_holder = $SettingsHolder
+@onready var rebind_controls = %RebindControls
 
 @onready var settings_back_button = $SettingsHolder/SettingsBackButton
 @onready var pause_settings_back_button = $SettingsBackButton
@@ -20,6 +21,7 @@ extends Control
 @onready var video_sword_indicator = $SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover/SwordIndicator
 @onready var audio_sword_indicator = $SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/SwordIndicatorMover/SwordIndicator
 @onready var control_sword_indicator = $SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/SwordIndicatorMover/SwordIndicator
+
 
 
 var current_settings_category : int = 0: set = SetCurrentSettingsCategory
@@ -149,6 +151,7 @@ func UpdateSettingsVisuals():
 	video_settings.UpdateSettingsVisuals()
 	audio_settings.UpdateSettingsVisuals()
 	contol_settings.UpdateSettingsVisuals()
+	
 
 func ChangeCategoriesBottonNeighbor(category_number):
 	var focus_neighbor

@@ -8,3 +8,8 @@ var first_respawn_camera_has_moved = false
 
 var camera_limit_1 : Vector2
 var camera_limit_2 : Vector2
+
+
+func ResetGlobalVariables():
+	first_respawn = true
+	first_respawn_camera_has_moved = false

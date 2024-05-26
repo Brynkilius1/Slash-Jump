@@ -15,7 +15,12 @@
 [ext_resource type="Texture2D" uid="uid://dhbn31fj5p26y" path="res://Images/UI/Settings/SliderGrabberHeld.png" id="6_plli8"]
 [ext_resource type="Script" path="res://Scripts/UI/Settings/ContolSettings.gd" id="6_tffsd"]
 [ext_resource type="PackedScene" uid="uid://dno85da3ev1uv" path="res://Scenes/UI/Settings/rebind_controls_screen.tscn" id="7_7ecvv"]
+[ext_resource type="StyleBox" uid="uid://bmrmxsvwfd1r5" path="res://Styles/Sliders/SliderDefault.tres" id="12_ac3wt"]
 [ext_resource type="Texture2D" uid="uid://bh51uquxsl0k4" path="res://Images/UI/MainMenu/MainMenuSelectSwordArrow.png" id="12_q001r"]
+[ext_resource type="StyleBox" uid="uid://c7dj48d0ef51k" path="res://Styles/Sliders/SliderGrabberArea.tres" id="13_axpo1"]
+[ext_resource type="StyleBox" uid="uid://cwyxpr4x83h3o" path="res://Styles/Sliders/SliderGrabberAreaHighlight.tres" id="14_4dfwg"]
+[ext_resource type="Texture2D" uid="uid://bhe0dalqcwhyd" path="res://Images/UI/Settings/ButtonUnpressed.png" id="19_ivhk1"]
+[ext_resource type="Texture2D" uid="uid://mxo2ucyprs6d" path="res://Images/UI/Settings/ButtonPressed.png" id="20_jnls4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw0pn"]
 texture = ExtResource("4_ksfov")
@@ -59,7 +64,6 @@ func _on_fps_slider_focus_exited():
 	sword_indicator.texture = MAIN_MENU_SELECT_SWORD
 
 
-
 func _on_settings_back_button_focus_entered():
 	if settings.current_settings_category == 0:
 		TweenSelectionSwordPos(164,  236)
@@ -89,38 +93,15 @@ func TweenSelectionSwordPosX(pos):
 
 
 
+
+
+
+
+
+
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sr0tm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4evp"]
-content_margin_left = 7.0
-content_margin_top = 4.0
-content_margin_right = 5.0
-content_margin_bottom = 4.0
-bg_color = Color(0.670588, 0.6, 0.643137, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 6
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58ugl"]
-bg_color = Color(0.6, 0.6, 0.72549, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmdr5"]
-bg_color = Color(0.6, 0.6, 0.862745, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
 
 [sub_resource type="GDScript" id="GDScript_slku4"]
 script/source = "extends Control
@@ -187,33 +168,6 @@ func TweenSelectionSwordPosX(pos):
 
 
 "
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uom0o"]
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4kw1"]
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.6, 0.6, 0.733333, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb2ag"]
-bg_color = Color(0.6, 0.6, 0.854902, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
 
 [sub_resource type="GDScript" id="GDScript_vldg2"]
 script/source = "extends Control
@@ -289,18 +243,19 @@ func TweenSelectionSwordPosX(pos):
 
 "
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j143g"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkww2"]
+texture = ExtResource("19_ivhk1")
+texture_margin_left = 1.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s48j2"]
+texture = ExtResource("20_jnls4")
+texture_margin_left = 1.0
+expand_margin_bottom = 7.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxb3i"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omgf3"]
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dd4en"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -359,6 +314,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../ControlCategoryButton")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_hw0pn")
@@ -368,6 +324,7 @@ text = "Video"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_hw0pn")
@@ -378,6 +335,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../VideoCategoryButton")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_hw0pn")
@@ -430,6 +388,7 @@ theme_override_constants/separation = 2
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../MarginContainer/HBoxContainer/VideoCategoryButton")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_icons/checked = ExtResource("4_xrmkj")
 theme_override_icons/unchecked = ExtResource("5_t52an")
@@ -440,6 +399,7 @@ text = "FullScreen"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ScreenshakeCheckBox")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_icons/checked = ExtResource("4_xrmkj")
 theme_override_icons/unchecked = ExtResource("5_t52an")
@@ -450,6 +410,7 @@ text = "VSync"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../MarginContainer/FPSContainer/FpsSlider")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_icons/checked = ExtResource("4_xrmkj")
 theme_override_icons/unchecked = ExtResource("5_t52an")
@@ -474,6 +435,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.23
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "FPS: 300"
 clip_text = true
@@ -486,9 +448,9 @@ size_flags_vertical = 1
 focus_neighbor_top = NodePath("../../../ScreenshakeCheckBox")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
-theme_override_styles/slider = SubResource("StyleBoxFlat_c4evp")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_58ugl")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_cmdr5")
+theme_override_styles/slider = ExtResource("12_ac3wt")
+theme_override_styles/grabber_area = ExtResource("13_axpo1")
+theme_override_styles/grabber_area_highlight = ExtResource("14_4dfwg")
 min_value = 30.0
 max_value = 300.0
 value = 60.0
@@ -536,6 +498,7 @@ theme_override_constants/separation = 1
 
 [node name="Label" type="Label" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 text = "Volume:"
 
@@ -549,6 +512,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Master: 60%"
 
@@ -561,9 +525,9 @@ focus_neighbor_top = NodePath("../../../../../../MarginContainer/HBoxContainer/A
 focus_neighbor_bottom = NodePath("../../SoundEffectSlider/SoundEffectVolumeSlider")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
-theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
+theme_override_styles/slider = ExtResource("12_ac3wt")
+theme_override_styles/grabber_area = ExtResource("13_axpo1")
+theme_override_styles/grabber_area_highlight = ExtResource("14_4dfwg")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -579,6 +543,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Volume: 60%"
 
@@ -591,9 +556,9 @@ focus_neighbor_top = NodePath("../../MasterVolumeSlider/MasterVolumeSlider")
 focus_neighbor_bottom = NodePath("../../MusicSlider/musicVolumeSlider")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
-theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
+theme_override_styles/slider = ExtResource("12_ac3wt")
+theme_override_styles/grabber_area = ExtResource("13_axpo1")
+theme_override_styles/grabber_area_highlight = ExtResource("14_4dfwg")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -609,6 +574,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Volume: 60%"
 
@@ -621,9 +587,9 @@ focus_neighbor_top = NodePath("../../SoundEffectSlider/SoundEffectVolumeSlider")
 focus_neighbor_bottom = NodePath("../../AmbienceSlider/AmbienceVolumeSlider")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
-theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
+theme_override_styles/slider = ExtResource("12_ac3wt")
+theme_override_styles/grabber_area = ExtResource("13_axpo1")
+theme_override_styles/grabber_area_highlight = ExtResource("14_4dfwg")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -639,6 +605,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Volume: 60%"
 
@@ -650,9 +617,9 @@ size_flags_vertical = 1
 focus_neighbor_top = NodePath("../../MusicSlider/musicVolumeSlider")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
-theme_override_styles/slider = SubResource("StyleBoxFlat_uom0o")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
+theme_override_styles/slider = ExtResource("12_ac3wt")
+theme_override_styles/grabber_area = ExtResource("13_axpo1")
+theme_override_styles/grabber_area_highlight = ExtResource("14_4dfwg")
 value = 60.0
 script = ExtResource("6_7wjb0")
 slider_speed = 60.0
@@ -695,26 +662,29 @@ theme_override_constants/separation = 0
 [node name="MarginContainer2" type="MarginContainer" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_bottom = 6
 
 [node name="ChangeKeybindsButton" type="Button" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../../MarginContainer/HBoxContainer/ControlCategoryButton")
 focus_neighbor_bottom = NodePath("../../InvertStickInputCheckBox")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxEmpty_j143g")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vkww2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vkww2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s48j2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_vkww2")
 text = "Change Keybinds"
-alignment = 0
 
 [node name="InvertStickInputCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../MarginContainer2/ChangeKeybindsButton")
 focus_neighbor_bottom = NodePath("../MarginContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_icons/checked = ExtResource("4_xrmkj")
 theme_override_icons/unchecked = ExtResource("5_t52an")
@@ -736,7 +706,8 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.1
+size_flags_stretch_ratio = 1.4
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
 text = "Controller Deadzone: 0.3"
 
@@ -749,9 +720,9 @@ focus_neighbor_top = NodePath("../../../InvertStickInputCheckBox")
 focus_neighbor_bottom = NodePath("../../../RumbleCheckBox")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
-theme_override_styles/slider = SubResource("StyleBoxFlat_omgf3")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_i4kw1")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_eb2ag")
+theme_override_styles/slider = ExtResource("12_ac3wt")
+theme_override_styles/grabber_area = ExtResource("13_axpo1")
+theme_override_styles/grabber_area_highlight = ExtResource("14_4dfwg")
 max_value = 0.9
 step = 0.05
 value = 0.3
@@ -763,6 +734,7 @@ dpad_step = 1
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../MarginContainer/ControllerDeadzoneSlider/ControllerDeadzoneVolumeSlider")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_icons/checked = ExtResource("4_xrmkj")
 theme_override_icons/unchecked = ExtResource("5_t52an")
@@ -776,15 +748,24 @@ visible = false
 layout_mode = 1
 mouse_filter = 1
 
+[node name="SwordIndicator" parent="RebindControls/SwordIndicatorMover" index="0"]
+offset_left = 59.0
+offset_top = 79.0
+offset_right = 83.0
+offset_bottom = 88.0
+
 [node name="RebindBackButton" type="Button" parent="RebindControls"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 270.0
-offset_top = 140.0
-offset_right = 300.0
-offset_bottom = 161.0
+offset_left = 252.0
+offset_top = 147.0
+offset_right = 282.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dd4en")
 text = "Back"
+flat = true
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -828,4 +809,7 @@ offset_bottom = 40.0
 [connection signal="activate_rebind_control_dead_timer" from="RebindControls" to="." method="_on_rebind_controls_activate_rebind_control_dead_timer"]
 [connection signal="closed_rebind_menu" from="RebindControls" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings" method="_on_rebind_controls_closed_rebind_menu"]
 [connection signal="opened_rebind_menu" from="RebindControls" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings" method="_on_rebind_controls_opened_rebind_menu"]
+[connection signal="focus_entered" from="RebindControls/RebindBackButton" to="RebindControls/SwordIndicatorMover" method="_on_rebind_back_button_focus_entered"]
 [connection signal="pressed" from="RebindControls/RebindBackButton" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings" method="_on_rebind_back_button_pressed"]
+
+[editable path="RebindControls"]
