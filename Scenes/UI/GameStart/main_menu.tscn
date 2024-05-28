@@ -439,8 +439,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2560.0
-offset_bottom = 1440.0
+offset_right = 3520.0
+offset_bottom = 1980.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -949,7 +949,6 @@ bus = &"SoundEffects"
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_entered"]
 [connection signal="focus_exited" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/AudioSettings/SwordIndicatorMover" method="_on_settings_back_button_focus_exited"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/Settings/SettingsHolder/SettingsBackButton" to="MainMenu" method="_on_settings_back_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Menu/Menu/Settings/RebindControls/RebindBackButton" to="MainMenu/Menu/Menu/Settings/RebindControls/SwordIndicatorMover" method="_on_rebind_back_button_focus_entered"]
 [connection signal="mouse_entered" from="MainMenu/Menu/Menu/Settings/RebindControls/RebindBackButton" to="MainMenu/Menu/Menu/Settings/RebindControls/SwordIndicatorMover" method="_on_rebind_back_button_mouse_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/Credits/CreditsBackButton" to="MainMenu" method="_on_credits_back_button_pressed"]
 [connection signal="animation_finished" from="MainMenu/Menu/LevelZoomAnimationPlayer" to="MainMenu" method="_on_level_zoom_animation_player_animation_finished"]

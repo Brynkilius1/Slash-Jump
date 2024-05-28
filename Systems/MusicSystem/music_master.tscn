@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba67hmq0qh6o2"]
+[gd_scene load_steps=5 format=3 uid="uid://ba67hmq0qh6o2"]
 
 [ext_resource type="Script" path="res://Systems/MusicSystem/MusicMaster.gd" id="1_76uvt"]
 [ext_resource type="AudioStream" uid="uid://efo8ehfw50rn" path="res://Sounds/Music/alexander-nakarada-roaming-three.mp3" id="2_ylqkf"]
+[ext_resource type="AudioStream" uid="uid://dhkvf82eo70cv" path="res://Sounds/Music/slashjumpmainthemeprobablymaybe.mp3" id="3_6b86k"]
 [ext_resource type="AudioStream" uid="uid://b81ecjgr7enbi" path="res://Sounds/Ambience/viento-119996.mp3" id="3_c6uex"]
 
 [node name="MusicMaster" type="Node2D"]
@@ -11,7 +12,7 @@ starting_song = ExtResource("2_ylqkf")
 
 [node name="MainMusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("2_ylqkf")
+stream = ExtResource("3_6b86k")
 volume_db = -20.0
 bus = &"Music"
 

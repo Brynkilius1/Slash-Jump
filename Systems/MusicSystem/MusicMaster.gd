@@ -23,7 +23,10 @@ func PlaySong(song, transition_type = 0): #Input a song to play
 	#Transitions:
 	if transition_type == 1: #1 is fade in/out
 		if  main_music_player.stream:
-			FadeInOut(song)
+			FadeInOut(song, 1.2)
+	if transition_type == 2: #1 is fade in/out longer
+		if  main_music_player.stream:
+			FadeInOut(song, 4)
 	
 	
 	#Play the songs
@@ -31,13 +34,14 @@ func PlaySong(song, transition_type = 0): #Input a song to play
 	main_music_player.play()
 
 
-func FadeInOut(song):
+func FadeInOut(song, time):
+	print("played fade in out with time: ", time)
 	#Set fade player to same song and pos of main player and tween it downwards
 	fade_music_player.stream = main_music_player.stream
 	fade_music_player.play(main_music_player.get_playback_position())
 	fade_music_player.volume_db = base_volume
 	var down_volume_tween = create_tween()
-	down_volume_tween.tween_property(fade_music_player, "volume_db", base_volume - 60, 1.5)
+	down_volume_tween.tween_property(fade_music_player, "volume_db", base_volume - 60, time + 0.3)
 	
 	print("fade player is playing: ", fade_music_player.stream)
 	print("main player is playing: ", main_music_player.stream)
@@ -48,7 +52,7 @@ func FadeInOut(song):
 	main_music_player.volume_db = base_volume - 60
 	main_music_player.play()
 	var up_volume_tween = create_tween()
-	up_volume_tween.tween_property(main_music_player, "volume_db", base_volume, 1.2)
+	up_volume_tween.tween_property(main_music_player, "volume_db", base_volume, time)
 	
 	await down_volume_tween.finished
 	fade_music_player.stop()

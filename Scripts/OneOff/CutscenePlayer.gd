@@ -41,6 +41,7 @@ func _on_cutscene_animation_player_animation_finished(anim_name):
 		GlobalObjects.camera.enabled = true
 		cutscene_camera.enabled = false
 		death_transistion_canvas_layer.visible = true
+		MusicMaster.PlaySong("res://Sounds/Music/slashjumpmainthemeprobablymaybe.mp3")
 
 
 
