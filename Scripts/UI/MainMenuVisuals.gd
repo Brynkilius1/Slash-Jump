@@ -11,6 +11,9 @@ extends Control
 
 @onready var backround_camera_2d = $"../../../BackroundCamera2D"
 
+@onready var audio_master = $"../../AudioMaster"
+
+
 """
 func _ready():
 	await get_tree().create_timer(0.1).timeout
@@ -23,34 +26,42 @@ func _on_start_button_focus_entered():
 	if start_button.global_position.y != 0:
 		TweenSelectionSwordPos(start_button, 31)
 		TweenBackroundCamera(78)
+		audio_master.PlayRandomSound("MenuHover")
 func _on_start_button_mouse_entered():
 	if start_button.global_position.y != 0:
 		TweenSelectionSwordPos(start_button, 31)
 		TweenBackroundCamera(78)
+		audio_master.PlayRandomSound("MenuHover")
 
 
 func _on_settings_button_focus_entered():
 	TweenSelectionSwordPos(settings_button, 47)
 	TweenBackroundCamera(90)
+	audio_master.PlayRandomSound("MenuHover")
 func _on_settings_button_mouse_entered():
 	TweenSelectionSwordPos(settings_button, 47)
 	TweenBackroundCamera(90)
+	audio_master.PlayRandomSound("MenuHover")
 
 
 func _on_credits_button_focus_entered():
 	TweenSelectionSwordPos(credits_button, 41)
 	TweenBackroundCamera(102)
+	audio_master.PlayRandomSound("MenuHover")
 func _on_credits_button_mouse_entered():
 	TweenSelectionSwordPos(credits_button, 41)
 	TweenBackroundCamera(102)
+	audio_master.PlayRandomSound("MenuHover")
 
 
 func _on_quit_button_focus_entered():
 	TweenSelectionSwordPos(quit_button, 24)
 	TweenBackroundCamera(114)
+	audio_master.PlayRandomSound("MenuHover")
 func _on_quit_button_mouse_entered():
 	TweenSelectionSwordPos(quit_button, 24)
 	TweenBackroundCamera(114)
+	audio_master.PlayRandomSound("MenuHover")
 
 
 

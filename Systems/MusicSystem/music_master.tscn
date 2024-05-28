@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba67hmq0qh6o2"]
+[gd_scene load_steps=4 format=3 uid="uid://ba67hmq0qh6o2"]
 
 [ext_resource type="Script" path="res://Systems/MusicSystem/MusicMaster.gd" id="1_76uvt"]
 [ext_resource type="AudioStream" uid="uid://efo8ehfw50rn" path="res://Sounds/Music/alexander-nakarada-roaming-three.mp3" id="2_ylqkf"]
+[ext_resource type="AudioStream" uid="uid://b81ecjgr7enbi" path="res://Sounds/Ambience/viento-119996.mp3" id="3_c6uex"]
 
 [node name="MusicMaster" type="Node2D"]
 process_mode = 3
@@ -19,4 +20,11 @@ unique_name_in_owner = true
 volume_db = -20.0
 bus = &"Music"
 
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_c6uex")
+volume_db = -13.0
+autoplay = true
+bus = &"Ambience"
+
 [connection signal="finished" from="MainMusicPlayer" to="." method="_on_main_music_player_finished"]
+[connection signal="finished" from="Wind" to="." method="_on_wind_finished"]

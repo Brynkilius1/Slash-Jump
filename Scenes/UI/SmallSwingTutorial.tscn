@@ -16,7 +16,11 @@ func _ready():
 
 
 func UpdateInputSprite():
-	swing_input_sprite.texture = ReturnButtonIcon(OptionsManager.small_swing_button)
+	var return_image = ReturnButtonIcon(OptionsManager.small_swing_button)
+	if return_image:
+		swing_input_sprite.texture = return_image
+	else:
+		swing_input_sprite.texture = load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png\")
 
 
 

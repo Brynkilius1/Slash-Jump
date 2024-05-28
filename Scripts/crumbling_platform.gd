@@ -90,14 +90,14 @@ func TogglePlatformEnabled(disabled_self):
 func _on_player_detector_body_entered(body):
 	if triggerable == true:
 		triggerable = false
-		StoodOn(true)
+		#StoodOn(true)
 		disapear_timer.start()
 		shaker.start()
 
 
 func _on_player_leaving_detector_body_exited(body):
 	if triggerable == false:
-		StoodOn(false)
+		#StoodOn(false)
 		platform_animated_sprite.play("disapear")
 		respawner.StartRespawn()
 		shaker.stop()

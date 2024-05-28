@@ -44,9 +44,7 @@ func _on_cutscene_animation_player_animation_finished(anim_name):
 
 
 
-func _on_textbox_handler_intro_text_finished():
+
+
+func _on_intro_textbox_handler_text_finished():
 	PlayCutscene("IntroHammockAfterCall")
-	
-
-
-

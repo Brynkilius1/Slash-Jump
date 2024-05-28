@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=62 format=3 uid="uid://jumgmkw5n5jc"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
 [ext_resource type="Texture2D" uid="uid://bxpri51ixw1ti" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sky.png" id="1_skej4"]
@@ -25,6 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://bttehw2m30d8u" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_logo.png" id="22_1b8qc"]
 [ext_resource type="Texture2D" uid="uid://38d80eiwwbuq" path="res://Images/UI/Settings/BackSign.png" id="22_752a2"]
 [ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="22_g0apr"]
+[ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="22_p5tus"]
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="26_eo2ys"]
+[ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="27_8li78"]
+[ext_resource type="AudioStream" uid="uid://q22lm0e2nnrh" path="res://Sounds/SoundEffects/Menu/MenuHover1.wav" id="28_gbe2i"]
+[ext_resource type="AudioStream" uid="uid://bxoqdrssfsfti" path="res://Sounds/SoundEffects/Menu/MenuClick1.wav" id="29_omvii"]
 
 [sub_resource type="Gradient" id="Gradient_54m58"]
 offsets = PackedFloat32Array(0, 0.598639, 0.77551, 1)
@@ -380,6 +385,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qcmvg")
+metadata/_edit_use_anchors_ = true
 
 [node name="Menu" type="CanvasLayer" parent="MainMenu"]
 layer = 2
@@ -433,8 +439,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 5440.0
-offset_bottom = 3060.0
+offset_right = 2560.0
+offset_bottom = 1440.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -551,6 +557,7 @@ text = "Quit"
 flat = true
 
 [node name="MyName" type="Label" parent="MainMenu/Menu/Menu/MainMenuButtons"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -820,24 +827,44 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -71.5
+offset_top = -36.0
 offset_right = 64.0
-offset_bottom = 71.5
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/line_spacing = 0
+theme_override_constants/line_spacing = -1
 theme_override_fonts/font = ExtResource("22_g0apr")
-text = "Programming and Design:
-Brynjar Á
+text = "Brynjar Á
 
-Art:
 Sindri H
 
-Music:
 Sindri S
 
-Sound Effects:
-Auður E"
+AmberPearl"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MainMenu/Menu/Menu/Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -47.0
+offset_right = 64.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -1
+theme_override_fonts/font = ExtResource("22_p5tus")
+text = "Programming and Design:
+
+Art:
+
+Music:
+
+Sound Effects:"
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="MainMenu/Menu/Menu/Credits"]
@@ -870,6 +897,7 @@ visible = false
 position = Vector2(160, 90)
 
 [node name="Cache" type="Node2D" parent="MainMenu"]
+visible = false
 script = ExtResource("21_46i84")
 
 [node name="DeathTransistionCanvasLayer" type="CanvasLayer" parent="MainMenu"]
@@ -878,6 +906,22 @@ layer = 100
 [node name="BarTransition" parent="MainMenu/DeathTransistionCanvasLayer" instance=ExtResource("17_pbjll")]
 visible = false
 uncover_screen_when_loaded = false
+
+[node name="AudioMaster" type="Node2D" parent="MainMenu" groups=["AudioMaster"]]
+script = ExtResource("26_eo2ys")
+
+[node name="AudioCollectionMenuHover" parent="MainMenu/AudioMaster" instance=ExtResource("27_8li78")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MainMenu/AudioMaster/AudioCollectionMenuHover"]
+stream = ExtResource("28_gbe2i")
+bus = &"SoundEffects"
+
+[node name="AudioCollectionMenuClick" parent="MainMenu/AudioMaster" instance=ExtResource("27_8li78")]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="MainMenu/AudioMaster/AudioCollectionMenuClick"]
+stream = ExtResource("29_omvii")
+volume_db = -7.0
+bus = &"SoundEffects"
 
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_focus_entered"]
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_start_button_focus_entered"]

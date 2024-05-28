@@ -5,6 +5,9 @@ extends StaticBody2D
 @onready var spike_moving_animation_player = $SpikeMovingAnimationPlayer
 @onready var spike_move_timer = $SpikeMoveTimer
 
+@onready var audio_master = $AudioMaster
+
+
 var spikes_out = false
 
 
@@ -16,7 +19,7 @@ func HitWithSword(_angle):
 
 func _ready():
 	if start_with_spikes_active == true:
-		SpikesOut()
+		SpikesOut(false)
 
 func SwapSpikes():
 	if spikes_out == false:
@@ -24,9 +27,12 @@ func SwapSpikes():
 	else:
 		SpikesIn()
 func SpikesIn():
+	audio_master.PlayRandomSound("Move")
 	spike_moving_animation_player.play("SpikesIn")
 	spikes_out = false
-func SpikesOut():
+func SpikesOut(play_sound = true):
+	if play_sound == true:
+		audio_master.PlayRandomSound("Move")
 	spike_moving_animation_player.play("SpikesOut")
 	spikes_out = true
 

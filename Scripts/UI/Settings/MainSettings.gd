@@ -27,6 +27,7 @@ extends Control
 var current_settings_category : int = 0: set = SetCurrentSettingsCategory
 
 var current_settings_menu = settings_menus.NONE: set = SetCurrentSettingsMenu
+var current_sword_indicator
 
 var rebind_control_dead_time_active = false
 
@@ -46,6 +47,7 @@ func SetCurrentSettingsMenu(new_value):
 	print("set current settings menu to: ", new_value)
 
 func _ready():
+	current_sword_indicator = video_sword_indicator
 	UpdateSettingsVisuals()
 
 
@@ -127,6 +129,7 @@ func ChangeToCategory(category : int):
 		audio_settings.visible = true
 		contol_settings.visible = false
 		current_settings_category = 1
+		current_sword_indicator = audio_sword_indicator
 		ChangeCategoriesBottonNeighbor(1)
 		settings_category_changed.emit(1)
 	elif category == 2:
@@ -134,6 +137,7 @@ func ChangeToCategory(category : int):
 		audio_settings.visible = false
 		contol_settings.visible = true
 		current_settings_category = 2
+		current_sword_indicator = control_sword_indicator
 		ChangeCategoriesBottonNeighbor(2)
 		settings_category_changed.emit(2)
 

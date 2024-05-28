@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var main_music_player = %MainMusicPlayer
 @onready var fade_music_player = %FadeMusicPlayer
+@onready var wind = $Wind
+
 
 @export var starting_song : AudioStream
 
@@ -54,3 +56,7 @@ func FadeInOut(song):
 
 func _on_main_music_player_finished(): #makes the song loop
 	main_music_player.play()
+
+
+func _on_wind_finished():
+	wind.play()

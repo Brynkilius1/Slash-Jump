@@ -12,6 +12,7 @@ var main_menu = preload("res://Scenes/UI/GameStart/main_menu.tscn")
 
 @onready var settings_back_button = %SettingsBackButton
 
+@onready var audio_master = $"../../AudioMaster"
 
 
 @onready var settings = $Settings
@@ -34,18 +35,21 @@ func _unhandled_input(event):
 
 
 func _on_return_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	pause_menu_closed.emit()
 	TogglePauseMenu(false)
 	GlobalObjects.player.UpdateControlSettings()
 
 
 func _on_settings_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	ToggleSettingsVisible(true)
 	settings.GetExpectedFocus()
 	settings.current_settings_menu = 1
 	_on_settings_settings_category_changed(0)
 
 func _on_settings_back_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	print("pressed settings back button")
 	ToggleSettingsVisible(false)
 	SaverAndLoader.save_data(SaverAndLoader.SAVE_DIR + SaverAndLoader.SAVE_FILE_NAME)
@@ -54,12 +58,14 @@ func _on_settings_back_button_pressed():
 	settings_button.grab_focus()
 
 func _on_back_to_menu_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	GlobalVariables.ResetGlobalVariables()
 	TogglePauseMenu(false)
 	get_tree().change_scene_to_packed(main_menu)
 
 
 func _on_quit_game_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	get_tree().quit()
 
 

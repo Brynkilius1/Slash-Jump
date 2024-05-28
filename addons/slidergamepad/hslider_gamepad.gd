@@ -112,3 +112,6 @@ func on_threshold_timeout(direction: int) -> void:
 	if direction == 1 and Input.is_action_pressed("ui_right", true) or \
 		direction == -1 and Input.is_action_pressed("ui_left", true):
 		sliding_dir = direction
+
+
+

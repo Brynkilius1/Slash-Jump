@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhyfo5dc4fr3f"]
+
+[ext_resource type="PackedScene" uid="uid://cwb3tm7yit8ui" path="res://Systems/SimpleTextbox/textbox_handler.tscn" id="1_of7qj"]
+
+[sub_resource type="GDScript" id="GDScript_c44s7"]
+script/source = "extends Node2D
+
+@onready var textbox_handler = $TextboxHandler
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	textbox_handler.BeginTextbox()
+
+
+
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_c44s7")
+
+[node name="TextboxHandler" parent="." instance=ExtResource("1_of7qj")]

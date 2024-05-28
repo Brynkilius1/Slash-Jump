@@ -29,6 +29,7 @@ extends Control
 @onready var rumble_check_box = %RumbleCheckBox
 
 
+@onready var audio_master = $AudioMaster
 
 
 
@@ -48,7 +49,9 @@ func _ready():
 
 
 func _on_start_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	bar_transition.PlayScreenCoverAnim()
+	
 	
 	
 	#level_select.visible = true
@@ -101,6 +104,7 @@ func _on_prev_level_button_pressed():
 	level_2.visible = false
 
 func _on_quit_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	get_tree().quit()
 
 
@@ -109,6 +113,7 @@ func _on_quit_button_pressed():
 
 
 func _on_settings_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	ToggleSettingsVisible(true)
 	settings.GetExpectedFocus()
 	settings.current_settings_menu = 1
@@ -116,6 +121,7 @@ func _on_settings_button_pressed():
 
 
 func _on_settings_back_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	saver_and_loader.save_data(saver_and_loader.SAVE_DIR + saver_and_loader.SAVE_FILE_NAME)
 	settings.UpdateSettingsVisuals()
 	ToggleSettingsVisible(false)
@@ -175,9 +181,10 @@ func _on_settings_settings_category_changed(settings_category):
 	
 
 	settings_back_button.set_focus_neighbor(SIDE_TOP, settings_back_button.get_path_to(focus_neighbor))
-
+	settings_back_button.set_focus_neighbor(SIDE_LEFT, settings_back_button.get_path_to(focus_neighbor))
 
 func _on_credits_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	credits.credits_accepting_inputs = true
 	ToggleCreditsVisible(true)
 	

@@ -146,7 +146,7 @@ var was_on_ground_last_frame = false
 var saved_x_speed : float
 var saved_coyote_direction : float
 var saved_controller_angle : float
-var swing_dir = 1
+var swing_dir = -1
 var sword_has_hit_this_swing = false
 var knife_has_hit_this_swing = false
 var checking_sword_hitbox = false

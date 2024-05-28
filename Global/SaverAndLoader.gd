@@ -33,7 +33,7 @@ func save_data(path : String):
 			"screenshake": OptionsManager.screenshake,
 			"fps": OptionsManager.fps,
 			"master_volume": OptionsManager.master_volume,
-			"sound_effect_volume": OptionsManager.master_volume,
+			"sound_effect_volume": OptionsManager.sound_effect_volume,
 			"music_volume": OptionsManager.music_volume,
 			"ambience_volume": OptionsManager.ambience_volume,
 			"inverted_controls": OptionsManager.inverted_controls,

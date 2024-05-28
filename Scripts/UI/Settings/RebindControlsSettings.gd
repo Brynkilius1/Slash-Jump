@@ -8,6 +8,8 @@ extends Control
 @onready var sword_swing_label = $SwingSelector/ChangeSwordSwingButton/SwordSwingLabel
 @onready var knife_swing_label = $SwingSelector/ChangeKnifeSwingButton/KnifeSwingLabel
 
+@onready var audio_master = $AudioMaster
+
 
 var listening_for_new_key = false
 
@@ -34,6 +36,7 @@ func _unhandled_input(event):
 					UpdateControls(event)
 
 func UpdateControls(event):
+	audio_master.PlayRandomSound("MenuClick")
 	print(event)
 	listening_for_new_key = false
 	key_button_confirmer.visible = false
@@ -50,6 +53,7 @@ func UpdateControls(event):
 	change_sword_swing_button.grab_focus()
 
 func _on_change_sword_swing_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	opened_rebind_menu.emit()
 	accept_event()
 	swing_selector.hide()
@@ -63,6 +67,7 @@ func _on_change_sword_swing_button_pressed():
 
 
 func _on_change_knife_swing_button_pressed():
+	audio_master.PlayRandomSound("MenuClick")
 	opened_rebind_menu.emit()
 	accept_event()
 	swing_selector.hide()

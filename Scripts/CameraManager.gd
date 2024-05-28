@@ -93,7 +93,8 @@ func MoveScreen():
 	
 	
 	await screen_tween.finished
-	Pause(false)
+	if PauseMenu.get_child(0).get_child(0).visible == false:
+		Pause(false)
 	GlobalObjects.camera.camera_is_free = false
 	
 	

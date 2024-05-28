@@ -42,6 +42,9 @@ func _on_bar_transition_cover_finished():
 
 
 func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "HavingFun":
+		animation_player.play("HavingFunFall")
+	
 	if anim_name == "TurnAround":
 		animation_player.play("OutroWave")
 	if anim_name == "PlayerMoveToBench":

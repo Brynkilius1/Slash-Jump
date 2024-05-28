@@ -4,10 +4,21 @@ extends Control
 @onready var small_swing_icon = $"../SwingSelector/ChangeKnifeSwingButton/SmallSwingIcon"
 
 func ChangeBigSwingIcon(event):
-	big_swing_icon.texture = ReturnButtonIcon(event)
+	print("big event: ", event)
+	var returned_icon = ReturnButtonIcon(event)
+	if returned_icon:
+		big_swing_icon.texture = returned_icon
+	else:
+		big_swing_icon.texture = load("res://Images/UI/RebindMenu/ButtonImages/FButtons_Down.png")
 
 func ChangeSmallSwingIcon(event):
-	small_swing_icon.texture = ReturnButtonIcon(event)
+	print("small event: ", event)
+	var returned_icon = ReturnButtonIcon(event)
+	if returned_icon:
+		small_swing_icon.texture = returned_icon
+	else:
+		small_swing_icon.texture = load("res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png")
+	
 
 
 func ReturnButtonIcon(event):
@@ -15,6 +26,9 @@ func ReturnButtonIcon(event):
 		return CheckButtons(event.button_index)
 	elif event is InputEventJoypadMotion:
 		return CheckBumpers(event.axis)
+	else:
+		print("ReturnButtonIcon got invalid event: ", event)
+		return null
 	
 
 func CheckButtons(button_index):
