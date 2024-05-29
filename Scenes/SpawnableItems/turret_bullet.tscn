@@ -1,8 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://d27o2dojnnvid"]
+[gd_scene load_steps=10 format=3 uid="uid://d27o2dojnnvid"]
 
 [ext_resource type="Script" path="res://Scripts/SpawnableItemScripts/turret_bullet.gd" id="1_3hph4"]
 [ext_resource type="Texture2D" uid="uid://7g630020doir" path="res://Images/Mechanics/cannonBall.png" id="2_0bj6f"]
 [ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="2_i05s1"]
+
+[sub_resource type="Gradient" id="Gradient_qang4"]
+offsets = PackedFloat32Array(0, 0.0816327, 0.136054, 0.190476, 0.292517, 0.326531, 0.387755, 0.44898, 0.823129, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0.576471, 0.172549, 1, 1, 0.694118, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_68p30"]
+gradient = SubResource("Gradient_qang4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tddk2"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.1
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_68p30")
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_influence_min = 0.053
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q22ah"]
 radius = 4.0
@@ -17,6 +37,14 @@ data = PackedByteArray(255, 251, 144, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_3hph4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_tddk2")
+lifetime = 0.25
+trail_enabled = true
+trail_lifetime = 0.2
+trail_sections = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_q22ah")

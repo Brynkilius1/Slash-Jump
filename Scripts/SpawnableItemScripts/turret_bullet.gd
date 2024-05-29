@@ -3,8 +3,8 @@ extends Area2D
 var speed : float = 100
 var bullet_angle : float = 0.0
 
-func _ready():
-	rotation = bullet_angle
+#func _ready():
+	#rotation = bullet_angle
 
 func _process(delta):
 	MoveBullet(delta)
