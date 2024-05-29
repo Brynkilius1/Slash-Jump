@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bkijsc4bbmruy" path="res://Scenes/BaseScenes/base_tile_map.tscn" id="7_voo2o"]
 [ext_resource type="PackedScene" uid="uid://ds0qp5p67r0e8" path="res://Scenes/LevelObjects/no_grav_block.tscn" id="8_1cyx3"]
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="8_ijb6o"]
-[ext_resource type="PackedScene" uid="uid://dpgnm1pv2r76j" path="res://Scenes/LevelObjects/tnt_barrel.tscn" id="9_0go0n"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelObjects/tnt_barrel.tscn" id="9_0go0n"]
 [ext_resource type="TileSet" uid="uid://c3g22q8vipa28" path="res://Tileset/Spikes.tres" id="9_h80vj"]
 [ext_resource type="TileSet" uid="uid://cg0ecaluwnove" path="res://Tileset/PitDeath.tres" id="12_6xyjc"]
 [ext_resource type="TileSet" uid="uid://w4f1o27hp8ym" path="res://Tileset/MechanicTileset.tres" id="13_ugyg6"]
@@ -45,7 +45,7 @@ size = Vector2(320, 431)
 [node name="WorldNessecities" parent="." instance=ExtResource("1_atc54")]
 
 [node name="PlayerSpawnPoint" parent="WorldNessecities" index="2"]
-position = Vector2(470, -659)
+position = Vector2(473, -656)
 
 [node name="BarTransition" parent="WorldNessecities/TransitionManager/DeathTransistionCanvasLayer" index="0" instance=ExtResource("2_ttjlb")]
 visible = false

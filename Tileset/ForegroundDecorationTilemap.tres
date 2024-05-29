@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=13 format=3 uid="uid://hs46vmovikec"]
 
 [ext_resource type="Texture2D" uid="uid://dse8pyy0wur13" path="res://Images/Decorations/ForegroundLevel1/bushes.png" id="3_aunjv"]
-[ext_resource type="PackedScene" path="res://Scenes/Decorations/vine1.tscn" id="4_5hbe7"]
-[ext_resource type="PackedScene" path="res://Scenes/Decorations/vine2.tscn" id="5_coql8"]
+[ext_resource type="PackedScene" uid="uid://hg06a2rvljld" path="res://Scenes/Decorations/vine1.tscn" id="4_5hbe7"]
+[ext_resource type="PackedScene" uid="uid://bon4cynqrn2sh" path="res://Scenes/Decorations/vine2.tscn" id="5_coql8"]
 [ext_resource type="Texture2D" uid="uid://bj53h0fdan7nk" path="res://Images/Decorations/ForegroundLevel1/supportBeam.png" id="6_37ve8"]
-[ext_resource type="PackedScene" path="res://Scenes/Decorations/vine3.tscn" id="6_w6exs"]
+[ext_resource type="PackedScene" uid="uid://c6uj1afwu0fu0" path="res://Scenes/Decorations/vine3.tscn" id="6_w6exs"]
 [ext_resource type="Texture2D" uid="uid://ku04msd706i8" path="res://Images/Decorations/ForegroundLevel1/ore.png" id="7_msl1x"]
 [ext_resource type="Texture2D" uid="uid://d1b7fdgllxnmm" path="res://Images/Decorations/ForegroundLevel1/rocks.png" id="7_wqru6"]
 
