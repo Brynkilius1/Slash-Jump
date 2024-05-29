@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://bikgviyq72qy2"]
+[gd_scene load_steps=96 format=3 uid="uid://bikgviyq72qy2"]
 
 [ext_resource type="Texture2D" uid="uid://dlrftgjslgvi7" path="res://Images/Backrounds/SunsetBAckround/sunset320.png" id="1_vsmjm"]
 [ext_resource type="Texture2D" uid="uid://wumcc2c5botl" path="res://Images/Backrounds/SunsetBAckround/background_cliffs.png" id="2_grbs5"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bsdprxqgcguo2" path="res://Images/CutsceneObjects/Phone.png" id="13_ph752"]
 [ext_resource type="Texture2D" uid="uid://hqedseptt58w" path="res://Images/Decorations/TutorialArea/PlayerSleepingHammockTemp.png" id="14_pohdq"]
 [ext_resource type="AudioStream" uid="uid://0rjbu45kc47e" path="res://Sounds/SoundEffects/CutsceneSounds/sound-effect-old-phone-191761.mp3" id="15_dub7u"]
-[ext_resource type="Script" path="res://Scripts/OneOff/OutroCutscenePlayer.gd" id="16_e505l"]
+[ext_resource type="Script" path="res://Scripts/OneOff/OutroCutscenePlayer2.gd" id="16_uodcv"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="17_ukf1k"]
 [ext_resource type="Texture2D" uid="uid://cji2ail6uy0l3" path="res://Images/CutsceneObjects/picnicTable.png" id="18_drsfo"]
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="18_iylvk"]
@@ -642,6 +642,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-43, 0), Vector2(-43, 5), Vector2(-43, 31)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"CheckIfPlayerEntered"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_pojgj"]
 resource_name = "HavingFunFall"
@@ -658,31 +672,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-43, 0), Vector2(-43, 5), Vector2(-43, 31)]
 }
-
-[sub_resource type="Animation" id="Animation_2jgle"]
-resource_name = "HavingFunWithPlayer"
-length = 0.4
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_5fulm"]
-resource_name = "OutroWave"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Decorations/Friend1:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decorations/Friend1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Decorations/Friend1:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_xdh6k"]
-resource_name = "PlayerMoveToBench"
 
 [sub_resource type="Animation" id="Animation_rc6sb"]
 length = 0.001
@@ -723,19 +736,11 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_6yuco"]
-resource_name = "TurnAround"
-length = 0.4
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kr1b8"]
 _data = {
 "HavingFun": SubResource("Animation_qf48c"),
 "HavingFunFall": SubResource("Animation_pojgj"),
-"HavingFunWithPlayer": SubResource("Animation_2jgle"),
-"OutroWave": SubResource("Animation_5fulm"),
-"PlayerMoveToBench": SubResource("Animation_xdh6k"),
-"RESET": SubResource("Animation_rc6sb"),
-"TurnAround": SubResource("Animation_6yuco")
+"RESET": SubResource("Animation_rc6sb")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk366"]
@@ -3622,19 +3627,32 @@ bus = &"SoundEffects"
 
 [node name="OutroCutscenePlayer" type="Node2D" parent="PlaytestLevel2"]
 position = Vector2(5988, -3344)
-script = ExtResource("16_e505l")
+script = ExtResource("16_uodcv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlaytestLevel2/OutroCutscenePlayer"]
+[node name="OutroAnimationPlayer" type="AnimationPlayer" parent="PlaytestLevel2/OutroCutscenePlayer"]
 libraries = {
 "": SubResource("AnimationLibrary_kr1b8")
 }
-autoplay = "HavingFun"
 
 [node name="OutroTextboxHandler" parent="PlaytestLevel2/OutroCutscenePlayer" instance=ExtResource("8_0ub5v")]
 text_array = PackedStringArray("There he is!", "We didnt see the gondola, did you not take it?", "Nope, it was broken", "How did you get up here then, i thought that was the only path", "I took a bit of a detour", "Anyway, wanna have a bite? We just finished grilling the hot dogs", "Hell yeah I do")
+actions = {
+0: "change_to_left;true,
+change_left_actor;res://Images/UI/Textboxes/GoldArmor.png",
+2: "change_to_left;false,
+change_right_actor;res://Images/UI/Textboxes/Player.png",
+3: "change_to_left;true",
+4: "change_to_left;false",
+5: "change_to_left;true",
+6: "change_to_left;false"
+}
+
+[node name="Control" parent="PlaytestLevel2/OutroCutscenePlayer/OutroTextboxHandler/TextboxLayer" index="0"]
+offset_top = 5.0
+offset_bottom = 63.0
 
 [node name="CutsceneInitiationArea2D" type="Area2D" parent="PlaytestLevel2/OutroCutscenePlayer"]
-position = Vector2(123, -13)
+position = Vector2(93, -12)
 collision_layer = 0
 collision_mask = 2
 
@@ -3681,6 +3699,8 @@ hframes = 3
 vframes = 6
 frame = 8
 
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaytestLevel2/OutroCutscenePlayer"]
+
 [node name="WorldNessecities" type="Node2D" parent="PlaytestLevel2"]
 
 [node name="CameraManager" type="Node2D" parent="PlaytestLevel2/WorldNessecities"]
@@ -3693,7 +3713,7 @@ script = ExtResource("19_1b7wy")
 
 [node name="PlayerSpawnPoint" type="Node2D" parent="PlaytestLevel2/WorldNessecities"]
 unique_name_in_owner = true
-position = Vector2(6220, -3380)
+position = Vector2(6120, -3317)
 
 [node name="TransitionManager" type="Node2D" parent="PlaytestLevel2/WorldNessecities"]
 script = ExtResource("20_36npk")
@@ -3879,50 +3899,50 @@ visibility_rect = Rect2(-379.217, -75.0072, 380.065, 183.658)
 
 [node name="FlowerDeco" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-78, 60)
-flower_type = 3
+flower_type = 4
 
 [node name="FlowerDeco2" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-69, 60)
-flower_type = 4
 
 [node name="FlowerDeco3" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-44, 60)
-flower_type = 0
+flower_type = 7
 
 [node name="FlowerDeco15" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(39, 60)
+flower_type = 2
 
 [node name="FlowerDeco16" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-4, 60)
-flower_type = 5
+flower_type = 11
 
 [node name="FlowerDeco17" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-9, 60)
-flower_type = 7
+flower_type = 2
 
 [node name="FlowerDeco6" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(27, 60)
-flower_type = 2
+flower_type = 11
 
 [node name="FlowerDeco7" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-114, 60)
-flower_type = 1
+flower_type = 5
 
 [node name="FlowerDeco8" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-105, 60)
-flower_type = 0
+flower_type = 5
 
 [node name="FlowerDeco9" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-98, 60)
-flower_type = 3
+flower_type = 9
 
 [node name="FlowerDeco10" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-73, 59)
-flower_type = 3
+flower_type = 1
 
 [node name="FlowerDeco11" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-130, 60)
-flower_type = 9
+flower_type = 11
 
 [node name="FlowerDeco12" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-150, 60)
@@ -3930,11 +3950,10 @@ flower_type = 11
 
 [node name="FlowerDeco13" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-145, 60)
-flower_type = 11
 
 [node name="FlowerDeco14" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(149, 48)
-flower_type = 10
+flower_type = 6
 
 [node name="Control" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27" instance=ExtResource("28_j5rew")]
 visible = false
@@ -4254,7 +4273,7 @@ flip_tree = true
 
 [connection signal="animation_finished" from="PlaytestLevel2/IntroCutscenePlayer/CutsceneAnimationPlayer" to="PlaytestLevel2/IntroCutscenePlayer" method="_on_cutscene_animation_player_animation_finished"]
 [connection signal="text_finished" from="PlaytestLevel2/IntroCutscenePlayer/IntroTextboxHandler" to="PlaytestLevel2/IntroCutscenePlayer" method="_on_intro_textbox_handler_text_finished"]
-[connection signal="animation_finished" from="PlaytestLevel2/OutroCutscenePlayer/AnimationPlayer" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="PlaytestLevel2/OutroCutscenePlayer/OutroAnimationPlayer" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_animation_player_animation_finished"]
 [connection signal="text_finished" from="PlaytestLevel2/OutroCutscenePlayer/OutroTextboxHandler" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_outro_textbox_handler_text_finished"]
 [connection signal="area_entered" from="PlaytestLevel2/OutroCutscenePlayer/CutsceneInitiationArea2D" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_cutscene_initiation_area_2d_area_entered"]
 [connection signal="body_entered" from="PlaytestLevel2/OutroCutscenePlayer/CutsceneInitiationArea2D" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_cutscene_initiation_area_2d_body_entered"]
@@ -4273,8 +4292,29 @@ flip_tree = true
 [connection signal="body_exited" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27" to="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27" method="_on_body_exited"]
 [connection signal="body_entered" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen21" to="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen21" method="_on_body_entered"]
 [connection signal="body_exited" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen21" to="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen21" method="_on_body_exited"]
+[connection signal="set_next_screen_local" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen21" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_screen_21_set_next_screen_local"]
 [connection signal="body_entered" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" to="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" method="_on_body_entered"]
 [connection signal="body_exited" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" to="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" method="_on_body_exited"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/SwingBubble" to="PlaytestLevel2/MechanicTilemap/SwingBubble" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31228" to="PlaytestLevel2/MechanicTilemap/@Area2D@31228" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31229" to="PlaytestLevel2/MechanicTilemap/@Area2D@31229" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31234" to="PlaytestLevel2/MechanicTilemap/@Area2D@31234" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31236" to="PlaytestLevel2/MechanicTilemap/@Area2D@31236" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31237" to="PlaytestLevel2/MechanicTilemap/@Area2D@31237" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31238" to="PlaytestLevel2/MechanicTilemap/@Area2D@31238" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31239" to="PlaytestLevel2/MechanicTilemap/@Area2D@31239" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31240" to="PlaytestLevel2/MechanicTilemap/@Area2D@31240" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31241" to="PlaytestLevel2/MechanicTilemap/@Area2D@31241" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31242" to="PlaytestLevel2/MechanicTilemap/@Area2D@31242" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31243" to="PlaytestLevel2/MechanicTilemap/@Area2D@31243" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31244" to="PlaytestLevel2/MechanicTilemap/@Area2D@31244" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31245" to="PlaytestLevel2/MechanicTilemap/@Area2D@31245" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31246" to="PlaytestLevel2/MechanicTilemap/@Area2D@31246" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31249" to="PlaytestLevel2/MechanicTilemap/@Area2D@31249" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31251" to="PlaytestLevel2/MechanicTilemap/@Area2D@31251" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31252" to="PlaytestLevel2/MechanicTilemap/@Area2D@31252" method="_on_body_entered"]
+[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31253" to="PlaytestLevel2/MechanicTilemap/@Area2D@31253" method="_on_body_entered"]
 
 [editable path="PlaytestLevel2/IntroCutscenePlayer/IntroTextboxHandler"]
+[editable path="PlaytestLevel2/OutroCutscenePlayer/OutroTextboxHandler"]
 [editable path="PlaytestLevel2/GrassTilemap"]
