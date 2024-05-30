@@ -61,7 +61,11 @@ func DisableSelf(disabled_self : bool):
 	print("called DisableSelf", self)
 	#animations
 	if disabled_self == false:
-		StoodOn(false)
+		
+		#StoodOn(false)
+		#print("crumbling pos: ", platform_animated_sprite.position)
+		platform_animated_sprite.offset = Vector2.ZERO
+		#print("crumbling pos normalised: ", platform_animated_sprite.position)
 		platform_animated_sprite.play("appear")
 		platform_animated_sprite.visible = not disabled_self
 		tree_animated_sprite.play("Regrow")

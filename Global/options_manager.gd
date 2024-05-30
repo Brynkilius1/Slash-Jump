@@ -61,10 +61,19 @@ func SetAmbienceVolume(new_value):
 	UpdateVolume(new_value, ambience_bus_index)
 
 func UpdateVolume(volume_value, bus_index):
+	#Mute Bus
+	if volume_value == 0:
+		AudioServer.set_bus_mute(bus_index, true)
+	else:
+		AudioServer.set_bus_mute(bus_index, false)
+	
 	#update volume
 	volume_value *= 0.25
-	volume_value = volume_value - 15
+	volume_value = volume_value - 20
 	AudioServer.set_bus_volume_db(bus_index, volume_value)
+	
+	
+
 	print(AudioServer.get_bus_volume_db(bus_index))
 #endregion
 

@@ -3713,7 +3713,7 @@ script = ExtResource("19_1b7wy")
 
 [node name="PlayerSpawnPoint" type="Node2D" parent="PlaytestLevel2/WorldNessecities"]
 unique_name_in_owner = true
-position = Vector2(6120, -3317)
+position = Vector2(6178, -3366)
 
 [node name="TransitionManager" type="Node2D" parent="PlaytestLevel2/WorldNessecities"]
 script = ExtResource("20_36npk")
@@ -3899,10 +3899,11 @@ visibility_rect = Rect2(-379.217, -75.0072, 380.065, 183.658)
 
 [node name="FlowerDeco" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-78, 60)
-flower_type = 4
+flower_type = 7
 
 [node name="FlowerDeco2" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-69, 60)
+flower_type = 7
 
 [node name="FlowerDeco3" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-44, 60)
@@ -3914,46 +3915,47 @@ flower_type = 2
 
 [node name="FlowerDeco16" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-4, 60)
-flower_type = 11
+flower_type = 10
 
 [node name="FlowerDeco17" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-9, 60)
-flower_type = 2
+flower_type = 11
 
 [node name="FlowerDeco6" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(27, 60)
-flower_type = 11
+flower_type = 4
 
 [node name="FlowerDeco7" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-114, 60)
-flower_type = 5
+flower_type = 1
 
 [node name="FlowerDeco8" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-105, 60)
-flower_type = 5
+flower_type = 11
 
 [node name="FlowerDeco9" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-98, 60)
-flower_type = 9
+flower_type = 6
 
 [node name="FlowerDeco10" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-73, 59)
-flower_type = 1
+flower_type = 0
 
 [node name="FlowerDeco11" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-130, 60)
-flower_type = 11
+flower_type = 10
 
 [node name="FlowerDeco12" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-150, 60)
-flower_type = 11
+flower_type = 7
 
 [node name="FlowerDeco13" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-145, 60)
+flower_type = 7
 
 [node name="FlowerDeco14" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(149, 48)
-flower_type = 6
+flower_type = 5
 
 [node name="Control" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27" instance=ExtResource("28_j5rew")]
 visible = false
@@ -4295,25 +4297,6 @@ flip_tree = true
 [connection signal="set_next_screen_local" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen21" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_screen_21_set_next_screen_local"]
 [connection signal="body_entered" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" to="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" method="_on_body_entered"]
 [connection signal="body_exited" from="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" to="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen36" method="_on_body_exited"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/SwingBubble" to="PlaytestLevel2/MechanicTilemap/SwingBubble" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31228" to="PlaytestLevel2/MechanicTilemap/@Area2D@31228" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31229" to="PlaytestLevel2/MechanicTilemap/@Area2D@31229" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31234" to="PlaytestLevel2/MechanicTilemap/@Area2D@31234" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31236" to="PlaytestLevel2/MechanicTilemap/@Area2D@31236" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31237" to="PlaytestLevel2/MechanicTilemap/@Area2D@31237" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31238" to="PlaytestLevel2/MechanicTilemap/@Area2D@31238" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31239" to="PlaytestLevel2/MechanicTilemap/@Area2D@31239" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31240" to="PlaytestLevel2/MechanicTilemap/@Area2D@31240" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31241" to="PlaytestLevel2/MechanicTilemap/@Area2D@31241" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31242" to="PlaytestLevel2/MechanicTilemap/@Area2D@31242" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31243" to="PlaytestLevel2/MechanicTilemap/@Area2D@31243" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31244" to="PlaytestLevel2/MechanicTilemap/@Area2D@31244" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31245" to="PlaytestLevel2/MechanicTilemap/@Area2D@31245" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31246" to="PlaytestLevel2/MechanicTilemap/@Area2D@31246" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31249" to="PlaytestLevel2/MechanicTilemap/@Area2D@31249" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31251" to="PlaytestLevel2/MechanicTilemap/@Area2D@31251" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31252" to="PlaytestLevel2/MechanicTilemap/@Area2D@31252" method="_on_body_entered"]
-[connection signal="body_entered" from="PlaytestLevel2/MechanicTilemap/@Area2D@31253" to="PlaytestLevel2/MechanicTilemap/@Area2D@31253" method="_on_body_entered"]
 
 [editable path="PlaytestLevel2/IntroCutscenePlayer/IntroTextboxHandler"]
 [editable path="PlaytestLevel2/OutroCutscenePlayer/OutroTextboxHandler"]
