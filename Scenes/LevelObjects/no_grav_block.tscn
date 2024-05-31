@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://lii1a56n6tjg" path="res://Images/Tilesets/UnblouncableTiles.png" id="2_ah6o2"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="3_iskjp"]
 [ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="4_o1bcu"]
-[ext_resource type="AudioStream" uid="uid://nw36232mmbc7" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubblePop.mp3" id="5_hsxxo"]
+[ext_resource type="AudioStream" uid="uid://dnra41lkt7m11" path="res://Sounds/SoundEffects/Objects/Mechanics/Bubble/BubbleLeave1.wav" id="5_6aotg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qxov"]
 size = Vector2(12, 12)
@@ -43,7 +43,7 @@ shape = SubResource("RectangleShape2D_7kdkp")
 [node name="Hit" type="Node2D" parent="SwordCollisionHandler/Sounds"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SwordCollisionHandler/Sounds/Hit"]
-stream = ExtResource("5_hsxxo")
+stream = ExtResource("5_6aotg")
 volume_db = 13.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -3899,27 +3899,27 @@ visibility_rect = Rect2(-379.217, -75.0072, 380.065, 183.658)
 
 [node name="FlowerDeco" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-78, 60)
-flower_type = 7
+flower_type = 3
 
 [node name="FlowerDeco2" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-69, 60)
-flower_type = 7
+flower_type = 10
 
 [node name="FlowerDeco3" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-44, 60)
-flower_type = 7
+flower_type = 5
 
 [node name="FlowerDeco15" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(39, 60)
-flower_type = 2
+flower_type = 10
 
 [node name="FlowerDeco16" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-4, 60)
-flower_type = 10
+flower_type = 11
 
 [node name="FlowerDeco17" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-9, 60)
-flower_type = 11
+flower_type = 1
 
 [node name="FlowerDeco6" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(27, 60)
@@ -3927,15 +3927,14 @@ flower_type = 4
 
 [node name="FlowerDeco7" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-114, 60)
-flower_type = 1
+flower_type = 5
 
 [node name="FlowerDeco8" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-105, 60)
-flower_type = 11
 
 [node name="FlowerDeco9" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-98, 60)
-flower_type = 6
+flower_type = 2
 
 [node name="FlowerDeco10" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-73, 59)
@@ -3943,19 +3942,19 @@ flower_type = 0
 
 [node name="FlowerDeco11" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-130, 60)
-flower_type = 10
+flower_type = 1
 
 [node name="FlowerDeco12" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-150, 60)
-flower_type = 7
+flower_type = 2
 
 [node name="FlowerDeco13" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-145, 60)
-flower_type = 7
+flower_type = 6
 
 [node name="FlowerDeco14" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(149, 48)
-flower_type = 5
+flower_type = 2
 
 [node name="Control" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27" instance=ExtResource("28_j5rew")]
 visible = false
