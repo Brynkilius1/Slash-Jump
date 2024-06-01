@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dd8r1d5a5kahm"]
 
-[ext_resource type="Texture2D" uid="uid://cgv8i0d1y6lrs" path="res://Images/UI/MovementTutorial/TutorialPopupMenu.png" id="1_xpe5o"]
+[ext_resource type="Texture2D" uid="uid://bsellppgmf4qx" path="res://Images/UI/MovementTutorial/tutorial2.png" id="1_ex0mu"]
 [ext_resource type="Texture2D" uid="uid://cmose3m1q5cwn" path="res://Images/UI/MovementTutorial/PlayerSmallSwinging.png" id="2_1j3jl"]
 [ext_resource type="Texture2D" uid="uid://dltgf20cnwcty" path="res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png" id="3_cow82"]
 
@@ -78,8 +78,7 @@ script = SubResource("GDScript_o6b8w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-37, -27)
-scale = Vector2(0.503546, 1)
-texture = ExtResource("1_xpe5o")
+texture = ExtResource("1_ex0mu")
 centered = false
 
 [node name="PlayerSmallSwinging" type="Sprite2D" parent="."]

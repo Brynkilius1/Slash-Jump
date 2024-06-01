@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform.tscn" id="2_k7abo"]
 [ext_resource type="PackedScene" uid="uid://cgnhpcuoa48lc" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform_left.tscn" id="3_2pcu3"]
 [ext_resource type="PackedScene" uid="uid://drruspcai2037" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform_right.tscn" id="4_f0k8h"]
-[ext_resource type="PackedScene" path="res://Scenes/LevelObjects/accelerator.tscn" id="5_gqim8"]
+[ext_resource type="PackedScene" uid="uid://c76dfq7b3uymw" path="res://Scenes/LevelObjects/accelerator.tscn" id="5_gqim8"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3nqbm"]
 scenes/1/scene = ExtResource("1_uwqln")
