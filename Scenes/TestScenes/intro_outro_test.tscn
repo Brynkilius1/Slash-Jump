@@ -697,6 +697,48 @@ tracks/2/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_t6iq4"]
+resource_name = "HavingFunWithPlayer"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decorations/Friend1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.757859, 1.56917, 0.63728),
+"update": 0,
+"values": [Vector2(-10, 32), Vector2(-10, 0), Vector2(-10, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decorations/Friend2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1.5, 0.6, 0.75),
+"update": 0,
+"values": [Vector2(-43, 0), Vector2(-43, 5), Vector2(-43, 31)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Decorations/PlayerDouble:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(0.6, 0.75, 1.56),
+"update": 0,
+"values": [Vector2(-16, 15), Vector2(-16, 47), Vector2(-16, 10)]
+}
+
 [sub_resource type="Animation" id="Animation_rc6sb"]
 length = 0.001
 tracks/0/type = "value"
@@ -746,48 +788,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-16, 47)]
-}
-
-[sub_resource type="Animation" id="Animation_t6iq4"]
-resource_name = "HavingFunWithPlayer"
-length = 0.4
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Decorations/Friend1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(0.757859, 1.56917, 0.63728),
-"update": 0,
-"values": [Vector2(-10, 32), Vector2(-10, 0), Vector2(-10, 5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Decorations/Friend2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1.5, 0.6, 0.75),
-"update": 0,
-"values": [Vector2(-43, 0), Vector2(-43, 5), Vector2(-43, 31)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Decorations/PlayerDouble:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(0.6, 0.75, 1.56),
-"update": 0,
-"values": [Vector2(-16, 15), Vector2(-16, 47), Vector2(-16, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_y6lui"]
@@ -4049,27 +4049,27 @@ visibility_rect = Rect2(-379.217, -75.0072, 380.065, 183.658)
 
 [node name="FlowerDeco" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-78, 60)
-flower_type = 7
+flower_type = 11
 
 [node name="FlowerDeco2" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-69, 60)
-flower_type = 4
+flower_type = 1
 
 [node name="FlowerDeco3" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-44, 60)
-flower_type = 4
+flower_type = 5
 
 [node name="FlowerDeco15" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(39, 60)
-flower_type = 0
+flower_type = 1
 
 [node name="FlowerDeco16" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-4, 60)
-flower_type = 6
+flower_type = 0
 
 [node name="FlowerDeco17" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-9, 60)
-flower_type = 0
+flower_type = 6
 
 [node name="FlowerDeco6" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(27, 60)
@@ -4081,30 +4081,29 @@ flower_type = 4
 
 [node name="FlowerDeco8" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-105, 60)
+flower_type = 1
 
 [node name="FlowerDeco9" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-98, 60)
-flower_type = 10
+flower_type = 9
 
 [node name="FlowerDeco10" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-73, 59)
-flower_type = 7
 
 [node name="FlowerDeco11" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-130, 60)
-flower_type = 5
+flower_type = 11
 
 [node name="FlowerDeco12" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-150, 60)
-flower_type = 10
+flower_type = 1
 
 [node name="FlowerDeco13" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(-145, 60)
-flower_type = 6
 
 [node name="FlowerDeco14" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("27_ra5u6")]
 position = Vector2(149, 48)
-flower_type = 2
+flower_type = 1
 
 [node name="Control" parent="PlaytestLevel2/WorldNessecities/ScreenHolder/Screen27" instance=ExtResource("28_j5rew")]
 visible = false
@@ -4424,8 +4423,8 @@ flip_tree = true
 
 [connection signal="animation_finished" from="PlaytestLevel2/IntroCutscenePlayer/CutsceneAnimationPlayer" to="PlaytestLevel2/IntroCutscenePlayer" method="_on_cutscene_animation_player_animation_finished"]
 [connection signal="text_finished" from="PlaytestLevel2/IntroCutscenePlayer/IntroTextboxHandler" to="PlaytestLevel2/IntroCutscenePlayer" method="_on_intro_textbox_handler_text_finished"]
-[connection signal="animation_finished" from="PlaytestLevel2/OutroCutscenePlayer/OutroAnimationPlayer" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="PlaytestLevel2/OutroCutscenePlayer/OutroAnimationPlayer" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_outro_animation_player_animation_finished"]
+[connection signal="animation_finished" from="PlaytestLevel2/OutroCutscenePlayer/OutroAnimationPlayer" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_animation_player_animation_finished"]
 [connection signal="text_finished" from="PlaytestLevel2/OutroCutscenePlayer/OutroTextboxHandler" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_outro_textbox_handler_text_finished"]
 [connection signal="area_entered" from="PlaytestLevel2/OutroCutscenePlayer/CutsceneInitiationArea2D" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_cutscene_initiation_area_2d_area_entered"]
 [connection signal="body_entered" from="PlaytestLevel2/OutroCutscenePlayer/CutsceneInitiationArea2D" to="PlaytestLevel2/OutroCutscenePlayer" method="_on_cutscene_initiation_area_2d_body_entered"]

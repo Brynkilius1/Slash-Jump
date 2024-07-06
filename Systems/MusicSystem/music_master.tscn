@@ -13,7 +13,7 @@ starting_song = ExtResource("2_ylqkf")
 [node name="MainMusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_6b86k")
-volume_db = -20.0
+volume_db = -15.0
 bus = &"Music"
 
 [node name="FadeMusicPlayer" type="AudioStreamPlayer" parent="."]
@@ -23,7 +23,7 @@ bus = &"Music"
 
 [node name="Wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_c6uex")
-volume_db = -13.0
+volume_db = -9.0
 autoplay = true
 bus = &"Ambience"
 
