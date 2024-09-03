@@ -42,9 +42,8 @@ var next_scene_loaded
 
 
 func _ready():
-	start_button.grab_focus()
 	menu.size = Vector2(320, 180)
-	MusicMaster.PlaySong("res://Sounds/Music/Slash_Jump_Menu.mp3")
+	
 	
 
 

@@ -1,5 +1,6 @@
 extends Area2D
 
+@export_range(0, 1) var screen_darkness : float = 0
 #sent to screen holder
 signal set_next_screen_local(screen)
 signal change_screen_local(screen_exited)
@@ -8,7 +9,7 @@ signal change_screen_local(screen_exited)
 
 
 func _on_body_entered(body):
-	set_next_screen_local.emit(self)
+	set_next_screen_local.emit(self, screen_darkness)
 	ActivateScreenObjects()
 	
 	

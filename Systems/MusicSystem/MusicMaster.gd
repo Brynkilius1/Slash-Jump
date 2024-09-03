@@ -12,7 +12,7 @@ var base_volume : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	main_music_player.stream = starting_song
-	main_music_player.play()
+	#main_music_player.play()
 	base_volume = main_music_player.volume_db
 	main_music_player.get_stream_playback()
 

@@ -13,9 +13,18 @@ script/source = "extends Control
 func _ready():
 	PauseMenu.get_child(0).get_child(0).connect(\"pause_menu_closed\", UpdateInputSprite)
 	UpdateInputSprite()
+	Input.connect(\"joy_connection_changed\", JoyConnectionChanged)
 
+
+func JoyConnectionChanged(device, connected : bool):
+	UpdateInputSprite()
 
 func UpdateInputSprite():
+	print(\"update input sprite\")
+	if Input.get_connected_joypads() == []:
+		swing_input_sprite.texture = load(\"res://Images/UI/RebindMenu/ButtonImages/tile_0078.png\")
+		return
+	
 	var return_image = ReturnButtonIcon(OptionsManager.small_swing_button)
 	if return_image:
 		swing_input_sprite.texture = return_image

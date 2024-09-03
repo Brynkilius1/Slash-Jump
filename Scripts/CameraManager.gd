@@ -6,12 +6,16 @@ extends Node2D
 
 
 @onready var viewport_size : Vector2 = get_viewport_rect().size
+#@onready var darkness_solid = null
+#@onready var darkness_vignette = null
+
 
 var respawn_points
 
 
 var current_screen
 var next_screen
+var next_screen_darkness
 
 var queued_limit_point_1 : Vector2
 var queued_limit_point_2 : Vector2
@@ -29,14 +33,14 @@ func _ready():
 	var right_limit = Vector2(0, viewport_size.y /2)
 	
 	limit_array = [top_limit, bottom_limit, left_limit, right_limit]
-
-
+	
 	
 
 
 
-func UpdateNextScreen(screen):
+func UpdateNextScreen(screen, screen_darkness):
 	next_screen = screen
+	next_screen_darkness = screen_darkness
 	UpdateQueuedPoints()
 
 func UpdateQueuedPoints():
@@ -53,7 +57,7 @@ func ChangeScreen(screen_exited):
 			current_screen = next_screen
 			
 			
-			
+			ChangeDarknessLevel(next_screen_darkness)
 			ChooseRespawnPoint()
 			MoveScreen()
 			
@@ -92,7 +96,7 @@ func MoveScreen():
 	
 	
 	
-	await screen_tween.finished
+	await get_tree().create_timer(0.5).timeout
 	if PauseMenu.get_child(0).get_child(0).visible == false:
 		Pause(false)
 	GlobalObjects.camera.camera_is_free = false
@@ -156,5 +160,33 @@ func Pause(pause_: bool):
 		GlobalObjects.camera.process_mode = Node.PROCESS_MODE_INHERIT
 		get_tree().paused = false
 
+func ChangeDarknessLevel(darkness_level : float):
+	pass
+	"""
+	print("change darkness level to: ", darkness_level)
+	var darkness_solid = GlobalObjects.camera.get_child(2)
+	var darkness_vignette = GlobalObjects.camera.get_child(1)
+	
+	
+	var color_tween = create_tween()
+	color_tween.tween_property(darkness_solid, "color", Color8(0, 0, 0, int(darkness_level * 33)), transition_time)
+	#darkness_solid.color.a = (darkness_level * 33) / 255
+	#darkness_vignette.material.set_shader_parameter("alpha", 1)
+	#darkness_vignette.material.set_shader_parameter("inner_radius", abs((darkness_level * 0.855) - 1))
+	#darkness_vignette.material.set_shader_parameter("outer_radius", 1 + darkness_level)
+	_create_shader_tween(darkness_vignette, "alpha", darkness_vignette.material.get_shader_parameter("alpha"), darkness_level * 0.5, transition_time)
+	_create_shader_tween(darkness_vignette, "inner_radius", darkness_vignette.material.get_shader_parameter("inner_radius"), abs((darkness_level * 0.855) - 1), transition_time)
+	_create_shader_tween(darkness_vignette, "outer_radius", darkness_vignette.material.get_shader_parameter("outer_radius"), 2 - darkness_level, transition_time)
+	"""
+	
 
 
+func _create_shader_tween(node: Node, shader_property: String, value_start: float, value_end: float, duration: float) -> Tween:
+	var tween = get_tree().create_tween()
+	tween.tween_method(
+	func(value): node.material.set_shader_parameter(shader_property, value),  
+		value_start,
+		value_end,
+		duration
+	);
+	return tween

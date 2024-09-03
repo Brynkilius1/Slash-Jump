@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=65 format=3 uid="uid://jumgmkw5n5jc"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
 [ext_resource type="Texture2D" uid="uid://bxpri51ixw1ti" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sky.png" id="1_skej4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dljkyxwamk3jo" path="res://Images/Crayon/Misc/SlashJumpConcept1Rotated.png" id="10_g6gpd"]
 [ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="11_fycji"]
 [ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="12_62rsl"]
+[ext_resource type="Texture2D" uid="uid://84aathyrhkt5" path="res://Images/UI/MainMenu/SlashJumpLogoBetter.png" id="14_lwpbj"]
 [ext_resource type="PackedScene" uid="uid://krc5l4r450cl" path="res://Global/saver_and_loader.tscn" id="17_ccu1f"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="17_pbjll"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="20_no80h"]
@@ -26,10 +27,54 @@
 [ext_resource type="Texture2D" uid="uid://38d80eiwwbuq" path="res://Images/UI/Settings/BackSign.png" id="22_752a2"]
 [ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="22_g0apr"]
 [ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="22_p5tus"]
+[ext_resource type="Texture2D" uid="uid://dj2dssx1hy67b" path="res://Images/Misc/BeatPlayedWithSplashScreen.png" id="25_hnx42"]
 [ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="26_eo2ys"]
 [ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="27_8li78"]
 [ext_resource type="AudioStream" uid="uid://q22lm0e2nnrh" path="res://Sounds/SoundEffects/Menu/MenuHover1.wav" id="28_gbe2i"]
 [ext_resource type="AudioStream" uid="uid://bxoqdrssfsfti" path="res://Sounds/SoundEffects/Menu/MenuClick1.wav" id="29_omvii"]
+
+[sub_resource type="GDScript" id="GDScript_5s0j7"]
+script/source = "extends Node2D
+
+@onready var best_played_with_controler = $MainMenu/Menu/BestPlayedWithControler
+@onready var beat_played_with_splash_screen = $MainMenu/Menu/BestPlayedWithControler/BeatPlayedWithSplashScreen
+@onready var start_button = $MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton
+@onready var best_played_skip_button = $MainMenu/Menu/BestPlayedWithControler/BestPlayedSkipButton
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if GlobalVariables.just_opened == true:
+		best_played_skip_button.grab_focus()
+		GlobalVariables.just_opened = false
+		best_played_with_controler.visible = true
+		var splash_screen_tween = create_tween()
+		splash_screen_tween.tween_property(beat_played_with_splash_screen, \"modulate\", Color(1, 1, 1, 1), 1.0)
+		await get_tree().create_timer(3.0).timeout
+		var splash_screen_tween_out = create_tween()
+		splash_screen_tween_out.tween_property(beat_played_with_splash_screen, \"modulate\", Color(1, 1, 1, 0), 1.0)
+		await get_tree().create_timer(1.5).timeout
+		best_played_with_controler.set_mouse_filter(1)
+		var blackround_tween = create_tween()
+		blackround_tween.tween_property(best_played_with_controler, \"modulate\", Color(1, 1, 1, 0), 2.0)
+		start_button.grab_focus()
+		MusicMaster.PlaySong(\"res://Sounds/Music/Slash_Jump_Menu.mp3\")
+		await get_tree().create_timer(2.0).timeout
+		best_played_with_controler.visible = false
+	else:
+		start_button.grab_focus()
+		MusicMaster.PlaySong(\"res://Sounds/Music/Slash_Jump_Menu.mp3\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_best_played_skip_button_pressed():
+	best_played_with_controler.visible = false
+	start_button.grab_focus()
+	MusicMaster.PlaySong(\"res://Sounds/Music/Slash_Jump_Menu.mp3\")
+"
 
 [sub_resource type="Gradient" id="Gradient_54m58"]
 offsets = PackedFloat32Array(0, 0.598639, 0.77551, 1)
@@ -269,12 +314,7 @@ _data = {
 }
 
 [node name="RootNode" type="Node2D"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_right = 320.0
-offset_bottom = 180.0
-color = Color(0.73, 0.555895, 0.3431, 1)
+script = SubResource("GDScript_5s0j7")
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
 
@@ -388,7 +428,6 @@ script = ExtResource("1_qcmvg")
 metadata/_edit_use_anchors_ = true
 
 [node name="Menu" type="CanvasLayer" parent="MainMenu"]
-layer = 2
 
 [node name="MainMenuVisuals" type="Control" parent="MainMenu/Menu"]
 layout_mode = 3
@@ -446,6 +485,14 @@ grow_vertical = 2
 pivot_offset = Vector2(160, 90)
 mouse_filter = 1
 
+[node name="Logo" type="TextureRect" parent="MainMenu/Menu/Menu"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 5.0
+offset_right = 319.0
+offset_bottom = 185.0
+texture = ExtResource("14_lwpbj")
+
 [node name="MainMenuButtons" type="Control" parent="MainMenu/Menu/Menu"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -488,7 +535,7 @@ theme_override_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer"]
 layout_direction = 2
 layout_mode = 2
-theme_override_constants/separation = -1
+theme_override_constants/separation = -3
 
 [node name="StartButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -577,6 +624,7 @@ text = "By:
  Sindri H"
 
 [node name="MainMenuLogo" type="Sprite2D" parent="MainMenu/Menu/Menu/MainMenuButtons"]
+visible = false
 z_index = 1
 position = Vector2(160, 90)
 texture = ExtResource("22_1b8qc")
@@ -774,6 +822,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_rra73")
 text = "Back"
 flat = true
 
+[node name="VBoxContainer" parent="MainMenu/Menu/Menu/Settings/SettingsHolder" index="2"]
+mouse_filter = 2
+
+[node name="CategoryMarginContainer" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer" index="2"]
+mouse_filter = 2
+
 [node name="SwordIndicatorMover" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings" index="0"]
 offset_top = 1.0
 offset_bottom = 41.0
@@ -896,6 +950,31 @@ libraries = {
 visible = false
 position = Vector2(160, 90)
 
+[node name="BestPlayedWithControler" type="Control" parent="MainMenu/Menu"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/Menu/BestPlayedWithControler"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="BeatPlayedWithSplashScreen" type="Sprite2D" parent="MainMenu/Menu/BestPlayedWithControler"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(160, 90)
+texture = ExtResource("25_hnx42")
+
+[node name="BestPlayedSkipButton" type="Button" parent="MainMenu/Menu/BestPlayedWithControler"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = -46.0
+offset_right = 101.0
+offset_bottom = -38.0
+
 [node name="Cache" type="Node2D" parent="MainMenu"]
 visible = false
 script = ExtResource("21_46i84")
@@ -952,6 +1031,7 @@ bus = &"SoundEffects"
 [connection signal="mouse_entered" from="MainMenu/Menu/Menu/Settings/RebindControls/RebindBackButton" to="MainMenu/Menu/Menu/Settings/RebindControls/SwordIndicatorMover" method="_on_rebind_back_button_mouse_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/Credits/CreditsBackButton" to="MainMenu" method="_on_credits_back_button_pressed"]
 [connection signal="animation_finished" from="MainMenu/Menu/LevelZoomAnimationPlayer" to="MainMenu" method="_on_level_zoom_animation_player_animation_finished"]
+[connection signal="pressed" from="MainMenu/Menu/BestPlayedWithControler/BestPlayedSkipButton" to="." method="_on_best_played_skip_button_pressed"]
 [connection signal="cover_finished" from="MainMenu/DeathTransistionCanvasLayer/BarTransition" to="MainMenu" method="_on_bar_transition_cover_finished"]
 
 [editable path="MainMenu/Menu/Menu/Settings"]

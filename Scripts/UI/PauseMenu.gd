@@ -39,6 +39,7 @@ func _on_return_pressed():
 	pause_menu_closed.emit()
 	TogglePauseMenu(false)
 	GlobalObjects.player.UpdateControlSettings()
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 
 func _on_settings_pressed():
@@ -62,6 +63,7 @@ func _on_back_to_menu_pressed():
 	GlobalVariables.ResetGlobalVariables()
 	TogglePauseMenu(false)
 	get_tree().change_scene_to_packed(main_menu)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _on_quit_game_pressed():
@@ -74,6 +76,7 @@ func TogglePauseMenu(toggle):
 	Pause(toggle)
 	if toggle == true:
 		return_button.grab_focus()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		ToggleSettingsVisible(false)
 		settings.current_settings_menu = 0

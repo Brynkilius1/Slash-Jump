@@ -1,6 +1,7 @@
 extends Control
 
 @onready var swing_selector = $SwingSelector
+@onready var sword_indicator_mover = $SwordIndicatorMover
 @onready var key_button_confirmer = %KeyButtonConfirmer
 @onready var change_sword_swing_button = %ChangeSwordSwingButton
 @onready var icon_updater = $IconUpdater
@@ -29,18 +30,19 @@ func _unhandled_input(event):
 		if event is InputEventJoypadButton:
 			if event.button_index != 4 and event.button_index != 5 and event.button_index != 6:
 				UpdateControls(event)
+			else:
+				CloseKeyButtonConfrimer()
 			
 		elif event is InputEventJoypadMotion:
 			if event.axis == 4 || event.axis == 5:
 				if event.axis_value > 0.2:
 					UpdateControls(event)
+		elif event is InputEventKey or event is InputEventMouseButton:
+			CloseKeyButtonConfrimer()
 
 func UpdateControls(event):
 	audio_master.PlayRandomSound("MenuClick")
 	print(event)
-	listening_for_new_key = false
-	key_button_confirmer.visible = false
-	accept_event()
 	if input_to_be_changed == "BigSwing":
 		icon_updater.ChangeBigSwingIcon(event)
 		OptionsManager.big_swing_button = event
@@ -48,16 +50,16 @@ func UpdateControls(event):
 		icon_updater.ChangeSmallSwingIcon(event)
 		OptionsManager.small_swing_button = event
 	
-	activate_rebind_control_dead_timer.emit()
-	closed_rebind_menu.emit()
-	change_sword_swing_button.grab_focus()
+	CloseKeyButtonConfrimer()
 
 func _on_change_sword_swing_button_pressed():
 	audio_master.PlayRandomSound("MenuClick")
 	opened_rebind_menu.emit()
 	accept_event()
-	swing_selector.hide()
-	swing_selector.show()
+	#swing_selector.hide()
+	#swing_selector.show()
+	swing_selector.visible = false
+	sword_indicator_mover.visible = false
 	input_to_be_changed = "BigSwing"
 	
 	key_button_confirmer.visible = true
@@ -70,8 +72,10 @@ func _on_change_knife_swing_button_pressed():
 	audio_master.PlayRandomSound("MenuClick")
 	opened_rebind_menu.emit()
 	accept_event()
-	swing_selector.hide()
-	swing_selector.show()
+	#swing_selector.hide()
+	#swing_selector.show()
+	swing_selector.visible = false
+	sword_indicator_mover.visible = false
 	input_to_be_changed = "SmallSwing"
 	
 	key_button_confirmer.visible = true
@@ -83,5 +87,13 @@ func GetFocus():
 
 
 
-
+func CloseKeyButtonConfrimer():
+	activate_rebind_control_dead_timer.emit()
+	closed_rebind_menu.emit()
+	change_sword_swing_button.grab_focus()
+	listening_for_new_key = false
+	key_button_confirmer.visible = false
+	swing_selector.visible = true
+	sword_indicator_mover.visible = true
+	accept_event()
 

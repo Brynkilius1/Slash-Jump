@@ -10,14 +10,28 @@
 script/source = "extends Control
 
 @onready var swing_input_sprite = $SwingInputSprite
+@onready var stick_move = $StickMove
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PauseMenu.get_child(0).get_child(0).connect(\"pause_menu_closed\", UpdateInputSprite)
 	UpdateInputSprite()
+	Input.connect(\"joy_connection_changed\", JoyConnectionChanged)
+
+
+func JoyConnectionChanged(device, connected : bool):
+	UpdateInputSprite()
 
 
 func UpdateInputSprite():
+	print(\"update input sprite\")
+	if Input.get_connected_joypads() == []:
+		swing_input_sprite.texture = load(\"res://Images/UI/RebindMenu/ButtonImages/tile_0077.png\")
+		stick_move.texture = load(\"res://Images/UI/RebindMenu/ButtonImages/mouse_movement.png\")
+		return
+	else:
+		stick_move.texture = load(\"res://Images/UI/MovementTutorial/MoveStickIcon.png\")
+	
 	var returned_sprite = ReturnButtonIcon(OptionsManager.big_swing_button)
 	if returned_sprite:
 		swing_input_sprite.texture = returned_sprite

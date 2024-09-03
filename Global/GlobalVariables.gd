@@ -1,6 +1,7 @@
 extends Node
 
 
+var just_opened : bool = true
 
 var respawn_point : Vector2 = Vector2(4800, 548) #(-123, 39)
 var first_respawn = true

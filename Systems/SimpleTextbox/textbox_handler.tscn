@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cwb3tm7yit8ui"]
 
-[ext_resource type="Script" path="res://Scripts/OneOff/TextboxHandler.gd" id="1_p2mex"]
-[ext_resource type="Script" path="res://Scripts/UI/TextboxSideSwitchergd.gd" id="2_1vw1c"]
+[ext_resource type="Script" path="res://Systems/SimpleTextbox/TextboxHandler.gd" id="1_p2mex"]
+[ext_resource type="Script" path="res://Systems/SimpleTextbox/TextboxSideSwitchergd.gd" id="2_1vw1c"]
 [ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="2_kl7tj"]
 [ext_resource type="Texture2D" uid="uid://v8fnjsfogej5" path="res://Images/UI/Textboxes/TextboxBackround.png" id="3_2acfc"]
 [ext_resource type="Texture2D" uid="uid://cytddktubt4vh" path="res://Images/UI/Textboxes/CharacterBox.png" id="4_7wym6"]
@@ -37,6 +37,7 @@ offset_left = 4.0
 offset_top = 118.0
 offset_right = 316.0
 offset_bottom = 176.0
+mouse_filter = 1
 
 [node name="TextboxBackround" type="TextureRect" parent="TextboxLayer/Control"]
 layout_mode = 0
@@ -52,6 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ConversationLeft" type="Control" parent="TextboxLayer/Control/ConversationSides"]
 visible = false
@@ -61,6 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ActorBoxLeft" type="TextureRect" parent="TextboxLayer/Control/ConversationSides/ConversationLeft"]
 layout_mode = 0
@@ -96,6 +99,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ActorBoxRight" type="TextureRect" parent="TextboxLayer/Control/ConversationSides/ConversationRight"]
 layout_mode = 0

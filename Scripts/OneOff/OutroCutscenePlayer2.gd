@@ -12,9 +12,12 @@ var player_entered_area = false
 
 
 
-func _on_screen_21_set_next_screen_local(screen):
+func _on_screen_21_set_next_screen_local(screen, darkness):
 	outro_animation_player.play("HavingFun")
 
+func _on_screen_36_body_entered(body):
+	if outro_animation_player.is_playing() == false:
+		outro_animation_player.play("HavingFun")
 
 func _on_cutscene_initiation_area_2d_body_entered(body):
 	GlobalObjects.player.indicator_pivot.visible = false
@@ -71,7 +74,13 @@ func _on_outro_animation_player_animation_finished(anim_name):
 
 
 func _on_bar_transition_cover_finished():
+	GlobalVariables.ResetGlobalVariables()
 	get_tree().change_scene_to_file("res://Scenes/UI/GameStart/main_menu.tscn")
+
+
+
+
+
 
 
 

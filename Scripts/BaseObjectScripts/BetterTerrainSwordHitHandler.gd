@@ -2,7 +2,7 @@ extends TileMap
 
 const DUSTCLOUDS = preload("res://Scenes/Particles/dustclouds.tscn")
 var hit_particles_list = [preload("res://Scenes/Particles/dirt_particles.tscn"), load("res://Scenes/Particles/ParticleTests/SpikesSparks.tscn"), load("res://Scenes/Particles/StoneHitPatricles.tscn"), load("res://Scenes/Particles/wood_particles.tscn")]
-@export var big_swing_higher_particle_count : int = 4
+@export var big_swing_higher_particle_count : int = 3
 @export var big_swing_lower_particle_count : int = 2
 @export var small_swing_higher_particle_count : int = 2
 @export var small_swing_lower_particle_count : int = 1
@@ -52,6 +52,7 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed, big_swing : 
 	elif hit_terrain == 5: #WoodPlatforms
 		SwordHitPaticles(hit_particles_list[3], hit_pos, sword_angle, player_x_speed, big_swing)
 		EmitParticles(DUSTCLOUDS, dust_cloud_amount, hit_pos, false)
+		HitTilemap("WoodHit", 0, false)
 		ControllerRumble(0, 0.8, 0.5, 0.1)
 	print("terrain hit: ", hit_terrain)
 	print("Sword rotation: ", sword_angle)
@@ -106,6 +107,10 @@ func LandOnTilemap(player_pos):
 		EmitParticles(hit_particles_list[2], 3, player_pos + Vector2(0, 9), false)
 		EmitParticles(hit_particles_list[2], 3, player_pos + Vector2(0, 9), true)
 		HitTilemap("StoneHit", 0, false)
+	elif hit_terrain == 5: #Oneway
+		EmitParticles(hit_particles_list[3], 3, player_pos + Vector2(0, 9), false)
+		EmitParticles(hit_particles_list[3], 3, player_pos + Vector2(0, 9), true)
+		HitTilemap("WoodHit", 0, false)
 	else:
 		print("landed on unknown ground type")
 

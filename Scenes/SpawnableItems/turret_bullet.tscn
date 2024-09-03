@@ -1,8 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d27o2dojnnvid"]
+[gd_scene load_steps=14 format=3 uid="uid://d27o2dojnnvid"]
 
 [ext_resource type="Script" path="res://Scripts/SpawnableItemScripts/turret_bullet.gd" id="1_3hph4"]
 [ext_resource type="Texture2D" uid="uid://7g630020doir" path="res://Images/Mechanics/cannonBall.png" id="2_0bj6f"]
 [ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="2_i05s1"]
+[ext_resource type="PackedScene" uid="uid://5d8p7t7vpwkb" path="res://Scenes/Particles/ParticleTests/SpikesSparks.tscn" id="4_odcfk"]
+[ext_resource type="PackedScene" uid="uid://q3s4l7x4clqx" path="res://Systems/AudioSystem/Components/audio_master.tscn" id="4_trafh"]
+[ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="5_6hvtb"]
+[ext_resource type="AudioStream" uid="uid://d67uxjtw8uld" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/SpikesHit/SpikesHit1.1.mp3" id="6_5vw73"]
 
 [sub_resource type="Gradient" id="Gradient_qang4"]
 offsets = PackedFloat32Array(0, 0.0816327, 0.136054, 0.190476, 0.292517, 0.326531, 0.387755, 0.44898, 0.823129, 1)
@@ -53,6 +57,7 @@ shape = SubResource("CircleShape2D_q22ah")
 texture = ExtResource("2_0bj6f")
 
 [node name="SwordCollisionHandler" parent="." instance=ExtResource("2_i05s1")]
+hit_particles = ExtResource("4_odcfk")
 small_motor_rumble = 0.7
 big_motor_rumble = 0.9
 
@@ -66,6 +71,14 @@ shape = SubResource("CircleShape2D_plaxo")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects/Hit"]
 stream = SubResource("AudioStreamMP3_hin7i")
 volume_db = 13.0
+
+[node name="AudioMaster" parent="." instance=ExtResource("4_trafh")]
+
+[node name="AudioCollectionHit" parent="AudioMaster" instance=ExtResource("5_6hvtb")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionHit"]
+stream = ExtResource("6_5vw73")
+volume_db = -6.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

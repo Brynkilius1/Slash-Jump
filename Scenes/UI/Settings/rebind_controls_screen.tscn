@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dno85da3ev1uv"]
+[gd_scene load_steps=16 format=3 uid="uid://dno85da3ev1uv"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Settings/RebindControlsSettings.gd" id="1_c7s31"]
 [ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="2_58yip"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dltgf20cnwcty" path="res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png" id="5_0hnvi"]
 [ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="7_rpgeq"]
 [ext_resource type="Texture2D" uid="uid://bc3id8gnyw3o6" path="res://Images/UI/RebindMenu/ButtonImages/FButtons_Down.png" id="7_tp1lw"]
+[ext_resource type="Texture2D" uid="uid://dh3hdbbeccxaq" path="res://Images/UI/PauseMenu/PauseMenu.png" id="8_k0yxa"]
 [ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="8_lsjrl"]
+[ext_resource type="Texture2D" uid="uid://dxmorrwoy5el3" path="res://Images/UI/RebindMenu/ButtonImages/tile_0735.png" id="9_4b4ma"]
 [ext_resource type="AudioStream" uid="uid://q22lm0e2nnrh" path="res://Sounds/SoundEffects/Menu/MenuHover1.wav" id="9_bfath"]
 [ext_resource type="AudioStream" uid="uid://bxoqdrssfsfti" path="res://Sounds/SoundEffects/Menu/MenuClick1.wav" id="10_vxne6"]
 
@@ -25,15 +27,15 @@ script/source = "extends Control
 
 
 func _on_change_sword_swing_button_focus_entered():
-	TweenSelectionSwordPos(change_sword_swing_button, 58)
+	TweenSelectionSwordPos(change_sword_swing_button, 82)
 
 
 func _on_change_knife_swing_button_focus_entered():
-	TweenSelectionSwordPos(change_knife_swing_button, 58)
+	TweenSelectionSwordPos(change_knife_swing_button, 82)
 
 
 func _on_rebind_back_button_focus_entered():
-	TweenSelectionSwordPos(154, 222)
+	TweenSelectionSwordPos(135, 220)
 
 
 func TweenSelectionSwordPos(button, pos):
@@ -95,10 +97,10 @@ script = SubResource("GDScript_yku4p")
 [node name="SwordIndicator" type="TextureRect" parent="SwordIndicatorMover"]
 z_index = 1
 layout_mode = 0
-offset_left = 58.0
-offset_top = 101.0
-offset_right = 82.0
-offset_bottom = 110.0
+offset_left = 220.0
+offset_top = 135.0
+offset_right = 244.0
+offset_bottom = 144.0
 texture = ExtResource("3_csf6h")
 stretch_mode = 2
 
@@ -119,9 +121,9 @@ texture = ExtResource("2_qdbg3")
 [node name="ChangeSwordSwingButton" type="Button" parent="SwingSelector"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 92.0
+offset_left = 117.0
 offset_top = 72.0
-offset_right = 149.0
+offset_right = 174.0
 offset_bottom = 93.0
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("2_58yip")
@@ -144,9 +146,9 @@ centered = false
 
 [node name="ChangeKnifeSwingButton" type="Button" parent="SwingSelector"]
 layout_mode = 0
-offset_left = 81.0
+offset_left = 106.0
 offset_top = 94.0
-offset_right = 149.0
+offset_right = 174.0
 offset_bottom = 115.0
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("2_58yip")
@@ -179,7 +181,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
+[node name="TextureRect" type="TextureRect" parent="KeyButtonConfirmer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_k0yxa")
+
 [node name="ColorRect" type="ColorRect" parent="KeyButtonConfirmer"]
+visible = false
 layout_mode = 0
 offset_left = 37.0
 offset_top = 24.0
@@ -190,12 +202,32 @@ color = Color(0.355314, 0.355314, 0.355314, 1)
 
 [node name="Label" type="Label" parent="KeyButtonConfirmer"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 47.0
-offset_right = 257.0
-offset_bottom = 70.0
+offset_left = 92.0
+offset_top = 34.0
+offset_right = 229.0
+offset_bottom = 130.0
 theme_override_fonts/font = ExtResource("2_58yip")
-text = "Press the key you want to set it to."
+text = "Press the button you wish to bind to."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="KeyButtonConfirmer"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 61.0
+offset_right = 229.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color(0.621524, 0.621524, 0.621524, 1)
+theme_override_fonts/font = ExtResource("2_58yip")
+text = "(Press    to cancel)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Tile0735" type="Sprite2D" parent="KeyButtonConfirmer"]
+position = Vector2(151, 110)
+texture = ExtResource("9_4b4ma")
 
 [node name="AudioMaster" type="Node2D" parent="." groups=["AudioMaster"]]
 script = ExtResource("7_rpgeq")

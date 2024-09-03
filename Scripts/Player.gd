@@ -864,7 +864,8 @@ func _on_swing_anti_grav_timer_timeout():
 	TurnOffGravity(false)
 
 func _on_swing_miss_timer_timeout():
-	player_audio_master.PlayRandomSound("SwordMiss")
+	pass
+	#player_audio_master.PlayRandomSound("SwordMiss")
 	
 
 func _on_coyote_timer_timeout():

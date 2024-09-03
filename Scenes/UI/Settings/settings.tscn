@@ -401,7 +401,7 @@ theme_override_constants/separation = 0
 [node name="FullScreenCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../../../VideoCategoryButton")
+focus_neighbor_top = NodePath("../../../../../VideoCategoryButton")
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_icons/checked = ExtResource("4_xrmkj")
@@ -462,6 +462,7 @@ size_flags_vertical = 1
 focus_neighbor_top = NodePath("../../../ScreenshakeCheckBox")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
+theme_override_icons/grabber_disabled = ExtResource("5_h0sey")
 theme_override_styles/slider = ExtResource("12_ac3wt")
 theme_override_styles/grabber_area = ExtResource("13_axpo1")
 theme_override_styles/grabber_area_highlight = ExtResource("14_4dfwg")
@@ -536,7 +537,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-focus_neighbor_top = NodePath("../../../../../../../../AudioCategoryButton")
+focus_neighbor_top = NodePath("../../../../../../../AudioCategoryButton")
 focus_neighbor_bottom = NodePath("../../SoundEffectSlider/SoundEffectVolumeSlider")
 theme_override_icons/grabber = ExtResource("5_h0sey")
 theme_override_icons/grabber_highlight = ExtResource("6_plli8")
@@ -684,7 +685,7 @@ theme_override_constants/margin_bottom = 6
 [node name="ChangeKeybindsButton" type="Button" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../../../../ControlCategoryButton")
+focus_neighbor_top = NodePath("../../../../../../ControlCategoryButton")
 focus_neighbor_bottom = NodePath("../../InvertStickInputCheckBox")
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_ufrlf")
@@ -693,7 +694,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_vkww2")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vkww2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s48j2")
 theme_override_styles/focus = SubResource("StyleBoxTexture_vkww2")
-text = "Change Keybinds"
+text = " Change Controller Keybinds"
 icon_alignment = 1
 
 [node name="InvertStickInputCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer"]
@@ -759,7 +760,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_dxb3i")
 button_pressed = true
 text = "Controller Rumble"
 
-[node name="VideoCategoryButton" type="Button" parent="."]
+[node name="VideoCategoryButton" type="Button" parent="SettingsHolder"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_left = 96.0
@@ -775,7 +776,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_hw0pn")
 theme_override_styles/focus = SubResource("StyleBoxTexture_tgxfo")
 text = "Video"
 
-[node name="AudioCategoryButton" type="Button" parent="."]
+[node name="AudioCategoryButton" type="Button" parent="SettingsHolder"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_left = 139.0
@@ -790,7 +791,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_hw0pn")
 theme_override_styles/focus = SubResource("StyleBoxTexture_tgxfo")
 text = "Audio"
 
-[node name="ControlCategoryButton" type="Button" parent="."]
+[node name="ControlCategoryButton" type="Button" parent="SettingsHolder"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_left = 182.0
@@ -821,10 +822,10 @@ offset_bottom = 88.0
 [node name="RebindBackButton" type="Button" parent="RebindControls"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 252.0
-offset_top = 147.0
-offset_right = 282.0
-offset_bottom = 168.0
+offset_left = 250.0
+offset_top = 128.0
+offset_right = 280.0
+offset_bottom = 149.0
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dd4en")
@@ -887,12 +888,12 @@ bus = &"SoundEffects"
 [connection signal="focus_entered" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer/RumbleCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/SwordIndicatorMover" method="_on_rumble_check_box_focus_entered"]
 [connection signal="pressed" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer/RumbleCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/SwordIndicatorMover" method="_on_rumble_check_box_pressed"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer/RumbleCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings" method="_on_rumble_check_box_toggled"]
-[connection signal="focus_entered" from="VideoCategoryButton" to="." method="_on_video_category_button_focus_entered"]
-[connection signal="pressed" from="VideoCategoryButton" to="." method="_on_video_category_button_pressed"]
-[connection signal="focus_entered" from="AudioCategoryButton" to="." method="_on_audio_category_button_focus_entered"]
-[connection signal="pressed" from="AudioCategoryButton" to="." method="_on_audio_category_button_pressed"]
-[connection signal="focus_entered" from="ControlCategoryButton" to="." method="_on_control_category_button_focus_entered"]
-[connection signal="pressed" from="ControlCategoryButton" to="." method="_on_control_category_button_pressed"]
+[connection signal="focus_entered" from="SettingsHolder/VideoCategoryButton" to="." method="_on_video_category_button_focus_entered"]
+[connection signal="pressed" from="SettingsHolder/VideoCategoryButton" to="." method="_on_video_category_button_pressed"]
+[connection signal="focus_entered" from="SettingsHolder/AudioCategoryButton" to="." method="_on_audio_category_button_focus_entered"]
+[connection signal="pressed" from="SettingsHolder/AudioCategoryButton" to="." method="_on_audio_category_button_pressed"]
+[connection signal="focus_entered" from="SettingsHolder/ControlCategoryButton" to="." method="_on_control_category_button_focus_entered"]
+[connection signal="pressed" from="SettingsHolder/ControlCategoryButton" to="." method="_on_control_category_button_pressed"]
 [connection signal="activate_rebind_control_dead_timer" from="RebindControls" to="." method="_on_rebind_controls_activate_rebind_control_dead_timer"]
 [connection signal="closed_rebind_menu" from="RebindControls" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings" method="_on_rebind_controls_closed_rebind_menu"]
 [connection signal="opened_rebind_menu" from="RebindControls" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings" method="_on_rebind_controls_opened_rebind_menu"]

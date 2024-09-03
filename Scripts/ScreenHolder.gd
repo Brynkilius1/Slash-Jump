@@ -13,8 +13,8 @@ func _ready():
 
 		
 
-func SetNextScreen(screen):
-	set_next_screen.emit(screen)
+func SetNextScreen(screen, screen_darkness = 0.0):
+	set_next_screen.emit(screen, screen_darkness)
 
 func ChangeScreen(screen_exited):
 	change_screen.emit(screen_exited)

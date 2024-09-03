@@ -21,7 +21,13 @@ func _on_full_screen_check_box_toggled(toggled_on):
 	OptionsManager.fullscreen = toggled_on
 func _on_v_sync_check_box_toggled(toggled_on):
 	OptionsManager.v_sync = toggled_on
-	fps_container.visible = not toggled_on
+	fps_slider.editable = not toggled_on
+	if toggled_on:
+		fps_container.modulate = Color("939393")
+		fps_slider.value = 300
+	else:
+		fps_container.modulate = Color.WHITE
+		fps_slider.value = OptionsManager.fps
 func _on_screenshake_check_box_toggled(toggled_on):
 	OptionsManager.screenshake = toggled_on
 

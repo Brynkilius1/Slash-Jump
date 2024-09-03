@@ -2,6 +2,7 @@ extends Area2D
 
 var speed : float = 100
 var bullet_angle : float = 0.0
+@onready var audio_master = $AudioMaster
 
 #func _ready():
 	#rotation = bullet_angle
@@ -18,6 +19,7 @@ func MoveBullet(delta):
 
 func HitWithSword(_angle):
 	bullet_angle = deg_to_rad(_angle - 90)
+	audio_master.PlayRandomSound('Hit')
 
 
 func _on_body_entered(body):
