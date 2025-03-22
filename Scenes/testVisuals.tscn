@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ca6snq0v7yfkl" path="res://Images/VisualTest/GrassRootsAnim.png" id="10_uhwun"]
 [ext_resource type="Texture2D" uid="uid://c12buqkamyyli" path="res://Images/VisualTest/RainParticles.png" id="10_wogg6"]
 [ext_resource type="Shader" path="res://Shaders/ReflectiveWater.gdshader" id="11_6mgt0"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="12_g36ub"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="12_g36ub"]
 [ext_resource type="Shader" uid="uid://pl1mn3bnleeh" path="res://Shaders/testVisuals.tres" id="15_4u5yo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x4mvw"]

@@ -1,0 +1,193 @@
+[gd_scene load_steps=14 format=3 uid="uid://qjfred4ye47g"]
+
+[ext_resource type="Shader" path="res://Shaders/BlurScreenTexture.gdshader" id="1_06qy6"]
+[ext_resource type="Script" path="res://Scripts/UI/custom_level_win_screen.gd" id="1_7giyp"]
+[ext_resource type="Texture2D" uid="uid://gjnupvejenp6" path="res://Images/UI/PauseMenu/PauseMenuBigger.png" id="2_4dnbs"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="3_xlx1s"]
+[ext_resource type="Script" path="res://Scripts/UI/SelectionSwords.gd" id="4_x7d0i"]
+[ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="5_8jggi"]
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="6_6s834"]
+[ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="7_51ytm"]
+[ext_resource type="AudioStream" uid="uid://q22lm0e2nnrh" path="res://Sounds/SoundEffects/Menu/MenuHover1.wav" id="8_8r78b"]
+[ext_resource type="AudioStream" uid="uid://bxoqdrssfsfti" path="res://Sounds/SoundEffects/Menu/MenuClick1.wav" id="9_get2c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_32cl1"]
+shader = ExtResource("1_06qy6")
+shader_parameter/lod = 0.6
+
+[sub_resource type="GDScript" id="GDScript_3m5cx"]
+script/source = "extends HBoxContainer
+
+@onready var audio_master = $\"../../../AudioMaster\"
+@onready var selection_swords = %SelectionSwords
+
+@onready var restart_game = $RestartGame
+@onready var back_to_menu = $BackToMenu
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	restart_game.grab_focus()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_restart_game_focus_entered():
+	TweenSelectionSwordPos(restart_game, 18)
+
+
+func _on_back_to_menu_focus_entered():
+	TweenSelectionSwordPos(restart_game, 23)
+
+
+func TweenSelectionSwordPos(button, width):
+	audio_master.PlayRandomSound(\"MenuHover\")
+	TweenSelectionSwordPosX(button)
+	TweenSelectionSwordPosY(width)
+
+
+func TweenSelectionSwordPosX(button):
+	
+	var sword_tween = create_tween()
+	sword_tween.tween_property(selection_swords, \"global_position:x\",  button.global_position.x + 3, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+
+
+func TweenSelectionSwordPosY(width):
+	var sword_tween = create_tween()
+	sword_tween.tween_property(selection_swords, \"width\",  width, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o7hes"]
+
+[node name="CustomLevelWinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7giyp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_32cl1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PauseMenuBackround" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -67.5
+offset_right = 88.0
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4dnbs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenuBackround"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 104.0
+offset_right = 218.0
+offset_bottom = 144.0
+theme_override_constants/separation = 28
+alignment = 1
+script = SubResource("GDScript_3m5cx")
+
+[node name="RestartGame" type="Button" parent="CanvasLayer/PauseMenuBackround/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../BackToMenu")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_xlx1s")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7hes")
+text = "Retry
+Level"
+flat = true
+
+[node name="BackToMenu" type="Button" parent="CanvasLayer/PauseMenuBackround/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../RestartGame")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_xlx1s")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7hes")
+text = "Back to
+Menu"
+flat = true
+
+[node name="SelectionSwords" type="Control" parent="CanvasLayer/PauseMenuBackround"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = 110.0
+offset_right = -100.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_x7d0i")
+
+[node name="SwordLeft" type="TextureRect" parent="CanvasLayer/PauseMenuBackround/SelectionSwords"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 11.0
+offset_right = 47.0
+offset_bottom = 51.0
+texture = ExtResource("5_8jggi")
+stretch_mode = 2
+
+[node name="SwordRight" type="TextureRect" parent="CanvasLayer/PauseMenuBackround/SelectionSwords"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 11.0
+offset_right = 107.0
+offset_bottom = 51.0
+texture = ExtResource("5_8jggi")
+stretch_mode = 2
+flip_h = true
+
+[node name="YouAreWin" type="Label" parent="CanvasLayer/PauseMenuBackround"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 42.0
+offset_right = 286.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_xlx1s")
+theme_override_font_sizes/font_size = 32
+text = "You are win!"
+
+[node name="AudioMaster" type="Node2D" parent="." groups=["AudioMaster"]]
+script = ExtResource("6_6s834")
+
+[node name="AudioCollectionMenuHover" parent="AudioMaster" instance=ExtResource("7_51ytm")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionMenuHover"]
+stream = ExtResource("8_8r78b")
+bus = &"SoundEffects"
+
+[node name="AudioCollectionMenuClick" parent="AudioMaster" instance=ExtResource("7_51ytm")]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="AudioMaster/AudioCollectionMenuClick"]
+stream = ExtResource("9_get2c")
+volume_db = -7.0
+bus = &"SoundEffects"
+
+[connection signal="focus_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/RestartGame" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_restart_game_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/PauseMenuBackround/HBoxContainer/RestartGame" to="." method="_on_restart_game_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/BackToMenu" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_back_to_menu_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/PauseMenuBackround/HBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="3_ximrk"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="4_bi4n8"]
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="5_nelxa"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="6_hdb1l"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="6_hdb1l"]
 [ext_resource type="Texture2D" uid="uid://csusgprfr0iao" path="res://Images/VisualTest/NewStyleTest/SnowBackroundBicolor/ShowBackroundLayer.png" id="7_bcqwv"]
 [ext_resource type="Texture2D" uid="uid://bkpsspgskf2dc" path="res://Images/VisualTest/NewStyleTest/SnowBackroundBicolor/ShowLayer7.png" id="8_atsim"]
 [ext_resource type="Texture2D" uid="uid://b5g2e8mjc3yv" path="res://Images/VisualTest/NewStyleTest/SnowBackroundBicolor/ShowLayer6.png" id="9_s26g0"]

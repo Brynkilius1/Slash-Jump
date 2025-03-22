@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://drruspcai2037"]
+[gd_scene load_steps=3 format=3 uid="uid://drruspcai2037"]
 
-[ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform.tscn" id="1_sy04b"]
+[ext_resource type="Script" path="res://Scripts/crumbling_platform_parent.gd" id="1_craq6"]
+[ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://CustomLevels/CustomLevelObjects/3_crumbling_platform.tscn" id="2_wyi68"]
 
-[node name="CrumblingPlatformParent" type="Node2D"]
+[node name="CrumblingPlatformParent" type="Node2D" groups=["LevelObject"]]
 position = Vector2(6, 0)
+script = ExtResource("1_craq6")
 
-[node name="CrumbingPlatform" parent="." instance=ExtResource("1_sy04b")]
+[node name="CrumbingPlatform" parent="." instance=ExtResource("2_wyi68")]
 position = Vector2(0, 0)
 rotation = 1.5708
 particle_rotation = 90.0

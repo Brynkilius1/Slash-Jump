@@ -1,7 +1,6 @@
 extends Control
 
-@export var level_1_path : String = "res://Scenes/TestLevels/VisualTests/CrayonVisualtest.tscn"
-@export var level_2_path : String = "res://Scenes/TestLevels/test_level_12.tscn"
+@export var level_path : String = "res://Scenes/PlaytestLevels/playtest_level_2_buffed.tscn"
 
 @onready var main_menu_buttons = %MainMenuButtons
 @onready var settings = $Menu/Menu/Settings
@@ -45,10 +44,13 @@ func _ready():
 	menu.size = Vector2(320, 180)
 	
 	
+	
 
 
 func _on_start_button_pressed():
+	StatsHolder.run_count += 1
 	audio_master.PlayRandomSound("MenuClick")
+	bar_transition.black = true
 	bar_transition.PlayScreenCoverAnim()
 	
 	
@@ -57,15 +59,10 @@ func _on_start_button_pressed():
 	#main_menu_buttons.visible = false
 
 func _on_bar_transition_cover_finished():
-	get_tree().change_scene_to_file("res://Scenes/PlaytestLevels/playtest_level_2_buffed.tscn")
+	LoadingSceneTransistioner.ChangeSceneWithLoadingScreen(level_path)
 
 
-func _on_start_level_1_button_pressed():
-	StartLevel(level_1_path)
 
-
-func _on_start_level_2_button_pressed():
-	StartLevel(level_2_path)
 
 func StartLevel(level_path):
 	set_process_input(false)
@@ -200,3 +197,7 @@ func ToggleCreditsVisible(toggle):
 func _on_credits_back_button_pressed():
 	ToggleCreditsVisible(false)
 	
+
+
+func _on_leader_board_button_pressed():
+	OS.shell_open("https://www.speedrun.com/SlashJump?h=any&x=ndxqwy1k")

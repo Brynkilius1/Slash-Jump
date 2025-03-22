@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="1_g2sld"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="3_akv1p"]
 [ext_resource type="Shader" path="res://Shaders/ReflectiveWater.gdshader" id="3_i0p0u"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="3_ll08f"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="3_ll08f"]
 [ext_resource type="Texture2D" uid="uid://xb3okye4mbxj" path="res://Images/Backrounds/ForestBackground.png" id="4_hopic"]
 [ext_resource type="Texture2D" uid="uid://c12buqkamyyli" path="res://Images/VisualTest/RainParticles.png" id="4_m6dra"]
 [ext_resource type="Texture2D" uid="uid://cmg536rv7usov" path="res://Images/VisualTest/RainLandingAnim.png" id="5_o5k5w"]

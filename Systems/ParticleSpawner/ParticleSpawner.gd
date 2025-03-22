@@ -13,6 +13,6 @@ func SpawnParticles(particle_rotation : float = 0, amount : int = -1):
 			p.rotation = particle_rotation
 		
 		p.global_position = global_position
-		get_tree().root.get_child(0).add_child(p)
+		get_tree().current_scene.get_child(0).get_child(0).add_child(p)
 	else:
 		print(self, " particle spawner doent have particles!")

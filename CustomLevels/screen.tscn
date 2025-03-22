@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://14wncry5ht53"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="1_dv1uw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d1mm"]
+size = Vector2(320, 180)
+
+[node name="Screen" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_dv1uw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0d1mm")
+debug_color = Color(0, 0.6, 0.701961, 0.0588235)
+
+[node name="RespawnPoints" type="Node2D" parent="."]
+
+[node name="RespawnPoint" type="Node2D" parent="RespawnPoints"]
+position = Vector2(-150, 0)
+
+[node name="RespawnPoint2" type="Node2D" parent="RespawnPoints"]
+position = Vector2(149, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

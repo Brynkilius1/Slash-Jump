@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0nhwujv4x2hd"]
+
+[ext_resource type="Texture2D" uid="uid://d3omcjunwoki8" path="res://icon.svg" id="1_ct5tf"]
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/BouncyObject.gd" id="1_nhkbr"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="2_jysck"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnomm"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_nhkbr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.65)
+shape = SubResource("RectangleShape2D_mnomm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, -1.90735e-06)
+scale = Vector2(0.156, 0.101)
+texture = ExtResource("1_ct5tf")
+
+[node name="SwordCollisionHandler" parent="." instance=ExtResource("2_jysck")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

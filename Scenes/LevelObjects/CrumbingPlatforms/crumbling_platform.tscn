@@ -42,8 +42,7 @@ respawn_time = 2.0
 respawning_object = NodePath("..")
 respawn_function = "DisableSelf"
 
-[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("hit_sounds", "audio_master") instance=ExtResource("4_rjv10")]
-hit_sounds = NodePath("../Sounds/Hit")
+[node name="SwordCollisionHandler" parent="." node_paths=PackedStringArray("audio_master") instance=ExtResource("4_rjv10")]
 audio_master = NodePath("../AudioMaster")
 
 [node name="SwordCollisionShape" parent="SwordCollisionHandler" index="0"]

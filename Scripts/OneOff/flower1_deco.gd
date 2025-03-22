@@ -22,7 +22,7 @@ func _on_sword_detector_area_entered(area):
 		f.global_position = global_position
 		f.global_position.y -= 8
 		f.z_index = 2
-		get_tree().current_scene.add_child(f)
+		get_tree().current_scene.get_child(0).get_child(0).add_child(f)
 		
 		#emit flower head particles
 		var h = FLOWER_1_HEADS.instantiate()
@@ -30,7 +30,7 @@ func _on_sword_detector_area_entered(area):
 		h.global_position.y -= 8
 		h.z_index = 2
 		h.flower_type = get_parent().flower_type
-		get_tree().current_scene.add_child(h)
+		get_tree().current_scene.get_child(0).get_child(0).add_child(h)
 		
 
 		
@@ -46,7 +46,7 @@ func _on_player_detector_body_entered(body):
 		f.global_position = global_position
 		f.global_position.y -= 8
 		f.amount = 2
-		get_tree().current_scene.add_child(f)
+		get_tree().current_scene.get_child(0).add_child(f)
 
 
 

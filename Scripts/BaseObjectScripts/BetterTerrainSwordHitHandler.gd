@@ -16,7 +16,6 @@ func _ready():
 	randomize()
 	if OptionsManager.screenshake == false:
 		shake_camera_when_hit = false
-	print(self, hit_particles_list[0], hit_particles_list[1])
 	
 	
 
@@ -31,7 +30,6 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed, big_swing : 
 	var hit_tile = floor(hit_pos/12)
 	if sword_angle < -0.7 and sword_angle > -2.2:
 		hit_tile.x -= 1 
-		print("moved to left")
 	
 	var hit_terrain = CheckTileTerrainType(hit_tile)  #gets the type of tile at the position you hit
 	
@@ -54,9 +52,6 @@ func DirectSwordHit(hit_pos : Vector2, sword_angle, player_x_speed, big_swing : 
 		EmitParticles(DUSTCLOUDS, dust_cloud_amount, hit_pos, false)
 		HitTilemap("WoodHit", 0, false)
 		ControllerRumble(0, 0.8, 0.5, 0.1)
-	print("terrain hit: ", hit_terrain)
-	print("Sword rotation: ", sword_angle)
-	print("")
 	
 
 
@@ -95,13 +90,11 @@ func HitTilemap(hit_sound, volume, camera_shake : bool):
 		ShakeCamera()
 
 func LandOnTilemap(player_pos):
-	print("landed on tilemap")
 	var hit_tile = floor(player_pos/12)
 	var hit_terrain = CheckTileTerrainType(hit_tile)
 	if hit_terrain == 2 or hit_terrain == 3: #grass/autumn grass
 		EmitParticles(hit_particles_list[0], 3, player_pos + Vector2(0, 9), false)
 		EmitParticles(hit_particles_list[0], 3, player_pos + Vector2(0, 9), true)
-		print("playing land on grass sound")
 		audio_master.PlayRandomSound("LandGrass")
 	elif hit_terrain == 4: #Stone
 		EmitParticles(hit_particles_list[2], 3, player_pos + Vector2(0, 9), false)
@@ -130,7 +123,7 @@ func EmitParticles(particle_type, amount, emit_location, flipped : bool):
 	p.global_position = emit_location
 	p.z_index = 2
 	get_tree().current_scene.add_child(p)
-	print("spawned particles of type: ", particle_type, " in amount: ", p.amount)
+	#print("spawned particles of type: ", particle_type, " in amount: ", p.amount)
 
 func AddShaderToTileType(tileset : TileMap, shader : Material):
 	pass

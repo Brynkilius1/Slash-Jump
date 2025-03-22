@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3w73jklblnmc"]
 
 [ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="1_eud4k"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="2_m5hqo"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="2_m5hqo"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="3_0858r"]
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="3_jni4t"]
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/MushroomHolder.gd" id="4_1wqqq"]

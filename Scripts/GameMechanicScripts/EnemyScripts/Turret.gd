@@ -11,6 +11,7 @@ const TURRET_BULLET = preload("res://Scenes/SpawnableItems/turret_bullet.tscn")
 @onready var function_caller_timer = $FunctionCallerTimer
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
+@onready var bullet_holder = $BulletHolder
 
 
 func _ready():
@@ -44,4 +45,18 @@ func SpawnBullet():
 	b.speed = bullet_speed
 	b.bullet_angle = rotation + (int(flipped) * PI)
 	b.global_position = bullet_spawn_point.global_position
-	get_tree().current_scene.add_child(b)
+	bullet_holder.add_child(b)
+
+
+func ResetState():
+	function_caller_timer.stop()
+	animation_player.stop()
+	for i in bullet_holder.get_children():
+		i.queue_free()
+	
+	
+	await get_tree().create_timer(0.5).timeout
+	PlayShootAnim()
+	function_caller_timer.start()
+	
+	

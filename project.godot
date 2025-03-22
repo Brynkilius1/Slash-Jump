@@ -29,6 +29,8 @@ PauseMenu="*res://Scenes/UI/pause_menu.tscn"
 SaverAndLoader="*res://Global/SaverAndLoader.gd"
 MusicMaster="*res://Systems/MusicSystem/music_master.tscn"
 CutscenerGlobal="*res://addons/Cutscener/clazz/CutscenerGlobal.gd"
+LoadingSceneTransistioner="*res://Global/LoadingSceneTransistioner.gd"
+StatsHolder="*res://Global/StatsHolder.gd"
 
 [debug]
 
@@ -44,6 +46,12 @@ window/vsync/vsync_mode=0
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/gdrama/plugin.cfg", "res://addons/nklbdev.previewing_parallax_background/plugin.cfg", "res://addons/slidergamepad/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://CustomLevels/": "orange"
+}
 
 [input]
 

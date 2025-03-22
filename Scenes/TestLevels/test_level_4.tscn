@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ccs5fbi82tluw" path="res://Scenes/world_nessecities.tscn" id="1_4wbsf"]
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="1_fsc6l"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="3_i3167"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="3_vfxqs"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="3_vfxqs"]
 [ext_resource type="PackedScene" uid="uid://b31gw8h80vyka" path="res://Scenes/LevelObjects/spikes.tscn" id="6_0h3d2"]
 [ext_resource type="TileSet" uid="uid://3ihevks1nb6y" path="res://Tileset/OneWay.tres" id="6_3i8n1"]
 

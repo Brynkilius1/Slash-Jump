@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpgnm1pv2r76j"]
+
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/tnt_barrel.gd" id="1_0wc3e"]
+[ext_resource type="Texture2D" uid="uid://bumb3pt6sftlj" path="res://Images/Mechanics/TNT.png" id="2_ayh38"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="3_2k5mi"]
+[ext_resource type="PackedScene" uid="uid://dc1fi3y8sjtmo" path="res://Scenes/Particles/sword_colision_particles.tscn" id="4_frpd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmtme"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr6pu"]
+size = Vector2(14, 22)
+
+[node name="TNTBarrel" type="CharacterBody2D"]
+script = ExtResource("1_0wc3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_ayh38")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_jmtme")
+
+[node name="SwordCollisionHandler" type="StaticBody2D" parent="."]
+position = Vector2(2, 0)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_2k5mi")
+hit_particles = ExtResource("4_frpd0")
+shake_camera_when_hit = true
+
+[node name="SwordCollisionShape" type="CollisionShape2D" parent="SwordCollisionHandler"]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_fr6pu")
+
+[node name="SoundEffects" type="Node2D" parent="."]
+
+[node name="Hit" type="Node2D" parent="SoundEffects"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects/Hit"]
+bus = &"SoundEffects"

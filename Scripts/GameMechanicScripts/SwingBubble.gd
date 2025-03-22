@@ -140,3 +140,7 @@ func DisableTechnical(disabled_self):
 	in_bubble = false
 	self_collision.disabled = disabled_self
 	hit_detector_colision.disabled = disabled_self
+
+func ResetState():
+	respawner.RespawnTimerTimeout()
+	respawner.respawn_timer.stop()

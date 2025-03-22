@@ -26,16 +26,25 @@ func SwapSpikes():
 		SpikesOut()
 	else:
 		SpikesIn()
-func SpikesIn():
-	audio_master.PlayRandomSound("Move")
+func SpikesIn(play_sound = true):
+	if play_sound == true:
+		audio_master.PlayRandomSound("Move")
 	spike_moving_animation_player.play("SpikesIn")
 	spikes_out = false
+
 func SpikesOut(play_sound = true):
 	if play_sound == true:
 		audio_master.PlayRandomSound("Move")
 	spike_moving_animation_player.play("SpikesOut")
 	spikes_out = true
 
+func ResetState():
+	if spikes_out == start_with_spikes_active:
+		return
+	if start_with_spikes_active == true:
+		SpikesOut(false)
+	else:
+		SpikesIn(false)
 
 
 

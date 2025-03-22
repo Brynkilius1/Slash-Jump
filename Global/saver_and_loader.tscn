@@ -6,23 +6,3 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4m6p6")
-
-[node name="SaveButton" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_top = 112.0
-offset_right = 44.0
-offset_bottom = 143.0
-text = "Save"
-
-[node name="LoadButton" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -1.0
-offset_top = 147.0
-offset_right = 45.0
-offset_bottom = 178.0
-text = "Load"
-
-[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="LoadButton" to="." method="_on_load_button_pressed"]

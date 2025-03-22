@@ -44,7 +44,6 @@ signal settings_category_changed(settings_category)
 
 func SetCurrentSettingsMenu(new_value):
 	current_settings_menu = new_value
-	print("set current settings menu to: ", new_value)
 
 func _ready():
 	current_sword_indicator = video_sword_indicator
@@ -76,8 +75,6 @@ func _unhandled_input(event):
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("Pause"):
-		print("tried to go back through menu")
-		print("current menu number: ", current_settings_menu)
 		if current_settings_menu == settings_menus.AVC_SETTINGS:
 			if settings_back_button:
 				settings_back_button.emit_signal("pressed")

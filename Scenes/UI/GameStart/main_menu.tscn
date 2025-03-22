@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=73 format=3 uid="uid://jumgmkw5n5jc"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
 [ext_resource type="Texture2D" uid="uid://bxpri51ixw1ti" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sky.png" id="1_skej4"]
@@ -18,9 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="11_fycji"]
 [ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="12_62rsl"]
 [ext_resource type="Texture2D" uid="uid://84aathyrhkt5" path="res://Images/UI/MainMenu/SlashJumpLogoBetter.png" id="14_lwpbj"]
+[ext_resource type="Texture2D" uid="uid://cunwiuogug66s" path="res://Images/UI/MainMenu/LeaderBoardIcon.png" id="15_v5y2u"]
 [ext_resource type="PackedScene" uid="uid://krc5l4r450cl" path="res://Global/saver_and_loader.tscn" id="17_ccu1f"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="17_pbjll"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="20_no80h"]
+[ext_resource type="Texture2D" uid="uid://bcy50pw6pqs47" path="res://Images/UI/MainMenu/LeaderBoardIconFocused.png" id="19_2umqk"]
+[ext_resource type="Texture2D" uid="uid://b5ll2ysmn30ly" path="res://Images/UI/MainMenu/LeaderBoardIconPressed.png" id="20_bbkxq"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Cache.gd" id="21_46i84"]
 [ext_resource type="Texture2D" uid="uid://dh3hdbbeccxaq" path="res://Images/UI/PauseMenu/PauseMenu.png" id="21_kqvle"]
 [ext_resource type="Texture2D" uid="uid://bttehw2m30d8u" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_logo.png" id="22_1b8qc"]
@@ -31,6 +33,7 @@
 [ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="26_eo2ys"]
 [ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="27_8li78"]
 [ext_resource type="AudioStream" uid="uid://q22lm0e2nnrh" path="res://Sounds/SoundEffects/Menu/MenuHover1.wav" id="28_gbe2i"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="28_l2wvk"]
 [ext_resource type="AudioStream" uid="uid://bxoqdrssfsfti" path="res://Sounds/SoundEffects/Menu/MenuClick1.wav" id="29_omvii"]
 
 [sub_resource type="GDScript" id="GDScript_5s0j7"]
@@ -40,11 +43,15 @@ script/source = "extends Node2D
 @onready var beat_played_with_splash_screen = $MainMenu/Menu/BestPlayedWithControler/BeatPlayedWithSplashScreen
 @onready var start_button = $MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton
 @onready var best_played_skip_button = $MainMenu/Menu/BestPlayedWithControler/BestPlayedSkipButton
+@onready var bar_transition = $MainMenu/DeathTransistionCanvasLayer/BarTransition
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().paused = false
+	PauseMenu.get_child(0).get_child(0).can_open_pause_menu = true
 	if GlobalVariables.just_opened == true:
+		bar_transition.visible = false
 		best_played_skip_button.grab_focus()
 		GlobalVariables.just_opened = false
 		best_played_with_controler.visible = true
@@ -182,6 +189,31 @@ turbulence_enabled = true
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.02
 
+[sub_resource type="GDScript" id="GDScript_eohgt"]
+script/source = "extends Control
+
+@onready var start_button = %StartButton
+@onready var settings_button = %SettingsButton
+@onready var credits_button = %CreditsButton
+@onready var quit_button = %QuitButton
+@onready var leader_board_button = $\"../MainMenuButtons/LeaderBoardButton\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if StatsHolder.run_count > 0:
+		leader_board_button.visible = true
+		FocusLeaderboardButton()
+	else:
+		leader_board_button.visible = false
+
+
+func FocusLeaderboardButton():
+	start_button.set_focus_neighbor(SIDE_RIGHT, start_button.get_path_to(leader_board_button))
+	settings_button.set_focus_neighbor(SIDE_RIGHT, settings_button.get_path_to(leader_board_button))
+	credits_button.set_focus_neighbor(SIDE_RIGHT, credits_button.get_path_to(leader_board_button))
+	quit_button.set_focus_neighbor(SIDE_RIGHT, quit_button.get_path_to(leader_board_button))
+"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2i1nt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71xlg"]
@@ -198,6 +230,20 @@ bg_color = Color(0.2, 0.2, 0.2, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmcge"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa1ch"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_egeps"]
+texture = ExtResource("15_v5y2u")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uq72"]
+texture = ExtResource("19_2umqk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2kte"]
+texture = ExtResource("20_bbkxq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_enj2j"]
+texture = ExtResource("19_2umqk")
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_qn5nm"]
 button_index = 1
@@ -217,6 +263,10 @@ script/source = "extends Control
 
 var credits_accepting_inputs : bool = false
 @onready var main_menu = $\"../../..\"
+@onready var run_counter = $RunCounter
+
+func _ready():
+	run_counter.text = \"Runs: \" + str(StatsHolder.run_count)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -314,9 +364,11 @@ _data = {
 }
 
 [node name="RootNode" type="Node2D"]
+process_mode = 3
 script = SubResource("GDScript_5s0j7")
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2(-35.0069, 689.087)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
 position = Vector2(160, 90)
@@ -445,9 +497,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 110.0
-offset_top = 75.0
+offset_top = 81.0
 offset_right = -104.0
-offset_bottom = -75.0
+offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -455,18 +507,18 @@ script = ExtResource("3_tb5wg")
 
 [node name="SwordLeft" type="TextureRect" parent="MainMenu/Menu/MainMenuVisuals/SelectionSwords"]
 layout_mode = 0
-offset_left = -6.0
+offset_left = -5.0
 offset_top = 11.0
-offset_right = 34.0
+offset_right = 35.0
 offset_bottom = 51.0
 texture = ExtResource("9_oovw4")
 stretch_mode = 2
 
 [node name="SwordRight" type="TextureRect" parent="MainMenu/Menu/MainMenuVisuals/SelectionSwords"]
 layout_mode = 0
-offset_left = 80.0
+offset_left = 79.0
 offset_top = 11.0
-offset_right = 120.0
+offset_right = 119.0
 offset_bottom = 51.0
 texture = ExtResource("9_oovw4")
 stretch_mode = 2
@@ -478,12 +530,19 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2560.0
-offset_bottom = 1440.0
+offset_right = 1280.0
+offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
 mouse_filter = 1
+
+[node name="ReFocusLeaderboardButton" type="Control" parent="MainMenu/Menu/Menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_eohgt")
 
 [node name="Logo" type="TextureRect" parent="MainMenu/Menu/Menu"]
 layout_mode = 0
@@ -538,6 +597,7 @@ layout_mode = 2
 theme_override_constants/separation = -3
 
 [node name="StartButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
@@ -554,6 +614,7 @@ text = "Start"
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../CreditsButton")
@@ -571,6 +632,7 @@ text = "Settings"
 flat = true
 
 [node name="CreditsButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
@@ -588,6 +650,7 @@ text = "Credits"
 flat = true
 
 [node name="QuitButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../CreditsButton")
 focus_neighbor_bottom = NodePath("../StartButton")
@@ -628,6 +691,18 @@ visible = false
 z_index = 1
 position = Vector2(160, 90)
 texture = ExtResource("22_1b8qc")
+
+[node name="LeaderBoardButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons"]
+layout_mode = 2
+offset_left = 287.0
+offset_top = 147.0
+offset_right = 317.0
+offset_bottom = 177.0
+focus_neighbor_left = NodePath("../MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton")
+theme_override_styles/normal = SubResource("StyleBoxTexture_egeps")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4uq72")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x2kte")
+theme_override_styles/focus = SubResource("StyleBoxTexture_enj2j")
 
 [node name="LevelSelect" type="Control" parent="MainMenu/Menu/Menu"]
 visible = false
@@ -941,12 +1016,22 @@ flat = true
 position = Vector2(236, 145)
 texture = ExtResource("9_oovw4")
 
+[node name="RunCounter" type="Label" parent="MainMenu/Menu/Menu/Credits"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 166.0
+offset_right = 317.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("22_p5tus")
+text = "Runs: 0"
+horizontal_alignment = 2
+
 [node name="LevelZoomAnimationPlayer" type="AnimationPlayer" parent="MainMenu/Menu"]
 libraries = {
 "": SubResource("AnimationLibrary_tt32j")
 }
 
-[node name="Screen" parent="MainMenu/Menu" instance=ExtResource("20_no80h")]
+[node name="Screen" parent="MainMenu/Menu" instance=ExtResource("28_l2wvk")]
 visible = false
 position = Vector2(160, 90)
 
@@ -983,8 +1068,6 @@ script = ExtResource("21_46i84")
 layer = 100
 
 [node name="BarTransition" parent="MainMenu/DeathTransistionCanvasLayer" instance=ExtResource("17_pbjll")]
-visible = false
-uncover_screen_when_loaded = false
 
 [node name="AudioMaster" type="Node2D" parent="MainMenu" groups=["AudioMaster"]]
 script = ExtResource("26_eo2ys")
@@ -1017,6 +1100,9 @@ bus = &"SoundEffects"
 [connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_quit_button_focus_entered"]
 [connection signal="mouse_entered" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/Menu/Menu/MainMenuButtons/LeaderBoardButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_leader_board_button_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu/Menu/Menu/MainMenuButtons/LeaderBoardButton" to="MainMenu/Menu/MainMenuVisuals" method="_on_leader_board_button_mouse_entered"]
+[connection signal="pressed" from="MainMenu/Menu/Menu/MainMenuButtons/LeaderBoardButton" to="MainMenu" method="_on_leader_board_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer/StartLevel1Button" to="MainMenu" method="_on_start_level_1_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level1/NextLevelButton" to="MainMenu" method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer/StartLevel2Button" to="MainMenu" method="_on_start_level_2_button_pressed"]

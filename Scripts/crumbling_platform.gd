@@ -58,10 +58,9 @@ func HitWithSword(_angle):
 
 
 func DisableSelf(disabled_self : bool):
-	print("called DisableSelf", self)
 	#animations
 	if disabled_self == false:
-		
+		print("disabled false")
 		#StoodOn(false)
 		#print("crumbling pos: ", platform_animated_sprite.position)
 		platform_animated_sprite.offset = Vector2.ZERO
@@ -74,6 +73,7 @@ func DisableSelf(disabled_self : bool):
 		TogglePlatformEnabled(disabled_self)
 		
 	else:
+		print("disabled true")
 		particle_spawner.SpawnParticles(particle_rotation)
 		platform_animated_sprite.play("disapear")
 		tree_animated_sprite.play("Hit")
@@ -127,3 +127,14 @@ func StoodOn(standing_toggle):
 			platform_animated_sprite.position.y = -3
 			collision_shape_2d.position.y = 3
 
+
+func ResetState():
+	platform_animated_sprite.offset = Vector2.ZERO
+	#print("crumbling pos normalised: ", platform_animated_sprite.position)
+	platform_animated_sprite.play("default")
+	platform_animated_sprite.visible = true
+	tree_animated_sprite.play("Regrow")
+	TogglePlatformEnabled(false)
+	
+	respawner.respawn_timer.stop()
+	disapear_timer.stop()

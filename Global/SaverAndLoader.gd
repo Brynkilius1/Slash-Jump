@@ -30,6 +30,7 @@ func save_data(path : String):
 		"settings_data":{
 			"fullscreen": OptionsManager.fullscreen,
 			"v_sync": OptionsManager.v_sync,
+			"speedrun_timer": OptionsManager.speedrun_timer,
 			"screenshake": OptionsManager.screenshake,
 			"fps": OptionsManager.fps,
 			"master_volume": OptionsManager.master_volume,
@@ -42,7 +43,10 @@ func save_data(path : String):
 			"big_swing_button": OptionsManager.big_swing_button,
 			"big_swing_input_type": OptionsManager.big_swing_button ,
 			"small_swing_button": OptionsManager.small_swing_button,
-			"small_swing_input_type": OptionsManager.small_swing_button
+			"small_swing_input_type": OptionsManager.small_swing_button,
+		},
+		"stats_data":{
+			"run_count": StatsHolder.run_count,
 		}
 	}
 	
@@ -79,6 +83,7 @@ func LoadInData(data):
 	#Video
 	settings_data.fullscreen = data.settings_data.fullscreen
 	settings_data.v_sync = data.settings_data.v_sync
+	settings_data.speedrun_timer = data.settings_data.speedrun_timer
 	settings_data.screenshake = data.settings_data.screenshake
 	settings_data.fps = data.settings_data.fps
 	
@@ -97,13 +102,16 @@ func LoadInData(data):
 	
 	print("big swing input type: ",settings_data.big_swing_input_type)
 	LoadKeybinds(data.settings_data)
-	#settings_data.big_swing_button = data.settings_data.big_swing_button
-	#settings_data.small_swing_button = data.settings_data.small_swing_button
+	
+	#Stats
+	settings_data.run_count = data.stats_data.run_count
+	
 
 
 func ApplyLoadedVariablesToOptionManager():
 	OptionsManager.fullscreen = settings_data.fullscreen
 	OptionsManager.v_sync = settings_data.v_sync
+	OptionsManager.speedrun_timer = settings_data.speedrun_timer
 	OptionsManager.screenshake = settings_data.screenshake
 	OptionsManager.fps = settings_data.fps
 	
@@ -122,6 +130,10 @@ func ApplyLoadedVariablesToOptionManager():
 	OptionsManager.small_swing_input_type = settings_data.small_swing_input_type
 	OptionsManager.small_swing_button = settings_data.small_swing_button
 	print("loaded big swing input type: ", settings_data.big_swing_input_type)
+	
+	#Stats
+	StatsHolder.run_count = settings_data.run_count
+	
 
 
 func LoadKeybinds(data):

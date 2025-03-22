@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var swing_raycast_pos_hit_indicator = $Indicators/SwingRaycastPosHitIndicator
 @onready var swing_raycast_object_hit_indicator = $Indicators/SwingRaycastObjectHitIndicator
+@onready var current_respawn_point_indicator = $Indicators/CurrentRespawnpointIndicator
 @onready var expected_line_indicator = $Indicators/ExpectedLineIndicator
 @onready var new_control_scheme_toggle = $UI/Control/VBoxContainer/NewControlScheme
 
@@ -20,6 +21,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	if Input.is_action_just_pressed("ToggleDebug"):
 		
@@ -48,6 +50,9 @@ func UpdateExpectedLine(player_sword_rotation):
 	expected_line_indicator.add_point(line_endpoint_pos)
 
 
+func UpdateSpawnLocation(pos):
+	current_respawn_point_indicator.global_position = pos
+
 #Options
 func _on_swing_raycast_pos_hit_toggled(toggled_on):
 	swing_raycast_pos_hit_indicator.visible = toggled_on
@@ -55,6 +60,9 @@ func _on_swing_raycast_pos_hit_toggled(toggled_on):
 func _on_swing_raycast_object_hit_toggled(toggled_on):
 	swing_raycast_object_hit_indicator.visible = toggled_on
 
+func _on_show_spawn_point_toggled(toggled_on):
+	current_respawn_point_indicator.visible = toggled_on
+	
 func _on_print_swing_raycast_object_hit_toggled(toggled_on):
 	print_object_sword_hit = toggled_on
 
@@ -81,3 +89,6 @@ func _on_show_expected_line_toggled(toggled_on):
 
 func _on_show_player_travel_line_toggled(toggled_on):
 	pass # Replace with function body.
+
+
+

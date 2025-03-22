@@ -5,6 +5,7 @@ extends Node2D
 @onready var textbox_text = $TextboxLayer/Control/TextboxText
 @onready var text_progress_timer = $TextboxLayer/TextProgressTimer
 @onready var textbox_visual_master = $TextboxVisualMaster
+@onready var transition_manager = $"../../WorldNessecities/TransitionManager"
 
 @export_multiline var text_array : PackedStringArray
 @export_multiline var actions :  Dictionary #dialouge number : action : input    make it a dict
@@ -64,9 +65,7 @@ func AdvanceText():
 		text_progress_timer.start()
 		
 	else:
-		text_finished.emit()
-		finished_reading = true
-		textbox_layer.visible = false
+		EndDialouge()
 
 
 func QuickFillTextbox():
@@ -105,3 +104,8 @@ func ReturnActionFunction(input_string : String):
 		return "ChangeRightActorPortrait"
 	else:
 		print(input_string, " is not a valid textbox action in: ", self)
+
+func EndDialouge():
+	text_finished.emit()
+	finished_reading = true
+	textbox_layer.visible = false

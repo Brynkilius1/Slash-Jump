@@ -109,6 +109,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")#320 is t
 
 #Misc
 @onready var camera_shaker = $Camera2D/Shaker
+@onready var hazard_detector = $HazardDetector
 
 
 
@@ -463,7 +464,7 @@ func DeformPlayer(deformation_power, sword_rotation):
 			sword_rotation -= 360
 	
 
-	print(sword_rotation)
+
 
 
 func SwordHitFramePause(pause_time):
@@ -512,18 +513,14 @@ func DeactivateSwordHitbox():
 
 func AddWallJumpBias(bounce_power, angle):
 	if abs(angle) > wall_bias_upper_limit:
-		print("Walljump power: ", 0)
 		return bounce_power
 	elif abs(angle) > wall_bias_middle_limit:
 		bounce_power.y -= upper_boost
-		print("Walljump power: ", upper_boost)
 		return bounce_power
 	elif abs(angle) > wall_bias_lower_limit:
 		bounce_power.y -= lower_boost
-		print("Walljump power: ", lower_boost)
 		return bounce_power
 	else:
-		print("Walljump power: ", 0)
 		return bounce_power
 
 func IsWallJumping(raycast_group):
@@ -642,10 +639,8 @@ func KnifeLingerTimeoutTechnical():
 	
 func CheckIfKnifeSwingHit():
 	if knife_swing_linger_timer.time_left > 0:
-		print("stop swing miss timer")
 		swing_miss_timer.stop()
 	else:
-		print("start swing miss timer")
 		swing_miss_timer.start(swing_miss_cooldown)
 
 
@@ -701,15 +696,16 @@ func PreventWallClimb():
 		knife_collision_shape.scale.x = 1
 
 func CheckCornerBoost():
-	if velocity.x == 0:
-		if sign(saved_x_speed) == 1:
-			if wall_climb_prevention_raycast_1.is_colliding() == false and wall_climb_prevention_raycast_3.is_colliding() == false:
-				velocity.x = saved_x_speed
-				saved_x_speed = 0.0
-		elif sign(saved_x_speed) == -1:
-			if wall_climb_prevention_raycast_2.is_colliding() == false and wall_climb_prevention_raycast_4.is_colliding() == false:
-				velocity.x = saved_x_speed
-				saved_x_speed = 0.0
+	if has_control:
+		if velocity.x == 0:
+			if sign(saved_x_speed) == 1:
+				if wall_climb_prevention_raycast_1.is_colliding() == false and wall_climb_prevention_raycast_3.is_colliding() == false:
+					velocity.x = saved_x_speed
+					saved_x_speed = 0.0
+			elif sign(saved_x_speed) == -1:
+				if wall_climb_prevention_raycast_2.is_colliding() == false and wall_climb_prevention_raycast_4.is_colliding() == false:
+					velocity.x = saved_x_speed
+					saved_x_speed = 0.0
 	
 	
 	saved_x_speed = lerp(saved_x_speed, sign(saved_x_speed), 0.1) #return saved_x_speed to 0 over time
@@ -756,7 +752,6 @@ func CheckVerticalInpact():
 		player_anim_tree["parameters/Landing/blend_position"] = vertical_impact / (max_fall_speed)
 		#SpawnLandingParticles(DUSTCLOUDS)
 		#SpawnLandingParticles(DIRT_PARTICLES, 4, Vector2(0, 6))
-		print("vertical impact: ", vertical_impact)
 		LandingParticlesTechnical()
 		
 		
@@ -849,9 +844,11 @@ func Gravity(delta):
 
 func CheckIfReload():
 	if Input.is_action_just_pressed("Reload"):
-		player_died.emit()
+		if has_control:
+			Die()
 
-
+func Die():
+	hazard_detector._on_body_entered(null)
 
 
 func StartAntiGravSwingTimer():

@@ -1,0 +1,816 @@
+[gd_scene load_steps=46 format=3 uid="uid://bxkja7gjofbh"]
+
+[ext_resource type="Script" path="res://Scripts/Managers/LevelEnd.gd" id="1_3wb4a"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="3_cp7pj"]
+[ext_resource type="Texture2D" uid="uid://djbbxykul5w1s" path="res://Images/Mechanics/GrilledCheeseIdle-Sheet.png" id="3_trtbg"]
+[ext_resource type="Texture2D" uid="uid://cp6cfjg6v4yu6" path="res://Images/Mechanics/GrilledCheeseCut-Sheet.png" id="4_dhmxo"]
+[ext_resource type="Script" path="res://Scripts/Managers/ParticleGroup.gd" id="5_au2a2"]
+[ext_resource type="Texture2D" uid="uid://dbknals42esli" path="res://Images/Particles/GrilledCheeseParticles/Cheese_Big_Particles.png" id="6_odqq7"]
+[ext_resource type="Texture2D" uid="uid://cjmv802uyby1u" path="res://Images/Particles/GrilledCheeseParticles/Cheese_Mediuml_Particles.png" id="7_i6qqn"]
+[ext_resource type="Texture2D" uid="uid://blqp46vqyhx0j" path="res://Images/Particles/GrilledCheeseParticles/Cheese_Small_Particles.png" id="8_dx85m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glwmm"]
+size = Vector2(26, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq1fq"]
+atlas = ExtResource("4_dhmxo")
+region = Rect2(32, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rhhx"]
+atlas = ExtResource("4_dhmxo")
+region = Rect2(64, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08dii"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(0, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr8ov"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(24, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdces"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(48, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdaq3"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(72, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgp58"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(96, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c1kl"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(120, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqagn"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(144, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdkqy"]
+atlas = ExtResource("3_trtbg")
+region = Rect2(168, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bufsv"]
+atlas = ExtResource("4_dhmxo")
+region = Rect2(64, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nn1s"]
+atlas = ExtResource("4_dhmxo")
+region = Rect2(96, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1gqv"]
+atlas = ExtResource("4_dhmxo")
+region = Rect2(128, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfd4k"]
+atlas = ExtResource("4_dhmxo")
+region = Rect2(160, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcxnt"]
+atlas = ExtResource("4_dhmxo")
+region = Rect2(192, 0, 32, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pd57c"]
+animations = [{
+"frames": [{
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_dq1fq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rhhx")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08dii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr8ov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdces")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdaq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgp58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c1kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqagn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdkqy")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_bufsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nn1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1gqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfd4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcxnt")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 2.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x6r67"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oqhik"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 34.907
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 200, 0)
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ryfgk"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oayxk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(6, 4, 1)
+direction = Vector3(0, -1, 0)
+spread = 40.0
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 150, 0)
+damping_min = 13.861
+damping_max = 40.594
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yn4ds"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1nih5"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(6, 4, 1)
+direction = Vector3(0, -1, 0)
+spread = 34.907
+initial_velocity_min = 50.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 98, 0)
+damping_min = 43.564
+damping_max = 67.386
+anim_offset_max = 1.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n1qry"]
+polygon = PackedVector2Array(-4, 2, -4, -3, 4, -3, 4, 2)
+
+[sub_resource type="Gradient" id="Gradient_gosg8"]
+offsets = PackedFloat32Array(0, 0.312925, 0.578231, 0.85034, 1)
+colors = PackedColorArray(0.376246, 0.00160429, 0.824437, 1, 0.376471, 0, 0.823529, 1, 0.104975, 0.318705, 0.583977, 1, 0.105882, 0.317647, 0.584314, 1, 0.188235, 0.376471, 0.647059, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_deqew"]
+gradient = SubResource("Gradient_gosg8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_erejo"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 95.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 7.0
+radial_accel_max = 43.56
+color_ramp = SubResource("GradientTexture1D_deqew")
+
+[sub_resource type="Gradient" id="Gradient_4in3i"]
+offsets = PackedFloat32Array(0, 0.163265, 0.394558, 1)
+colors = PackedColorArray(0.376471, 0, 0.823529, 1, 0.376471, 0, 0.823529, 1, 0.833454, 0.225434, 0.701865, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hg046"]
+gradient = SubResource("Gradient_4in3i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8q064"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 95.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -72.32
+color_ramp = SubResource("GradientTexture1D_hg046")
+collision_mode = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5mjf6"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 50, 0)
+damping_min = 30.0
+damping_max = 50.0
+anim_offset_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ulb7w"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(6, 4, 1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 70.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 25, 0)
+damping_min = 28.235
+damping_max = 52.941
+anim_offset_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ochna"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(6, 4, 1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 75, 0)
+damping_min = 43.564
+damping_max = 67.386
+anim_offset_max = 1.0
+
+[sub_resource type="Animation" id="Animation_cp44h"]
+resource_name = "CollectObjcet"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenDarkener:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScreenDarkener:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RingParticles:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.1, 7.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RingParticles/RingOutside:lifetime")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.6, 7.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.270588]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RingParticles:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RingParticles/RingOutside:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 7.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RingParticles/RingInside:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 7.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GPUParticles2D:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 8.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimatedSprite2D")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Hit", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Open", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RingParticles:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("WinParticleGroup")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(8.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"EmitParticles"
+}]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("WinParticleGroup:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(11.7, 13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ScreenFlash:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(8.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ScreenFlash:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(8.3, 9.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("ScreenCoverer:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(13),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("ScreenCoverer:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(13, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.529412)]
+}
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(13),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"SpawnLevelEndScreen"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_t5pt4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenDarkener:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScreenDarkener:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RingParticles:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RingParticles/RingOutside:lifetime")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RingParticles:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RingParticles/RingOutside:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RingParticles/RingInside:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GPUParticles2D:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RingParticles:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("WinParticleGroup:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("ScreenFlash:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ScreenFlash:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ScreenCoverer:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ScreenCoverer:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsy8u"]
+_data = {
+"CollectObjcet": SubResource("Animation_cp44h"),
+"RESET": SubResource("Animation_t5pt4")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sy0gc"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 142.86
+initial_velocity_max = 142.86
+gravity = Vector3(0, 50, 0)
+
+[node name="LevelEnd" type="StaticBody2D" node_paths=PackedStringArray("animations", "particles")]
+z_index = 1
+collision_mask = 0
+script = ExtResource("1_3wb4a")
+animations = NodePath("AnimatedSprite2D")
+particles = NodePath("SwordHitParticleGroup")
+
+[node name="ScreenFlash" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = -779.0
+offset_top = -414.0
+offset_right = 784.0
+offset_bottom = 446.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.52549)
+
+[node name="ScreenDarkener" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = -779.0
+offset_top = -414.0
+offset_right = 784.0
+offset_bottom = 446.0
+mouse_filter = 2
+color = Color(0.0212523, 2.53183e-05, 0.0805214, 0.721569)
+
+[node name="ScreenCoverer" type="ColorRect" parent="."]
+visible = false
+z_index = 100
+offset_left = -779.0
+offset_top = -414.0
+offset_right = 784.0
+offset_bottom = 446.0
+mouse_filter = 2
+color = Color(0.0196078, 0, 0.0823529, 1)
+
+[node name="SwordCollisionHandler" parent="." instance=ExtResource("3_cp7pj")]
+position = Vector2(0, -0.355)
+scale = Vector2(1.32, 0.835)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_glwmm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(-12, -8)
+sprite_frames = SubResource("SpriteFrames_pd57c")
+animation = &"Idle"
+autoplay = "Idle"
+centered = false
+
+[node name="SwordHitParticleGroup" type="Node2D" parent="."]
+script = ExtResource("5_au2a2")
+
+[node name="HitParticles" type="GPUParticles2D" parent="SwordHitParticleGroup"]
+visible = false
+material = SubResource("CanvasItemMaterial_x6r67")
+emitting = false
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_oqhik")
+texture = ExtResource("6_odqq7")
+one_shot = true
+explosiveness = 0.96
+
+[node name="HitParticles2" type="GPUParticles2D" parent="SwordHitParticleGroup"]
+material = SubResource("CanvasItemMaterial_ryfgk")
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_oayxk")
+texture = ExtResource("7_i6qqn")
+one_shot = true
+explosiveness = 0.96
+
+[node name="HitParticles3" type="GPUParticles2D" parent="SwordHitParticleGroup"]
+material = SubResource("CanvasItemMaterial_yn4ds")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_1nih5")
+texture = ExtResource("8_dx85m")
+one_shot = true
+explosiveness = 0.96
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_n1qry")
+occluder_light_mask = 512
+
+[node name="RingParticles" type="Node2D" parent="."]
+visible = false
+
+[node name="RingOutside" type="GPUParticles2D" parent="RingParticles"]
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_erejo")
+
+[node name="RingInside" type="GPUParticles2D" parent="RingParticles"]
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_8q064")
+lifetime = 1.5
+
+[node name="WinParticleGroup" type="Node2D" parent="."]
+script = ExtResource("5_au2a2")
+
+[node name="HitParticles" type="GPUParticles2D" parent="WinParticleGroup"]
+material = SubResource("CanvasItemMaterial_x6r67")
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_5mjf6")
+texture = ExtResource("6_odqq7")
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.96
+
+[node name="HitParticles2" type="GPUParticles2D" parent="WinParticleGroup"]
+material = SubResource("CanvasItemMaterial_ryfgk")
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ulb7w")
+texture = ExtResource("7_i6qqn")
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.96
+
+[node name="HitParticles3" type="GPUParticles2D" parent="WinParticleGroup"]
+material = SubResource("CanvasItemMaterial_yn4ds")
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_ochna")
+texture = ExtResource("8_dx85m")
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.96
+
+[node name="CollectAnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lsy8u")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+z_index = 1
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_sy0gc")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.92

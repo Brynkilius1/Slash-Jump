@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd8r1d5a5kahm"]
+[gd_scene load_steps=11 format=3 uid="uid://dd8r1d5a5kahm"]
 
 [ext_resource type="Texture2D" uid="uid://bsellppgmf4qx" path="res://Images/UI/MovementTutorial/tutorial2.png" id="1_ex0mu"]
 [ext_resource type="Texture2D" uid="uid://cmose3m1q5cwn" path="res://Images/UI/MovementTutorial/PlayerSmallSwinging.png" id="2_1j3jl"]
+[ext_resource type="Texture2D" uid="uid://dpax08elbv2u1" path="res://Images/Particles/2x2_1x1White.png" id="2_kyy6u"]
 [ext_resource type="Texture2D" uid="uid://dltgf20cnwcty" path="res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png" id="3_cow82"]
+[ext_resource type="Texture2D" uid="uid://dhwx1wc8u8f0k" path="res://Images/Player/PlayerLight.png" id="5_or7xu"]
 
 [sub_resource type="GDScript" id="GDScript_o6b8w"]
 script/source = "extends Control
 
 @onready var swing_input_sprite = $SwingInputSprite
+@export var yellow = false
+@onready var point_light_2d = $PointLight2D
+var time : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,20 +21,24 @@ func _ready():
 	Input.connect(\"joy_connection_changed\", JoyConnectionChanged)
 
 
+func _process(delta):
+	time += delta
+	point_light_2d.texture_scale = 0.4 * ((abs(sin(time * 2)) + 1) / 2)
+
 func JoyConnectionChanged(device, connected : bool):
 	UpdateInputSprite()
 
 func UpdateInputSprite():
 	print(\"update input sprite\")
 	if Input.get_connected_joypads() == []:
-		swing_input_sprite.texture = load(\"res://Images/UI/RebindMenu/ButtonImages/tile_0078.png\")
+		swing_input_sprite.texture = load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/tile_0078_yellow.png\")
 		return
 	
 	var return_image = ReturnButtonIcon(OptionsManager.small_swing_button)
 	if return_image:
 		swing_input_sprite.texture = return_image
 	else:
-		swing_input_sprite.texture = load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png\")
+		swing_input_sprite.texture = load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/FButtons_Right_Yellowt.png\")
 
 
 
@@ -41,31 +50,58 @@ func ReturnButtonIcon(event):
 	
 
 func CheckButtons(button_index):
-	match button_index:
-		0:#Face buttons
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Down.png\")
-		1:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png\")
-		2:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Left.png\")
-		3:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Up.png\")
-		7:#Sticks pressed
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Left_Pressed.png\")
-		8:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Right_Pressed.png\")
-		9: #Bumpers
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/Trigger_Left.png\")
-		10:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/TriggerRight.png\")
-		11:#Directional buttons
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Up.png\")
-		12:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Down.png\")
-		13:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Left.png\")
-		14:
-			return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Right.png\")
+	if yellow == false:
+		match button_index:
+			0:#Face buttons
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Down.png\")
+			1:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png\")
+			2:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Left.png\")
+			3:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/FButtons_Up.png\")
+			7:#Sticks pressed
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Left_Pressed.png\")
+			8:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Right_Pressed.png\")
+			9: #Bumpers
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Trigger_Left.png\")
+			10:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/TriggerRight.png\")
+			11:#Directional buttons
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Up.png\")
+			12:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Down.png\")
+			13:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Left.png\")
+			14:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Dpad_Right.png\")
+	else:
+		match button_index:
+			0:#Face buttons
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/FButtons_Down_Yellow.png\")
+			1:
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/FButtons_Right_Yellowt.png\")
+			2:
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/FButtons_Left_Yellow.png\")
+			3:
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/FButtons_Up_Yellow.png\")
+			7:#Sticks pressed
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Left_Pressed.png\")
+			8:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Stick_Right_Pressed.png\")
+			9: #Bumpers
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/Trigger_Left.png\")
+			10:
+				return load(\"res://Images/UI/RebindMenu/ButtonImages/TriggerRight.png\")
+			11:#Directional buttons
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/Dpad_Up_Yellow.png\")
+			12:
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/Dpad_Down_Yellow.png\")
+			13:
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/Dpad_Left_Yellow.png\")
+			14:
+				return load(\"res://Images/UI/RebindMenu/ButtonImagesYellow/Dpad_Right_Yellowt.png\")
 
 func CheckBumpers(axis_index):
 	match axis_index:
@@ -76,6 +112,29 @@ func CheckBumpers(axis_index):
 
 "
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tp8n7"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_l7hjl"]
+offsets = PackedFloat32Array(0, 0.176871, 0.727891, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ji40u"]
+gradient = SubResource("Gradient_l7hjl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02pnw"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 22.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_ji40u")
+hue_variation_max = 0.46
+anim_offset_max = 1.0
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -84,11 +143,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_o6b8w")
+yellow = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-37, -27)
 texture = ExtResource("1_ex0mu")
 centered = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.701961)
+material = SubResource("CanvasItemMaterial_tp8n7")
+position = Vector2(11, 0)
+process_material = SubResource("ParticleProcessMaterial_02pnw")
+texture = ExtResource("2_kyy6u")
+preprocess = 1.0
+visibility_rect = Rect2(-760, -20.066, 800, 200)
 
 [node name="PlayerSmallSwinging" type="Sprite2D" parent="."]
 position = Vector2(-23, -12)
@@ -99,3 +168,9 @@ centered = false
 position = Vector2(3, -8)
 texture = ExtResource("3_cow82")
 centered = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(11, 0)
+energy = 0.35
+texture = ExtResource("5_or7xu")
+texture_scale = 0.3

@@ -18,7 +18,10 @@ func _ready():
 
 
 func PlaySong(song, transition_type = 0): #Input a song to play
-	song = load(song)
+	if song is String:
+		song = load(song)
+	else:
+		song = song
 	
 	#Transitions:
 	if transition_type == 1: #1 is fade in/out

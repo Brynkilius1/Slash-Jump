@@ -49,6 +49,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jvvj3")
 text = "Show Raycast Object Hit"
 
+[node name="ShowSpawnPoint" type="CheckButton" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jvvj3")
+text = "Show Spawn Point"
+
 [node name="PrintSwingRaycastObjectHit" type="CheckButton" parent="UI/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jvvj3")
@@ -70,6 +75,12 @@ modulate = Color(0, 0, 1, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_hgu3d")
 
+[node name="CurrentRespawnpointIndicator" type="Sprite2D" parent="Indicators"]
+visible = false
+modulate = Color(0.514155, 0.00436729, 0.640478, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_hgu3d")
+
 [node name="ExpectedLineIndicator" type="Line2D" parent="Indicators"]
 visible = false
 width = 2.0
@@ -80,4 +91,5 @@ default_color = Color(0.258824, 0.435294, 0.666667, 0.835294)
 [connection signal="toggled" from="UI/Control/VBoxContainer/ShowPlayerTravelLine" to="." method="_on_show_player_travel_line_toggled"]
 [connection signal="toggled" from="UI/Control/VBoxContainer/SwingRaycastPosHit" to="." method="_on_swing_raycast_pos_hit_toggled"]
 [connection signal="toggled" from="UI/Control/VBoxContainer/SwingRaycastObjectHit" to="." method="_on_swing_raycast_object_hit_toggled"]
+[connection signal="toggled" from="UI/Control/VBoxContainer/ShowSpawnPoint" to="." method="_on_show_spawn_point_toggled"]
 [connection signal="toggled" from="UI/Control/VBoxContainer/PrintSwingRaycastObjectHit" to="." method="_on_print_swing_raycast_object_hit_toggled"]

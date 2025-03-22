@@ -1,12 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccs5fbi82tluw"]
+[gd_scene load_steps=14 format=3 uid="uid://ccs5fbi82tluw"]
 
+[ext_resource type="Script" path="res://Scripts/Managers/ParticleHolder.gd" id="1_c4vdg"]
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="1_kvc0g"]
 [ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="2_r8s0e"]
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="3_egdn0"]
+[ext_resource type="Script" path="res://Scripts/UI/Timer.gd" id="4_d0s7d"]
 [ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="4_lewfa"]
-[ext_resource type="Script" path="res://Systems/TilemapDecorator/TilemapDecorator.gd" id="5_2hhwc"]
+[ext_resource type="Texture2D" uid="uid://dgw344j2qioy8" path="res://Images/UI/TimerUI.png" id="5_6q5bu"]
+[ext_resource type="PackedScene" uid="uid://dpw8xnajg7j71" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransitionBlack.tscn" id="5_tg7hp"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="6_egrty"]
+[ext_resource type="Script" path="res://Scripts/Managers/MusicStarter.gd" id="9_gnxkl"]
+[ext_resource type="Script" path="res://Scripts/Managers/MiscStarter.gd" id="10_73g1q"]
+[ext_resource type="PackedScene" uid="uid://cuj4akkbmhvx6" path="res://Systems/TilemapDecorator/tilemap_master_decorator.tscn" id="10_e4yvj"]
+[ext_resource type="PackedScene" uid="uid://txxilwt2ulkf" path="res://Systems/TilemapDecorator/tilemap_decorator.tscn" id="11_lbvoe"]
 
 [node name="WorldNessecities" type="Node2D"]
+
+[node name="ParticleHolder" type="Node2D" parent="."]
+script = ExtResource("1_c4vdg")
 
 [node name="CameraManager" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -24,11 +35,69 @@ script = ExtResource("4_lewfa")
 
 [node name="DeathTransistionCanvasLayer" type="CanvasLayer" parent="TransitionManager"]
 
+[node name="BlackBarTransition" parent="TransitionManager/DeathTransistionCanvasLayer" instance=ExtResource("5_tg7hp")]
+editor_description = "This is the default transition type"
+
+[node name="TimerManager" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 4
+visible = false
+script = ExtResource("4_d0s7d")
+
+[node name="Control" type="Control" parent="TimerManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 61.0
+offset_bottom = 17.0
+
+[node name="TimerUi" type="Sprite2D" parent="TimerManager/Control"]
+position = Vector2(0, -3)
+texture = ExtResource("5_6q5bu")
+centered = false
+
+[node name="TimerDisplayLabel" type="Label" parent="TimerManager/Control"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 58.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.980392, 0.976471, 0.945098, 1)
+theme_override_fonts/font = ExtResource("6_egrty")
+text = "00:00:000"
+
+[node name="SplitDisplayLabel" type="Label" parent="TimerManager/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 58.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.87451, 0.921569, 0.933333, 1)
+theme_override_fonts/font = ExtResource("6_egrty")
+text = "0:00:00:000"
+
+[node name="MusicStarter" type="Node" parent="."]
+script = ExtResource("9_gnxkl")
+
+[node name="MiscStarter" type="Node" parent="."]
+script = ExtResource("10_73g1q")
+
 [node name="ScreenHolder" type="Node2D" parent="."]
 script = ExtResource("3_egdn0")
 
-[node name="TilemapDecorator" type="Node2D" parent="."]
-script = ExtResource("5_2hhwc")
+[node name="TilemapMasterDecorator" parent="." instance=ExtResource("10_e4yvj")]
+
+[node name="GrassTuftTilemapDecorator" parent="TilemapMasterDecorator" instance=ExtResource("11_lbvoe")]
+
+[node name="GrassInsideTilemapDecorator" parent="TilemapMasterDecorator" instance=ExtResource("11_lbvoe")]
+tile_source_to_spawn_on_array = Array[int]([14, 15, 16, 17, 6, 2])
+using_terrain = true
+fill_inside_tiles = true
+can_spawn_in_blocks = true
+spawn_position = 0
+clear_decoration_tilemap = true
 
 [connection signal="change_screen" from="ScreenHolder" to="CameraManager" method="ChangeScreen"]
 [connection signal="set_next_screen" from="ScreenHolder" to="CameraManager" method="UpdateNextScreen"]

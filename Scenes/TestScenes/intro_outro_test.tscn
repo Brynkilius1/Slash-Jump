@@ -25,10 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://biu5c0yr0xoft" path="res://Images/Player/goldknight.png" id="20_fopvf"]
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="21_4kt5s"]
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="22_kghm5"]
-[ext_resource type="PackedScene" uid="uid://dhoymk1i3u4eq" path="res://Scenes/LevelObjects/ESpikes/moving_spikes.tscn" id="23_56jgx"]
+[ext_resource type="PackedScene" uid="uid://dhoymk1i3u4eq" path="res://CustomLevels/CustomLevelObjects/moving_spikes.tscn" id="23_56jgx"]
 [ext_resource type="Texture2D" uid="uid://bykv1k5xuhc0n" path="res://Images/Decorations/TutorialArea/Castle.png" id="24_1gsey"]
 [ext_resource type="Texture2D" uid="uid://cnacdskak2h8f" path="res://Images/UI/InputButtons.png" id="25_m6tna"]
-[ext_resource type="PackedScene" uid="uid://bevs4feina1v" path="res://Scenes/Particles/ParticleTest.tscn" id="26_s3uks"]
+[ext_resource type="PackedScene" uid="uid://bevs4feina1v" path="res://Scenes/Particles/WindParticles.tscn" id="26_s3uks"]
 [ext_resource type="PackedScene" uid="uid://wa77vuep7bo3" path="res://Scenes/Decorations/flower1_deco.tscn" id="27_ra5u6"]
 [ext_resource type="PackedScene" uid="uid://dfj0bc11e8twg" path="res://Scenes/UI/MovementTutorial.tscn" id="28_j5rew"]
 [ext_resource type="Texture2D" uid="uid://c6qa1yjqlrjuq" path="res://Images/Player/Knight.png" id="30_y0iwr"]
@@ -54,7 +54,7 @@
 [ext_resource type="TileSet" uid="uid://b26nfwgm3ttqw" path="res://Tileset/Sludge.tres" id="50_1mkwg"]
 [ext_resource type="PackedScene" uid="uid://cys6fkwqr1a2a" path="res://Scenes/LevelObjects/CrumbingPlatforms/crumbling_platform_tree.tscn" id="51_g3otk"]
 [ext_resource type="Texture2D" uid="uid://ckh0tvohv2lvc" path="res://Images/sindri/crumblingPlatformTree.png" id="52_vdwht"]
-[ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform.tscn" id="53_pjnm4"]
+[ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://CustomLevels/CustomLevelObjects/3_crumbling_platform.tscn" id="53_pjnm4"]
 
 [sub_resource type="GDScript" id="GDScript_8hrv3"]
 script/source = "extends Node2D

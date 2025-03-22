@@ -5,12 +5,16 @@ extends Control
 
 @onready var full_screen_check_box = %FullScreenCheckBox
 @onready var v_sync_check_box = %VSyncCheckBox
+@onready var timer_check_box = %TimerCheckBox
 @onready var screenshake_check_box = %ScreenshakeCheckBox
 @onready var fps_slider = %FpsSlider
 
 
 
 var saved_fps : int = 144
+
+signal changed_speedrun_timer_visibility_1
+
 
 func _ready():
 	UpdateSettingsVisuals()
@@ -45,7 +49,13 @@ func _on_fps_slider_value_changed(value): #Updates the FPS number visualy
 func UpdateSettingsVisuals():
 	full_screen_check_box.button_pressed = OptionsManager.fullscreen
 	v_sync_check_box.button_pressed = OptionsManager.v_sync
+	timer_check_box.button_pressed = OptionsManager.speedrun_timer
 	screenshake_check_box.button_pressed = OptionsManager.screenshake
 	fps_slider.value = OptionsManager.fps
 	fps_slider.actual_value = OptionsManager.fps
 	fps_label.text = str("FPS: ", OptionsManager.fps)
+
+
+func _on_timer_check_box_toggled(toggled_on):
+	OptionsManager.speedrun_timer = toggled_on
+	changed_speedrun_timer_visibility_1.emit()

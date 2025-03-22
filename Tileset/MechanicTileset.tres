@@ -1,14 +1,230 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://w4f1o27hp8ym"]
+[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://w4f1o27hp8ym"]
 
-[ext_resource type="PackedScene" uid="uid://ds533p8ork6c6" path="res://Scenes/LevelObjects/swing_bubble.tscn" id="1_uwqln"]
-[ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform.tscn" id="2_k7abo"]
+[ext_resource type="PackedScene" uid="uid://ds533p8ork6c6" path="res://CustomLevels/CustomLevelObjects/swing_bubble.tscn" id="1_uwqln"]
+[ext_resource type="PackedScene" uid="uid://dgbfw60xyyorc" path="res://CustomLevels/CustomLevelObjects/3_crumbling_platform.tscn" id="2_k7abo"]
 [ext_resource type="PackedScene" uid="uid://cgnhpcuoa48lc" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform_left.tscn" id="3_2pcu3"]
 [ext_resource type="PackedScene" uid="uid://drruspcai2037" path="res://Scenes/LevelObjects/CrumbingPlatforms/3_crumbling_platform_right.tscn" id="4_f0k8h"]
-[ext_resource type="PackedScene" uid="uid://c76dfq7b3uymw" path="res://Scenes/LevelObjects/accelerator.tscn" id="5_gqim8"]
+[ext_resource type="PackedScene" uid="uid://c76dfq7b3uymw" path="res://CustomLevels/CustomLevelObjects/accelerator.tscn" id="5_gqim8"]
+[ext_resource type="Script" path="res://Scripts/GameMechanicScripts/MovingSpikes.gd" id="7_iyw6i"]
+[ext_resource type="Texture2D" uid="uid://dro8s4ra4nit2" path="res://Images/Tilesets/SpikesTemp.png" id="8_lvaoj"]
+[ext_resource type="PackedScene" uid="uid://cx6qc8yr7n1xv" path="res://Scenes/CustomNodes/sword_collision_handler.tscn" id="9_lpxy6"]
+[ext_resource type="PackedScene" uid="uid://cqaft1ueqbrun" path="res://Scenes/Particles/MetalObjectSparks.tscn" id="10_so8o2"]
+[ext_resource type="AudioStream" uid="uid://bb7byvoywcveg" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/sword terrain temp.mp3" id="11_rp7gx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6ejj"]
+size = Vector2(16, 20)
+
+[sub_resource type="Animation" id="Animation_vt37r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordCollisionHandler:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordCollisionShape:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2.38419e-07, -9.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpikesAnimatedSprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpikesAnimatedSprite:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Extend"]
+}
+
+[sub_resource type="Animation" id="Animation_ex4yr"]
+resource_name = "SpikesIn"
+length = 0.25
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpikesAnimatedSprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Retract", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordCollisionHandler:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 3.5), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordCollisionShape:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 3.5), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -33), Vector2(-2.38419e-07, -9.5)]
+}
+
+[sub_resource type="Animation" id="Animation_8o8g1"]
+resource_name = "SpikesOut"
+length = 0.25
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpikesAnimatedSprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Extend", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordCollisionHandler:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 3.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordCollisionShape:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 3.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2.38419e-07, -9.5), Vector2(0, -33)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_te7wd"]
+_data = {
+"RESET": SubResource("Animation_vt37r"),
+"SpikesIn": SubResource("Animation_ex4yr"),
+"SpikesOut": SubResource("Animation_8o8g1")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_q01ux"]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(1073741834, 1073741833, 38, 37, 2, 0, 0, 1073741836, 1073741835, 40, 39, 2, 0, 0),
+"editable_instances": [NodePath("SwordCollisionHandler")],
+"names": PackedStringArray("MovingSpikes", "StaticBody2D", "position", "rotation", "collision_layer", "collision_mask", "script", "CollisionPolygon2D", "CollisionPolygon2D", "polygon", "Sprite2D", "Sprite2D", "position", "scale", "texture", "hframes", "frame", "SwordCollisionHandler", "hit_particles", "shake_camera_when_hit", "hit_sounds", "SwordCollisionShape", "shape", "SpikeMovingAnimationPlayer", "AnimationPlayer", "libraries", "Sounds", "Node2D", "Hit", "Node2D", "AudioStreamPlayer", "AudioStreamPlayer", "stream", "volume_db", "SpikeMoveTimer", "Timer", "autostart", "_on_animation_player_animation_finished", "animation_finished", "_on_spike_move_timer_timeout", "timeout"),
+"node_count": 10,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("./SwordCollisionHandler"), NodePath("."), NodePath("."), NodePath("./Sounds"), NodePath("./Sounds/Hit"), NodePath("."), NodePath("."), NodePath("SpikeMovingAnimationPlayer"), NodePath("."), NodePath("SpikeMoveTimer")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 0, 1073741824, 0, 8, 7, -1, 1, 9, 5, 0, 1073741825, 0, 11, 10, -1, 5, 12, 6, 13, 7, 14, 8, 15, 9, 16, 10, 0, 1073741826, 0, 2147483647, 17, 11, 3, 18, 12, 19, 13, 1073741844, 14, 0, 1073741827, -1, 2147483647, 262165, -1, 1, 22, 15, 0, 1073741828, 0, 24, 23, -1, 1, 25, 16, 0, 1073741829, 0, 27, 26, -1, 0, 0, 1073741830, 0, 29, 28, -1, 0, 0, 1073741831, 0, 31, 30, -1, 2, 32, 17, 33, 18, 0, 1073741832, 0, 35, 34, -1, 1, 36, 19, 0),
+"variants": [Vector2(0, 4), 3.14159, 16, 0, ExtResource("7_iyw6i"), PackedVector2Array(-8, 10, 8, 10, 5, -9, -6, -9), Vector2(0, -14), Vector2(1.33333, 4), ExtResource("8_lvaoj"), 2, 1, ExtResource("9_lpxy6"), ExtResource("10_so8o2"), true, NodePath("../Sounds/Hit"), SubResource("RectangleShape2D_s6ejj"), {
+"": SubResource("AnimationLibrary_te7wd")
+}, ExtResource("11_rp7gx"), 13.0, true],
+"version": 3
+}
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3nqbm"]
 scenes/1/scene = ExtResource("1_uwqln")
 scenes/2/scene = ExtResource("5_gqim8")
+scenes/4/scene = SubResource("PackedScene_q01ux")
 scenes/10/scene = ExtResource("2_k7abo")
 scenes/11/scene = ExtResource("3_2pcu3")
 scenes/12/scene = ExtResource("4_f0k8h")

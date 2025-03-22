@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://6weowk484b75"]
+
+[ext_resource type="Script" path="res://Scripts/UI/LevelSelectTemplate.gd" id="1_nxojl"]
+[ext_resource type="PackedScene" uid="uid://jgp2mbi37d6g" path="res://Scenes/TestLevels/test_level_1.tscn" id="2_gusdg"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="2_ymxsk"]
+[ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="3_45xce"]
+[ext_resource type="Texture2D" uid="uid://cds8be5c51y1h" path="res://Images/Crayon/Misc/SjumpCrayonConceptLevel.png" id="3_j5yim"]
+[ext_resource type="Texture2D" uid="uid://cvy8i40elt7ki" path="res://Images/Player/afroKnight.png" id="4_88ayi"]
+
+[node name="LevelTemplate" type="HBoxContainer"]
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("1_nxojl")
+level = ExtResource("2_gusdg")
+level_preview_image = ExtResource("3_j5yim")
+
+[node name="MarginContainerL" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelNameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ymxsk")
+theme_override_font_sizes/font_size = 32
+text = "Sexy Level"
+
+[node name="AuthorNameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_45xce")
+theme_override_font_sizes/font_size = 16
+text = "By: John"
+
+[node name="ImagePreview" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("4_88ayi")
+expand_mode = 3
+
+[node name="MarginContainerR2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ymxsk")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="MarginContainerR" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ymxsk")
+theme_override_font_sizes/font_size = 16
+text = " 00:00:00:000"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

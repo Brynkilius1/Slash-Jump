@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="5_44k85"]
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="6_k8eyw"]
 [ext_resource type="PackedScene" uid="uid://bkijsc4bbmruy" path="res://Scenes/BaseScenes/base_tile_map.tscn" id="7_afcl6"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="8_eixls"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="8_eixls"]
 [ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="8_mv7l3"]
 [ext_resource type="PackedScene" uid="uid://ds0qp5p67r0e8" path="res://Scenes/LevelObjects/no_grav_block.tscn" id="9_n8tq8"]
 [ext_resource type="TileSet" uid="uid://w4f1o27hp8ym" path="res://Tileset/MechanicTileset.tres" id="11_3ao1l"]

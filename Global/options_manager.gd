@@ -11,6 +11,7 @@ var ambience_bus_index = AudioServer.get_bus_index("Ambience")
 #Video:
 var fullscreen : bool = false: set = SetFullscreen
 var v_sync : bool = false: set = SetVSync
+var speedrun_timer : bool = false
 var screenshake : bool = true
 var fps : int = 60: set = SetFPS
 #region Video Settings set calls (it updates the actual settings when you change the variable)
@@ -81,9 +82,9 @@ func UpdateVolume(volume_value, bus_index):
 var inverted_controls : bool = false: set = SetInvertedControls
 var controller_deadzone : float = 0.3: set = SetControllerDeadzone
 var rumble_enabled : bool = true
-var big_swing_button : InputEvent = InputMap.action_get_events("BigSwing")[0]: set = SetBigSwingButton
+var big_swing_button : InputEvent = InputMap.action_get_events("BigSwing")[1]: set = SetBigSwingButton
 var big_swing_input_type : String = "InputEventKey": set = SetBigSwingType
-var small_swing_button : InputEvent = InputMap.action_get_events("SmallSwing")[0]: set = SetSmallSwingButton
+var small_swing_button : InputEvent = InputMap.action_get_events("SmallSwing")[1]: set = SetSmallSwingButton
 var small_swing_input_type : String = "InputEventKey": set = SetSmallSwingType
 
 #region Video Settings set calls (it updates the actual settings when you change the variable)

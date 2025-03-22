@@ -40,6 +40,7 @@ script/source = "extends Control
 @onready var v_sync_check_box = %VSyncCheckBox
 @onready var screenshake_check_box = %ScreenshakeCheckBox
 @onready var fps_slider = %FpsSlider
+@onready var timer_check_box = %TimerCheckBox
 @onready var audio_master = $\"../../../../../AudioMaster\"
 
 const MAIN_MENU_SELECT_SWORD = preload(\"res://Images/UI/MainMenu/MainMenuSelectSword.png\")
@@ -55,6 +56,8 @@ func _on_full_screen_check_box_focus_entered():
 func _on_v_sync_check_box_focus_entered():
 	TweenSelectionSwordPos(v_sync_check_box,  41)
 
+func _on_timer_check_box_focus_entered():
+	TweenSelectionSwordPos(timer_check_box,  41)
 
 func _on_screenshake_check_box_focus_entered():
 	TweenSelectionSwordPos(screenshake_check_box,  41)
@@ -71,6 +74,9 @@ func _on_fps_slider_focus_exited():
 func _on_settings_back_button_focus_entered():
 	if settings.current_settings_category == 0:
 		TweenSelectionSwordPos(164,  236)
+
+
+
 
 
 
@@ -117,6 +123,8 @@ func _on_full_screen_check_box_pressed():
 func _on_v_sync_check_box_pressed():
 	audio_master.PlayRandomSound(\"MenuClick\")
 
+func _on_timer_check_box_pressed():
+	audio_master.PlayRandomSound(\"MenuClick\")
 
 func _on_screenshake_check_box_pressed():
 	audio_master.PlayRandomSound(\"MenuClick\")
@@ -124,6 +132,15 @@ func _on_screenshake_check_box_pressed():
 
 func _on_fps_slider_drag_started():
 	audio_master.PlayRandomSound(\"MenuClick\")
+
+
+
+
+
+
+
+
+
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sr0tm"]
@@ -381,10 +398,10 @@ script = SubResource("GDScript_wna22")
 
 [node name="SwordIndicator" type="TextureRect" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 30.0
-offset_right = 26.0
-offset_bottom = 39.0
+offset_left = 3.0
+offset_top = 7.0
+offset_right = 27.0
+offset_bottom = 16.0
 texture = ExtResource("4_3vgss")
 stretch_mode = 2
 
@@ -412,7 +429,7 @@ text = "FullScreen"
 [node name="VSyncCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ScreenshakeCheckBox")
+focus_neighbor_bottom = NodePath("../TimerCheckBox")
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
 theme_override_icons/checked = ExtResource("4_xrmkj")
@@ -420,9 +437,22 @@ theme_override_icons/unchecked = ExtResource("5_t52an")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sr0tm")
 text = "VSync"
 
+[node name="TimerCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../VSyncCheckBox")
+focus_neighbor_bottom = NodePath("../ScreenshakeCheckBox")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("1_hci0q")
+theme_override_icons/checked = ExtResource("4_xrmkj")
+theme_override_icons/unchecked = ExtResource("5_t52an")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sr0tm")
+text = "Speedrun Timer"
+
 [node name="ScreenshakeCheckBox" type="CheckBox" parent="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../TimerCheckBox")
 focus_neighbor_bottom = NodePath("../MarginContainer/FPSContainer/FpsSlider")
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("1_hci0q")
@@ -860,6 +890,9 @@ bus = &"SoundEffects"
 [connection signal="focus_entered" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/VSyncCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_v_sync_check_box_focus_entered"]
 [connection signal="pressed" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/VSyncCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_v_sync_check_box_pressed"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/VSyncCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings" method="_on_v_sync_check_box_toggled"]
+[connection signal="focus_entered" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/TimerCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_timer_check_box_focus_entered"]
+[connection signal="pressed" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/TimerCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_timer_check_box_pressed"]
+[connection signal="toggled" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/TimerCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings" method="_on_timer_check_box_toggled"]
 [connection signal="focus_entered" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/ScreenshakeCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_screenshake_check_box_focus_entered"]
 [connection signal="pressed" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/ScreenshakeCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/SwordIndicatorMover" method="_on_screenshake_check_box_pressed"]
 [connection signal="toggled" from="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings/VBoxContainer/ScreenshakeCheckBox" to="SettingsHolder/VBoxContainer/CategoryMarginContainer/VideoSettings" method="_on_screenshake_check_box_toggled"]

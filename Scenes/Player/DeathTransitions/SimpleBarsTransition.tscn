@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmgub35621wab"]
+[gd_scene load_steps=8 format=3 uid="uid://bmgub35621wab"]
 
 [ext_resource type="Script" path="res://Scripts/ScreenTransitionScript.gd" id="1_f6u8p"]
 [ext_resource type="Texture2D" uid="uid://dqttvu1md2yy" path="res://Images/Transitions/BlackTransitionBar.png" id="1_qeube"]
+[ext_resource type="Material" uid="uid://bl3hegg5qmqdn" path="res://Scenes/Player/DeathTransitions/TransitionShader.tres" id="3_flmlj"]
 
 [sub_resource type="Animation" id="Animation_uxutg"]
 resource_name = "CoverScreen"
@@ -10,7 +11,7 @@ step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/BlackTransitionBar:position")
+tracks/0/path = NodePath("BarHolder/BlackTransitionBar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
+tracks/1/path = NodePath("BarHolder/BlackTransitionBar2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +35,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
+tracks/2/path = NodePath("BarHolder/BlackTransitionBar3:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +47,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
+tracks/3/path = NodePath("BarHolder/BlackTransitionBar4:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -58,7 +59,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
+tracks/4/path = NodePath("BarHolder/BlackTransitionBar5:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -70,10 +71,82 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
+tracks/5/path = NodePath("BarHolder/BlackTransitionBar6:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0.125, 0.3),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 132), Vector2(128, 132)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BlackBarHolder/BlackTransitionBar:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.175),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 12), Vector2(128, 12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackBarHolder/BlackTransitionBar2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.025, 0.2),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 36), Vector2(128, 36)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackBarHolder/BlackTransitionBar3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.05, 0.225),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 60), Vector2(128, 60)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BlackBarHolder/BlackTransitionBar4:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.075, 0.25),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 84), Vector2(128, 84)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BlackBarHolder/BlackTransitionBar5:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.1, 0.275),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(384, 108), Vector2(128, 108)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BlackBarHolder/BlackTransitionBar6:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0.125, 0.3),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
@@ -87,7 +160,7 @@ step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/BlackTransitionBar:position")
+tracks/0/path = NodePath("BarHolder/BlackTransitionBar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -99,7 +172,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
+tracks/1/path = NodePath("BarHolder/BlackTransitionBar2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -111,7 +184,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
+tracks/2/path = NodePath("BarHolder/BlackTransitionBar3:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -123,7 +196,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
+tracks/3/path = NodePath("BarHolder/BlackTransitionBar4:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -135,7 +208,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
+tracks/4/path = NodePath("BarHolder/BlackTransitionBar5:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -147,10 +220,82 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
+tracks/5/path = NodePath("BarHolder/BlackTransitionBar6:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0.125, 0.3),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 132), Vector2(-128, 132)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BlackBarHolder/BlackTransitionBar:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.175),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 12), Vector2(-128, 12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackBarHolder/BlackTransitionBar2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.025, 0.2),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 36), Vector2(-128, 36)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackBarHolder/BlackTransitionBar3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.05, 0.225),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 60), Vector2(-128, 60)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BlackBarHolder/BlackTransitionBar4:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.075, 0.25),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 84), Vector2(-128, 84)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BlackBarHolder/BlackTransitionBar5:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.1, 0.275),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [Vector2(128, 108), Vector2(-128, 108)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BlackBarHolder/BlackTransitionBar6:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0.125, 0.3),
 "transitions": PackedFloat32Array(2.5, 1),
 "update": 0,
@@ -162,7 +307,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/BlackTransitionBar:position")
+tracks/0/path = NodePath("BarHolder/BlackTransitionBar:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -174,7 +319,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/BlackTransitionBar2:position")
+tracks/1/path = NodePath("BarHolder/BlackTransitionBar2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -186,7 +331,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/BlackTransitionBar3:position")
+tracks/2/path = NodePath("BarHolder/BlackTransitionBar3:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -198,7 +343,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/BlackTransitionBar4:position")
+tracks/3/path = NodePath("BarHolder/BlackTransitionBar4:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -210,7 +355,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Control/BlackTransitionBar5:position")
+tracks/4/path = NodePath("BarHolder/BlackTransitionBar5:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -222,10 +367,82 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Control/BlackTransitionBar6:position")
+tracks/5/path = NodePath("BarHolder/BlackTransitionBar6:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 132)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BlackBarHolder/BlackTransitionBar:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackBarHolder/BlackTransitionBar2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 36)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackBarHolder/BlackTransitionBar3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 60)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BlackBarHolder/BlackTransitionBar4:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 84)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BlackBarHolder/BlackTransitionBar5:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 108)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BlackBarHolder/BlackTransitionBar6:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -255,7 +472,7 @@ libraries = {
 "": SubResource("AnimationLibrary_jjwfg")
 }
 
-[node name="Control" type="Control" parent="."]
+[node name="BarHolder" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -267,27 +484,74 @@ grow_vertical = 2
 scale = Vector2(1.25, 1.25)
 mouse_filter = 2
 
-[node name="BlackTransitionBar" type="Sprite2D" parent="Control"]
+[node name="BlackTransitionBar" type="Sprite2D" parent="BarHolder"]
 position = Vector2(128, 12)
 texture = ExtResource("1_qeube")
 
-[node name="BlackTransitionBar2" type="Sprite2D" parent="Control"]
+[node name="BlackTransitionBar2" type="Sprite2D" parent="BarHolder"]
 position = Vector2(128, 36)
 texture = ExtResource("1_qeube")
 
-[node name="BlackTransitionBar3" type="Sprite2D" parent="Control"]
+[node name="BlackTransitionBar3" type="Sprite2D" parent="BarHolder"]
 position = Vector2(128, 60)
 texture = ExtResource("1_qeube")
 
-[node name="BlackTransitionBar4" type="Sprite2D" parent="Control"]
+[node name="BlackTransitionBar4" type="Sprite2D" parent="BarHolder"]
 position = Vector2(128, 84)
 texture = ExtResource("1_qeube")
 
-[node name="BlackTransitionBar5" type="Sprite2D" parent="Control"]
+[node name="BlackTransitionBar5" type="Sprite2D" parent="BarHolder"]
 position = Vector2(128, 108)
 texture = ExtResource("1_qeube")
 
-[node name="BlackTransitionBar6" type="Sprite2D" parent="Control"]
+[node name="BlackTransitionBar6" type="Sprite2D" parent="BarHolder"]
+position = Vector2(128, 132)
+texture = ExtResource("1_qeube")
+
+[node name="ShaderColorRect" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("3_flmlj")
+layout_mode = 0
+offset_left = -6.0
+offset_top = -4.0
+offset_right = 330.0
+offset_bottom = 194.0
+mouse_filter = 2
+
+[node name="BlackBarHolder" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -64.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+mouse_filter = 2
+
+[node name="BlackTransitionBar" type="Sprite2D" parent="BlackBarHolder"]
+position = Vector2(128, 12)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar2" type="Sprite2D" parent="BlackBarHolder"]
+position = Vector2(128, 36)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar3" type="Sprite2D" parent="BlackBarHolder"]
+position = Vector2(128, 60)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar4" type="Sprite2D" parent="BlackBarHolder"]
+position = Vector2(128, 84)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar5" type="Sprite2D" parent="BlackBarHolder"]
+position = Vector2(128, 108)
+texture = ExtResource("1_qeube")
+
+[node name="BlackTransitionBar6" type="Sprite2D" parent="BlackBarHolder"]
 position = Vector2(128, 132)
 texture = ExtResource("1_qeube")
 

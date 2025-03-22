@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerSpawner.gd" id="2_ylsfi"]
 [ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="3_6rmfx"]
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="4_oskhn"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="5_eqicy"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="5_eqicy"]
 [ext_resource type="PackedScene" uid="uid://bkijsc4bbmruy" path="res://Scenes/BaseScenes/base_tile_map.tscn" id="6_a1pgg"]
 [ext_resource type="Shader" path="res://Shaders/TilemapSway.gdshader" id="7_3ok68"]
 [ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="7_qrhis"]

@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="6_tpke4"]
 [ext_resource type="PackedScene" uid="uid://ds0qp5p67r0e8" path="res://Scenes/LevelObjects/no_grav_block.tscn" id="7_my55m"]
 [ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="8_4qxo2"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="8_js3su"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="8_js3su"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="9_wpqi1"]
 [ext_resource type="AudioStream" uid="uid://dveic13cofv33" path="res://Sounds/SoundEffects/Player/Sword/SwordHit/breakable wall hit 1.mp3" id="10_tn3d7"]
 [ext_resource type="TileSet" uid="uid://w4f1o27hp8ym" path="res://Tileset/MechanicTileset.tres" id="11_64nci"]

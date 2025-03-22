@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://xb3okye4mbxj" path="res://Images/Backrounds/ForestBackground.png" id="3_eeh12"]
 [ext_resource type="Script" path="res://Scripts/SwordCollisionScripts/GrassObjects.gd" id="4_i4oom"]
 [ext_resource type="TileSet" uid="uid://bx1fja2llh2g4" path="res://Tileset/Grass.tres" id="4_pkpti"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="5_pw0pj"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="5_pw0pj"]
 
 [sub_resource type="TileSet" id="TileSet_6gtut"]
 physics_layer_0/collision_layer = 0

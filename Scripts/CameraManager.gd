@@ -52,18 +52,20 @@ func UpdateQueuedPoints():
 
 
 func ChangeScreen(screen_exited):
-	if GlobalObjects.player.has_control == true: #makes sure the camera doesnt chaneg screens when player is dead
-		if next_screen != screen_exited:
-			current_screen = next_screen
+	#if GlobalObjects.player.has_control == true: #makes sure the camera doesnt chaneg screens when player is dead
+	if next_screen != screen_exited:
+		current_screen = next_screen
 			
 			
-			ChangeDarknessLevel(next_screen_darkness)
-			ChooseRespawnPoint()
-			MoveScreen()
+		ChangeDarknessLevel(next_screen_darkness)
+		ChooseRespawnPoint()
+		MoveScreen()
 			
 
 
 func ChooseRespawnPoint():
+	print("change respawn points")
+	print("current screen: ", current_screen)
 	respawn_points = current_screen.get_node("RespawnPoints")
 	
 	var closest_distance : float = 1000.0
@@ -76,8 +78,12 @@ func ChooseRespawnPoint():
 			closest_distance = temp_distance
 			closest_point = i.global_position
 	
-	
-	GlobalVariables.respawn_point = closest_point
+	UpdateSpawnPoint(closest_point)
+
+
+func UpdateSpawnPoint(pos):
+	GlobalVariables.respawn_point = pos
+	DebugMaster.UpdateSpawnLocation(pos)
 
 
 func MoveScreen():

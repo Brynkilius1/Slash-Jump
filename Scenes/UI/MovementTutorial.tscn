@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfj0bc11e8twg"]
+[gd_scene load_steps=19 format=3 uid="uid://dfj0bc11e8twg"]
 
 [ext_resource type="Texture2D" uid="uid://cgv8i0d1y6lrs" path="res://Images/UI/MovementTutorial/TutorialPopupMenu.png" id="1_4ofwk"]
 [ext_resource type="Texture2D" uid="uid://clgiwotahgio" path="res://Images/UI/MovementTutorial/PlayerSwinging.png" id="2_3n6qa"]
+[ext_resource type="Texture2D" uid="uid://dpax08elbv2u1" path="res://Images/Particles/2x2_1x1White.png" id="2_e2k1g"]
 [ext_resource type="Texture2D" uid="uid://myhrtlchkuik" path="res://Images/UI/MovementTutorial/PlayerSpinning.png" id="3_l6f60"]
 [ext_resource type="Texture2D" uid="uid://lxf7j414ot8c" path="res://Images/UI/MovementTutorial/MoveStickIcon.png" id="4_8kmdk"]
 [ext_resource type="Texture2D" uid="uid://dltgf20cnwcty" path="res://Images/UI/RebindMenu/ButtonImages/FButtons_Right.png" id="5_4yjrm"]
@@ -83,6 +84,29 @@ func CheckBumpers(axis_index):
 
 "
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dyy2q"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_q4fn2"]
+offsets = PackedFloat32Array(0, 0.176871, 0.727891, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2m3yc"]
+gradient = SubResource("Gradient_q4fn2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lnyll"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 22.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_2m3yc")
+hue_variation_min = -0.22
+anim_offset_max = 1.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ircm2"]
 atlas = ExtResource("3_l6f60")
 region = Rect2(0, 0, 22, 17)
@@ -146,6 +170,13 @@ script = SubResource("GDScript_gwkpm")
 position = Vector2(83, 42)
 texture = ExtResource("1_4ofwk")
 centered = false
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.701961)
+material = SubResource("CanvasItemMaterial_dyy2q")
+position = Vector2(195, 70)
+process_material = SubResource("ParticleProcessMaterial_lnyll")
+texture = ExtResource("2_e2k1g")
 
 [node name="PlayerSwinging" type="Sprite2D" parent="."]
 position = Vector2(149, 56)

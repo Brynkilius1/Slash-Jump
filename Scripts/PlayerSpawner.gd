@@ -22,6 +22,8 @@ func _ready():
 func FirstRespawnCheck():
 	if GlobalVariables.first_respawn == true:
 		GlobalVariables.respawn_point = player_spawn_point.global_position
+		await get_tree().process_frame
+		await get_tree().process_frame
 		GlobalVariables.first_respawn = false
 
 func PlayerDied():

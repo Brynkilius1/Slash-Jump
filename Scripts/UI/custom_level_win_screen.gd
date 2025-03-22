@@ -1,0 +1,27 @@
+extends Control
+
+@onready var audio_master = $AudioMaster
+
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
+func _on_restart_game_pressed():
+	StatsHolder.run_count += 1
+	SaverAndLoader.save_data(SaverAndLoader.SAVE_DIR + SaverAndLoader.SAVE_FILE_NAME)
+	audio_master.PlayRandomSound("MenuClick")
+	GlobalVariables.ResetGlobalVariables()
+	LoadingSceneTransistioner.ChangeSceneWithLoadingScreen(get_tree().current_scene.scene_file_path)
+	MusicMaster.PlaySong("res://Sounds/Ambience/Silence.wav")
+	
+	
+func _on_back_to_menu_pressed():
+	SaverAndLoader.save_data(SaverAndLoader.SAVE_DIR + SaverAndLoader.SAVE_FILE_NAME)
+	audio_master.PlayRandomSound("MenuClick")
+	GlobalVariables.ResetGlobalVariables()
+	LoadingSceneTransistioner.ChangeSceneWithLoadingScreen("res://Scenes/UI/GameStart/main_menu.tscn")
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+
+
+

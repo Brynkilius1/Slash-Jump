@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bykv1k5xuhc0n" path="res://Images/Decorations/TutorialArea/Castle.png" id="7_rjfwk"]
 [ext_resource type="PackedScene" uid="uid://bkijsc4bbmruy" path="res://Scenes/BaseScenes/base_tile_map.tscn" id="8_cmvnx"]
 [ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="9_a0cjw"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="13_i1l53"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="13_i1l53"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d1mm"]
 size = Vector2(320, 180)

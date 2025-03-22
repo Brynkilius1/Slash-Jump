@@ -875,6 +875,7 @@ animation = &"Swing"
 centered = false
 
 [node name="SwordCollision" type="Area2D" parent="SwordPivot/Extended/Sword"]
+visible = false
 collision_layer = 64
 collision_mask = 32
 
@@ -900,6 +901,7 @@ frame_progress = 1.0
 centered = false
 
 [node name="KnifeCollision" type="Area2D" parent="SwordPivot/Extended/Knife"]
+visible = false
 collision_layer = 64
 collision_mask = 32
 
@@ -1199,6 +1201,7 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_klsuo")
 
 [node name="Raycasts" type="Node2D" parent="."]
+visible = false
 
 [node name="WallClimbPrevention" type="Node2D" parent="Raycasts"]
 visible = false

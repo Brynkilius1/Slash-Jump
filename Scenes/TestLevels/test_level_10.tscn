@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Managers/TransitionManager.gd" id="3_pqx1i"]
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="4_fkluq"]
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="5_0vtu4"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://Scenes/LevelObjects/screen.tscn" id="6_3cyds"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="6_3cyds"]
 [ext_resource type="Texture2D" uid="uid://ctj823bb0n3yb" path="res://Images/VisualTest/LeafParticles.png" id="7_bxy21"]
 [ext_resource type="Texture2D" uid="uid://wp75cix0b88m" path="res://Images/VisualTest/AutumnBackround/AutumnBackgroundLayer5.png" id="7_xc5c7"]
 [ext_resource type="Texture2D" uid="uid://b41kbwadh2628" path="res://Images/VisualTest/AutumnBackround/AutumnBackgroundLayer4.png" id="8_xfisl"]
