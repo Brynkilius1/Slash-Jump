@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+@export var next_level : String
 @export var animations : AnimatedSprite2D
 @export var particles : ParticleGroup
 var original_position
@@ -43,6 +44,8 @@ func TweenImplosion():
 
 func SpawnLevelEndScreen():
 	var level_end = CUSTOM_LEVEL_WIN_SCREEN.instantiate()
+	if next_level:
+		level_end.next_level_path = next_level
 	get_tree().current_scene.add_child(level_end)
 	
 

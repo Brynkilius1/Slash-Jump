@@ -16,17 +16,16 @@ shader = ExtResource("1_06qy6")
 shader_parameter/lod = 0.6
 
 [sub_resource type="GDScript" id="GDScript_3m5cx"]
-script/source = "extends HBoxContainer
+script/source = "extends VBoxContainer
 
 @onready var audio_master = $\"../../../AudioMaster\"
 @onready var selection_swords = %SelectionSwords
 
 @onready var restart_game = $RestartGame
 @onready var back_to_menu = $BackToMenu
+@onready var next_level = $NextLevel
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	restart_game.grab_focus()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,12 +33,16 @@ func _process(delta):
 	pass
 
 
+func _on_next_level_focus_entered():
+	TweenSelectionSwordPos(next_level, 18)
+
+
 func _on_restart_game_focus_entered():
 	TweenSelectionSwordPos(restart_game, 18)
 
 
 func _on_back_to_menu_focus_entered():
-	TweenSelectionSwordPos(restart_game, 23)
+	TweenSelectionSwordPos(back_to_menu, 23)
 
 
 func TweenSelectionSwordPos(button, width):
@@ -51,12 +54,15 @@ func TweenSelectionSwordPos(button, width):
 func TweenSelectionSwordPosX(button):
 	
 	var sword_tween = create_tween()
-	sword_tween.tween_property(selection_swords, \"global_position:x\",  button.global_position.x + 3, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	sword_tween.tween_property(selection_swords, \"global_position:y\",  button.global_position.y, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 
 
 func TweenSelectionSwordPosY(width):
 	var sword_tween = create_tween()
 	sword_tween.tween_property(selection_swords, \"width\",  width, 0.04).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+
+
+
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o7hes"]
@@ -95,18 +101,31 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_4dnbs")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenuBackround"]
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenuBackround"]
 layout_mode = 0
-offset_left = 108.0
-offset_top = 104.0
-offset_right = 218.0
-offset_bottom = 144.0
-theme_override_constants/separation = 28
+offset_left = 87.0
+offset_top = 64.0
+offset_right = 233.0
+offset_bottom = 154.0
+theme_override_constants/separation = -6
 alignment = 1
 script = SubResource("GDScript_3m5cx")
 
+[node name="NextLevel" type="Button" parent="CanvasLayer/PauseMenuBackround/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../BackToMenu")
+focus_neighbor_bottom = NodePath("../RestartGame")
+theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_xlx1s")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7hes")
+text = "Next
+ Level"
+flat = true
+
 [node name="RestartGame" type="Button" parent="CanvasLayer/PauseMenuBackround/HBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../NextLevel")
 focus_neighbor_bottom = NodePath("../BackToMenu")
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_xlx1s")
@@ -119,6 +138,7 @@ flat = true
 [node name="BackToMenu" type="Button" parent="CanvasLayer/PauseMenuBackround/HBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../RestartGame")
+focus_neighbor_bottom = NodePath("../NextLevel")
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
 theme_override_fonts/font = ExtResource("3_xlx1s")
 theme_override_font_sizes/font_size = 16
@@ -133,10 +153,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 76.0
-offset_top = 110.0
-offset_right = -100.0
-offset_bottom = -25.0
+offset_left = 110.0
+offset_top = 117.0
+offset_right = -66.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -187,7 +207,12 @@ stream = ExtResource("9_get2c")
 volume_db = -7.0
 bus = &"SoundEffects"
 
+[connection signal="focus_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/NextLevel" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_next_level_focus_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/NextLevel" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_next_level_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/PauseMenuBackround/HBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/RestartGame" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_restart_game_focus_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/RestartGame" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_restart_game_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenuBackround/HBoxContainer/RestartGame" to="." method="_on_restart_game_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/BackToMenu" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_back_to_menu_focus_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenuBackround/HBoxContainer/BackToMenu" to="CanvasLayer/PauseMenuBackround/HBoxContainer" method="_on_back_to_menu_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenuBackround/HBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
