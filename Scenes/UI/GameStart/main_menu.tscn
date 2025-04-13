@@ -1081,6 +1081,7 @@ script = ExtResource("21_46i84")
 layer = 100
 
 [node name="BarTransition" parent="MainMenu/DeathTransistionCanvasLayer" instance=ExtResource("17_pbjll")]
+visible = false
 
 [node name="AudioMaster" type="Node2D" parent="MainMenu" groups=["AudioMaster"]]
 script = ExtResource("26_eo2ys")

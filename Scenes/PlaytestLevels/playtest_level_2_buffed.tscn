@@ -1508,19 +1508,18 @@ position = Vector2(159, 5)
 
 [node name="FlowerDeco" parent="WorldNessecities/ScreenHolder/Screen" instance=ExtResource("24_g5s23")]
 position = Vector2(16, 17)
-flower_type = 11
+flower_type = 0
 
 [node name="FlowerDeco2" parent="WorldNessecities/ScreenHolder/Screen" instance=ExtResource("24_g5s23")]
 position = Vector2(23, 17)
-flower_type = 2
+flower_type = 0
 
 [node name="FlowerDeco3" parent="WorldNessecities/ScreenHolder/Screen" instance=ExtResource("24_g5s23")]
 position = Vector2(45, 17)
-flower_type = 6
 
 [node name="FlowerDeco4" parent="WorldNessecities/ScreenHolder/Screen" instance=ExtResource("24_g5s23")]
 position = Vector2(138, 17)
-flower_type = 11
+flower_type = 3
 
 [node name="Screen2" type="Area2D" parent="WorldNessecities/ScreenHolder"]
 position = Vector2(319, -40)
@@ -2123,18 +2122,19 @@ position = Vector2(137, -38)
 
 [node name="FlowerDeco" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(49, -18)
-flower_type = 3
+flower_type = 0
 
 [node name="FlowerDeco2" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(55, -18)
-flower_type = 10
+flower_type = 6
 
 [node name="FlowerDeco3" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(124, -18)
-flower_type = 5
+flower_type = 2
 
 [node name="FlowerDeco4" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(94, -18)
+flower_type = 3
 
 [node name="FlowerDeco5" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(169, -18)
@@ -2146,18 +2146,19 @@ flower_type = 4
 
 [node name="FlowerDeco7" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(-5, 66)
-flower_type = 0
+flower_type = 9
 
 [node name="FlowerDeco8" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(-13, 66)
-flower_type = 3
+flower_type = 1
 
 [node name="FlowerDeco10" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(102, -18)
+flower_type = 0
 
 [node name="FlowerDeco11" parent="WorldNessecities/ScreenHolder/Screen14" instance=ExtResource("24_g5s23")]
 position = Vector2(108, -18)
-flower_type = 0
+flower_type = 3
 
 [node name="Screen15" type="Area2D" parent="WorldNessecities/ScreenHolder"]
 position = Vector2(4186, -2118)
@@ -2432,58 +2433,58 @@ visibility_rect = Rect2(-379.217, -75.0072, 380.065, 183.658)
 
 [node name="FlowerDeco" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-78, 60)
-flower_type = 4
+flower_type = 11
 
 [node name="FlowerDeco2" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-69, 60)
-flower_type = 10
+flower_type = 8
 
 [node name="FlowerDeco3" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-44, 60)
-flower_type = 8
+flower_type = 11
 
 [node name="FlowerDeco15" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(39, 60)
-flower_type = 2
+flower_type = 8
 
 [node name="FlowerDeco16" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-4, 60)
+flower_type = 10
 
 [node name="FlowerDeco17" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-9, 60)
-flower_type = 0
+flower_type = 11
 
 [node name="FlowerDeco6" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(27, 60)
-flower_type = 10
+flower_type = 9
 
 [node name="FlowerDeco7" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-112, 60)
-flower_type = 2
 
 [node name="FlowerDeco8" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-105, 60)
-flower_type = 2
+flower_type = 1
 
 [node name="FlowerDeco9" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-98, 60)
-flower_type = 6
+flower_type = 4
 
 [node name="FlowerDeco10" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-73, 59)
-flower_type = 10
+flower_type = 3
 
 [node name="FlowerDeco11" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-130, 60)
-flower_type = 10
+flower_type = 11
 
 [node name="FlowerDeco12" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-150, 60)
-flower_type = 4
+flower_type = 8
 
 [node name="FlowerDeco13" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(-145, 60)
-flower_type = 6
+flower_type = 11
 
 [node name="FlowerDeco14" parent="WorldNessecities/ScreenHolder/Screen27/Decorations" instance=ExtResource("24_g5s23")]
 position = Vector2(104, 48)
@@ -2525,42 +2526,43 @@ visibility_rect = Rect2(-306.335, -124.358, 294.758, 246.634)
 
 [node name="FlowerDeco" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-89, -7)
-flower_type = 2
+flower_type = 5
 
 [node name="FlowerDeco19" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-149, -31)
-flower_type = 9
+flower_type = 11
 
 [node name="FlowerDeco2" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-98, -19)
-flower_type = 8
+flower_type = 10
 
 [node name="FlowerDeco7" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(13, -43)
-flower_type = 10
+flower_type = 9
 
 [node name="FlowerDeco8" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(19, -43)
-flower_type = 8
+flower_type = 0
 
 [node name="FlowerDeco20" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(33, -43)
-flower_type = 0
+flower_type = 6
 
 [node name="FlowerDeco9" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(47, -55)
-flower_type = 11
+flower_type = 2
 
 [node name="FlowerDeco10" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(56, -55)
-flower_type = 9
+flower_type = 8
 
 [node name="FlowerDeco11" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(95, -55)
+flower_type = 5
 
 [node name="FlowerDeco23" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(87, -55)
-flower_type = 10
+flower_type = 9
 
 [node name="FlowerDeco12" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(119, -55)
@@ -2568,31 +2570,29 @@ flower_type = 8
 
 [node name="FlowerDeco13" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(82, -55)
-flower_type = 11
 
 [node name="FlowerDeco14" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(41, 77)
-flower_type = 0
+flower_type = 2
 
 [node name="FlowerDeco15" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(47, 77)
-flower_type = 0
+flower_type = 11
 
 [node name="FlowerDeco16" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-68, 29)
-flower_type = 11
+flower_type = 2
 
 [node name="FlowerDeco17" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-62, 29)
-flower_type = 10
+flower_type = 9
 
 [node name="FlowerDeco3" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-112, -19)
-flower_type = 2
 
 [node name="FlowerDeco18" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-106, -19)
-flower_type = 4
+flower_type = 9
 
 [node name="FlowerDeco4" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-142, -31)
@@ -2600,18 +2600,18 @@ flower_type = 1
 
 [node name="FlowerDeco5" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-127, -19)
+flower_type = 10
 
 [node name="FlowerDeco21" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-122, -19)
-flower_type = 1
+flower_type = 6
 
 [node name="FlowerDeco22" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-83, -7)
-flower_type = 8
+flower_type = 10
 
 [node name="FlowerDeco6" parent="WorldNessecities/ScreenHolder/Screen29/Decorations2" instance=ExtResource("24_g5s23")]
 position = Vector2(-161, -31)
-flower_type = 3
 
 [node name="Screen30" type="Area2D" parent="WorldNessecities/ScreenHolder"]
 position = Vector2(-320, 11)
@@ -2637,11 +2637,11 @@ position = Vector2(159, 1)
 
 [node name="FlowerDeco" parent="WorldNessecities/ScreenHolder/Screen30" instance=ExtResource("24_g5s23")]
 position = Vector2(3, -35)
-flower_type = 11
+flower_type = 4
 
 [node name="FlowerDeco2" parent="WorldNessecities/ScreenHolder/Screen30" instance=ExtResource("24_g5s23")]
 position = Vector2(9, -35)
-flower_type = 4
+flower_type = 6
 
 [node name="Screen31" type="Area2D" parent="WorldNessecities/ScreenHolder"]
 position = Vector2(-320, -186)
@@ -3901,8 +3901,8 @@ scale = Vector2(1, 0.8)
 [connection signal="body_exited" from="WorldNessecities/ScreenHolder/Screen39" to="WorldNessecities/ScreenHolder/Screen39" method="_on_body_exited"]
 [connection signal="animation_finished" from="IntroCutscenePlayer/CutsceneAnimationPlayer" to="IntroCutscenePlayer" method="_on_cutscene_animation_player_animation_finished"]
 [connection signal="text_finished" from="IntroCutscenePlayer/IntroTextboxHandler" to="IntroCutscenePlayer" method="_on_intro_textbox_handler_text_finished"]
-[connection signal="animation_finished" from="OutroCutscenePlayer/OutroAnimationPlayer" to="OutroCutscenePlayer" method="_on_outro_animation_player_animation_finished"]
 [connection signal="animation_finished" from="OutroCutscenePlayer/OutroAnimationPlayer" to="OutroCutscenePlayer" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="OutroCutscenePlayer/OutroAnimationPlayer" to="OutroCutscenePlayer" method="_on_outro_animation_player_animation_finished"]
 [connection signal="text_finished" from="OutroCutscenePlayer/OutroTextboxHandler" to="OutroCutscenePlayer" method="_on_outro_textbox_handler_text_finished"]
 [connection signal="area_entered" from="OutroCutscenePlayer/CutsceneInitiationArea2D" to="OutroCutscenePlayer" method="_on_cutscene_initiation_area_2d_area_entered"]
 [connection signal="body_entered" from="OutroCutscenePlayer/CutsceneInitiationArea2D" to="OutroCutscenePlayer" method="_on_cutscene_initiation_area_2d_body_entered"]

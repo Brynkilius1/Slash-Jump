@@ -527,4 +527,3 @@ layer_3/tile_data = PackedInt32Array()
 [connection signal="body_exited" from="WorldNessecities/ScreenHolder/Screen2" to="WorldNessecities/ScreenHolder/Screen2" method="_on_body_exited"]
 [connection signal="body_entered" from="WorldNessecities/ScreenHolder/Screen3" to="WorldNessecities/ScreenHolder/Screen3" method="_on_body_entered"]
 [connection signal="body_exited" from="WorldNessecities/ScreenHolder/Screen3" to="WorldNessecities/ScreenHolder/Screen3" method="_on_body_exited"]
-[connection signal="body_entered" from="Tilemaps/MechanicTilemap/SwingBubble" to="Tilemaps/MechanicTilemap/SwingBubble" method="_on_body_entered"]
