@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=73 format=3 uid="uid://71udts077c2l"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
 [ext_resource type="Texture2D" uid="uid://bxpri51ixw1ti" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sky.png" id="1_skej4"]
@@ -531,8 +531,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2880.0
-offset_bottom = 1620.0
+offset_right = 2560.0
+offset_bottom = 1440.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
