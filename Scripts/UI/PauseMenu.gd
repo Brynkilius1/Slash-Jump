@@ -1,6 +1,6 @@
 extends Control
 
-var main_menu = preload("res://Scenes/UI/GameStart/main_menu.tscn")
+var main_menu = preload("res://Scenes/UI/GameStart/main_menu_1.tscn")
 var can_open_pause_menu = true
 @onready var pause_menu_backround = $PauseMenuBackround
 @onready var pause_menu_buttons = $PauseMenuBackround/PauseMenuButtons
@@ -94,7 +94,7 @@ func _on_back_to_menu_pressed():
 	audio_master.PlayRandomSound("MenuClick")
 	GlobalVariables.ResetGlobalVariables()
 	TogglePauseMenu(false)
-	LoadingSceneTransistioner.ChangeSceneWithLoadingScreen("res://Scenes/UI/GameStart/main_menu.tscn")
+	LoadingSceneTransistioner.ChangeSceneWithLoadingScreen("res://Scenes/UI/GameStart/main_menu_1.tscn")
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_quit_game_pressed():

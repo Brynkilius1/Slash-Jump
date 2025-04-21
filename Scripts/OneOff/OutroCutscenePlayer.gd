@@ -38,7 +38,7 @@ func _on_cutscene_initiation_area_2d_body_entered(body):
 
 func _on_bar_transition_cover_finished():
 	GlobalVariables.ResetGlobalVariables()
-	get_tree().change_scene_to_file("res://Scenes/UI/GameStart/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/UI/GameStart/main_menu_1.tscn")
 
 
 func _on_animation_player_animation_finished(anim_name):
