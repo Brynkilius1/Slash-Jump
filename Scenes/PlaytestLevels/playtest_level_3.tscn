@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="4_pe5tr"]
 [ext_resource type="Script" path="res://Scripts/ScreenHolder.gd" id="5_k5a0b"]
 [ext_resource type="Script" path="res://Scripts/GameMechanicScripts/Screen.gd" id="6_tpke4"]
-[ext_resource type="PackedScene" uid="uid://ds0qp5p67r0e8" path="res://Scenes/LevelObjects/no_grav_block.tscn" id="7_my55m"]
+[ext_resource type="PackedScene" uid="uid://ds0qp5p67r0e8" path="res://CustomLevels/CustomLevelObjects/no_grav_block.tscn" id="7_my55m"]
 [ext_resource type="TileSet" uid="uid://71tupyk65yoe" path="res://Tileset/AutumnTileset.tres" id="8_4qxo2"]
 [ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="8_js3su"]
 [ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/SwordCollisionHandler.gd" id="9_wpqi1"]

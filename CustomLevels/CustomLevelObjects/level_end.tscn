@@ -624,15 +624,6 @@ script = ExtResource("1_3wb4a")
 animations = NodePath("AnimatedSprite2D")
 particles = NodePath("SwordHitParticleGroup")
 
-[node name="ScreenFlash" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0.111111)
-offset_left = -779.0
-offset_top = -414.0
-offset_right = 784.0
-offset_bottom = 446.0
-mouse_filter = 2
-color = Color(1, 1, 1, 0.52549)
-
 [node name="ScreenDarkener" type="ColorRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -640,7 +631,7 @@ offset_left = -779.0
 offset_top = -414.0
 offset_right = 784.0
 offset_bottom = 446.0
-mouse_filter = 2
+mouse_filter = 1
 color = Color(0.0212523, 2.53183e-05, 0.0805214, 0.721569)
 
 [node name="ScreenCoverer" type="ColorRect" parent="."]
@@ -650,7 +641,7 @@ offset_left = -779.0
 offset_top = -414.0
 offset_right = 784.0
 offset_bottom = 446.0
-mouse_filter = 2
+mouse_filter = 1
 color = Color(0.0196078, 0, 0.0823529, 1)
 
 [node name="SwordCollisionHandler" parent="." instance=ExtResource("3_cp7pj")]
