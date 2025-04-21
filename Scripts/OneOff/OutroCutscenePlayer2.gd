@@ -102,7 +102,7 @@ func StartHavingFunWithPlayer():
 func _on_bar_transition_cover_finished():
 	GlobalVariables.ResetGlobalVariables()
 	GlobalVariables.cutscene_playing = 0
-	LoadingSceneTransistioner.ChangeSceneWithLoadingScreen("res://Scenes/UI/GameStart/main_menu_1.tscn")
+	LoadingSceneTransistioner.ChangeSceneWithLoadingScreen("res://Scenes/UI/GameStart/main_menu.tscn")
 
 
 func SkipCutscene(cutscene_number):

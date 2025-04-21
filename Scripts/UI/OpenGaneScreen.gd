@@ -37,4 +37,4 @@ func IncreaseGameOpenedCount():
 
 func RambleFinished():
 	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_packed(load("res://Scenes/UI/GameStart/main_menu_1.tscn"))
+	get_tree().change_scene_to_packed(load("res://Scenes/UI/GameStart/main_menu.tscn"))

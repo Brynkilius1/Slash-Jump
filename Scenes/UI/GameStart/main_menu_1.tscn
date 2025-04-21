@@ -1,40 +1,40 @@
-[gd_scene load_steps=73 format=3 uid="uid://jumgmkw5n5jc"]
+[gd_scene load_steps=73 format=3 uid="uid://qvddpxw2snlw"]
 
-[ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_qcmvg"]
-[ext_resource type="Texture2D" uid="uid://bxpri51ixw1ti" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sky.png" id="1_skej4"]
-[ext_resource type="Script" path="res://Scripts/UI/MainMenuVisuals.gd" id="2_aaf8t"]
-[ext_resource type="Texture2D" uid="uid://dsyvojkrivljr" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sword.png" id="2_ce5ef"]
-[ext_resource type="Texture2D" uid="uid://c06jc7323k5w7" path="res://Images/Backrounds/SunsetBAckround/forest_3.png" id="2_e25cx"]
-[ext_resource type="Texture2D" uid="uid://blot2dmjlmnxv" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_scarf.png" id="3_lp3fo"]
-[ext_resource type="Script" path="res://Scripts/UI/SelectionSwords.gd" id="3_tb5wg"]
-[ext_resource type="Texture2D" uid="uid://cw136hoickmca" path="res://Images/Backrounds/SunsetBAckround/forest_2.png" id="3_u65st"]
-[ext_resource type="Texture2D" uid="uid://csvxxgky0eha3" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_foreground_grass2.png" id="4_qwfvi"]
-[ext_resource type="Texture2D" uid="uid://dfrp84x45ydr0" path="res://Images/Backrounds/SunsetBAckround/forest.png" id="4_yuhkl"]
-[ext_resource type="Texture2D" uid="uid://c5qoenwwd2s1v" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_foreground_grass.png" id="5_hi5l4"]
-[ext_resource type="Texture2D" uid="uid://ccexglxmrto3n" path="res://Images/UI/MainMenu/MAinMenuBackround/menuClothAnimation.png" id="6_slatv"]
-[ext_resource type="Texture2D" uid="uid://bmj4yofmf4gqu" path="res://Images/UI/MainMenu/SlashJumpLogo.png" id="7_8chwq"]
-[ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="9_oovw4"]
-[ext_resource type="Texture2D" uid="uid://dljkyxwamk3jo" path="res://Images/Crayon/Misc/SlashJumpConcept1Rotated.png" id="10_g6gpd"]
-[ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="11_fycji"]
-[ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="12_62rsl"]
-[ext_resource type="Texture2D" uid="uid://84aathyrhkt5" path="res://Images/UI/MainMenu/SlashJumpLogoBetter.png" id="14_lwpbj"]
-[ext_resource type="Texture2D" uid="uid://cunwiuogug66s" path="res://Images/UI/MainMenu/LeaderBoardIcon.png" id="15_v5y2u"]
-[ext_resource type="PackedScene" uid="uid://krc5l4r450cl" path="res://Global/saver_and_loader.tscn" id="17_ccu1f"]
-[ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="17_pbjll"]
-[ext_resource type="Texture2D" uid="uid://bcy50pw6pqs47" path="res://Images/UI/MainMenu/LeaderBoardIconFocused.png" id="19_2umqk"]
-[ext_resource type="Texture2D" uid="uid://b5ll2ysmn30ly" path="res://Images/UI/MainMenu/LeaderBoardIconPressed.png" id="20_bbkxq"]
-[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Cache.gd" id="21_46i84"]
-[ext_resource type="Texture2D" uid="uid://dh3hdbbeccxaq" path="res://Images/UI/PauseMenu/PauseMenu.png" id="21_kqvle"]
-[ext_resource type="Texture2D" uid="uid://bttehw2m30d8u" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_logo.png" id="22_1b8qc"]
-[ext_resource type="Texture2D" uid="uid://38d80eiwwbuq" path="res://Images/UI/Settings/BackSign.png" id="22_752a2"]
-[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="22_g0apr"]
-[ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="22_p5tus"]
-[ext_resource type="Texture2D" uid="uid://dj2dssx1hy67b" path="res://Images/Misc/BeatPlayedWithSplashScreen.png" id="25_hnx42"]
-[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="26_eo2ys"]
-[ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="27_8li78"]
-[ext_resource type="AudioStream" uid="uid://q22lm0e2nnrh" path="res://Sounds/SoundEffects/Menu/MenuHover1.wav" id="28_gbe2i"]
-[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="28_l2wvk"]
-[ext_resource type="AudioStream" uid="uid://bxoqdrssfsfti" path="res://Sounds/SoundEffects/Menu/MenuClick1.wav" id="29_omvii"]
+[ext_resource type="Texture2D" uid="uid://bxpri51ixw1ti" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sky.png" id="1_idv4x"]
+[ext_resource type="Texture2D" uid="uid://c06jc7323k5w7" path="res://Images/Backrounds/SunsetBAckround/forest_3.png" id="2_6cmil"]
+[ext_resource type="Texture2D" uid="uid://cw136hoickmca" path="res://Images/Backrounds/SunsetBAckround/forest_2.png" id="3_fcnl1"]
+[ext_resource type="Texture2D" uid="uid://dfrp84x45ydr0" path="res://Images/Backrounds/SunsetBAckround/forest.png" id="4_dcusp"]
+[ext_resource type="Texture2D" uid="uid://dsyvojkrivljr" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_sword.png" id="5_mj25u"]
+[ext_resource type="Texture2D" uid="uid://ccexglxmrto3n" path="res://Images/UI/MainMenu/MAinMenuBackround/menuClothAnimation.png" id="6_558pa"]
+[ext_resource type="Texture2D" uid="uid://blot2dmjlmnxv" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_scarf.png" id="7_pob0m"]
+[ext_resource type="Texture2D" uid="uid://csvxxgky0eha3" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_foreground_grass2.png" id="8_bur8o"]
+[ext_resource type="Texture2D" uid="uid://c5qoenwwd2s1v" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_foreground_grass.png" id="9_y8fuh"]
+[ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="10_muist"]
+[ext_resource type="Script" path="res://Scripts/UI/MainMenuVisuals.gd" id="11_bgymk"]
+[ext_resource type="Script" path="res://Scripts/UI/SelectionSwords.gd" id="12_26rpn"]
+[ext_resource type="Texture2D" uid="uid://j24u27pjpiw4" path="res://Images/UI/MainMenu/MainMenuSelectSword.png" id="13_aowdl"]
+[ext_resource type="Texture2D" uid="uid://84aathyrhkt5" path="res://Images/UI/MainMenu/SlashJumpLogoBetter.png" id="14_wwqbg"]
+[ext_resource type="FontFile" uid="uid://5femt7y4g7nr" path="res://Fonts/m5x7.ttf" id="15_d05j7"]
+[ext_resource type="Texture2D" uid="uid://bmj4yofmf4gqu" path="res://Images/UI/MainMenu/SlashJumpLogo.png" id="16_an1qw"]
+[ext_resource type="Texture2D" uid="uid://bttehw2m30d8u" path="res://Images/UI/MainMenu/MAinMenuBackround/main_menu_logo.png" id="17_lwkhy"]
+[ext_resource type="Texture2D" uid="uid://cunwiuogug66s" path="res://Images/UI/MainMenu/LeaderBoardIcon.png" id="18_v0eh7"]
+[ext_resource type="Texture2D" uid="uid://bcy50pw6pqs47" path="res://Images/UI/MainMenu/LeaderBoardIconFocused.png" id="19_cea6g"]
+[ext_resource type="Texture2D" uid="uid://b5ll2ysmn30ly" path="res://Images/UI/MainMenu/LeaderBoardIconPressed.png" id="20_agcu0"]
+[ext_resource type="Texture2D" uid="uid://dljkyxwamk3jo" path="res://Images/Crayon/Misc/SlashJumpConcept1Rotated.png" id="21_gwoyd"]
+[ext_resource type="Texture2D" uid="uid://cshdlqq050unv" path="res://Images/VisualTest/tree.png" id="22_k355l"]
+[ext_resource type="PackedScene" uid="uid://bvywh4gs5xuci" path="res://Scenes/UI/Settings/settings.tscn" id="23_lgqa4"]
+[ext_resource type="PackedScene" uid="uid://krc5l4r450cl" path="res://Global/saver_and_loader.tscn" id="24_dl4fa"]
+[ext_resource type="Texture2D" uid="uid://dh3hdbbeccxaq" path="res://Images/UI/PauseMenu/PauseMenu.png" id="25_ayuqg"]
+[ext_resource type="FontFile" uid="uid://bkxjdgegbqn46" path="res://Fonts/m3x6.ttf" id="26_nk0uj"]
+[ext_resource type="Texture2D" uid="uid://38d80eiwwbuq" path="res://Images/UI/Settings/BackSign.png" id="27_js6qt"]
+[ext_resource type="PackedScene" uid="uid://14wncry5ht53" path="res://CustomLevels/screen.tscn" id="28_1h5ty"]
+[ext_resource type="Texture2D" uid="uid://dj2dssx1hy67b" path="res://Images/Misc/BeatPlayedWithSplashScreen.png" id="29_6qejs"]
+[ext_resource type="Script" path="res://Scripts/GeneralPurposeScripts/Cache.gd" id="30_wgrch"]
+[ext_resource type="PackedScene" uid="uid://bmgub35621wab" path="res://Scenes/Player/DeathTransitions/SimpleBarsTransition.tscn" id="31_b43rk"]
+[ext_resource type="Script" path="res://Systems/AudioSystem/Code/AudioMaster.gd" id="32_ugxq3"]
+[ext_resource type="PackedScene" uid="uid://c20rk8fvkd5t6" path="res://Systems/AudioSystem/Components/audio_collection.tscn" id="33_q4qk7"]
+[ext_resource type="AudioStream" uid="uid://q22lm0e2nnrh" path="res://Sounds/SoundEffects/Menu/MenuHover1.wav" id="34_y6gvc"]
+[ext_resource type="AudioStream" uid="uid://bxoqdrssfsfti" path="res://Sounds/SoundEffects/Menu/MenuClick1.wav" id="35_gomf2"]
 
 [sub_resource type="GDScript" id="GDScript_5s0j7"]
 script/source = "extends Node2D
@@ -104,39 +104,39 @@ turbulence_influence_min = 0.0
 turbulence_influence_max = 0.02
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a46gl"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(0, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6ri3"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(320, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8vbp"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(640, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_768h4"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(960, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7gqyd"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(1280, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjrg2"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(1600, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hoqa"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(1920, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpxxl"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(2240, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hxmp"]
-atlas = ExtResource("6_slatv")
+atlas = ExtResource("6_558pa")
 region = Rect2(2560, 0, 320, 180)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uocdd"]
@@ -232,18 +232,18 @@ bg_color = Color(0.2, 0.2, 0.2, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa1ch"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_egeps"]
-texture = ExtResource("15_v5y2u")
+texture = ExtResource("18_v0eh7")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uq72"]
-texture = ExtResource("19_2umqk")
+texture = ExtResource("19_cea6g")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2kte"]
-texture = ExtResource("20_bbkxq")
+texture = ExtResource("20_agcu0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_enj2j"]
-texture = ExtResource("19_2umqk")
+texture = ExtResource("19_cea6g")
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_qn5nm"]
 button_index = 1
@@ -375,7 +375,7 @@ position = Vector2(160, 90)
 motion_scale = Vector2(0, 0)
 
 [node name="Skybox" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
-texture = ExtResource("1_skej4")
+texture = ExtResource("1_idv4x")
 
 [node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground2"]
 position = Vector2(160, 90)
@@ -383,7 +383,7 @@ motion_scale = Vector2(0, 0.01)
 
 [node name="Trees2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer7"]
 position = Vector2(-32, 135)
-texture = ExtResource("2_e25cx")
+texture = ExtResource("2_6cmil")
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground2"]
 position = Vector2(160, 90)
@@ -391,7 +391,7 @@ motion_scale = Vector2(0, 0.03)
 
 [node name="Trees2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer6"]
 position = Vector2(-20, 113)
-texture = ExtResource("3_u65st")
+texture = ExtResource("3_fcnl1")
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground2"]
 position = Vector2(160, 90)
@@ -399,7 +399,7 @@ motion_scale = Vector2(0.05, 0.05)
 
 [node name="Trees1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer5"]
 position = Vector2(2, 131)
-texture = ExtResource("4_yuhkl")
+texture = ExtResource("4_dcusp")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="ParallaxBackground2/ParallaxLayer5"]
 process_mode = 3
@@ -421,7 +421,7 @@ position = Vector2(160, 90)
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sword" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
-texture = ExtResource("2_ce5ef")
+texture = ExtResource("5_mj25u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
 sprite_frames = SubResource("SpriteFrames_uocdd")
@@ -430,7 +430,7 @@ frame_progress = 0.648313
 
 [node name="MainMenuScarf" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
 visible = false
-texture = ExtResource("3_lp3fo")
+texture = ExtResource("7_pob0m")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground2/ParallaxLayer2"]
 process_mode = 3
@@ -454,14 +454,14 @@ motion_scale = Vector2(0.5, 0.5)
 
 [node name="Grass1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3"]
 position = Vector2(0, -7)
-texture = ExtResource("4_qwfvi")
+texture = ExtResource("8_bur8o")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2"]
 position = Vector2(160, 90)
 motion_scale = Vector2(0.7, 0.7)
 
 [node name="Grass1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer4"]
-texture = ExtResource("5_hi5l4")
+texture = ExtResource("9_y8fuh")
 
 [node name="BackroundCamera2D" type="Camera2D" parent="."]
 position = Vector2(160, 78)
@@ -476,7 +476,7 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_qcmvg")
+script = ExtResource("10_muist")
 level_path = "res://CustomLevels/CustomLevels/_custom_level_showcase.tscn"
 metadata/_edit_use_anchors_ = true
 
@@ -489,7 +489,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_aaf8t")
+script = ExtResource("11_bgymk")
 
 [node name="SelectionSwords" type="Control" parent="MainMenu/Menu/MainMenuVisuals"]
 unique_name_in_owner = true
@@ -504,7 +504,7 @@ offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_tb5wg")
+script = ExtResource("12_26rpn")
 
 [node name="SwordLeft" type="TextureRect" parent="MainMenu/Menu/MainMenuVisuals/SelectionSwords"]
 layout_mode = 0
@@ -512,7 +512,7 @@ offset_left = -5.0
 offset_top = 11.0
 offset_right = 35.0
 offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
+texture = ExtResource("13_aowdl")
 stretch_mode = 2
 
 [node name="SwordRight" type="TextureRect" parent="MainMenu/Menu/MainMenuVisuals/SelectionSwords"]
@@ -521,7 +521,7 @@ offset_left = 79.0
 offset_top = 11.0
 offset_right = 119.0
 offset_bottom = 51.0
-texture = ExtResource("9_oovw4")
+texture = ExtResource("13_aowdl")
 stretch_mode = 2
 flip_h = true
 
@@ -531,8 +531,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2880.0
-offset_bottom = 1620.0
+offset_right = 3200.0
+offset_bottom = 1800.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
@@ -551,7 +551,7 @@ offset_left = -1.0
 offset_top = 5.0
 offset_right = 319.0
 offset_bottom = 185.0
-texture = ExtResource("14_lwpbj")
+texture = ExtResource("14_wwqbg")
 
 [node name="Label" type="Label" parent="MainMenu/Menu/Menu"]
 layout_mode = 0
@@ -562,7 +562,7 @@ offset_bottom = 89.0
 theme_override_colors/font_color = Color(0.635294, 0.647059, 0.768627, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 text = "+ Mods"
 
 [node name="MainMenuButtons" type="Control" parent="MainMenu/Menu/Menu"]
@@ -593,7 +593,7 @@ alignment = 1
 [node name="Logo" type="TextureRect" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2"]
 visible = false
 layout_mode = 2
-texture = ExtResource("7_8chwq")
+texture = ExtResource("16_an1qw")
 stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu/Menu/Menu/MainMenuButtons/MarginContainer/VBoxContainer2"]
@@ -619,7 +619,7 @@ theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2i1nt")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_71xlg")
@@ -636,7 +636,7 @@ theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wjcwm")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_s04aq")
@@ -654,7 +654,7 @@ theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wjcwm")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_s04aq")
@@ -672,7 +672,7 @@ theme_override_colors/font_pressed_color = Color(0.396078, 0.396078, 0.396078, 1
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.396078, 0.396078, 0.396078, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_y1day")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cmcge")
@@ -693,7 +693,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.960784, 0.937255, 0.909804, 1)
 theme_override_constants/line_spacing = -1
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xa1ch")
 text = "By:
  Brynjar Á.
@@ -703,7 +703,7 @@ text = "By:
 visible = false
 z_index = 1
 position = Vector2(160, 90)
-texture = ExtResource("22_1b8qc")
+texture = ExtResource("17_lwkhy")
 
 [node name="LeaderBoardButton" type="Button" parent="MainMenu/Menu/Menu/MainMenuButtons"]
 layout_mode = 2
@@ -769,7 +769,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 32
 text = "Chapter 1:"
 horizontal_alignment = 1
@@ -777,7 +777,7 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level1/HBoxContainer/Level1Text/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 16
 text = "The beginning"
 horizontal_alignment = 1
@@ -797,7 +797,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_g6gpd")
+texture = ExtResource("21_gwoyd")
 expand_mode = 4
 stretch_mode = 4
 
@@ -845,7 +845,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 32
 text = "Chapter 2:"
 horizontal_alignment = 1
@@ -853,7 +853,7 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="MainMenu/Menu/Menu/LevelSelect/Level2/HBoxContainer/Level1Text/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_font_sizes/font_size = 16
 text = "The end"
 horizontal_alignment = 1
@@ -873,7 +873,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_fycji")
+texture = ExtResource("22_k355l")
 expand_mode = 4
 
 [node name="PrevLevelButton" type="Button" parent="MainMenu/Menu/Menu/LevelSelect/Level2"]
@@ -894,7 +894,7 @@ shortcut = SubResource("Shortcut_4v8m7")
 shortcut_in_tooltip = false
 text = "Back"
 
-[node name="Settings" parent="MainMenu/Menu/Menu" instance=ExtResource("12_62rsl")]
+[node name="Settings" parent="MainMenu/Menu/Menu" instance=ExtResource("23_lgqa4")]
 visible = false
 layout_mode = 1
 
@@ -905,7 +905,7 @@ offset_top = 157.0
 offset_right = 295.0
 offset_bottom = 178.0
 theme_override_colors/font_color = Color(0.792157, 0.74902, 0.890196, 1)
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rra73")
 text = "Back"
 flat = true
@@ -933,7 +933,7 @@ focus_neighbor_bottom = NodePath("../../../../../../../SettingsBackButton")
 [node name="RumbleCheckBox" parent="MainMenu/Menu/Menu/Settings/SettingsHolder/VBoxContainer/CategoryMarginContainer/ContolSettings/VBoxContainer" index="3"]
 focus_neighbor_bottom = NodePath("../../../../../SettingsBackButton")
 
-[node name="SaverAndLoader" parent="MainMenu/Menu/Menu" instance=ExtResource("17_ccu1f")]
+[node name="SaverAndLoader" parent="MainMenu/Menu/Menu" instance=ExtResource("24_dl4fa")]
 unique_name_in_owner = true
 
 [node name="Credits" type="Control" parent="MainMenu/Menu/Menu"]
@@ -959,7 +959,7 @@ offset_right = 160.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("21_kqvle")
+texture = ExtResource("25_ayuqg")
 
 [node name="Label" type="Label" parent="MainMenu/Menu/Menu/Credits"]
 layout_mode = 1
@@ -975,7 +975,7 @@ offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = -1
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 text = "Brynjar Á
 
 Sindri H
@@ -999,7 +999,7 @@ offset_bottom = 93.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = -1
-theme_override_fonts/font = ExtResource("22_p5tus")
+theme_override_fonts/font = ExtResource("26_nk0uj")
 text = "Programming and Design:
 
 Art:
@@ -1011,7 +1011,7 @@ horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="MainMenu/Menu/Menu/Credits"]
 position = Vector2(242, 121)
-texture = ExtResource("22_752a2")
+texture = ExtResource("27_js6qt")
 centered = false
 
 [node name="CreditsBackButton" type="Button" parent="MainMenu/Menu/Menu/Credits"]
@@ -1020,14 +1020,14 @@ offset_left = 253.0
 offset_top = 133.0
 offset_right = 283.0
 offset_bottom = 154.0
-theme_override_fonts/font = ExtResource("22_g0apr")
+theme_override_fonts/font = ExtResource("15_d05j7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_km48y")
 text = "Back"
 flat = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="MainMenu/Menu/Menu/Credits"]
 position = Vector2(236, 145)
-texture = ExtResource("9_oovw4")
+texture = ExtResource("13_aowdl")
 
 [node name="RunCounter" type="Label" parent="MainMenu/Menu/Menu/Credits"]
 layout_mode = 0
@@ -1035,7 +1035,7 @@ offset_left = -3.0
 offset_top = 166.0
 offset_right = 317.0
 offset_bottom = 189.0
-theme_override_fonts/font = ExtResource("22_p5tus")
+theme_override_fonts/font = ExtResource("26_nk0uj")
 text = "Runs: 0"
 horizontal_alignment = 2
 
@@ -1044,7 +1044,7 @@ libraries = {
 "": SubResource("AnimationLibrary_tt32j")
 }
 
-[node name="Screen" parent="MainMenu/Menu" instance=ExtResource("28_l2wvk")]
+[node name="Screen" parent="MainMenu/Menu" instance=ExtResource("28_1h5ty")]
 visible = false
 position = Vector2(160, 90)
 
@@ -1064,7 +1064,7 @@ color = Color(0, 0, 0, 1)
 [node name="BeatPlayedWithSplashScreen" type="Sprite2D" parent="MainMenu/Menu/BestPlayedWithControler"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(160, 90)
-texture = ExtResource("25_hnx42")
+texture = ExtResource("29_6qejs")
 
 [node name="BestPlayedSkipButton" type="Button" parent="MainMenu/Menu/BestPlayedWithControler"]
 layout_mode = 0
@@ -1075,27 +1075,27 @@ offset_bottom = -38.0
 
 [node name="Cache" type="Node2D" parent="MainMenu"]
 visible = false
-script = ExtResource("21_46i84")
+script = ExtResource("30_wgrch")
 
 [node name="DeathTransistionCanvasLayer" type="CanvasLayer" parent="MainMenu"]
 layer = 100
 
-[node name="BarTransition" parent="MainMenu/DeathTransistionCanvasLayer" instance=ExtResource("17_pbjll")]
+[node name="BarTransition" parent="MainMenu/DeathTransistionCanvasLayer" instance=ExtResource("31_b43rk")]
 visible = false
 
 [node name="AudioMaster" type="Node2D" parent="MainMenu" groups=["AudioMaster"]]
-script = ExtResource("26_eo2ys")
+script = ExtResource("32_ugxq3")
 
-[node name="AudioCollectionMenuHover" parent="MainMenu/AudioMaster" instance=ExtResource("27_8li78")]
+[node name="AudioCollectionMenuHover" parent="MainMenu/AudioMaster" instance=ExtResource("33_q4qk7")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MainMenu/AudioMaster/AudioCollectionMenuHover"]
-stream = ExtResource("28_gbe2i")
+stream = ExtResource("34_y6gvc")
 bus = &"SoundEffects"
 
-[node name="AudioCollectionMenuClick" parent="MainMenu/AudioMaster" instance=ExtResource("27_8li78")]
+[node name="AudioCollectionMenuClick" parent="MainMenu/AudioMaster" instance=ExtResource("33_q4qk7")]
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="MainMenu/AudioMaster/AudioCollectionMenuClick"]
-stream = ExtResource("29_omvii")
+stream = ExtResource("35_gomf2")
 volume_db = -7.0
 bus = &"SoundEffects"
 
