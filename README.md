@@ -1,5 +1,4 @@
 # The Slash/Jump Souce code
-Terrain plugin for Godot 4's tilemap.
 
 You can edit and modify it however you want but dont steal it straight up thanks xoxo
 
