@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://db88vm6f4tgr2"]
+
+[ext_resource type="Texture2D" uid="uid://dgw344j2qioy8" path="res://Images/UI/TimerUI.png" id="1_l3h7i"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Welcome to the slash jump source code!
+take a look around :)"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(263, 129)
+texture = ExtResource("1_l3h7i")
